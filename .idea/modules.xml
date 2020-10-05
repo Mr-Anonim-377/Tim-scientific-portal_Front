@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Tim-scientific-portal.iml" filepath="$PROJECT_DIR$/.idea/Tim-scientific-portal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tim_scientific_portal_dev_back/tim_scientific_portal_dev_back.iml" filepath="$PROJECT_DIR$/tim_scientific_portal_dev_back/tim_scientific_portal_dev_back.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tim_scientific_portal_dev_front/tim_scientific_portal_dev_front.iml" filepath="$PROJECT_DIR$/tim_scientific_portal_dev_front/tim_scientific_portal_dev_front.iml" />
+    </modules>
+  </component>
+</project>
