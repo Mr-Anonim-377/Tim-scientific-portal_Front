@@ -1,4 +1,4 @@
-# Tim-scientific-portal_front
+# Tim-scientific-portal_Front
 
 Front-end составляющая системы портала о исследованиях проводимых в рамках программы - "Агротехнологии будущего"
 
