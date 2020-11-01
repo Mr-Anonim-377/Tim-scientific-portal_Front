@@ -44,10 +44,10 @@
     min-height: calc(100vh - 377px)
   }
 
-  [class$="nav"] ul li a:link,
-  [class$="nav"] ul li a:visited,
-  [class$="nav"] ul li a:active,
-  [class$="nav"] ul li a:hover {
+  ul li a:link,
+  ul li a:visited,
+  ul li a:active,
+  ul li a:hover {
     text-decoration: none;
     color: black
   }
