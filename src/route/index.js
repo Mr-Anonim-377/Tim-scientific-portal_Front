@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import mainpage from '../components/unitComponents/body/controls/MainPageBody'
 import direction from '../components/unitComponents/body/controls/Direction'
+import research from '../components/unitComponents/body/controls/Research'
+
 // TODO Продумать название
 
 const routes = [
@@ -13,6 +15,11 @@ const routes = [
     path: '/direction',
     name: 'Direction',
     component: direction
+  },
+  {
+    path: '/research',
+    name: 'Research',
+    component: research
   }
 ]
 
