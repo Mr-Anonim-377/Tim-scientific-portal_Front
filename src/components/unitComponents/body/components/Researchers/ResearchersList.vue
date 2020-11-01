@@ -1,12 +1,12 @@
 <template>
     <div>
-        <ul ref="list">
-            <li v-for="item in researchersListData" :key="item.name">
-                <ResearchersItem :researchItemData="item"></ResearchersItem>
+        <ul :style="listProperty">
+            <li v-for="researcher in researchersListData" :key="researcher.name">
+                <ResearchersItem :researchItemData="researcher"></ResearchersItem>
             </li>
         </ul>
+        <p  :style="btnStyle" @click="showToggle">Показать еще</p>
     </div>
-    <p ref="btn" @click="showToggle">Показать еще</p>
 </template>
 
 <script>
@@ -17,18 +17,22 @@
         components: {
             ResearchersItem
         },
-
         props: {
             researchersListData: Array,
         },
-
+        data () { return {
+            btnStyle: {},
+            listProperty:{}
+        }
+        },
         methods: {
             showToggle: function () {
                 let height = 307.5 * (Math.ceil(this.researchersListData.length / 3));
-                this.$refs.list.style.height = `${height}px`;
-                this.$refs.btn.style.opacity = 0;
-                this.$refs.btn.style.margin = "0 auto";
-                this.$refs.btn.style.height = 0;
+                this.listProperty = {height:`${height}px`};
+                this.btnStyle = {opacity:0,
+                    margin:"0 auto",
+                    height:0
+                };
             },
         }
     }

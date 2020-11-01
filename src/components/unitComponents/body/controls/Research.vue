@@ -21,6 +21,8 @@
 
     <SectionHeader title="Об исследовании" :section-text="this.aboutResearch" />
 
+    <SectionHeader title="С полей испытаний"/>
+
     <SuccessModule />
 
     <SectionHeader title="Новостная лента" />

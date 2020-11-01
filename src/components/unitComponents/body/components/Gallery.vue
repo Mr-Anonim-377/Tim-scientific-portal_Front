@@ -5,23 +5,28 @@
                 <img :src="item.url">
             </div>
         </div>
-        <div ref="view" class="view"></div>
+        <div :style="view" class="view"></div>
     </div>
 </template>
 
 <script>
     export default {
         name: "Gallery",
+        data(){
+            return{
+                view: ''
+            }
+        },
         props: {
-            galleryItems: Array
+            galleryItems: Array,
         },
         methods: {
             showItem(event) {
-                this.$refs.view.style.backgroundImage = `url("${event.target.src}")`;
+                this.view = {backgroundImage:`url("${event.target.src}")`};
             },
         },
         mounted() {
-            this.$refs.view.style.backgroundImage = `url("${this.galleryItems[0].url}")`;
+            this.view = {backgroundImage:`url("${this.galleryItems[0].url}")`};
         }
 
     }
@@ -29,6 +34,18 @@
 
 <style scoped>
     .gallery {
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+
         width: 1063px;
         height: 600px;
         margin: auto;
