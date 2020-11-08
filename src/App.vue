@@ -18,6 +18,21 @@
     box-sizing: border-box;
   }
 
+  img {
+    /*pointer-events: none;*/
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+  }
+
   body {
     padding: 0;
     margin: 0;
@@ -44,10 +59,10 @@
     min-height: calc(100vh - 377px)
   }
 
-  [class$="nav"] ul li a:link,
-  [class$="nav"] ul li a:visited,
-  [class$="nav"] ul li a:active,
-  [class$="nav"] ul li a:hover {
+  ul li a:link,
+  ul li a:visited,
+  ul li a:active,
+  ul li a:hover {
     text-decoration: none;
     color: black
   }
