@@ -1,6 +1,6 @@
 <template>
         <div class="institutes__img">
-            <img :src="institute.img">
+            <img :src="filtersItem.img">
         </div>
 </template>
 
@@ -8,12 +8,12 @@
     export default {
         name: "ProfileInstitutes",
         props:{
-            institute:{}
+            filtersItem:{}
         }
     }
 </script>
 
-<style>
+<style  scoped>
     .institutes__img{
         width: 115px;
         height: 115px;

@@ -1,14 +1,14 @@
 <template>
         <div class="profile-shell">
-            <img :src="profile.img">
+            <img :src="profiles.img">
             <div class="profile-shell__info">
                 <div class="profile-shell__info-p">
-                    <p>{{profile.name}}</p>
-                    <p>{{profile.surname}}</p>
-                    <p>{{profile.patronymic}}</p>
+                    <p>{{profiles.name}}</p>
+                    <p>{{profiles.surname}}</p>
+                    <p>{{profiles.patronymic}}</p>
                 </div>
                 <div class="profile-shell__info-logo">
-                    <img :src="profile.logo">
+                    <img :src="profiles.logo">
                     <p>Участие в проектах:</p>
                 </div>
                 <div class="profile-shell__info-carousel">
@@ -22,8 +22,9 @@
                             @init="onSwiper"
                             :speed="500"
                     >
-                        <swiper-slide class="swiper-slide-profile"
-                                v-for="profilesProp in profile.project"
+                        <swiper-slide style="margin-bottom: 0px;"
+                                class="swiper-slide-profile"
+                                v-for="profilesProp in profiles.project"
                                       :key="profilesProp"
                         >
                             <SectionProfileTitle
@@ -52,7 +53,7 @@
     export default {
         name: "SectionProfile",
         props:{
-            profile:[]
+            profiles:[]
         },
         components: {
             SectionProfileTitle,
@@ -67,7 +68,7 @@
     }
 </script>
 
-<style>
+<style  scoped>
     .profile-shell{
         display: flex;
         width: 467px;
@@ -104,7 +105,7 @@
     .profile-shell__info-logo img{
         width: 39px;
         height: 39px;
-        background: none !important;
+        /*background: none !important;*/
         margin: 6px 0;
     }
 

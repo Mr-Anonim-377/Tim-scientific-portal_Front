@@ -13,7 +13,7 @@
     }
 </script>
 
-<style>
+<style  scoped>
     .info-carousel__project{
         width: 100%;
         height: 100%;
