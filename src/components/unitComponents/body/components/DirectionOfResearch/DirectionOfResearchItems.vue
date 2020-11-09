@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!isPreloader" class="directions">
+    <div class="directions">
         <Swiper
                 :slides-per-view="1"
                 :space-between="50"
@@ -80,7 +80,6 @@
                             :spaceBetween="10"
                             :loopedSlides="5"
                             :slides-per-view="1"
-                            navigation
                             :thumbs="{ swiper: Thumbs }"
 
                     >

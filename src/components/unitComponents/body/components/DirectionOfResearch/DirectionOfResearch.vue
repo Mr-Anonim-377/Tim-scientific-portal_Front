@@ -2,71 +2,68 @@
     <div class="container">
       <PreLoader v-if="isPreloader"></PreLoader>
         <section class="direction-on-research">
-            <Directions/>
+            <Directions v-if="!isPreloader"/>
             <div class="research-directions-item">
-                <Swiper style="width: 110%;
-                        padding-left: 25px;
-                        padding-right: 30px;"
-                        :slides-per-view="5"
+                <Swiper :slides-per-view="5"
                         :space-between="30"
                         :speed="500"
                         :slidesPerGroup="5"
                         :loop="true"
                         :freeMode="true"
                 >
-                    <SwiperSlide class="swiper-slide-item">
-                <div @click="onSlideChange" class="news-filters-item hexagon">
-                    <div class="news-filters-item-in1">
-                        <div class="hexagon-in2"></div>
-                    </div>
-                </div>
-                    </SwiperSlide >
-                        <SwiperSlide class="swiper-slide-item">
-                <div class="news-filters-item hexagon">
-                    <div class="news-filters-item-img">
-                        <div class="hexagon-img"></div>
-                    </div>
-                </div>
-                        </SwiperSlide>
-                    <SwiperSlide class="swiper-slide-item">
-                <div class="news-filters-item hexagon">
-                    <div class="news-filters-item-in1">
-                        <div class="hexagon-in2"></div>
-                    </div>
-                </div>
-                    </SwiperSlide>
-                    <SwiperSlide class="swiper-slide-item">
-                <div class="news-filters-item hexagon">
-                    <div class="news-filters-item-in1">
-                        <div class="hexagon-in2"></div>
-                    </div>
-                </div>
-                    </SwiperSlide>
-                    <SwiperSlide class="swiper-slide-item">
-                <div class="news-filters-item hexagon">
-                    <div class="news-filters-item-in1">
-                        <div class="hexagon-in2"></div>
-                    </div>
-                </div>
-                    </SwiperSlide>
-                    <SwiperSlide class="swiper-slide-item">
-                        <div class="news-filters-item hexagon">
-                            <div class="news-filters-item-in1">
-                                <div class="hexagon-in2"></div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide class="swiper-slide-item">
-                        <div class="news-filters-item hexagon">
-                            <div class="news-filters-item-in1">
-                                <div class="hexagon-in2"></div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide class="swiper-slide-item">
+                    <SwiperSlide @click="onSlideChange" class="swiper-slide-item">
                         <div class="news-filters-item hexagon">
                             <div class="news-filters-item-hexagon">
-                                <div class="hexagon-in2"></div>
+                                <div class="hexagon-img"></div>
+                            </div>
+                        </div>
+                    </SwiperSlide >
+                        <SwiperSlide @click="onSlideChange" class="swiper-slide-item">
+                            <div class="news-filters-item hexagon">
+                                <div class="news-filters-item-hexagon">
+                                    <div class="hexagon-img"></div>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                    <SwiperSlide @click="onSlideChange" class="swiper-slide-item">
+                        <div class="news-filters-item hexagon">
+                            <div class="news-filters-item-hexagon">
+                                <div class="hexagon-img"></div>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide @click="onSlideChange" class="swiper-slide-item">
+                        <div class="news-filters-item hexagon">
+                            <div class="news-filters-item-hexagon">
+                                <div class="hexagon-img"></div>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide @click="onSlideChange" class="swiper-slide-item">
+                        <div class="news-filters-item hexagon">
+                            <div class="news-filters-item-hexagon">
+                                <div class="hexagon-img"></div>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide @click="onSlideChange" class="swiper-slide-item">
+                        <div class="news-filters-item hexagon">
+                            <div class="news-filters-item-hexagon">
+                                <div class="hexagon-img"></div>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide @click="onSlideChange" class="swiper-slide-item">
+                        <div class="news-filters-item hexagon">
+                            <div class="news-filters-item-hexagon">
+                                <div class="hexagon-img"></div>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide @click="onSlideChange" class="swiper-slide-item">
+                        <div class="news-filters-item hexagon">
+                            <div class="news-filters-item-hexagon">
+                                <div class="hexagon-img"></div>
                             </div>
                         </div>
                     </SwiperSlide>
@@ -77,7 +74,7 @@
 </template>
 
 <script>
-    import PreLoader from "@/components/unitComponents/commonComponents/PreLoader";
+    import PreLoader from '../../../commonComponents/PreLoader';
     import Directions from './DirectionOfResearchItems'
     import SwiperCore, { Pagination, Navigation, Thumbs } from 'swiper';
     import 'swiper/components/navigation/navigation.scss'
@@ -105,9 +102,12 @@
           }
       },
       methods:{
-        // eslint-disable-next-line no-unused-vars
-        onSlideChange(){
-this.isPreloader = true;
+              onSlideChange() {
+                  this.isPreloader = true;
+                  setTimeout(() => {
+                      this.isPreloader = false;
+                  }, 300);
+
         }
       }
     }
@@ -135,7 +135,7 @@ this.isPreloader = true;
     .research-directions-item {
         display: flex;
         width: 100%;
-        padding: 0 180px;
+        padding: 0 152px;
         justify-content: space-between;
         align-items: center;
 
@@ -173,7 +173,7 @@ this.isPreloader = true;
         height: 100%;
         background-repeat: no-repeat;
         background-position: 50%;
-        background-image: url("http://rsloboda-rt.ru/images/uploads/news/2019/7/3/0095ab7d2d840ee88c01a26b8a87bbc8.jpg");
+        background-image: url("https://nikatv.ru/public/upload/news/29566/images/1024x640.jpg");
         visibility: visible;
         -webkit-transform: rotate(-60deg);
         -moz-transform: rotate(-60deg);
@@ -182,6 +182,6 @@ this.isPreloader = true;
         transform: rotate(-60deg);
     }
     .swiper-slide-item{
-        margin: 38px 12px;
+        margin: 38px 14px;
     }
 </style>
