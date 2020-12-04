@@ -1,31 +1,42 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import mainpage from '../components/unitComponents/body/controls/MainPageBody'
-import direction from '../components/unitComponents/body/controls/Direction'
-import research from '../components/unitComponents/body/controls/Research'
+import { createRouter, createWebHistory } from 'vue-router';
+import main from '../components/routComponents/MainPage';
+import notFound from '../components/routComponents/404Page';
+import consortium from '../components/routComponents/ConsortiumPage';
+import ways from '../components/routComponents/WaysPage';
+import news from '../components/routComponents/NewsPage';
 
-// TODO Продумать название
 
 const routes = [
   {
     path: '/',
     name: 'Main',
-    component: mainpage
+    component: main
   },
   {
-    path: '/direction',
-    name: 'Direction',
-    component: direction
+    path: '/consortium',
+    name: 'Consortium',
+    component: consortium
   },
   {
-    path: '/research',
-    name: 'Research',
-    component: research
+    path: '/404',
+    name: 'notFound',
+    component: notFound
+  },
+  {
+    path: '/ways',
+    name: 'ways',
+    component: ways
+  },
+  {
+    path: '/news',
+    name: 'news',
+    component: news
   }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
-})
+});
 
-export default router
+export default router;

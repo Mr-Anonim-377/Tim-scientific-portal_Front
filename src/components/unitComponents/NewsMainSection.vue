@@ -1,0 +1,93 @@
+<template>
+    <div class="news-item">
+        <img :src="newsData.image[0].value.url" />
+        <h3>{{ newsData.title[0].value.text  }}</h3>
+        <p class="news-item__years">{{
+            newsData.date[0].value.date.split(".")[2]
+            }}</p>
+        <p class="news-item__text">{{ newsData.text[0].value.text }}</p>
+        <ButtonElement :modifiers="modifiers.btn" class="news__btn" />
+    </div>
+</template>
+
+<script>
+import ButtonElement from "./CommonElements/ButtonElement";
+
+export default {
+    name: "NewsMain",
+    components: {
+        ButtonElement,
+    },
+    props: {
+        newsData: {},
+    },
+    data() {
+        return {
+            modifiers: {
+                btn: [
+                    "width: 170px; height: 35px; font-size: 14px; line-height: 17px; padding: 10px;",
+                ],
+            },
+        };
+    },
+    mounted() {
+    }
+};
+</script>
+
+<style scoped>
+.news-item {
+    width: 367px;
+    height: 475px;
+    margin: 0 10px 0 10px;
+}
+
+.news-item img {
+    width: 367px;
+    height: 250px;
+}
+
+p,
+h3 {
+    font-size: 15px;
+    color: #3f7e77;
+    line-height: 109.19%;
+}
+/*Стили года и линий*/
+.news-item__years {
+    margin: 0 9px;
+    position: relative;
+}
+.news-item__years:before {
+    content: "";
+    position: absolute;
+    width: 35px;
+    height: 1px;
+    background: #3f7e77;
+    left: 110px;
+    top: 8px;
+}
+.news-item__years:after {
+    content: "";
+    position: absolute;
+    width: 35px;
+    height: 1px;
+    background: #3f7e77;
+    right: 109px;
+    top: 8px;
+}
+
+h3 {
+    font-weight: 900;
+    margin: 17px 0 8px 0;
+}
+
+.news-item__text {
+    padding: 0 10px;
+}
+
+.news__btn {
+    display: none;
+    margin: 35px auto 0 auto;
+}
+</style>

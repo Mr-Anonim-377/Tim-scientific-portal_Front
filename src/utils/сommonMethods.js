@@ -3,7 +3,7 @@ import { createApp } from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
-const basePath = 'http://193.232.106.89:81/';
+const basePath = 'http://localhost:84/';
 
 export function setUri (uri) {
     store.commit('SET_URI_TO_STATE', uri);
@@ -32,19 +32,6 @@ export const store = createStore({
                     console.log(error)
                 })
         }
-        // ,
-        // POST_USER_FROM_API() {
-        //     return axios.post ('https://api.github.com/repos/{owner}/{repo}/labels', {
-        //         params: {key: '1'},
-        //         owner: this.owner,
-        //     })
-        //         .then((response) => {
-        //             console.log(response);
-        //         })
-        //         .catch((error) => {
-        //             console.log(error);
-        //         });
-        // }
     },
     getters:{}
 
