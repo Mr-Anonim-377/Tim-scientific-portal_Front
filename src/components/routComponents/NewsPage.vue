@@ -1,9 +1,10 @@
 <template>
+    <div v-if="loadSucces">
     <section class="newsSection">
         <TitleSection :headerVisible="visibleNews" :title="this.titleNews" />
         <div class="newsSection-container" :style="listNews">
             <newsMainSection
-                v-for="data in news"
+                v-for="data in NEWS_SLIDER"
                 :key="data"
                 :newsData="data"
                 style="margin-bottom: 52px"
@@ -13,9 +14,11 @@
             Все новости
         </p>
     </section>
+    </div>
 </template>
 
 <script>
+import mixin from "../../utils/methodsMixin";
 import TitleSection from "../unitComponents/TitleSection";
 import newsMainSection from "../unitComponents/NewsMainSection";
 export default {
@@ -24,6 +27,7 @@ export default {
         newsMainSection,
         TitleSection,
     },
+    mixins: [mixin],
     methods: {
         showToggle: function () {
             let height = 500 * Math.ceil(this.news.length / 3);
@@ -37,6 +41,7 @@ export default {
             listProperty: {},
             titleNews: "Новости программы",
             visibleNews: true,
+            loadSucces: false,
             news: [
                 {
                     img:
@@ -89,6 +94,11 @@ export default {
             ],
         };
     },
+
+    async mounted() {
+        await this.getModulesTest("NEWS_PAGE");
+        this.loadSucces = true;
+    }
 };
 </script>
 

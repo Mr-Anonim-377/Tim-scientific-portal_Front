@@ -16,6 +16,7 @@ export default {
 			// Получаем модули
 			// Храним их в this.modules
 			await this.GET_DATA_FROM_API().then((response) => {
+				console.log(response);
 				this.modules = response.data.modules;
 			});
 
