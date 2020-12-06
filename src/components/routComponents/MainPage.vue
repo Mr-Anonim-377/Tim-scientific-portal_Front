@@ -75,7 +75,7 @@ export default {
     async created() {
 
         await this.getModulesTest("MAIN_PAGE");
-        console.log(this.PROGRAMS_RESULTS);
+        console.log(this.BANNER);
         console.log(this.modules);
         this.loadSuccess = true;
     },

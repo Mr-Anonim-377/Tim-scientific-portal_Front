@@ -30,9 +30,11 @@ export default {
 
 					this[moduleType] = [];
 
-
 					response.data.forEach((moduleItem) => {
-						this[moduleType].push({
+
+						if (!this[moduleType][moduleItem.objectType]) this[moduleType][moduleItem.objectType] = [];
+
+						this[moduleType][moduleItem.objectType].push({
 							title: moduleItem.contents.filter(
 								(item) => item.contentType === "TITLE"
 							),

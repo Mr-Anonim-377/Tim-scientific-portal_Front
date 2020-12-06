@@ -209,7 +209,7 @@ export default {
             this.i = this.i === 6 ? 0 : this.i + 1;
 
             this.currentTitle = this.moduleData[this.i].title[0].value.text;
-            this.currentDescription = this.moduleData[this.i].description.map(
+            this.currentDescription = this.moduleData[this.i].text.map(
                 (item) => item.value.text
             );
         });
@@ -221,7 +221,7 @@ export default {
                 this.i === 0 ? this.consortiumCircles.length - 1 : this.i - 1;
 
             this.currentTitle = this.moduleData[this.i].title[0].value.text;
-            this.currentDescription = this.moduleData[this.i].description.map(
+            this.currentDescription = this.moduleData[this.i].text.map(
                 (item) => item.value.text
             );
         });
