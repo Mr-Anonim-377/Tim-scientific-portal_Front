@@ -16,7 +16,6 @@ export default {
 			// Получаем модули
 			// Храним их в this.modules
 			await this.GET_DATA_FROM_API().then((response) => {
-				console.log(response);
 				this.modules = response.data.modules;
 			});
 
@@ -34,22 +33,38 @@ export default {
 
 						if (!this[moduleType][moduleItem.objectType]) this[moduleType][moduleItem.objectType] = [];
 
+
+						let titleValue = moduleItem.contents.filter(
+							(item) => item.contentType === "TITLE"
+						)
+						.map(item => item.value.text).join(" ; ");
+
+
+						let textValue = moduleItem.contents.filter(
+							(item) => item.contentType === "TEXT"
+						)
+						.map(item => item.value.text).join(" ; ");
+
+						let imageValue =  moduleItem.contents.filter(
+							(item) => item.contentType === "IMAGE"
+						)
+						.map(item => item.value.url).join(" ; ");
+
+						let dateValue = moduleItem.contents.filter(
+							(item) => item.contentType === "DATE"
+						)
+						.map(item => item.value.date).join(" ; ");
+
+
 						this[moduleType][moduleItem.objectType].push({
-							title: moduleItem.contents.filter(
-								(item) => item.contentType === "TITLE"
-							),
 
-							text: moduleItem.contents.filter(
-								(item) => item.contentType === "TEXT"
-							),
+							title: titleValue ? titleValue : null,
 
-							image: moduleItem.contents.filter(
-								(item) => item.contentType === "IMAGE"
-							),
+							text: textValue ? textValue : null,
 
-							date: moduleItem.contents.filter(
-								(item) => item.contentType === "DATE"
-							),
+							image: imageValue ? imageValue : null,
+
+							date: dateValue ? dateValue : null
 						});
 					});
 				});

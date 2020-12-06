@@ -1,11 +1,11 @@
 <template>
     <div class="news-item">
-        <img :src="newsData.image[0].value.url" />
-        <h3>{{ newsData.title[0].value.text  }}</h3>
+        <img :src="newsData.image" />
+        <h3>{{ newsData.title}}</h3>
         <p class="news-item__years">{{
-            newsData.date[0].value.date.split(".")[2]
+            newsData.date.split(".")[2]
             }}</p>
-        <p class="news-item__text">{{ newsData.text[0].value.text }}</p>
+        <p class="news-item__text">{{ newsData.text}}</p>
         <ButtonElement :modifiers="modifiers.btn" class="news__btn" />
     </div>
 </template>
@@ -30,8 +30,8 @@ export default {
             },
         };
     },
-
 };
+
 </script>
 
 <style scoped>

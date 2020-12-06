@@ -1,3 +1,14 @@
+/*
+
+Section -Cлайдер консорциум (страница консорциума)
+
+Принимает типы объектов:
+        - CONSORTIUM_MEMBER
+            - title: Название участника консорциума
+            - image: Логотип участника консорциума
+
+*/
+
 <template>
     <section class="consortium-section">
         <div class="container">
@@ -64,10 +75,8 @@ export default {
         return {
             i: 0,
             sliderDataIndex: 0,
-            currentTitle: this.moduleData[0].title[0].value.text,
-            currentDescription: this.moduleData[0].text.map(
-                (item) => item.value.text
-            ),
+            currentTitle: this.moduleData[0].title,
+            currentDescription: this.moduleData[0].text.split(" ; "),
 
             positions: {
                 circle1: {
@@ -113,29 +122,6 @@ export default {
                     zIndex: 1,
                 },
             },
-
-            // TEMP Данные для слайдера
-            sliderData: [
-                {
-                    url:
-                        "https://media2.giphy.com/media/l1J9MU7JDGBu8VQwU/200w.webp",
-                },
-
-                {
-                    url:
-                        "https://media4.giphy.com/media/ZV9jV1t6htzX2/giphy.webp",
-                },
-
-                {
-                    url:
-                        "https://media3.giphy.com/media/3ov9kaCoHKp6j83Ae4/200w.webp",
-                },
-
-                {
-                    url:
-                        "https://i0.wp.com/itc.ua/wp-content/uploads/2019/06/1-dancing-banana.gif?resize=500%2C530&quality=100&strip=all&ssl=1",
-                },
-            ],
         };
     },
 
@@ -208,10 +194,8 @@ export default {
             this.changePosition(this.i, this.consortiumCircles, isNext);
             this.i = this.i === 6 ? 0 : this.i + 1;
 
-            this.currentTitle = this.moduleData[this.i].title[0].value.text;
-            this.currentDescription = this.moduleData[this.i].text.map(
-                (item) => item.value.text
-            );
+            this.currentTitle = this.moduleData[this.i].title;
+            this.currentDescription = this.moduleData[this.i].text.split(' ; ')
         });
 
         $(".consortium-arrow-right").on("click", () => {
@@ -220,10 +204,9 @@ export default {
             this.i =
                 this.i === 0 ? this.consortiumCircles.length - 1 : this.i - 1;
 
-            this.currentTitle = this.moduleData[this.i].title[0].value.text;
-            this.currentDescription = this.moduleData[this.i].text.map(
-                (item) => item.value.text
-            );
+            this.currentTitle = this.moduleData[this.i].title;
+            this.currentDescription = this.moduleData[this.i].text.split(' ; ')
+
         });
     },
 };

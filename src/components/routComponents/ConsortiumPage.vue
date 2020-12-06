@@ -1,5 +1,16 @@
+/*
+
+Page - Главная страница проекта
+
+Тип страницы - CONSORTIUM
+
+Используемые модули:
+    -  CONSORTIUM_CARUSEL
+
+*/
+
 <template>
-  <ConsortioumSlider v-if="loadSuccess" :moduleData="CONSORTIUM_CARUSEL"/>
+  <ConsortioumSlider v-if="loadSuccess" :moduleData="CONSORTIUM_CARUSEL.CONSORTIUM_MEMBER"/>
 </template>
 
 <script>
@@ -21,9 +32,6 @@ export default {
 
   mixins: [testMixin],
 
-  methods: {
-
-  },
 
   async mounted() {
 

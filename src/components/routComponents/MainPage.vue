@@ -34,9 +34,9 @@ Page - Главная страница проекта
             />
             <div class="newsSection-container">
                 <NewsMainSection
-                    v-for="item in NEWS_CAROUSEL.slice(0, 3)"
-                    :key="item"
-                    :newsData="item"
+                    v-for="NEWS_ITEM in NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)"
+                    :key="NEWS_ITEM"
+                    :newsData="NEWS_ITEM"
                 />
             </div>
             <router-link style="text-decoration: none" :to="{ name: 'news' }">
@@ -75,8 +75,7 @@ export default {
     async created() {
 
         await this.getModulesTest("MAIN_PAGE");
-        console.log(this.BANNER);
-        console.log(this.modules);
+
         this.loadSuccess = true;
     },
 

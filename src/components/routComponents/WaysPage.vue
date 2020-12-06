@@ -1,4 +1,22 @@
+/*
+
+Page - Страница направления исследлова
+
+Тип страницы - MAIN_PAGE
+
+Используемые модули:
+    -  BANNER
+    -  CONSORTIUM_TEAM
+    -  PROGRAMS_RESULTS
+    -  PROJECT_GOALS
+    -  RESEARCH_DIRECTIONS
+    -  NEWS_CAROUSEL
+
+*/
+
 <template>
+    <div v-if="loadSucces">
+
     <section class="waysSection">
         <TitleSection
                 :title="this.titleWays"
@@ -11,6 +29,8 @@
         :items="data"
         />
     </section>
+
+    </div>
 </template>
 
 <script>
@@ -24,6 +44,8 @@
         },
         data(){
             return{
+                loadSucces: true,
+
                 titleWays:"Направления исследований",
                 visibleWays: true,
                 waysData:[
@@ -76,6 +98,10 @@
                     }
                 ]
             }
+        },
+
+        mounted() {
+
         }
     }
 </script>

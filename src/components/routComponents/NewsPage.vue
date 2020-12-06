@@ -1,26 +1,42 @@
+/*
+
+Page - Страница новостей
+
+Тип страницы - NEWS_PAGE
+
+Используемые модули:
+    - NEWS_SLIDER
+
+*/
+
 <template>
     <div v-if="loadSucces">
-    <section class="newsSection">
-        <TitleSection :headerVisible="visibleNews" :title="this.titleNews" />
-        <div class="newsSection-container" :style="listNews">
-            <newsMainSection
-                v-for="data in NEWS_SLIDER"
-                :key="data"
-                :newsData="data"
-                style="margin-bottom: 52px"
+        <section class="newsSection">
+            <TitleSection
+                :headerVisible="visibleNews"
+                :title="this.titleNews"
             />
-        </div>
-        <p class="newsSection__text" :style="btnStyle" @click="showToggle">
-            Все новости
-        </p>
-    </section>
+            <div class="newsSection-container" :style="listNews">
+                <newsMainSection
+                    v-for="data in NEWS_SLIDER.NEWS_ITEM"
+                    :key="data"
+                    :newsData="data"
+                    style="margin-bottom: 52px"
+                />
+            </div>
+            <p class="newsSection__text" :style="btnStyle" @click="showToggle">
+                Все новости
+            </p>
+        </section>
     </div>
 </template>
 
 <script>
+
 import mixin from "../../utils/methodsMixin";
 import TitleSection from "../unitComponents/TitleSection";
 import newsMainSection from "../unitComponents/NewsMainSection";
+
 export default {
     name: "researchBodyPage",
     components: {
@@ -30,7 +46,7 @@ export default {
     mixins: [mixin],
     methods: {
         showToggle: function () {
-            let height = 500 * Math.ceil(this.news.length / 3);
+            let height = 500 * Math.ceil(this.NEWS_SLIDER.NEWS_ITEM.length / 3);
             this.listNews = { height: `${height}px` };
             this.btnStyle = { opacity: 0, margin: "0 auto", height: 0 };
         },
@@ -42,63 +58,14 @@ export default {
             titleNews: "Новости программы",
             visibleNews: true,
             loadSucces: false,
-            news: [
-                {
-                    img:
-                        "https://stroy-podskazka.ru/images/article/orig/2018/03/obustrojstvo-teplic-vnutri-hitrosti-planirovki-4.jpg",
-                    title: "Агротехнологии будущего",
-                    years: "2020",
-                    text:
-                        "Важное место в питании сегодня отводится клетчатке, содержание которой в зерне ржи значительно",
-                },
-                {
-                    img:
-                        "https://stroy-podskazka.ru/images/article/orig/2018/03/obustrojstvo-teplic-vnutri-hitrosti-planirovki-4.jpg",
-                    title: "Агротехнологии будущего",
-                    years: "2020",
-                    text:
-                        "Важное место в питании сегодня отводится клетчатке, содержание которой в зерне ржи значительно",
-                },
-                {
-                    img:
-                        "https://stroy-podskazka.ru/images/article/orig/2018/03/obustrojstvo-teplic-vnutri-hitrosti-planirovki-4.jpg",
-                    title: "Агротехнологии будущего",
-                    years: "2020",
-                    text:
-                        "Важное место в питании сегодня отводится клетчатке, содержание которой в зерне ржи значительно",
-                },
-                {
-                    img:
-                        "https://stroy-podskazka.ru/images/article/orig/2018/03/obustrojstvo-teplic-vnutri-hitrosti-planirovki-4.jpg",
-                    title: "Агротехнологии будущего",
-                    years: "2020",
-                    text:
-                        "Важное место в питании сегодня отводится клетчатке, содержание которой в зерне ржи значительно",
-                },
-                {
-                    img:
-                        "https://stroy-podskazka.ru/images/article/orig/2018/03/obustrojstvo-teplic-vnutri-hitrosti-planirovki-4.jpg",
-                    title: "Агротехнологии будущего",
-                    years: "2020",
-                    text:
-                        "Важное место в питании сегодня отводится клетчатке, содержание которой в зерне ржи значительно",
-                },
-                {
-                    img:
-                        "https://stroy-podskazka.ru/images/article/orig/2018/03/obustrojstvo-teplic-vnutri-hitrosti-planirovki-4.jpg",
-                    title: "Агротехнологии будущего",
-                    years: "2020",
-                    text:
-                        "Важное место в питании сегодня отводится клетчатке, содержание которой в зерне ржи значительно",
-                },
-            ],
+
         };
     },
 
     async mounted() {
         await this.getModulesTest("NEWS_PAGE");
         this.loadSucces = true;
-    }
+    },
 };
 </script>
 

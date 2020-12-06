@@ -84,12 +84,8 @@ export default {
             i: 0,
             sliderDataIndex: 0,
 
-            currentTitle: "Рожь как смысл ",
-            currentDescription:
-                "Рожь издавно была кормилецей многих народов прикубанских земель. Она дает силу и .",
-
-            // currentTitle: this.sectionData[this.i].title[0].value.text,
-            // currentDescription: this.sectionData[this.i].text[0].value.text,
+            currentTitle: this.sectionData.PROGRAMS_RESULT[0].title,
+            currentDescription: this.sectionData.PROGRAMS_RESULT[0].text,
 
             positions: {
                 circle1: {
@@ -127,34 +123,48 @@ export default {
             ],
 
             sliderData: [
-                {
-                    url:
-                        "https://www.neizvestniy-geniy.ru/images/works/photo/2013/08/988047_1.jpg",
-                    title: "Рожь как смысл жизни",
-                    description:
-                        "Рожь издавно была кормилецей многих народов прикубанских земель. Она дает силу и бодрость.",
-                },
-                {
-                    url:
-                        "https://heaclub.ru/tim/b827ac29c5af026955a58d8be2ccefb8/rozh.jpg",
-                    title: "Технологии 21 века",
-                    description:
-                        "Для решения задач комплексного анализа в сельском хозяйстве используются электронные карты с результатами спутниковых геодезических измерений. Использование таких методов позволяет получать детализированную информацию об обширных территориях",
-                },
-                {
-                    url:
-                        "http://vestnikapk.ru/upload/iblock/499/4990f938d2f7d876818532c77f36199a.jpg",
-                    title: "Текст цели",
-                    description:
-                        "Рожь издавно была кормилецей многих народов прикубанских земель. Она дает силу и бодрость.",
-                },
-                {
-                    url:
-                        "https://i1.wallbox.ru/wallpapers/main2/201732/nebo-solnce-pole-kolosa-psenica.jpg",
-                    title: "Текст цели",
-                    description:
-                        "Рожь издавно была кормилецей многих народов прикубанских земель. Она дает силу и бодрость.",
-                },
+                // {
+                //     url:
+                //         "https://www.neizvestniy-geniy.ru/images/works/photo/2013/08/988047_1.jpg",
+                //     title: "Рожь как смысл жизни",
+                //     description:
+                //         "Рожь издавно была кормилецей многих народов прикубанских земель. Она дает силу и бодрость.",
+                // },
+                // {
+                //     url:
+                //         "https://heaclub.ru/tim/b827ac29c5af026955a58d8be2ccefb8/rozh.jpg",
+                //     title: "Технологии 21 века",
+                //     description:
+                //         "Для решения задач комплексного анализа в сельском хозяйстве используются электронные карты с результатами спутниковых геодезических измерений. Использование таких методов позволяет получать детализированную информацию об обширных территориях",
+                // },
+                // {
+                //     url:
+                //         "http://vestnikapk.ru/upload/iblock/499/4990f938d2f7d876818532c77f36199a.jpg",
+                //     title: "Текст цели",
+                //     description:
+                //         "Рожь издавно была кормилецей многих народов прикубанских земель. Она дает силу и бодрость.",
+                // },
+                // {
+                //     url:
+                //         "https://i1.wallbox.ru/wallpapers/main2/201732/nebo-solnce-pole-kolosa-psenica.jpg",
+                //     title: "Текст цели",
+                //     description:
+                //         "Рожь издавно была кормилецей многих народов прикубанских земель. Она дает силу и бодрость.",
+                // },
+                // {
+                //     url:
+                //         "https://www.neizvestniy-geniy.ru/images/works/photo/2013/08/988047_1.jpg",
+                //     title: "Рожь как смысл жизни3",
+                //     description:
+                //         "Рожь издавно была кормилецей многих народов прикубанских земель. Она дает силу и бодрость.",
+                // },
+                // {
+                //     url:
+                //         "https://www.neizvestniy-geniy.ru/images/works/photo/2013/08/988047_1.jpg",
+                //     title: "Рожь как смысл жизни3",
+                //     description:
+                //         "Рожь издавно была кормилецей многих народов прикубанских земель. Она дает силу и бодрость.",
+                // },
             ],
 
             // sliderData2: [],
@@ -241,28 +251,27 @@ export default {
         },
     },
 
-    mounted() {
+      async mounted() {
+
+        console.log(this.sectionData);
+
+        //  Формируем данные для слайдера
+        await this.sectionData.PROGRAMS_RESULT.forEach(slide => {
+            this.sliderData.push({
+              title: slide.title,
+              description: slide.text,
+              url: slide.image
+            });
+        })
+
+        console.log(this.sliderData);
 
 
-        // console.log(this.sectionData);
-
-        // this.sectionData.forEach(slide => {
-        //     this.sliderData2.push({
-        //       title:
-        //     });
-        // })
-
-        // this.console.log(this.sectionData[this.i].title[0].value.text);
-        // console.log(this.sectionData[this.i].text[0].value.text);
-
-        // this.sectionData.forEach(item => {
-        //   this.sliderData.push({url: item.image[0].value.url});
-        // });
-
-        // console.log(this.sliderData);
 
         this.getDOM();
         this.circles.eq(this.i).children().css("opacity", 1);
+
+
         $(".control-item")
             .eq(this.sliderDataIndex)
             .addClass("control-item-active");
@@ -281,8 +290,16 @@ export default {
             this.sliderData[this.i].description
         );
 
+        // Вешаем событие для левой кнопки
         $(".slider-arrow-left").on("click", () => {
+
             let isNext = false;
+
+            $(".slider-arrow-left").css("pointer-events", "none");
+            setTimeout(() => {
+              $(".slider-arrow-left").css("pointer-events", "auto")
+            }, 400);
+
             this.changePosition(this.i, this.circles, isNext);
             $(".control-item")
                 .eq(this.sliderDataIndex)
@@ -302,13 +319,13 @@ export default {
                     `url(${this.sliderData[this.sliderDataIndex].url})`
                 );
             // Меняем текст
-            console.log(this.i);
+
             $(".slider-right p:first-child").text(
-                this.sliderData[this.i].title
+                this.sliderData[this.sliderDataIndex].title
             );
 
             $(".slider-right p:last-child").text(
-                this.sliderData[this.i].description
+                this.sliderData[this.sliderDataIndex].description
             );
 
             $(".control-item")
@@ -316,8 +333,15 @@ export default {
                 .addClass("control-item-active");
         });
 
+        // Вешаем событие для правой кнопки
         $(".slider-arrow-right").on("click", () => {
             let isNext = true;
+
+             $(".slider-arrow-right").css("pointer-events", "none");
+            setTimeout(() => {
+              $(".slider-arrow-right").css("pointer-events", "auto")
+            }, 400);
+
             this.changePosition(this.i, this.circles, isNext);
             $(".control-item")
                 .eq(this.sliderDataIndex)
@@ -337,15 +361,14 @@ export default {
                     "background-image",
                     `url(${this.sliderData[this.sliderDataIndex].url})`
                 );
-            console.log(this.i);
 
             // Меняем текст
             $(".slider-right p:first-child").text(
-                this.sliderData[this.i].title
+                this.sliderData[this.sliderDataIndex].title
             );
 
             $(".slider-right p:last-child").text(
-                this.sliderData[this.i].description
+                this.sliderData[this.sliderDataIndex].description
             );
 
             $(".control-item")
@@ -418,7 +441,7 @@ export default {
 }
 
 .slider-right-conrols {
-    width: 305px;
+    /* width: 305px; */
     display: flex;
     justify-content: left;
     align-items: center;

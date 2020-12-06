@@ -1,3 +1,14 @@
+/*
+
+Section - Цели проекта (главная страница)
+
+Принимает типы объектов:
+        - PROJECT_GOAL
+            - text: Текст цели
+            - image: Изображение цели над текстом
+
+*/
+
 <template>
     <section class="purposesMainSection">
         <TitleSection
@@ -5,9 +16,9 @@
             :headerVisible="visiblePurposes"
         />
         <div class="purposesMainSection-container">
-            <div class="purposes-item" v-for="item in sectionData" :key="item">
-                <img :src="item.image[0].value.url" />
-                <p>{{ item.text[0].value.text }}</p>
+            <div class="purposes-item" v-for="item in sectionData.PROJECT_GOAL" :key="item">
+                <img :src="item.image" />
+                <p>{{ item.text}}</p>
             </div>
         </div>
     </section>
@@ -31,6 +42,7 @@ export default {
         };
     },
     mounted() {
+        console.log(this.sectionData)
     },
 };
 </script>
