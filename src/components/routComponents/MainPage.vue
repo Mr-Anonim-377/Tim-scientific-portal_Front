@@ -75,7 +75,6 @@ export default {
     async created() {
 
         await this.getModulesTest("MAIN_PAGE");
-
         this.loadSuccess = true;
     },
 

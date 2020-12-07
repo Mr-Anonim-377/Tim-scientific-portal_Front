@@ -29,10 +29,9 @@ export default {
 
 					this[moduleType] = [];
 
-					response.data.forEach((moduleItem) => {
+					response.data.forEach(moduleItem => {
 
 						if (!this[moduleType][moduleItem.objectType]) this[moduleType][moduleItem.objectType] = [];
-
 
 						let titleValue = moduleItem.contents.filter(
 							(item) => item.contentType === "TITLE"

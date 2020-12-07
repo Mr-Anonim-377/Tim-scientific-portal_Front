@@ -4,7 +4,11 @@
         <div class="waysSection__text">
             <h2>{{items.title}}</h2>
             <p>{{items.text}}</p>
-            <ButtonElement/>
+
+             <router-link :to="{ name: 'research' }">
+                          <ButtonElement/>
+            </router-link>
+
         </div>
     </div>
     <div
