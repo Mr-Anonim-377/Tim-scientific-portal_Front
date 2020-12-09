@@ -18,27 +18,13 @@ Page - Страница исследования
 
         <ResearchSliderSection />
 
-        <section class="NewsSection">
-            <TitleSection title="Новости исследования" headerVisible="asd"></TitleSection>
-            <div class="newsSection-container">
-            <NewsMainSection v-for="NEWS_ITEM in NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)" :key="NEWS_ITEM"
-                :newsData="NEWS_ITEM" />
-        </div>
-        <router-link style="text-decoration: none" :to="{ name: 'news' }">
-            <p class="newsSection__text">Все новости</p>
-        </router-link>
-
-        </section>
-
+        <NewsMainSection :newsData="NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)"/>
 
     </div>
 </template>
 
 <script>
     import testMixin from "../../utils/methodsMixin.js";
-
-    // TEMP
-    import TitleSection from "../unitComponents/TitleSection"
 
     import ResearchTextSection from "../unitComponents/ResearchTextSection";
     import ResearcMembersSection from "../unitComponents/ResearcMembersSection";
@@ -52,7 +38,6 @@ Page - Страница исследования
             ResearcMembersSection,
             ResearchSliderSection,
             NewsMainSection,
-            TitleSection
         },
         mixins: [testMixin],
         data() {

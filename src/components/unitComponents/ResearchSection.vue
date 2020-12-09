@@ -12,16 +12,21 @@
                 <img :src="data.img">
                 <h3>{{data.text}}</h3>
                 <p>{{data.years}}</p>
+
+                <router-link :to="{ name: 'research' }">
                 <ButtonSection
                         class="research__btn"
                         :modifiers="modifiers.btn"
                 />
+                </router-link>
+
             </div>
         </div>
     </section>
 </template>
 
 <script>
+
     import TitleSection from "../unitComponents/TitleSection";
     import ButtonSection from "../unitComponents/CommonElements/ButtonElement";
     export default {
@@ -45,6 +50,7 @@
             };
         },
     }
+
 </script>
 
 <style scoped>

@@ -5,7 +5,7 @@
             <h2>{{items.title}}</h2>
             <p>{{items.text}}</p>
 
-             <router-link :to="{ name: 'research' }">
+             <router-link :to="{ name: 'all-research' }">
                           <ButtonElement/>
             </router-link>
 
