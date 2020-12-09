@@ -24,6 +24,7 @@
         font-size: 36px;
         margin-top: 16px;
         font-weight: 900;
+        letter-spacing: 0.1em;
     }
     .text-white{
         color: #FFFFFF;

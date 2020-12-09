@@ -35,7 +35,7 @@
         <div class="footerContact-container">
             <p>E-mail: agrocons@gmail.com</p>
             <p class="footerContact__text">+7 (978) 645-25-13</p>
-            <p>Следите за нами:</p>
+            <p style="cursor: default">Следите за нами:</p>
             <div class="footerContact__networks">
                 <img src="../../../assets/image/VK.svg" />
                 <img src="../../../assets/image/faceBook.svg" />
@@ -94,6 +94,7 @@ p {
     margin: 17px 0 0 0;
     font-size: 14px;
     line-height: 18px;
+    cursor: default;
 }
 
 /* Навигация*/

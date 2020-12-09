@@ -27,22 +27,10 @@ Page - Главная страница проекта
 
         <DirectionOfResearchSection/>
 
-        <section class="newsSection">
-            <TitleSection
-                :headerVisible="visibleNews"
-                :title="this.titleNews"
-            />
-            <div class="newsSection-container">
-                <NewsMainSection
-                    v-for="NEWS_ITEM in NEWS_CAROUSEL.NEWS_ITEM.slice(0, 4)"
-                    :key="NEWS_ITEM"
-                    :newsData="NEWS_ITEM"
-                />
-            </div>
-            <router-link style="text-decoration: none" :to="{ name: 'news' }">
-                <p class="newsSection__text">Все новости</p>
-            </router-link>
-        </section>
+        <NewsMainSection :newsData="NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)"/>
+        <router-link style="text-decoration: none" :to="{ name: 'news' }">
+            <p class="newsSection__text">Все новости</p>
+        </router-link>
     </div>
 </template>
 
@@ -50,7 +38,6 @@ Page - Главная страница проекта
 
 import testMixin from "../../utils/methodsMixin.js";
 
-import TitleSection from "../unitComponents/TitleSection";
 import PurposesSection from "../unitComponents/PurposesSection";
 import DirectionOfResearchSection from "../unitComponents/DirectionOfResearchSection";
 import NewsMainSection from "../unitComponents/NewsMainSection";
@@ -67,7 +54,6 @@ export default {
         NewsMainSection,
         DirectionOfResearchSection,
         PurposesSection,
-        TitleSection,
         SliderSection,
     },
     mixins: [testMixin],
@@ -81,13 +67,6 @@ export default {
     data() {
         return {
             loadSuccess: false,
-
-            titleNews: "Новости программы",
-            visibleNews: true,
-
-            modifiers: {
-                header: ["header_border-none"],
-            },
         };
     },
 };
@@ -103,7 +82,8 @@ button {
     text-align: center;
     max-width: 1141px;
     align-items: center;
-    margin: 100px auto 97px auto;
+    margin: 100px auto 52px auto;
+    overflow: hidden;
 }
 
 .newsSection-container {
@@ -111,6 +91,7 @@ button {
     margin: 98px -10px 0 -10px;
     justify-content: center;
     flex-wrap: wrap;
+    height: 520px;
 }
 
 .newsSection-container :hover {
@@ -125,8 +106,10 @@ button {
 .newsSection__text {
     font-size: 15px;
     color: #3f7e77;
-    margin-top: 49px;
+    /*margin-top: 49px;*/
     text-decoration-line: underline;
+    margin: 49px auto 97px auto;
+    text-align: center;
 }
 
 .purposes {

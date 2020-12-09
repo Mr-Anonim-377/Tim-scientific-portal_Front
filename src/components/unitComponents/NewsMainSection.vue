@@ -1,22 +1,37 @@
 <template>
-    <div class="news-item">
-        <img :src="newsData.image" />
-        <h3>{{ newsData.title}}</h3>
+    <section class="newsSection">
+        <TitleSection
+                :headerVisible="visibleNews"
+                :title="this.titleNews"
+        />
+        <div class="newsSection-container">
+    <div
+            class="news-item"
+            v-for="NEWS_ITEM in newsData"
+            :key="NEWS_ITEM">
+        <img :src="NEWS_ITEM.image" />
+        <h3>{{ NEWS_ITEM.title}}</h3>
         <p class="news-item__years">{{
-            newsData.date.split(".")[2]
+            NEWS_ITEM.date.split(".")[2]
             }}</p>
-        <p class="news-item__text">{{ newsData.text}}</p>
+        <p class="news-item__text">{{ NEWS_ITEM.text}}</p>
+        <router-link style="text-decoration: none" :to="{ name: 'notFound' }">
         <ButtonElement :modifiers="modifiers.btn" class="news__btn" />
+        </router-link>
     </div>
+        </div>
+    </section>
 </template>
 
 <script>
+    import TitleSection from "../unitComponents/TitleSection";
 import ButtonElement from "./CommonElements/ButtonElement";
 
 export default {
     name: "NewsMain",
     components: {
         ButtonElement,
+        TitleSection,
     },
     props: {
         newsData: {},
@@ -28,6 +43,8 @@ export default {
                     "width: 170px; height: 35px; font-size: 14px; line-height: 17px; padding: 10px;",
                 ],
             },
+            titleNews: "Новости программы",
+            visibleNews: true,
         };
     },
 };
@@ -37,8 +54,8 @@ export default {
 <style scoped>
 .news-item {
     width: 367px;
-    height: 475px;
-    margin: 0 10px 0 10px;
+    height: 520px;
+    margin: 0 10px 52px 10px;
 }
 
 .news-item img {
@@ -86,10 +103,12 @@ h3 {
 
 .news-item__text {
     padding: 0 10px;
+    height: 110px;
+    overflow: hidden;
 }
 
 .news__btn {
     display: none;
-    margin: 35px auto 0 auto;
+    margin: 26px auto 32px auto;
 }
 </style>

@@ -49,6 +49,9 @@
         font-size: 24px;
         line-height: 29px;
         font-weight: bold;
+        text-overflow: clip;
+        overflow: hidden;
+        max-height: 85px;
     }
 
     .waysSection__text p{
@@ -58,6 +61,7 @@
         width: 659px;
         margin-top: 40px;
         position: relative;
+        max-height: 80px;
     }
     .waysSection__text p:before{
         content: "";

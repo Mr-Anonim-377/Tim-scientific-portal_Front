@@ -78,4 +78,8 @@ export default {
     color: #3f7e77;
     font-size: 15px;
 }
+.consortium-item img{
+    max-width: 130px;
+    max-height: 120px;
+}
 </style>

@@ -59,7 +59,7 @@
         line-height: 90px;
         color: #F8F5E6;
         margin: 8px 0 280px 0;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.11em;
     }
     .banner-bottom{
         text-align: center;

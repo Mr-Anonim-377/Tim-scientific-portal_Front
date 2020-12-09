@@ -2,18 +2,19 @@
     <section class="headerSection">
         <!--Верхняя часть хедера-->
         <div class="headerSection-container">
-            <router-link
-                style="text-decoration: none"
-                :to="{ name: 'notFound' }"
-            >
-                <p class="headerSection__text-phone">+7 (978) 645-25-13</p>
-            </router-link>
-            <router-link
-                style="text-decoration: none"
-                :to="{ name: 'notFound' }"
-            >
-                <p class="headerSection__textMail">agrocons@gmail.com</p>
-            </router-link>
+                <p class="headerSection__text-phone"> <router-link
+                        style="text-decoration: none"
+                        :to="{ name: 'notFound' }"
+                >+7 (978) 645-25-13
+                </router-link></p>
+                <p class="headerSection__textMail">
+                    <router-link
+                            style="text-decoration: none"
+                            :to="{ name: 'notFound' }"
+                    >
+                    agrocons@gmail.com
+                    </router-link>
+                </p>
             <router-link style="text-decoration: none" :to="{ name: 'Main' }">
                 <img src="../../../assets/image/Logo2.svg" />
             </router-link>
@@ -70,7 +71,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 p {
     cursor: pointer;
     text-decoration: none;
@@ -109,6 +110,7 @@ p:hover {
     height: 20px;
     background-image: url("../../../assets/image/Phone.svg");
     margin-left: -29px;
+    cursor: default;
 }
 /*Почта с картинкой*/
 .headerSection__textMail {
@@ -121,6 +123,7 @@ p:hover {
     height: 20px;
     background-image: url("../../../assets/image/Mail.svg");
     margin-left: -28px;
+    cursor: default;
 }
 /*Ститили input*/
 .headerSection__research {

@@ -23,4 +23,9 @@
         line-height: 22px;
         border: 0;
     }
+    .buttonSection:active,
+    :hover,
+    :focus {
+        outline:none;
+    }
 </style>
