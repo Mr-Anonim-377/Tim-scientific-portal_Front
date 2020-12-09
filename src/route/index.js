@@ -4,6 +4,7 @@ import notFound from '../components/routComponents/404Page';
 import consortium from '../components/routComponents/ConsortiumPage';
 import ways from '../components/routComponents/WaysPage';
 import news from '../components/routComponents/NewsPage';
+import research from '../components/routComponents/ResearchPage'
 
 
 const routes = [
@@ -31,6 +32,11 @@ const routes = [
     path: '/news',
     name: 'news',
     component: news
+  },
+  {
+    path: '/research',
+    name: 'research',
+    component: research
   }
 ];
 

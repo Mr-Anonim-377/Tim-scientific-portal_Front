@@ -87,8 +87,8 @@
 
     .text-left__top{
         top: 33px;
-        left: 12px;
-        width: 336px;
+        left: 0;
+        width: 360px;
     }
     .text-left__bottom{
         bottom: 22px;

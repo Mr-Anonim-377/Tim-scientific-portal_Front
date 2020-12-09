@@ -4,7 +4,9 @@
         <div class="waysSection__text">
             <h2>{{items.title}}</h2>
             <p>{{items.text}}</p>
-            <ButtonElement/>
+            <router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+                <ButtonElement/>
+            </router-link>
         </div>
     </div>
     <div
@@ -45,6 +47,9 @@
         font-size: 24px;
         line-height: 29px;
         font-weight: bold;
+        text-overflow: clip;
+        overflow: hidden;
+        max-height: 85px;
     }
 
     .waysSection__text p{
@@ -54,6 +59,7 @@
         width: 659px;
         margin-top: 40px;
         position: relative;
+        max-height: 80px;
     }
     .waysSection__text p:before{
         content: "";

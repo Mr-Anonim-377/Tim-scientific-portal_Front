@@ -39,8 +39,8 @@
                             :to="{ name: 'notFound' }"
                         >
                             <!-- <div class="slider-right-btn">
-              <button>Подробнее</button>
-            </div> -->
+                             <button>Подробнее</button>
+                             </div> -->
                         </router-link>
 
                         <div class="slider-right-conrols">
@@ -391,6 +391,7 @@ export default {
     width: 15px;
     height: 25px;
     background-size: cover;
+    cursor: pointer;
 }
 
 .slider-left {
@@ -404,6 +405,7 @@ export default {
     background-size: cover;
     width: 15px;
     height: 25px;
+    cursor: pointer;
 }
 
 .slider-right {
