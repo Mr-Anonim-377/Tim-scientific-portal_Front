@@ -34,7 +34,7 @@ Page - Главная страница проекта
             />
             <div class="newsSection-container">
                 <NewsMainSection
-                    v-for="NEWS_ITEM in NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)"
+                    v-for="NEWS_ITEM in NEWS_CAROUSEL.NEWS_ITEM.slice(0, 4)"
                     :key="NEWS_ITEM"
                     :newsData="NEWS_ITEM"
                 />

@@ -51,11 +51,14 @@ h3 {
     font-size: 15px;
     color: #3f7e77;
     line-height: 109.19%;
+    text-align: center;
 }
 /*Стили года и линий*/
 .news-item__years {
-    margin: 0 9px;
+    margin: 0 AUTO;
     position: relative;
+    text-align: center;
+
 }
 .news-item__years:before {
     content: "";

@@ -64,7 +64,7 @@ a {
 }
 
 .container {
-    width: 1366px;
+    width: 1145px;
     margin: auto;
 }
 
