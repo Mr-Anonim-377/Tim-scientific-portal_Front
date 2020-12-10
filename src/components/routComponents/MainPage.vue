@@ -32,11 +32,17 @@ Page - Главная страница проекта
             <p class="newsSection__text">Все новости</p>
         </router-link>
     </div>
+
+    <div v-else>
+        <Preloader/>
+    </div>
 </template>
 
 <script>
 
 import testMixin from "../../utils/methodsMixin.js";
+
+import Preloader from "./../unitComponents/CommonElements/Preloader"
 
 import PurposesSection from "../unitComponents/PurposesSection";
 import DirectionOfResearchSection from "../unitComponents/DirectionOfResearchSection";
@@ -55,6 +61,7 @@ export default {
         DirectionOfResearchSection,
         PurposesSection,
         SliderSection,
+        Preloader
     },
     mixins: [testMixin],
 

@@ -31,6 +31,10 @@ Page - Страница направления исследлова
     </section>
 
     </div>
+
+    <div v-else>
+        <Preloader/>
+    </div>
 </template>
 
 <script>

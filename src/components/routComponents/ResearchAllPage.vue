@@ -23,11 +23,14 @@ Page - Страница Исследований
 <script>
     import BannerPromoResearchSection from "../unitComponents/BannerPromoResearchSection";
     import ResearchSection from "../unitComponents/ResearchSection";
+    // import Preloader from "./../unitComponents/CommonElements/Preloader"
+
     export default {
         name: "ResearchPage",
         components: {
             ResearchSection,
             BannerPromoResearchSection,
+            // Preloader
         },
         methods: {
             showToggle: function () {

@@ -25,6 +25,10 @@ Page - Страница исследования
         <NewsMainSection :newsData="NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)"/>
 
     </div>
+
+    <div v-else>
+        <Preloader/>
+    </div>
 </template>
 
 <script>
@@ -32,6 +36,9 @@ Page - Страница исследования
 
     // TEMP
     import NewsSliderSection from "../unitComponents/NewsSliderSection"
+
+    import Preloader from "./../unitComponents/CommonElements/Preloader"
+
 
     import ResearchTextSection from "../unitComponents/ResearchTextSection";
     import ResearcMembersSection from "../unitComponents/ResearcMembersSection";
@@ -45,7 +52,8 @@ Page - Страница исследования
             ResearcMembersSection,
             ResearchSliderSection,
             NewsMainSection,
-            NewsSliderSection
+            NewsSliderSection,
+            Preloader
         },
         mixins: [testMixin],
         data() {
