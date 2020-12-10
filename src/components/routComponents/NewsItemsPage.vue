@@ -1,97 +1,94 @@
 <template>
-    <section class="bannerSlider">
-        <TitleSection
-                :title="this.titleNews"
-                :headerVisible="true"
-        />
-        <p class="bannerSlider__years">2020</p>
-<!--Слайдер-->
-        <p>Современные агротехнологии представляют собой комплексы технологических операций по управлению продукционным процессами
-            сельскохозяйственных культур в агроценозах с целью достижения планируемой урожайности и качества продукции при обеспечении
-            экологической безопасности и определенной экономической эффективности. Агротехнологии отличаются от агротехники, то есть набора
-            агроприемов, большей системностью и тесной приуроченностью к микропериодам онтогенеза (от 0 до 99 по шкале ЕС).
-        </p>
-        <p>Главная задача проектирования агротехнологий – интегрированное выражение агроэкологических требований сорта через основные
-            звенья и элементы систем земледелия.
-        </p>
-        <p>
-            Качественный скачок в интенсификации агротехнологий произошел в 70-х годах в результате технологической революции в
-            Западной Европе, включавшей создание интенсивных сортов нового типа (зеленая революция) и разработку системы управления
-            продукционным процессом по микропериодам органогенеза (агрохимическая революция).
-        </p>
-        <p>Агротехнологии связаны в единую систему управления агроландшафтом через севообороты, системы обработки почвы, удобрения и
-            защиты растений, то есть являются составной частью адаптивно-ландшафтных систем земледелия. При этом они имеют индивидуальное
-            значение, определяемое прежде всего особенностями сорта, поскольку каждому типу сорта (по назначению, интенсивности и другим
-            параметрам) соответствует определенная система управления продукционным процессом и структурная модель агроценоза.
-        </p>
-        <p>Методология формирования агротехнологий заключается в последовательном преодолении факторов, лимитирующих урожайность
-            культуры и качество продукции. Количество их зависит от сложности экологической обстановки и уровня планируемой урожайности.
-            Тем самым в значительной мере определяется содержание агротехнологий и соответственно технологических карт.</p>
-        <p> Чем интенсивней агротехнология, тем больше природных факторов учитывается. В первую очередь учитываются почвенно-климатические
-            условия, поскольку погодные стрессы (засуха, переувлажнение, заморозки и т.д.) наносят наибольший ущерб урожаю,
-            обесценивая затраты. По этим условиям для интенсивных агротехнологий наиболее перспективна лесостепная зона, орошаемые
-            земли степной зоны. Применение их обязательно при гидротехнических мелиорациях, иначе не окупятся общие затраты.</p>
-        <p>Выбор технологий и их содержание сильно зависят от рельефа. В сложных эрозионных ландшафтах снижается влагообеспеченность в
-            связи с повышенным поверхностным стоком, развиваются эрозионные процессы, особенно по технологическим колеям, что осложняет
-            применение интенсивных агротехнологий из-за затрат на противоэрозионные мероприятия.</p>
-    </section>
-<!--    <NewsMain :newsData="data.slice(0, 3)"/>-->
-<!--    <router-link style="text-decoration: none" :to="{ name: 'news' }">-->
-<!--        <p class="newsSection__text">Все новости</p>-->
-<!--    </router-link>-->
+  <section class="bannerSlider" v-if="loadSuccess">
+    <TitleSection
+        :title="this.titleNews"
+        :headerVisible="true"
+    />
+
+    <p class="bannerSlider__years">2020</p>
+
+    <NewsSliderSection/>
+
+    <div></div>
+  </section>
+  <div v-else>
+    <Preloader/>
+  </div>
 </template>
 
 <script>
-    import TitleSection from "../unitComponents/TitleSection";
-    // import NewsMain from "../unitComponents/NewsMainSection";
-    export default {
-        name: "NewItemsPage",
-        components: {
-            // NewsMain,
-            TitleSection
-        },
-        data() {
-            return {
-                titleNews: "Агротехнологии будущего",
-            }
-        }
+import Preloader from "./../unitComponents/CommonElements/Preloader"
+import testMixin from "../../utils/methodsMixin.js";
+import TitleSection from "../unitComponents/TitleSection";
+import NewsSliderSection from "../unitComponents/NewsSliderSection"
+
+// import NewsMain from "../unitComponents/NewsMainSection";
+export default {
+  mixins: [testMixin],
+  props: {
+    pageId: String
+  },
+  name: "NewItemsPage",
+  components: {
+    // NewsMain,
+    TitleSection,
+    NewsSliderSection,
+    Preloader
+  },
+  data() {
+    return {
+      loadSuccess:false,
+      titleNews: "Агротехнологии будущего",
     }
+  },
+  async mounted() {
+
+    await this.getModulesTest('',this.pageId);
+    setTimeout(()=>{
+      this.loadSuccess = true;
+    },500)
+    console.log(this.modules)
+  },
+}
 </script>
 
 <style scoped>
-    .bannerSlider{
-        max-width: 1108px;
-        align-items: center;
-        margin: 136px auto 170px auto;
-    }
-    .bannerSlider p{
-        font-size: 15px;
-        line-height: 150%;
-        color: #3F7E77;
-        margin-bottom: 20px;
-    }
+.bannerSlider {
+  max-width: 1140px;
+  align-items: center;
+  margin: 100px auto 170px auto;
+}
 
-    .bannerSlider__years{
-        position: relative;
-        text-align: center;
-        margin: 20px auto 50px auto;
-    }
-    .bannerSlider__years:before {
-        content: "";
-        position: absolute;
-        width: 35px;
-        height: 1px;
-        background: #3f7e77;
-        left: 490px;
-        top: 11px;
-    }
-    .bannerSlider__years:after {
-        content: "";
-        position: absolute;
-        width: 35px;
-        height: 1px;
-        background: #3f7e77;
-        right: 490px;
-        top: 11px;
-    }
+.bannerSlider p {
+  font-size: 15px;
+  line-height: 150%;
+  color: #3F7E77;
+  margin-bottom: 20px;
+}
+
+.bannerSlider__years {
+  position: relative;
+  text-align: center;
+  margin: 20px auto 50px auto;
+}
+
+.bannerSlider__years:before {
+  content: "";
+  position: absolute;
+  width: 35px;
+  height: 1px;
+  background: #3f7e77;
+  left: 490px;
+  top: 11px;
+}
+
+.bannerSlider__years:after {
+  content: "";
+  position: absolute;
+  width: 35px;
+  height: 1px;
+  background: #3f7e77;
+  right: 490px;
+  top: 11px;
+}
 </style>

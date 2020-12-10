@@ -11,10 +11,7 @@ Section - Консорциум (главная страница)
 
 <template>
     <section class="consortiumMainSection">
-        <TitleSection
-            :title="this.titleConsortium"
-            :headerVisible="true"
-        />
+        <TitleSection :title="this.titleConsortium" :headerVisible="true" />
         <div class="consortiumMainSection-container">
             <div
                 class="consortium-item"
@@ -26,7 +23,8 @@ Section - Консорциум (главная страница)
             </div>
         </div>
         <router-link style="text-decoration: none" :to="{ name: 'Consortium' }">
-            <ButtonElement />
+             <ButtonElement />
+
         </router-link>
     </section>
 </template>
@@ -46,7 +44,7 @@ export default {
     },
     data() {
         return {
-            titleConsortium: "Консорциум",
+            titleConsortium: "Консорциум"
         };
     },
 };
@@ -78,7 +76,7 @@ export default {
     color: #3f7e77;
     font-size: 15px;
 }
-.consortium-item img{
+.consortium-item img {
     max-width: 130px;
     max-height: 120px;
 }

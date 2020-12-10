@@ -1,7 +1,7 @@
 <template>
     <div class="zaglushka">
         <div class="circle">
-        <img src="http://localhost:84/img/Logo2.20e5c202.svg" alt="" />
+        <img src="../../../assets/image/Logo2.svg" alt="" />
         </div>
     </div>
 </template>
