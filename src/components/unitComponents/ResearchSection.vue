@@ -91,6 +91,8 @@
         line-height: 18px;
         margin: auto;
         overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     .research-block p{
         font-size: 15px;

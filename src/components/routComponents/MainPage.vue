@@ -94,11 +94,10 @@ button {
 }
 
 .newsSection-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     margin: 98px -10px 0 -10px;
-    justify-content: center;
-    flex-wrap: wrap;
-    height: 560px;
+    height: 534px;
 }
 
 .newsSection-container :hover {

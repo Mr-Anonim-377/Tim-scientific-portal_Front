@@ -55,7 +55,7 @@ export default {
 <style scoped>
 .news-item {
     width: 367px;
-    height: 560px;
+    height: 534px;
     margin: 0 10px 52px 10px;
 }
 
@@ -97,12 +97,19 @@ h3 {
 h3 {
     font-weight: 900;
     margin: 17px 0 8px 0;
+    height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .news-item__text {
     padding: 0 10px;
-    height: 138px;
-    overflow: hidden;
+    height: 124px;
+    overflow: hidden;;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
 }
 
 .news__btn {
