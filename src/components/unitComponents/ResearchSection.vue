@@ -13,7 +13,7 @@
                 <h3>{{data.text}}</h3>
                 <p>{{data.years}}</p>
 
-                <router-link :to="{ name: 'research' }">
+                <router-link style="text-decoration: none" :to="{ name: 'research' }">
                 <ButtonSection
                         class="research__btn"
                         :modifiers="modifiers.btn"
@@ -62,9 +62,8 @@
         overflow: hidden;
     }
     .researchSection-container{
-        align-items: center;
-        display: flex;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
         flex-wrap: wrap;
         color: #3F7E77;
         height: 443px;

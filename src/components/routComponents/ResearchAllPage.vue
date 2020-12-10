@@ -13,7 +13,7 @@ Page - Страница Исследований
 
     <ResearchSection
             :sectionData="researchData"
-            :style="listResearch"
+            :listResearch="listResearch"
     />
     <p class="researchSection__text" :style="btnStyle" @click="showToggle">
         Смотреть еще
@@ -34,8 +34,7 @@ Page - Страница Исследований
         },
         methods: {
             showToggle: function () {
-                let height = 370 * Math.ceil(this.researchData.length / 3);
-                this.listResearch = { height: `${height}px` };
+                this.listResearch = { height: 'fit-content' };
                 this.btnStyle = { opacity: 0, margin: "0 auto", height: 0 };
             },
         },

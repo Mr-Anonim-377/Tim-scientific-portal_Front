@@ -55,7 +55,7 @@ export default {
 <style scoped>
 .news-item {
     width: 367px;
-    height: 545px;
+    height: 560px;
     margin: 0 10px 52px 10px;
 }
 
@@ -101,7 +101,7 @@ h3 {
 
 .news-item__text {
     padding: 0 10px;
-    height: 126px;
+    height: 138px;
     overflow: hidden;
 }
 

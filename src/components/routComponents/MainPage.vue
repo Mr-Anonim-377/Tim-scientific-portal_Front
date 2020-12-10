@@ -98,7 +98,7 @@ button {
     margin: 98px -10px 0 -10px;
     justify-content: center;
     flex-wrap: wrap;
-    height: 545px;
+    height: 560px;
 }
 
 .newsSection-container :hover {
