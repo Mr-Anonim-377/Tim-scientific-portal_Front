@@ -18,6 +18,10 @@ Page - Страница исследования
 
         <ResearchSliderSection />
 
+        <!-- TEMP пока влад не выгрузил страницу -->
+
+        <NewsSliderSection/>
+
         <NewsMainSection :newsData="NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)"/>
 
     </div>
@@ -25,6 +29,9 @@ Page - Страница исследования
 
 <script>
     import testMixin from "../../utils/methodsMixin.js";
+
+    // TEMP
+    import NewsSliderSection from "../unitComponents/NewsSliderSection"
 
     import ResearchTextSection from "../unitComponents/ResearchTextSection";
     import ResearcMembersSection from "../unitComponents/ResearcMembersSection";
@@ -38,6 +45,7 @@ Page - Страница исследования
             ResearcMembersSection,
             ResearchSliderSection,
             NewsMainSection,
+            NewsSliderSection
         },
         mixins: [testMixin],
         data() {

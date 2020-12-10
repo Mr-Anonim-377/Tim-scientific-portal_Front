@@ -67,8 +67,8 @@ Section - Слайдер (страница исследования)
                 // FIXME - поправить исчезновение кнопки
                 //
                 this.btnStyle = {opacity:0,
-                    margin:"0 auto",
-                    height:0
+                    // margin:"0 auto",
+                    height: 0
                 };
 
                 console.log(this.listHeight);
@@ -89,7 +89,7 @@ Section - Слайдер (страница исследования)
 
     overflow: hidden;
 
-    transition: height 1s;
+    transition: height 0.4s ease-in;
 
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -101,7 +101,7 @@ Section - Слайдер (страница исследования)
   }
 
   p {
-    transition: 1s;
+    transition: 0.4s;
   }
 
 </style>
