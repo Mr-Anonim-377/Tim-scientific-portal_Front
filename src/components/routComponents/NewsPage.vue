@@ -22,7 +22,6 @@ Page - Страница новостей
 </template>
 
 <script>
-
 import mixin from "../../utils/methodsMixin";
 import newsMainSection from "../unitComponents/NewsMainSection";
 

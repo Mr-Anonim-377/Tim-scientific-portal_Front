@@ -15,7 +15,7 @@
             NEWS_ITEM.date.split(".")[2]
             }}</p>
         <p class="news-item__text">{{ NEWS_ITEM.text}}</p>
-        <router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+        <router-link style="text-decoration: none" :to="{ name: 'newsItem' }">
         <ButtonElement :modifiers="modifiers.btn" class="news__btn" />
         </router-link>
     </div>
@@ -25,7 +25,7 @@
 
 <script>
     import TitleSection from "../unitComponents/TitleSection";
-import ButtonElement from "./CommonElements/ButtonElement";
+    import ButtonElement from "./CommonElements/ButtonElement";
 
 export default {
     name: "NewsMain",
@@ -53,6 +53,7 @@ export default {
 </script>
 
 <style scoped>
+
 .news-item {
     width: 367px;
     height: 534px;

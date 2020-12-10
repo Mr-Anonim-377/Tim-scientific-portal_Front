@@ -36,6 +36,7 @@ Section - Слайдер (страница исследования)
 
 <script>
 import JQuery from "jquery";
+
 let $ = JQuery;
 
 export default {
@@ -289,14 +290,14 @@ export default {
 </script>
 
 <style scoped>
+
 .news-slider {
     width: 1140px;
     height: 500px;
     border: 1px solid #3f7e77;
 
     /* TEMP */
-    margin: 100px auto;
-
+    margin: 50px auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -343,6 +344,9 @@ export default {
     background-color: black;
     position: absolute;
     transition: transform 1s;
+
+    background-size: cover;
+    background-position: center;
 }
 
 .news-slider__slide:nth-child(1) {

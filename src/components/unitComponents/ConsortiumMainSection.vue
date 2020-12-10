@@ -11,10 +11,7 @@ Section - Консорциум (главная страница)
 
 <template>
     <section class="consortiumMainSection">
-        <TitleSection
-            :title="this.titleConsortium"
-            :headerVisible="true"
-        />
+        <TitleSection :title="this.titleConsortium" :headerVisible="true" />
         <div class="consortiumMainSection-container">
             <div
                 class="consortium-item"
@@ -26,20 +23,23 @@ Section - Консорциум (главная страница)
             </div>
         </div>
         <router-link style="text-decoration: none" :to="{ name: 'Consortium' }">
-            <ButtonElement />
+            <!-- <ButtonElement /> -->
+            <a :href="links[i]">
+                    <div class="button">Перейти на сайт</div>
+            </a>
         </router-link>
     </section>
 </template>
 
 <script>
 import TitleSection from "./TitleSection";
-import ButtonElement from "./CommonElements/ButtonElement";
+// import ButtonElement from "./CommonElements/ButtonElement";
 
 export default {
     name: "ConsortiumMain",
     components: {
         TitleSection,
-        ButtonElement,
+        // ButtonElement,
     },
     props: {
         sectionData: [],
@@ -47,6 +47,15 @@ export default {
     data() {
         return {
             titleConsortium: "Консорциум",
+            links:[
+            "https://www.timacad.ru/",
+            "http://www.frccsc.ru/",
+            "https://arriam.ru/",
+            "https://spbu.ru/",
+            "https://www.vir.nw.ru/",
+            "http://esoil.ru/",
+            "https://www.fbras.ru/"
+          ],
         };
     },
 };
@@ -78,7 +87,7 @@ export default {
     color: #3f7e77;
     font-size: 15px;
 }
-.consortium-item img{
+.consortium-item img {
     max-width: 130px;
     max-height: 120px;
 }

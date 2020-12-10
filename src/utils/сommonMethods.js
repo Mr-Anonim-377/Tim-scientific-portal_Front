@@ -3,7 +3,8 @@ import { createApp } from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
-const basePath = 'http://localhost:84/';
+// const basePath = 'http://furure-agro.ru:84';
+const basePath = 'http://future-agro.ru:84';
 
 export function setUri (uri) {
     store.commit('SET_URI_TO_STATE', uri);

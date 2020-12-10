@@ -4,8 +4,11 @@
                 :title="this.titleNews"
                 :headerVisible="true"
         />
+
         <p class="bannerSlider__years">2020</p>
-<!--Слайдер-->
+
+        <NewsSliderSection/>
+
         <p>Современные агротехнологии представляют собой комплексы технологических операций по управлению продукционным процессами
             сельскохозяйственных культур в агроценозах с целью достижения планируемой урожайности и качества продукции при обеспечении
             экологической безопасности и определенной экономической эффективности. Агротехнологии отличаются от агротехники, то есть набора
@@ -35,20 +38,19 @@
             связи с повышенным поверхностным стоком, развиваются эрозионные процессы, особенно по технологическим колеям, что осложняет
             применение интенсивных агротехнологий из-за затрат на противоэрозионные мероприятия.</p>
     </section>
-<!--    <NewsMain :newsData="data.slice(0, 3)"/>-->
-<!--    <router-link style="text-decoration: none" :to="{ name: 'news' }">-->
-<!--        <p class="newsSection__text">Все новости</p>-->
-<!--    </router-link>-->
 </template>
 
 <script>
     import TitleSection from "../unitComponents/TitleSection";
+    import NewsSliderSection from "../unitComponents/NewsSliderSection"
+
     // import NewsMain from "../unitComponents/NewsMainSection";
     export default {
         name: "NewItemsPage",
         components: {
             // NewsMain,
-            TitleSection
+            TitleSection,
+            NewsSliderSection
         },
         data() {
             return {
@@ -60,9 +62,9 @@
 
 <style scoped>
     .bannerSlider{
-        max-width: 1108px;
+        max-width: 1140px;
         align-items: center;
-        margin: 136px auto 170px auto;
+        margin: 100px auto 170px auto;
     }
     .bannerSlider p{
         font-size: 15px;
