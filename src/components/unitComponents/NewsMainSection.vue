@@ -4,7 +4,7 @@
                 :headerVisible="visibleNews"
                 :title="this.titleNews"
         />
-        <div class="newsSection-container">
+        <div class="newsSection-container" :style="listNews">
     <div
             class="news-item"
             v-for="NEWS_ITEM in newsData"
@@ -35,6 +35,7 @@ export default {
     },
     props: {
         newsData: {},
+        listNews:{}
     },
     data() {
         return {
@@ -54,7 +55,7 @@ export default {
 <style scoped>
 .news-item {
     width: 367px;
-    height: 520px;
+    height: 545px;
     margin: 0 10px 52px 10px;
 }
 
@@ -68,14 +69,11 @@ h3 {
     font-size: 15px;
     color: #3f7e77;
     line-height: 109.19%;
-    text-align: center;
 }
 /*Стили года и линий*/
 .news-item__years {
-    margin: 0 AUTO;
+    margin: 0 9px;
     position: relative;
-    text-align: center;
-
 }
 .news-item__years:before {
     content: "";
@@ -103,7 +101,7 @@ h3 {
 
 .news-item__text {
     padding: 0 10px;
-    height: 110px;
+    height: 126px;
     overflow: hidden;
 }
 

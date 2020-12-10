@@ -4,7 +4,7 @@
                 :title="this.titleResearch"
                 :headerVisible="visibleResearch"
         />
-        <div class="researchSection-container">
+        <div class="researchSection-container" :style="listResearch">
             <div class="research-block"
             v-for="data in sectionData"
                  :key="data"
@@ -36,7 +36,8 @@
             TitleSection
         },
         props:{
-            sectionData:{}
+            sectionData:{},
+            listResearch:{}
         },
         data() {
             return {
@@ -50,7 +51,6 @@
             };
         },
     }
-
 </script>
 
 <style scoped>

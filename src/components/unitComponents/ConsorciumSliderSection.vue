@@ -414,6 +414,7 @@ div[class^="consortium-arrow"] {
     margin: auto;
     width: 300px;
     margin-bottom: 25px;
+    cursor: pointer;
 }
 
 .consortium-content h3::after {

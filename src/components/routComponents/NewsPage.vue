@@ -12,8 +12,8 @@ Page - Страница новостей
 <template>
     <div v-if="loadSucces">
                 <newsMainSection
-                        :style="listNews"
                         :newsData="NEWS_SLIDER.NEWS_ITEM"
+                        :listNews="listNews"
                 />
             <p class="newsSection__text" :style="btnStyle" @click="showToggle">
                 Все новости
@@ -34,8 +34,7 @@ export default {
     mixins: [mixin],
     methods: {
         showToggle: function () {
-            let height = 650 * Math.ceil(this.NEWS_SLIDER.NEWS_ITEM.length / 3);
-            this.listNews = { height: `${height}px` };
+            this.listNews = { height: 'fit-content' };
             this.btnStyle = { opacity: 0, margin: "0 auto", height: 0 };
         },
     },
@@ -43,6 +42,7 @@ export default {
         return {
             btnStyle: {},
             listProperty: {},
+            listNews: {},
             titleNews: "Новости программы",
             visibleNews: true,
             loadSucces: false,
@@ -58,7 +58,5 @@ export default {
 </script>
 
 <style scoped>
-    p{
-        cursor: pointer;
-    }
+
 </style>

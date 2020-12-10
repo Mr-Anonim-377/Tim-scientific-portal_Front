@@ -72,7 +72,7 @@ export default {
 </script>
 
 <style scoped>
-p {
+p, a {
     cursor: pointer;
     text-decoration: none;
     font-size: 15px;
