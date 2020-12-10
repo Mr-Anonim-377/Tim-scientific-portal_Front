@@ -5,7 +5,8 @@ import consortium from "../components/routComponents/ConsortiumPage";
 import ways from "../components/routComponents/WaysPage";
 import news from "../components/routComponents/NewsPage";
 import ResearchPage from "../components/routComponents/ResearchPage";
-import ResearchAllPage from "../components/routComponents/ResearchAllPage"
+import ResearchAllPage from "../components/routComponents/ResearchAllPage";
+import newsItem from '../components/routComponents/NewsItemsPage';
 
 const routes = [
 	{
@@ -43,6 +44,11 @@ const routes = [
 		name: "all-research",
 		component: ResearchAllPage,
 	},
+	{
+		path: '/newsItem',
+		name: 'newsItem',
+		component: newsItem
+	}
 ];
 
 const router = createRouter({

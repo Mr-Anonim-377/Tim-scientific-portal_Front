@@ -98,7 +98,7 @@ button {
     margin: 98px -10px 0 -10px;
     justify-content: center;
     flex-wrap: wrap;
-    height: 520px;
+    height: 545px;
 }
 
 .newsSection-container :hover {
@@ -117,6 +117,7 @@ button {
     text-decoration-line: underline;
     margin: 49px auto 97px auto;
     text-align: center;
+    cursor: pointer;
 }
 
 .purposes {
