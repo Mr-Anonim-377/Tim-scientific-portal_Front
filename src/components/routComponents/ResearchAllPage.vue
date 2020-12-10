@@ -96,6 +96,34 @@ Page - Страница Исследований
                         img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
                         text:"Отдаленная гибридизация",
                         years:"2020"
+                    },
+                    {
+                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                        text:"Отдаленная гибридизация",
+                        years:"2020"
+                    },
+                    {
+                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                        text:"Отдаленная гибридизация",
+                        years:"2020"
+                    },{
+                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                        text:"Отдаленная гибридизация",
+                        years:"2020"
+                    },{
+                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                        text:"Отдаленная гибридизация",
+                        years:"2020"
+                    },
+                    {
+                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                        text:"Отдаленная гибридизация",
+                        years:"2020"
+                    },
+                    {
+                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                        text:"Отдаленная гибридизация",
+                        years:"2020"
                     }
                 ]
             }
@@ -109,7 +137,7 @@ Page - Страница Исследований
         line-height: 17px;
         text-decoration-line: underline;
         color: #3F7E77;
-        margin: 25px auto 100px auto;
+        margin: 100px auto 100px auto;
         text-align: center;
         cursor: pointer;
     }

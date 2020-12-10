@@ -5,7 +5,7 @@
                 :headerVisible="visibleResearch"
         />
         <div class="researchSection-container" :style="listResearch">
-            <div class="research-block"
+            <div class="research-block "
             v-for="data in sectionData"
                  :key="data"
             >
