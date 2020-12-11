@@ -13,7 +13,7 @@
                 <h3>{{data.text}}</h3>
                 <p>{{data.years}}</p>
 
-                <router-link style="text-decoration: none" :to="{ name: 'research' }">
+              <router-link style="text-decoration: none" :to="{name:'notFound'}">
                 <ButtonSection
                         class="research__btn"
                         :modifiers="modifiers.btn"

@@ -53,8 +53,12 @@ Section -Cлайдер консорциум (страница консорциу
                 </div>
 
                 <div class="consortium-footer">
+                  <a :href="links[i]">
                     <div class="button">Перейти на сайт</div>
-                    <a href="#">Стать участником консорциума</a>
+                  </a>
+                  <router-link style="text-decoration: none" :to="{name:'notFound'}">
+                    Стать участником консорциума
+                  </router-link>
                 </div>
             </div>
         </div>
@@ -73,6 +77,15 @@ export default {
 
     data() {
         return {
+          links:[
+            "https://www.timacad.ru/",
+            "http://www.frccsc.ru/",
+            "https://arriam.ru/",
+            "https://spbu.ru/",
+            "https://www.vir.nw.ru/",
+            "http://esoil.ru/",
+            "https://www.fbras.ru/"
+          ],
             i: 0,
             sliderDataIndex: 0,
             currentTitle: this.moduleData[0].title,

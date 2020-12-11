@@ -15,7 +15,7 @@
             NEWS_ITEM.date.split(".")[2]
             }}</p>
         <p class="news-item__text">{{ NEWS_ITEM.text}}</p>
-        <router-link style="text-decoration: none" :to="{ name: 'newsItem' }">
+        <router-link style="text-decoration: none" :to="{ path:`/newsItem/${NEWS_ITEM._pageLink}` }">
         <ButtonElement :modifiers="modifiers.btn" class="news__btn" />
         </router-link>
     </div>
@@ -56,7 +56,7 @@ export default {
 
 .news-item {
     width: 367px;
-    height: 534px;
+    height: 560px;
     margin: 0 10px 52px 10px;
 }
 
@@ -106,10 +106,10 @@ h3 {
 
 .news-item__text {
     padding: 0 10px;
-    height: 124px;
+    height: 147px;
     overflow: hidden;;
     display: -webkit-box;
-    -webkit-line-clamp: 8;
+    -webkit-line-clamp: 9;
     -webkit-box-orient: vertical;
 }
 

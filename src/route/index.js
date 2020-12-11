@@ -45,10 +45,20 @@ const routes = [
 		component: ResearchAllPage,
 	},
 	{
-		path: '/newsItem',
+		path: '/newsItem/:pageId',
 		name: 'newsItem',
-		component: newsItem
+		component: newsItem,
+		props: true
 	}
+	// {
+	// 	path: '/collection/collectionId=:collectionId' +
+	// 		'&page=:page' +
+	// 		'&categoryIds=:categoryIds?' +
+	// 		'&price-min=:priceMin?' +
+	// 		'&price-max=:priceMax?',
+	// 	component: collection,
+	// 	props: true
+	// },
 ];
 
 const router = createRouter({

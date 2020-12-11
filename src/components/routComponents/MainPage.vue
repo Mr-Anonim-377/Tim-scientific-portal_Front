@@ -65,10 +65,13 @@ export default {
     },
     mixins: [testMixin],
 
-    async created() {
+    async mounted() {
 
         await this.getModulesTest("MAIN_PAGE");
-        this.loadSuccess = true;
+        setTimeout(()=>{
+          this.loadSuccess = true;
+        },500)
+      console.log(this.NEWS_CAROUSEL.NEWS_ITEM[0]._pageLink)
     },
 
     data() {
@@ -97,7 +100,7 @@ button {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     margin: 98px -10px 0 -10px;
-    height: 534px;
+    height: 560px;
 }
 
 .newsSection-container :hover {

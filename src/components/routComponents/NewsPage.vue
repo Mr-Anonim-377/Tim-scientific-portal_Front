@@ -51,7 +51,10 @@ export default {
 
     async mounted() {
         await this.getModulesTest("NEWS_PAGE");
-        this.loadSucces = true;
+      setTimeout(()=>{
+        this.loadSuccess = true;
+      },500)
+      console.log(  this.NEWS_SLIDER.NEWS_ITEM)
     },
 };
 </script>

@@ -23,10 +23,8 @@ Section - Консорциум (главная страница)
             </div>
         </div>
         <router-link style="text-decoration: none" :to="{ name: 'Consortium' }">
-            <!-- <ButtonElement /> -->
-            <a :href="links[i]">
-                    <div class="button">Перейти на сайт</div>
-            </a>
+             <ButtonElement />
+
         </router-link>
     </section>
 </template>
@@ -46,16 +44,7 @@ export default {
     },
     data() {
         return {
-            titleConsortium: "Консорциум",
-            links:[
-            "https://www.timacad.ru/",
-            "http://www.frccsc.ru/",
-            "https://arriam.ru/",
-            "https://spbu.ru/",
-            "https://www.vir.nw.ru/",
-            "http://esoil.ru/",
-            "https://www.fbras.ru/"
-          ],
+            titleConsortium: "Консорциум"
         };
     },
 };

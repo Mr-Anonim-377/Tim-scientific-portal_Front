@@ -10,8 +10,12 @@ export default {
 
 		// Метод для парса данных с бэка
 		// В качестве агрумента принимает строковое значение типа страницы
-		async getModulesTest(pageType) {
-			setUri(`/crm/v1/page/byType?pageType=${pageType}`);
+		async getModulesTest(pageType,pageId) {
+			if(pageId){
+				setUri(`/crm/v1/page/byId?pageId=${pageId}`);
+			}else{
+				setUri(`/crm/v1/page/byType?pageType=${pageType}`);
+			}
 
 			// Получаем модули
 			// Храним их в this.modules
@@ -63,7 +67,9 @@ export default {
 
 							image: imageValue ? imageValue : null,
 
-							date: dateValue ? dateValue : null
+							date: dateValue ? dateValue : null,
+
+							_pageLink:  moduleItem.pageLink
 						});
 					});
 				});

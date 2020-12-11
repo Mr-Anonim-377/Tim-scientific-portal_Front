@@ -66,7 +66,9 @@ Page - Страница исследования
             // FIXME
             await this.getModulesTest("MAIN_PAGE");
             console.log(this.NEWS_CAROUSEL);
-            this.loadSuccess = true;
+              setTimeout(()=>{
+          this.loadSuccess = true;
+        },500)
         }
     };
 </script>

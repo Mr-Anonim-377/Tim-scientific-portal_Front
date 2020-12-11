@@ -42,7 +42,9 @@ export default {
   async mounted() {
 
     await this.getModulesTest("CONSORTIUM");
-    this.loadSuccess = true;
+      setTimeout(()=>{
+          this.loadSuccess = true;
+        },500)
   },
 };
 </script>
