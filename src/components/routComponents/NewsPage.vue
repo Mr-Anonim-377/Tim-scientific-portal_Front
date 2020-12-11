@@ -10,7 +10,7 @@ Page - Страница новостей
 */
 
 <template>
-    <div v-if="loadSucces">
+    <div v-if="loadSuccess">
                 <newsMainSection
                         :newsData="NEWS_SLIDER.NEWS_ITEM"
                         :listNews="listNews"
@@ -44,17 +44,14 @@ export default {
             listNews: {},
             titleNews: "Новости программы",
             visibleNews: true,
-            loadSucces: false,
+            loadSuccess: false,
 
         };
     },
 
     async mounted() {
         await this.getModulesTest("NEWS_PAGE");
-      setTimeout(()=>{
         this.loadSuccess = true;
-      },500)
-      console.log(  this.NEWS_SLIDER.NEWS_ITEM)
     },
 };
 </script>
