@@ -10,7 +10,7 @@ Page - Страница новостей
 */
 
 <template>
-    <div v-if="loadSuccess">
+    <div v-if="loadSucces">
                 <newsMainSection
                         :newsData="NEWS_SLIDER.NEWS_ITEM"
                         :listNews="listNews"
@@ -19,9 +19,15 @@ Page - Страница новостей
                 Все новости
             </p>
     </div>
+
+     <div v-else>
+        <Preloader/>
+    </div>
 </template>
 
 <script>
+import Preloader from "./../unitComponents/CommonElements/Preloader"
+
 import mixin from "../../utils/methodsMixin";
 import newsMainSection from "../unitComponents/NewsMainSection";
 
@@ -29,6 +35,7 @@ export default {
     name: "researchBodyPage",
     components: {
         newsMainSection,
+        Preloader
     },
     mixins: [mixin],
     methods: {
@@ -44,14 +51,17 @@ export default {
             listNews: {},
             titleNews: "Новости программы",
             visibleNews: true,
-            loadSuccess: false,
+            loadSucces: false,
 
         };
     },
 
     async mounted() {
         await this.getModulesTest("NEWS_PAGE");
-        this.loadSuccess = true;
+      setTimeout(()=>{
+        this.loadSucces = true;
+      },500)
+      console.log(  this.NEWS_SLIDER.NEWS_ITEM)
     },
 };
 </script>

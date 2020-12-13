@@ -18,11 +18,7 @@ Page - Страница исследования
 
         <ResearchSliderSection />
 
-        <!-- TEMP пока влад не выгрузил страницу -->
-
-        <NewsSliderSection/>
-
-        <NewsMainSection :newsData="NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)"/>
+        <!-- <NewsMainSection :newsData="NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)"/> -->
 
     </div>
 
@@ -34,16 +30,12 @@ Page - Страница исследования
 <script>
     import testMixin from "../../utils/methodsMixin.js";
 
-    // TEMP
-    import NewsSliderSection from "../unitComponents/NewsSliderSection"
-
     import Preloader from "./../unitComponents/CommonElements/Preloader"
-
 
     import ResearchTextSection from "../unitComponents/ResearchTextSection";
     import ResearcMembersSection from "../unitComponents/ResearcMembersSection";
     import ResearchSliderSection from "../unitComponents/ResearchSliderSection";
-    import NewsMainSection from "../unitComponents/NewsMainSection";
+    // import NewsMainSection from "../unitComponents/NewsMainSection";
 
     export default {
         name: "ResearchPage",
@@ -51,24 +43,23 @@ Page - Страница исследования
             ResearchTextSection,
             ResearcMembersSection,
             ResearchSliderSection,
-            NewsMainSection,
-            NewsSliderSection,
+            // NewsMainSection,
             Preloader
         },
         mixins: [testMixin],
         data() {
             return {
-                loadSuccess: false,
+                loadSuccess: true,
             };
         },
 
         async mounted() {
-            // FIXME
-            await this.getModulesTest("MAIN_PAGE");
-            console.log(this.NEWS_CAROUSEL);
-              setTimeout(()=>{
-          this.loadSuccess = true;
-        },500)
+        //     // FIXME
+        //     await this.getModulesTest("MAIN_PAGE");
+        //     console.log(this.NEWS_CAROUSEL);
+        //       setTimeout(()=>{
+        //   this.loadSuccess = true;
+        // },500)
         }
     };
 </script>

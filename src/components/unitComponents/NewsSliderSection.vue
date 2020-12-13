@@ -41,6 +41,9 @@ let $ = JQuery;
 
 export default {
     name: "NewsSliderSection",
+  props:{
+      urls:[]
+  },
     data() {
         return {
             i: 0,
@@ -60,20 +63,7 @@ export default {
                 },
             },
 
-            sliderData: [
-                {
-                    url:
-                        "https://www.hdwallpapers.in/thumbs/2020/artistic_colorful_digital_art_hd_abstract-t2.jpg",
-                },
-                {
-                    url:
-                        "https://oboi-fresh.ru/upload/iblock/501/5015253063b7827e35d162747382e66d.jpeg",
-                },
-                {
-                    url:
-                        "https://klv-oboi.ru/img/gallery/96/thumbs/thumb_l_psh_00004360.jpg",
-                },
-            ],
+            sliderData: [],
         };
     },
 
@@ -189,6 +179,11 @@ export default {
     },
 
     async mounted() {
+for(let i = 0; i < this.urls.length;i++){
+  this.sliderData.push({
+    url: this.urls[i].image,
+  },)
+      }
         // Получаем dom элементы
         this.getDOM();
 
