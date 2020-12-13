@@ -1,15 +1,17 @@
 <template>
-  <section class="bannerSlider" v-if="loadSuccess">
+  <section class="bannerSlider" v-if="loadSucces">
     <TitleSection
-        :title="this.titleNews"
+        :title="NEWS_TITLE.TITLE[0].title"
         :headerVisible="true"
     />
 
     <p class="bannerSlider__years">2020</p>
 
-    <NewsSliderSection/>
+    <NewsSliderSection :urls="NEWS_IMAGE_CAROUSEL.IMAGE"/>
 
-    <div></div>
+    <div v-html="NEWS_TEXT.TEXT[0].text">
+    </div>
+
   </section>
   <div v-else>
     <Preloader/>
@@ -37,7 +39,7 @@ export default {
   },
   data() {
     return {
-      loadSuccess:false,
+      loadSucces:false,
       titleNews: "Агротехнологии будущего",
     }
   },
@@ -45,9 +47,9 @@ export default {
 
     await this.getModulesTest('',this.pageId);
     setTimeout(()=>{
-      this.loadSuccess = true;
+      this.loadSucces = true;
     },500)
-    console.log(this.modules)
+    console.log(this.NEWS_IMAGE_CAROUSEL)
   },
 }
 </script>
