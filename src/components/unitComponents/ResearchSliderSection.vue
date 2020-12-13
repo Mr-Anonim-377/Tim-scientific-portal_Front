@@ -9,7 +9,6 @@ Section - Слайдер (страница исследования)
 
 
 <template>
-    <!-- <h1>Слайдер секция</h1> -->
     <section>
         <div class="slider-container">
             <div class="research-slider">
@@ -43,6 +42,7 @@ Section - Слайдер (страница исследования)
 </template>
 
 <script>
+import sliderSkeleton from "../../utils/sliderSkeleton";
 import JQuery from "jquery";
 let $ = JQuery;
 
@@ -52,12 +52,11 @@ export default {
         sectionData: [],
     },
 
+    mixins: [sliderSkeleton],
+
     data() {
         return {
-            slider: `$(".research-slider__view")`,
-            circles: $(".circle"),
-            i: 0,
-            sliderDataIndex: 0,
+
             positions: {
                 circle1: {
                     transform: "translatex(-284px)",
@@ -78,187 +77,107 @@ export default {
                 },
             },
 
-            sliderData: [{
-                1: 1
-            }, {
-                2: 2
-            }, {
-                3: 3
-            }]
+            sliderData: [
+                {
+                    1: 1,
+                },
+                {
+                    2: 2,
+                },
+                {
+                    3: 3,
+                },
+            ],
         };
     },
 
     methods: {
-        getDOM() {
-            this.slider = $(".slider-left");
-            this.circles = $(".circle");
-        },
 
-        moveCircle(index, position) {
-
-            this.circles.eq(index).css("width", this.positions[position].width);
-            this.circles
-                .eq(index)
-                .css("height", this.positions[position].height);
-            this.circles
-                .eq(index)
-                .css("transform", this.positions[position].transform);
-        },
 
         changePosition(i, arr, isNext) {
-            // Индексы соседних кругов
-            let i2, i3, i4, i5;
 
-            console.log(arr.length - (i + 5));
-
-            // Получаем корректные индексы соседних кругов
-            switch (arr.length - (i + 5)) {
-                case 0: {
-                    i2 = i + 1;
-                    i3 = i + 2;
-                    i4 = i + 3;
-                    i5 = i + 4
-                    break;
-                }
-
-                case -1: {
-                    i2 = i + 1;
-                    i3 = i + 2;
-                    i4 = i + 3;
-                    i5 = 0
-
-                    break;
-                }
-
-                case -2: {
-                    i2 = i + 1;
-                    i3 = i + 2;
-                    i4 = 0;
-                    i5 = 1
-                    break;
-                }
-
-                case -3: {
-                    i2 = i + 1;
-                    i3 = 0;
-                    i4 = 1;
-                    i5 = 2;
-                    break;
-                }
-
-                case -4: {
-                    i2 = 0;
-                    i3 = 1;
-                    i4 = 2;
-                    i5 = 3
-                }
-            }
+            // Получаем индексы соседних элементов
+            let {i2, i3, i4, i5} = this.getNeighborIndex(this.i, this.$circles);
 
             // Перемещение элементов в зависимости от направления
             if (isNext) {
 
+                this.moveCircle(["width", "height", "transform"], i, "circle2");
+                this.$circles.eq(i).css("opacity", "1");
 
+                this.moveCircle(["width", "height", "transform"], i2, "circle3");
+                this.$circles.eq(i2).css("width", "635px");
+                this.$circles.eq(i2).css("height", "635px");
 
-                console.log(i);
-                this.moveCircle(i, "circle2");
-                this.circles.eq(i).css("opacity", "1")
+                this.moveCircle(["width", "height", "transform"],i3, "circle4");
+                this.$circles.eq(i3).css("width", "193px");
+                this.$circles.eq(i3).css("height", "193px");
 
+                this.moveCircle(["width", "height", "transform"],i4, "circle5");
+                this.$circles.eq(i4).css("opacity", "0");
 
-                this.moveCircle(i2, "circle3");
-                this.circles.eq(i2).css("width", "635px")
-                this.circles.eq(i2).css("height", "635px")
-
-                this.moveCircle(i3, "circle4");
-                this.circles.eq(i3).css("width", "193px")
-                this.circles.eq(i3).css("height", "193px")
-
-                this.moveCircle(i4, "circle5");
-                this.circles.eq(i4).css("opacity", "0")
-
-                this.moveCircle(i5, "circle1");
+                this.moveCircle(["width", "height", "transform"], i5, "circle1");
 
             } else if (!isNext) {
 
-                this.moveCircle(i, "circle5");
+                this.moveCircle(["width", "height", "transform"],i, "circle5");
 
-                this.moveCircle(i2, "circle1");
-                this.circles.eq(i2).css("opacity", "0")
+                this.moveCircle(["width", "height", "transform"], i2, "circle1");
+                this.$circles.eq(i2).css("opacity", "0");
 
-                this.moveCircle(i3, "circle2");
-                this.circles.eq(i3).css("width", "193px")
-                this.circles.eq(i3).css("height", "193px")
+                this.moveCircle(["width", "height", "transform"], i3, "circle2");
+                this.$circles.eq(i3).css("width", "193px");
+                this.$circles.eq(i3).css("height", "193px");
 
-                this.moveCircle(i4, "circle3");
-                this.circles.eq(i4).css("width", "635px")
-                this.circles.eq(i4).css("height", "635px")
+                this.moveCircle(["width", "height", "transform"], i4, "circle3");
+                this.$circles.eq(i4).css("width", "635px");
+                this.$circles.eq(i4).css("height", "635px");
 
-                this.moveCircle(i5, "circle4")
-                this.circles.eq(i5).css("opacity", "1")
-
+                this.moveCircle(["width", "height", "transform"], i5, "circle4");
+                this.$circles.eq(i5).css("opacity", "1");
             }
         },
     },
 
     mounted() {
-        this.getDOM();
-        this.circles.eq(this.i).children().css("opacity", 1);
+
+        // Получение DOM элементов
+        this.$circles = $(".circle");
+        this.$arrows = $(".research-slider_arrow");
+        this.$leftArrow = $(".research-slider_arrow:first-child");
+        this.$rightArrow = $(".research-slider_arrow:last-child");
 
         // Вешаем событие для левой кнопки
-        $(".research-slider_arrow:first-child").on("click", () => {
+        $(this.$leftArrow).on("click", () => {
 
-            let isNext = false;
+            // Контроль направления поворота слайдера
+            let isNext = true;
 
-            $(".research-slider_arrow").css("pointer-events", "none");
-            setTimeout(() => {
-              $(".research-slider_arrow").css("pointer-events", "auto")
-            }, 400);
+            // Ставим задержку для последующего нажатия
+            this.setControlsPing(400);
 
-            this.changePosition(this.i, this.circles, isNext);
+            // Двигаем DOM элементы
+            this.changePosition(this.i, this.$circles, isNext);
 
-
-            this.i = this.i === 4 ? 0 : this.i + 1;
-
-            this.sliderDataIndex =
-                this.sliderDataIndex === 0
-                    ? this.sliderData.length - 1
-                    : this.sliderDataIndex - 1;
-
-            // this.circles
-            //     .eq(this.i)
-            //     .children()
-            //     .css(
-            //         "background-image",
-            //         `url(${this.sliderData[this.sliderDataIndex].url})`
-            //     );
+            // Вычисляем новый индекс для DOM элементов и данных
+            this.setNewIndex(isNext);
 
         });
 
-        $(".research-slider_arrow:last-child").on("click", () => {
-            let isNext = true;
+        // Вешаем событие для правой кнопки
+        $(this.$rightArrow).on("click", () => {
 
-            console.log("ok");
+            // Контроль направления поворота слайдера
+            let isNext = false;
 
-             $(".research-slider_arrow").css("pointer-events", "none");
-            setTimeout(() => {
-              $(".research-slider_arrow").css("pointer-events", "auto")
-            }, 400);
+            // Ставим задержку для последующего нажатия
+            this.setControlsPing(400);
 
-            this.changePosition(this.i, this.circles, isNext);
+            // Двигаем DOM элементы
+            this.changePosition(this.i, this.$circles, isNext);
 
-            this.i = this.i === 0 ? this.circles.length - 1 : this.i - 1;
-
-            this.sliderDataIndex =
-                this.sliderDataIndex === this.sliderData.length - 1
-                    ? 0
-                    : this.sliderDataIndex + 1;
-
-            // this.circles
-            //     .eq(this.i)
-            //     .children()
-            //     .css(
-            //         "background-image",
-            //         `url(${this.sliderData[this.sliderDataIndex].url})`
-            //     );
+            // Вычисляем новый индекс для DOM элементов и данных
+            this.setNewIndex(isNext);
         });
     },
 };
@@ -296,7 +215,7 @@ section {
     top: 0;
     bottom: 0;
     margin: auto;
-    transition: 0.5s
+    transition: 0.5s;
 }
 
 .circle:nth-child(1) {
@@ -318,7 +237,6 @@ section {
 .circle:nth-child(5) {
     transform: translatex(1215px);
     opacity: 0;
-
 }
 
 .research-slider__controls {
