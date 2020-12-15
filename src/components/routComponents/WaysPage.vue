@@ -5,12 +5,7 @@ Page - Страница направления исследлова
 Тип страницы - MAIN_PAGE
 
 Используемые модули:
-    -  BANNER
-    -  CONSORTIUM_TEAM
-    -  PROGRAMS_RESULTS
-    -  PROJECT_GOALS
-    -  RESEARCH_DIRECTIONS
-    -  NEWS_CAROUSEL
+
 
 */
 
@@ -35,17 +30,22 @@ Page - Страница направления исследлова
     <div v-else>
         <Preloader/>
     </div>
+
 </template>
 
 <script>
     import TitleSection from "../unitComponents/TitleSection";
     import WaysSection from "../unitComponents/WaysSection";
+    import mixin from "../../utils/methodsMixin"
+
     export default {
         name: "WaysBody",
         components: {
             WaysSection,
             TitleSection
         },
+
+        mixins: [mixin],
         data(){
             return{
                 loadSucces: true,
@@ -104,8 +104,9 @@ Page - Страница направления исследлова
             }
         },
 
-        mounted() {
-
+        async mounted() {
+            await this.getModulesTest("WAYS_PAGE");
+            console.log(this.moduels);
         }
     }
 </script>

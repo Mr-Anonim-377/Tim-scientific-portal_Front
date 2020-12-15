@@ -29,8 +29,9 @@ Section - Слайдер (страница исследования)
 </template>
 
 <script>
-  import TitleSection from "./TitleSection"
-  import MemberItemArticle from "./MemberItemArticle"
+  import TitleSection from "./TitleSection";
+  import MemberItemArticle from "./MemberItemArticle";
+
 
   export default {
     name: "ResearcMembersSection",
@@ -40,7 +41,8 @@ Section - Слайдер (страница исследования)
 
     components: {
       TitleSection,
-      MemberItemArticle
+      MemberItemArticle,
+      // ButtonElement
     },
 
     data() {
@@ -49,7 +51,7 @@ Section - Слайдер (страница исследования)
         test: [1,2,3,4,5,6,7,8],
 
         // Стандартная высота списка
-        listHeight: {height: "405px"}
+        listHeight: {height: "305px"}
       }
     },
 
@@ -59,13 +61,11 @@ Section - Слайдер (страница исследования)
                 this.listHeight = {
                   height:`${
                     // Рассчитываем высоту листа после расрытия
-                    405 * (this.test.length / 4)
+                    305 * (this.test.length / 4)
 
                   }px`
                   };
 
-                // FIXME - поправить исчезновение кнопки
-                //
                 this.btnStyle = {opacity:0,
                     // margin:"0 auto",
                     height: 0
@@ -89,7 +89,7 @@ Section - Слайдер (страница исследования)
 
     overflow: hidden;
 
-    transition: height 0.4s ease-in;
+    transition: 0.5s ease-in-out;
 
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -97,11 +97,12 @@ Section - Слайдер (страница исследования)
   }
 
   li {
-    margin: auto;
+    margin: 0 auto;
   }
 
   p {
-    transition: 0.4s;
+    height: 18px;
+    transition: 0.4s ease-in-out;
   }
 
 </style>

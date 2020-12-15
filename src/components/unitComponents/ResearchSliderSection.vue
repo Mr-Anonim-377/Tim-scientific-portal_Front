@@ -56,7 +56,6 @@ export default {
 
     data() {
         return {
-
             positions: {
                 circle1: {
                     transform: "translatex(-284px)",
@@ -77,79 +76,154 @@ export default {
                 },
             },
 
+            // 1. Палочка
+            // 2. ГО ТУ 2020
+            // 3. Дед
+
             sliderData: [
                 {
-                    1: 1,
+                    url:
+                        "https://media4.giphy.com/media/QvwDyjeBONkqHQ3J17/giphy.gif",
                 },
                 {
-                    2: 2,
+                    url:
+                        "https://media0.giphy.com/media/if2FDKpovYGiNfpmYs/giphy.gif",
                 },
                 {
-                    3: 3,
+                    url:
+                        "https://media1.giphy.com/media/Vh8i7rbFPCJ7SvsjyJ/giphy.gif",
                 },
             ],
         };
     },
 
     methods: {
-
-
         changePosition(i, arr, isNext) {
-
             // Получаем индексы соседних элементов
-            let {i2, i3, i4, i5} = this.getNeighborIndex(this.i, this.$circles);
+            let { i2, i3, i4, i5 } = this.getNeighborIndex(
+                this.i,
+                this.$circles
+            );
 
             // Перемещение элементов в зависимости от направления
             if (isNext) {
-
                 this.moveCircle(["width", "height", "transform"], i, "circle2");
                 this.$circles.eq(i).css("opacity", "1");
 
-                this.moveCircle(["width", "height", "transform"], i2, "circle3");
+                this.moveCircle(
+                    ["width", "height", "transform"],
+                    i2,
+                    "circle3"
+                );
                 this.$circles.eq(i2).css("width", "635px");
                 this.$circles.eq(i2).css("height", "635px");
 
-                this.moveCircle(["width", "height", "transform"],i3, "circle4");
+                this.moveCircle(
+                    ["width", "height", "transform"],
+                    i3,
+                    "circle4"
+                );
                 this.$circles.eq(i3).css("width", "193px");
                 this.$circles.eq(i3).css("height", "193px");
 
-                this.moveCircle(["width", "height", "transform"],i4, "circle5");
+                this.moveCircle(
+                    ["width", "height", "transform"],
+                    i4,
+                    "circle5"
+                );
                 this.$circles.eq(i4).css("opacity", "0");
 
-                this.moveCircle(["width", "height", "transform"], i5, "circle1");
-
+                this.moveCircle(
+                    ["width", "height", "transform"],
+                    i5,
+                    "circle1"
+                );
             } else if (!isNext) {
+                this.moveCircle(["width", "height", "transform"], i, "circle5");
 
-                this.moveCircle(["width", "height", "transform"],i, "circle5");
-
-                this.moveCircle(["width", "height", "transform"], i2, "circle1");
+                this.moveCircle(
+                    ["width", "height", "transform"],
+                    i2,
+                    "circle1"
+                );
                 this.$circles.eq(i2).css("opacity", "0");
 
-                this.moveCircle(["width", "height", "transform"], i3, "circle2");
+                this.moveCircle(
+                    ["width", "height", "transform"],
+                    i3,
+                    "circle2"
+                );
                 this.$circles.eq(i3).css("width", "193px");
                 this.$circles.eq(i3).css("height", "193px");
 
-                this.moveCircle(["width", "height", "transform"], i4, "circle3");
+                this.moveCircle(
+                    ["width", "height", "transform"],
+                    i4,
+                    "circle3"
+                );
                 this.$circles.eq(i4).css("width", "635px");
                 this.$circles.eq(i4).css("height", "635px");
 
-                this.moveCircle(["width", "height", "transform"], i5, "circle4");
+                this.moveCircle(
+                    ["width", "height", "transform"],
+                    i5,
+                    "circle4"
+                );
                 this.$circles.eq(i5).css("opacity", "1");
             }
         },
     },
 
     mounted() {
-
         // Получение DOM элементов
         this.$circles = $(".circle");
+        // this.$imagesConta = $(".innerCircle");
         this.$arrows = $(".research-slider_arrow");
         this.$leftArrow = $(".research-slider_arrow:first-child");
         this.$rightArrow = $(".research-slider_arrow:last-child");
 
+        // Вешаем картинки
+        this.$circles
+            .eq(2)
+            .children(".innerCircle")
+            .css(
+                "background-image",
+                `url(${this.sliderData[this.sliderDataIndex].url}`
+            );
+
+        this.$circles
+            .eq(1)
+            .children(".innerCircle")
+            .css(
+                "background-image",
+                `url(${this.sliderData[this.sliderDataIndex + 1].url}`
+            );
+        this.$circles
+            .eq(0)
+            .children(".innerCircle")
+            .css(
+                "background-image",
+                `url(${this.sliderData[this.sliderDataIndex + 2].url}`
+            );
+
+        this.$circles
+            .eq(3)
+            .children(".innerCircle")
+            .css(
+                "background-image",
+                `url(${this.sliderData[this.sliderData.length - 1].url}`
+            );
+
+        this.$circles
+            .eq(4)
+            .children(".innerCircle")
+            .css(
+                "background-image",
+                `url(${this.sliderData[this.sliderData.length - 2].url}`
+            );
+
         // Вешаем событие для левой кнопки
         $(this.$leftArrow).on("click", () => {
-
             // Контроль направления поворота слайдера
             let isNext = true;
 
@@ -162,11 +236,31 @@ export default {
             // Вычисляем новый индекс для DOM элементов и данных
             this.setNewIndex(isNext);
 
+            let prevImageIndex;
+
+            switch (true) {
+                case this.sliderDataIndex + 2 <= this.sliderData.length - 1:
+                    prevImageIndex = this.sliderDataIndex + 2;
+                    break;
+
+                case this.sliderDataIndex === this.sliderData.length - 2:
+                    prevImageIndex = 0;
+                    break;
+                case this.sliderDataIndex === this.sliderData.length - 1:
+                    prevImageIndex = 1;
+            }
+
+            // Тут контролим первый элемент слайдера
+            setTimeout(() => {
+                this.$circles
+                    .eq(this.i)
+                    .children(".innerCircle")
+                    .css("background-image", `url(${this.sliderData[prevImageIndex].url})`);
+            }, 400);
         });
 
         // Вешаем событие для правой кнопки
         $(this.$rightArrow).on("click", () => {
-
             // Контроль направления поворота слайдера
             let isNext = false;
 
@@ -178,6 +272,38 @@ export default {
 
             // Вычисляем новый индекс для DOM элементов и данных
             this.setNewIndex(isNext);
+
+            let { i5 } = this.getNeighborIndex(this.i, this.$circles);
+
+            let prevImageIndex;
+
+            switch (true) {
+                case this.sliderDataIndex + 2 <= this.sliderData.length - 1:
+                    prevImageIndex = this.sliderDataIndex + 2;
+                    break;
+
+                case this.sliderDataIndex === this.sliderData.length - 2:
+                    prevImageIndex = 0;
+                    break;
+                case this.sliderDataIndex === this.sliderData.length - 1:
+                    prevImageIndex = 1;
+            }
+
+            // Тут контролим первый элемент слайдера
+            setTimeout(() => {
+                this.$circles
+                    .eq(this.i5)
+                    .children(".innerCircle")
+                    .css("background-image", `url(${this.sliderData[prevImageIndex].url})`);
+            }, 400);
+
+            // Тут контролим пятый элемент слайдера
+            setTimeout(() => {
+                this.$circles
+                    .eq(i5)
+                    .children(".innerCircle")
+                    .css("background-color", "black");
+            }, 400);
         });
     },
 };
@@ -222,21 +348,32 @@ section {
     /* transform: translate(0px, 240px); */
     transform: translatex(-284px);
     opacity: 0;
+    /* background-color: blue; */
 }
 .circle:nth-child(2) {
     transform: translatex(0);
+    /* background-color: red; */
 }
 .circle:nth-child(3) {
     transform: translatex(255px);
     width: 635px;
     height: 635px;
+    /* background-color: yellow; */
 }
 .circle:nth-child(4) {
     transform: translatex(950px);
+    /* background-color: blue; */
 }
 .circle:nth-child(5) {
     transform: translatex(1215px);
     opacity: 0;
+    /* background-color: red; */
+}
+
+.innerCircle {
+    background-size: cover;
+    background-size: center;
+    background-repeat: no-repeat;
 }
 
 .research-slider__controls {
@@ -262,9 +399,5 @@ section {
     width: 12px;
     height: 25px;
     background-color: red;
-    /*
-    background-image: url("./../../assets/image/slider-arrow-left.svg");
-    background-position: center;
-    background-size: cover; */
 }
 </style>

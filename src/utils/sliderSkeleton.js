@@ -45,6 +45,7 @@ export default {
 		// Рассчет новых индексов положения слайдов
 		setNewIndex(isNext) {
 			if (isNext) {
+
 				// Рассчет индекса активного элемента в верстке
 				this.i = this.i === 0 ? this.$circles.length - 1 : this.i - 1;
 
@@ -54,6 +55,7 @@ export default {
 						? 0
 						: this.sliderDataIndex + 1;
 			} else {
+
 				// Рассчет индекса активного элемента в верстке
 				this.i = this.i === 4 ? 0 : this.i + 1;
 

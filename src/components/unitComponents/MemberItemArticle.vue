@@ -19,14 +19,22 @@ Section - Слайдер (страница исследования)
       <p>Вуз</p>
     </div>
 
+    <!-- <ButtonElement/> -->
+
 
 
   </article>
 </template>
 
 <script>
+// import ButtonElement from "./CommonElements/ButtonElement";
+
+
 export default {
     name: "MemberItemSection",
+    components: {
+      // ButtonElement
+    }
 
 }
 </script>
@@ -35,9 +43,13 @@ export default {
 
   article {
     width: 209px;
-    height: 305px;
-    margin-bottom: 100px
+    /* height: 305px; */
+    margin-bottom: 50px
   }
+
+  /* article:hover {
+    background-color: #F8F5E6;
+  } */
 
   .memberItem__image {
     width: 209px;

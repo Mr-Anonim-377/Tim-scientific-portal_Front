@@ -41,9 +41,9 @@ let $ = JQuery;
 
 export default {
     name: "NewsSliderSection",
-  props:{
-      urls:[]
-  },
+    props: {
+        urls: [],
+    },
     data() {
         return {
             i: 0,
@@ -118,7 +118,6 @@ export default {
 
                 // console.log(" До вычисления " + this.sliderDataIndex);
 
-
                 this.sliderDataIndex =
                     this.sliderDataIndex === this.sliderData.length - 1
                         ? 0
@@ -179,11 +178,11 @@ export default {
     },
 
     async mounted() {
-for(let i = 0; i < this.urls.length;i++){
-  this.sliderData.push({
-    url: this.urls[i].image,
-  },)
-      }
+        for (let i = 0; i < this.urls.length; i++) {
+            this.sliderData.push({
+                url: this.urls[i].image,
+            });
+        }
         // Получаем dom элементы
         this.getDOM();
 
@@ -196,7 +195,6 @@ for(let i = 0; i < this.urls.length;i++){
         console.log($(".news-slider__slide:nth-child(1)"));
         console.log($(".news-slider__slide:nth-child(3)"));
 
-
         // Начальное положение картинок
         $(".news-slider__slide:nth-child(2)").css(
             "background-image",
@@ -206,13 +204,11 @@ for(let i = 0; i < this.urls.length;i++){
         $(".news-slider__slide:nth-child(1)").css(
             "background-image",
             `url(${this.sliderData[this.sliderDataIndex + 1].url}`
-
         );
 
         $(".news-slider__slide:nth-child(3)").css(
             "background-image",
             `url(${this.sliderData[this.sliderData.length - 1].url}`
-
         );
 
         // Вешаем события на левую стрелку
@@ -285,7 +281,6 @@ for(let i = 0; i < this.urls.length;i++){
 </script>
 
 <style scoped>
-
 .news-slider {
     width: 1140px;
     height: 500px;
