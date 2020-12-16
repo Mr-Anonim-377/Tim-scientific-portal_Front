@@ -19,9 +19,8 @@
             >
                 <img :src="dataUsers.img">
                 <div class="party-block__right">
-                    <h3 class="party-block__text-name">{{dataUsers.surName}}</h3>
-                    <h3>{{dataUsers.name}}</h3>
-                    <h3>{{dataUsers.middleName}}</h3>
+                    <h3 class="party-block__text-name">{{dataUsers.name.split(" ").slice(0, 1).join(" ")}}</h3>
+                    <h3>{{dataUsers.name.split(" ").slice(1, 3).join(" ")}}</h3>
                     <p class="party-block__text-project">Участие в проектах:</p>
                     <div class="project-container"
                          v-if="dataUsers.project.length > 0">
@@ -29,8 +28,13 @@
                              v-for="dataProject in dataUsers.project"
                              :key="dataProject"
                         >
+                            <router-link
+                                    style="text-decoration: none"
+                                    :to="{ name: 'notFound' }"
+                            >
                             <img :src="dataProject.img">
                             <p>{{dataProject.titleProject}}</p>
+                            </router-link>
                         </div>
                     </div>
                     <div class="project-container-none" v-else></div>
@@ -60,8 +64,8 @@
         },
         methods: {
             showToggle: function () {
-                this.listResearch = {'max-height': 'fit-content'};
-                this.btnStyle = { opacity: 0, margin: "0 auto", height: 0 };
+                    this.listResearch = {'max-height': 'fit-content'};
+                    this.btnStyle = { opacity: 0, margin: "0 auto", height: 0 };
             },
         },
         data() {
@@ -110,13 +114,14 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         margin: 0 -10px;
-        max-height: 850px;
+        max-height: 863px;
         overflow: hidden;
     }
 
     .party-block{
         display: flex;
         width: 560px;
+        height: 270px;
         background: #F8F5E6;
         border-radius: 10px;
         text-align: left;
@@ -146,6 +151,7 @@
         position: relative;
         margin: 34px auto 18px auto;
         width: 100%;
+        height: 20px;
     }
     .party-block__text-project:before{
         content: "";
@@ -158,7 +164,7 @@
     .project-container{
         display: flex;
         overflow-x: auto;
-        margin: 0 -10px 13px -10px;
+        margin: 0 -10px 29px -10px;
         width: 100%;
     }
     .project-container::-webkit-scrollbar {
