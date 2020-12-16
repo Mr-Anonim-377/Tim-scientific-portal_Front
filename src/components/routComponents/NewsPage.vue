@@ -19,9 +19,15 @@ Page - Страница новостей
                 Все новости
             </p>
     </div>
+
+     <div v-else>
+        <Preloader/>
+    </div>
 </template>
 
 <script>
+import Preloader from "./../unitComponents/CommonElements/Preloader"
+
 import mixin from "../../utils/methodsMixin";
 import newsMainSection from "../unitComponents/NewsMainSection";
 
@@ -29,6 +35,7 @@ export default {
     name: "researchBodyPage",
     components: {
         newsMainSection,
+        Preloader
     },
     mixins: [mixin],
     methods: {

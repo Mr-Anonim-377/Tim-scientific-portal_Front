@@ -8,73 +8,85 @@ Section - Слайдер (страница исследования)
 */
 
 <template>
-  <article>
+    <article>
+        <router-link :to="{ name: 'notFound' }">
+            <div class="memberItem__image">
+                <div
+                    class="memberItem__imageContainer"
+                    :style="{ backgroundImage: `url(${articleData.image})` }"
+                ></div>
+            </div>
 
-    <div class="memberItem__image">
-      <img src="" alt="">
-    </div>
-
-    <div class="memberItem__textContent">
-      <p class="memberItem__memberName">Имя</p>
-      <p>Вуз</p>
-    </div>
-
-
-
-  </article>
+            <div class="memberItem__textContent">
+                <p class="memberItem__memberName">{{ articleData.title }}</p>
+                <p>{{ articleData.text }}</p>
+            </div>
+        </router-link>
+    </article>
 </template>
 
 <script>
 export default {
     name: "MemberItemSection",
-
-}
+    components: {
+        // ButtonElement
+    },
+    props: {
+        articleData: {},
+    },
+};
 </script>
 
 <style scoped>
-
-  article {
+article {
+    color: #3f7e77;
     width: 209px;
-    height: 305px;
-    margin-bottom: 100px
-  }
+    margin-bottom: 50px;
+    color: #3f7e77;
+}
 
-  .memberItem__image {
+.memberItem__image {
     width: 209px;
     height: 209px;
-    border: 3px solid #3F7E77;
+    border: 3px solid #3f7e77;
     border-radius: 100%;
 
     display: flex;
     justify-content: center;
-    align-self: center;
-  }
+    align-items: center;
+}
 
-  .memberItem__textContent {
+.memberItem__imageContainer {
+    width: 80%;
+    height: 80%;
+    border-radius: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+.memberItem__textContent {
     text-align: center;
-  }
+    color: #3f7e77;
+}
 
-  .memberItem__memberName {
+.memberItem__memberName {
     font-size: 15px;
-    font-weight: 700 ;
-  }
+    font-weight: 700;
+}
 
-  .memberItem__textContent > p:last-child {
+.memberItem__textContent > p:last-child {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
 
-  .memberItem__textContent > p:last-child::before,
-  .memberItem__textContent > p:last-child::after
-   {
+.memberItem__textContent > p:last-child::before,
+.memberItem__textContent > p:last-child::after {
     content: "";
     margin: 10px;
     display: block;
     width: 35px;
     height: 1px;
-    background-color: #3F7E77;
-  }
-
-
+    background-color: #3f7e77;
+}
 </style>

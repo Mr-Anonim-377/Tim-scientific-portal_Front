@@ -114,60 +114,7 @@ export default {
                 },
             },
 
-            // TEMP Данные для слайдера
-
-            sliderImage: [
-                {
-                    title: 1,
-                },
-            ],
-
-            sliderData: [
-                // {
-                //     url:
-                //         "https://www.neizvestniy-geniy.ru/images/works/photo/2013/08/988047_1.jpg",
-                //     title: "Рожь как смысл жизни",
-                //     description:
-                //         "Рожь издавно была кормилецей многих народов прикубанских земель. Она дает силу и бодрость.",
-                // },
-                // {
-                //     url:
-                //         "https://heaclub.ru/tim/b827ac29c5af026955a58d8be2ccefb8/rozh.jpg",
-                //     title: "Технологии 21 века",
-                //     description:
-                //         "Для решения задач комплексного анализа в сельском хозяйстве используются электронные карты с результатами спутниковых геодезических измерений. Использование таких методов позволяет получать детализированную информацию об обширных территориях",
-                // },
-                // {
-                //     url:
-                //         "http://vestnikapk.ru/upload/iblock/499/4990f938d2f7d876818532c77f36199a.jpg",
-                //     title: "Текст цели",
-                //     description:
-                //         "Рожь издавно была кормилецей многих народов прикубанских земель. Она дает силу и бодрость.",
-                // },
-                // {
-                //     url:
-                //         "https://i1.wallbox.ru/wallpapers/main2/201732/nebo-solnce-pole-kolosa-psenica.jpg",
-                //     title: "Текст цели",
-                //     description:
-                //         "Рожь издавно была кормилецей многих народов прикубанских земель. Она дает силу и бодрость.",
-                // },
-                // {
-                //     url:
-                //         "https://www.neizvestniy-geniy.ru/images/works/photo/2013/08/988047_1.jpg",
-                //     title: "Рожь как смысл жизни3",
-                //     description:
-                //         "Рожь издавно была кормилецей многих народов прикубанских земель. Она дает силу и бодрость.",
-                // },
-                // {
-                //     url:
-                //         "https://www.neizvestniy-geniy.ru/images/works/photo/2013/08/988047_1.jpg",
-                //     title: "Рожь как смысл жизни3",
-                //     description:
-                //         "Рожь издавно была кормилецей многих народов прикубанских земель. Она дает силу и бодрость.",
-                // },
-            ],
-
-            // sliderData2: [],
+            sliderData: [],
         };
     },
 
@@ -253,7 +200,6 @@ export default {
 
       async mounted() {
 
-        console.log(this.sectionData);
 
         //  Формируем данные для слайдера
         await this.sectionData.PROGRAMS_RESULT.forEach(slide => {
@@ -265,8 +211,6 @@ export default {
         })
 
         console.log(this.sliderData);
-
-
 
         this.getDOM();
         this.circles.eq(this.i).children().css("opacity", 1);

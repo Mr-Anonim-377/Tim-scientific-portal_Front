@@ -1,5 +1,6 @@
 module.exports = {
     // options...
+    // lintOnSave: false,
     devServer: {
         port:80,
         compress: true,

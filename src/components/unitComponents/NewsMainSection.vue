@@ -53,6 +53,7 @@ export default {
 </script>
 
 <style scoped>
+
 .news-item {
     width: 367px;
     height: 560px;

@@ -1,18 +1,18 @@
 <template>
     <div class="waysSection-container">
-        <img :src="require('../../assets/image/ways/' + items.img)">
+        <img :src="sectionData.image">
         <div class="waysSection__text">
-            <h2>{{items.title}}</h2>
-            <p>{{items.text}}</p>
+            <h2>{{sectionData.title}}</h2>
+            <p>{{sectionData.text}}</p>
 
-             <router-link :to="{ name: 'all-research' }">
+             <router-link :to="{ path: `/all-research/${sectionData._pageLink}` }">
                           <ButtonElement/>
             </router-link>
 
         </div>
     </div>
     <div
-            v-if="items.id < 5"
+
             class="waysSection-line"></div>
 </template>
 
@@ -22,7 +22,10 @@
         name: "SectionWaysItems",
         components: {ButtonElement},
         props:{
-            items:{}
+            sectionData:{}
+        },
+        mounted() {
+            console.log(this.sectionData)
         }
     }
 </script>
@@ -61,7 +64,7 @@
         width: 659px;
         margin-top: 40px;
         position: relative;
-        max-height: 80px;
+        /* max-height: 80px; */
     }
     .waysSection__text p:before{
         content: "";

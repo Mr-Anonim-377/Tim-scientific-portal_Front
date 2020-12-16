@@ -15,13 +15,13 @@ Section - Слайдер (страница исследования)
 
       <TitleSection title="Исследователи" headerVisible="asdas" />
 
-      <ul :style="listHeight">
-        <li v-for="i in test" :key="i">
-            <MemberItemArticle />
+      <ul :style="listHeight" :class='isDropDown ? "ul_grid" : "ul_flex"'>
+        <li v-for="i in sectionData" :key="i">
+            <MemberItemArticle :articleData="i"/>
         </li>
       </ul>
 
-      <p :style="btnStyle" class="newsSection__text" @click ="showToggle">Показать еще</p>
+      <p v-if="isDropDown" :style="btnStyle" class="newsSection__text" @click ="showToggle">Показать еще</p>
 
     </section>
   </div>
@@ -29,8 +29,9 @@ Section - Слайдер (страница исследования)
 </template>
 
 <script>
-  import TitleSection from "./TitleSection"
-  import MemberItemArticle from "./MemberItemArticle"
+  import TitleSection from "./TitleSection";
+  import MemberItemArticle from "./MemberItemArticle";
+
 
   export default {
     name: "ResearcMembersSection",
@@ -40,17 +41,21 @@ Section - Слайдер (страница исследования)
 
     components: {
       TitleSection,
-      MemberItemArticle
+      MemberItemArticle,
+      // ButtonElement
     },
 
     data() {
       return {
         isShow: false,
-        test: [1,2,3,4,5,6,7,8],
-
+        isDropDown: this.sectionData > 4 ? true : false,
         // Стандартная высота списка
-        listHeight: {height: "405px"}
+        listHeight: {height: "305px"}
       }
+    },
+
+    mounted() {
+      console.log(this.sectionData)
     },
 
     methods: {
@@ -59,13 +64,11 @@ Section - Слайдер (страница исследования)
                 this.listHeight = {
                   height:`${
                     // Рассчитываем высоту листа после расрытия
-                    405 * (this.test.length / 4)
+                    305 * (this.test.length / 4)
 
                   }px`
                   };
 
-                // FIXME - поправить исчезновение кнопки
-                //
                 this.btnStyle = {opacity:0,
                     // margin:"0 auto",
                     height: 0
@@ -89,19 +92,27 @@ Section - Слайдер (страница исследования)
 
     overflow: hidden;
 
-    transition: height 0.4s ease-in;
+    transition: 0.5s ease-in-out;
+  }
 
+  .ul_grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 
   }
 
+  .ul_flex {
+    display: flex;
+    justify-content: center;
+  }
+
   li {
-    margin: auto;
+    margin: 0 50px;
   }
 
   p {
-    transition: 0.4s;
+    height: 18px;
+    transition: 0.4s ease-in-out;
   }
 
 </style>

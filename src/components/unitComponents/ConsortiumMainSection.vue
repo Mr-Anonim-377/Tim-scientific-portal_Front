@@ -31,13 +31,13 @@ Section - Консорциум (главная страница)
 
 <script>
 import TitleSection from "./TitleSection";
-import ButtonElement from "./CommonElements/ButtonElement";
+// import ButtonElement from "./CommonElements/ButtonElement";
 
 export default {
     name: "ConsortiumMain",
     components: {
         TitleSection,
-        ButtonElement,
+        // ButtonElement,
     },
     props: {
         sectionData: [],
