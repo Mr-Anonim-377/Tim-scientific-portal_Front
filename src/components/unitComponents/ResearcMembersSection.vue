@@ -15,13 +15,13 @@ Section - Слайдер (страница исследования)
 
       <TitleSection title="Исследователи" headerVisible="asdas" />
 
-      <ul :style="listHeight">
-        <li v-for="i in test" :key="i">
-            <MemberItemArticle />
+      <ul :style="listHeight" :class='isDropDown ? "ul_grid" : "ul_flex"'>
+        <li v-for="i in sectionData" :key="i">
+            <MemberItemArticle :articleData="i"/>
         </li>
       </ul>
 
-      <p :style="btnStyle" class="newsSection__text" @click ="showToggle">Показать еще</p>
+      <p v-if="isDropDown" :style="btnStyle" class="newsSection__text" @click ="showToggle">Показать еще</p>
 
     </section>
   </div>
@@ -48,11 +48,14 @@ Section - Слайдер (страница исследования)
     data() {
       return {
         isShow: false,
-        test: [1,2,3,4,5,6,7,8],
-
+        isDropDown: this.sectionData > 4 ? true : false,
         // Стандартная высота списка
         listHeight: {height: "305px"}
       }
+    },
+
+    mounted() {
+      console.log(this.sectionData)
     },
 
     methods: {
@@ -90,14 +93,21 @@ Section - Слайдер (страница исследования)
     overflow: hidden;
 
     transition: 0.5s ease-in-out;
+  }
 
+  .ul_grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 
   }
 
+  .ul_flex {
+    display: flex;
+    justify-content: center;
+  }
+
   li {
-    margin: 0 auto;
+    margin: 0 50px;
   }
 
   p {

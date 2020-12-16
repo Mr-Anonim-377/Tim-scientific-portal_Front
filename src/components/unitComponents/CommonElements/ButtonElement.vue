@@ -1,12 +1,20 @@
 <template>
-    <button class="buttonSection" :style="modifiers">Подробнее</button>
+    <button class="buttonSection" :style="modifiers">{{titleValue}}</button>
 </template>
 
 <script>
     export default {
         name: "buttonSection",
-        props:["modifiers"],
+        props:["modifiers", "title"],
+
+        data() {
+            return {
+                titleValue: this.title ? this.title : "Подробнее"
+            }
+        },
     }
+
+
 </script>
 
 <style scoped>

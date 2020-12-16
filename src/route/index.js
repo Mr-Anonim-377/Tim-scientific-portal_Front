@@ -35,14 +35,17 @@ const routes = [
 		component: news,
 	},
 	{
-		path: "/research",
+		path: "/research/:pageId",
 		name: "research",
 		component: ResearchPage,
+		props: true
 	},
 	{
-		path: "/all-research",
+		path: "/all-research/:pageId",
 		name: "all-research",
 		component: ResearchAllPage,
+		props: true
+
 	},
 	{
 		path: '/newsItem/:pageId',

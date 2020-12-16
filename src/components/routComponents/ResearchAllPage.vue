@@ -2,143 +2,195 @@
 /*
 Page - Страница Исследований
 
-Тип страницы -
+Данные страницы получаются по ID
 
 Используемые модули:
+    - BANNER
+    - RESEARCH_ARRAY
 */
 
 <template>
+    <div v-if="loadSucces">
+        <BannerPromoResearchSection />
 
-    <BannerPromoResearchSection/>
-
-    <ResearchSection
-            :sectionData="researchData"
+        <ResearchSection
             :listResearch="listResearch"
-    />
-    <p class="researchSection__text" :style="btnStyle" @click="showToggle">
-        Смотреть еще
-    </p>
+            :sectionData="RESEARCH_ARRAY.RESEARCH"
+        />
+        <p
+            v-if="RESEARCH_ARRAY.RESEARCH.length > 4"
+            class="researchSection__text"
+            :style="btnStyle"
+            @click="showToggle"
+        >
+            Смотреть еще
+        </p>
+    </div>
+
+    <div v-else>
+        <Preloader />
+    </div>
 </template>
 
 <script>
-    import BannerPromoResearchSection from "../unitComponents/BannerPromoResearchSection";
-    import ResearchSection from "../unitComponents/ResearchSection";
-    // import Preloader from "./../unitComponents/CommonElements/Preloader"
+import BannerPromoResearchSection from "../unitComponents/BannerPromoResearchSection";
+import ResearchSection from "../unitComponents/ResearchSection";
+import Preloader from "./../unitComponents/CommonElements/Preloader";
 
-    export default {
-        name: "ResearchPage",
-        components: {
-            ResearchSection,
-            BannerPromoResearchSection,
-            // Preloader
+import mixin from "../../utils/methodsMixin";
+
+export default {
+    name: "ResearchPage",
+    components: {
+        ResearchSection,
+        BannerPromoResearchSection,
+        Preloader,
+    },
+
+    props: {
+        pageId: String,
+    },
+
+    mixins: [mixin],
+
+    methods: {
+        showToggle: function () {
+            this.listResearch = { height: "fit-content" };
+            this.btnStyle = { opacity: 0, margin: "0 auto", height: 0 };
         },
-        methods: {
-            showToggle: function () {
-                this.listResearch = { height: 'fit-content' };
-                this.btnStyle = { opacity: 0, margin: "0 auto", height: 0 };
-            },
-        },
-        data() {
-            return {
-                btnStyle: {},
-                researchData:[
-                    {
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },
-                    {
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },
-                    {
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },
-                    {
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },
-                    {
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },
-                    {
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },
-                    {
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },
-                    {
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },
-                    {
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },
-                    {
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },
-                    {
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },
-                    {
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },
-                    {
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },{
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },{
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },
-                    {
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    },
-                    {
-                        img:"https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
-                        text:"Отдаленная гибридизация",
-                        years:"2020"
-                    }
-                ]
-            }
-        }
-    }
+    },
+    data() {
+        return {
+            loadSucces: false,
+            btnStyle: {},
+            researchData: [
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+                {
+                    img:
+                        "https://s1.1zoom.ru/big3/576/Lilies_of_the_valley_490423.jpg",
+                    text: "Отдаленная гибридизация",
+                    years: "2020",
+                },
+            ],
+        };
+    },
+
+    async mounted() {
+        // console.log(this.pageId)
+        await this.getModulesTest("", this.pageId);
+
+        this.loadSucces = true;
+        console.log(this.modules);
+
+        console.log(this.BANNER);
+        console.log(this.RESEARCH_ARRAY.RESEARCH);
+    },
+};
 </script>
 
 <style scoped>
-    .researchSection__text{
-        font-size: 15px;
-        line-height: 17px;
-        text-decoration-line: underline;
-        color: #3F7E77;
-        margin: 100px auto 100px auto;
-        text-align: center;
-        cursor: pointer;
-    }
+.researchSection__text {
+    font-size: 15px;
+    line-height: 17px;
+    text-decoration-line: underline;
+    color: #3f7e77;
+    margin: 100px auto 100px auto;
+    text-align: center;
+    cursor: pointer;
+}
 </style>

@@ -1,15 +1,13 @@
 /*
-
 Section - Слайдер (страница исследования)
 
 Принимает типы объектов:
-
-
 */
 
 
 <template>
     <section>
+        <TitleSection title="С полей испытаний"/>
         <div class="slider-container">
             <div class="research-slider">
                 <div class="research-slider__view">
@@ -46,11 +44,15 @@ import sliderSkeleton from "../../utils/sliderSkeleton";
 import JQuery from "jquery";
 let $ = JQuery;
 
+import TitleSection from "./TitleSection"
+
 export default {
     name: "ResearchSliderSection",
     props: {
-        sectionData: [],
+        sectionData: {},
     },
+
+    components:{TitleSection},
 
     mixins: [sliderSkeleton],
 
@@ -76,23 +78,8 @@ export default {
                 },
             },
 
-            // 1. Палочка
-            // 2. ГО ТУ 2020
-            // 3. Дед
-
             sliderData: [
-                {
-                    url:
-                        "https://media4.giphy.com/media/QvwDyjeBONkqHQ3J17/giphy.gif",
-                },
-                {
-                    url:
-                        "https://media0.giphy.com/media/if2FDKpovYGiNfpmYs/giphy.gif",
-                },
-                {
-                    url:
-                        "https://media1.giphy.com/media/Vh8i7rbFPCJ7SvsjyJ/giphy.gif",
-                },
+
             ],
         };
     },
@@ -175,6 +162,18 @@ export default {
     },
 
     mounted() {
+
+
+        // Формируем массив данных
+        this.sliderData = [];
+        this.sectionData.IMAGE.forEach(image => {
+            this.sliderData.push({
+                url: image.image
+            });
+        });
+
+        console.log(this.sliderData);
+
         // Получение DOM элементов
         this.$circles = $(".circle");
         // this.$imagesConta = $(".innerCircle");
@@ -278,31 +277,23 @@ export default {
             let prevImageIndex;
 
             switch (true) {
-                case this.sliderDataIndex + 2 <= this.sliderData.length - 1:
-                    prevImageIndex = this.sliderDataIndex + 2;
+                case this.sliderDataIndex - 2 >= 0:
+                    prevImageIndex = this.sliderDataIndex - 2;
                     break;
 
-                case this.sliderDataIndex === this.sliderData.length - 2:
-                    prevImageIndex = 0;
+                case this.sliderDataIndex === 1:
+                    prevImageIndex = this.sliderData.length - 1;
                     break;
-                case this.sliderDataIndex === this.sliderData.length - 1:
-                    prevImageIndex = 1;
+                case this.sliderDataIndex === 0:
+                    prevImageIndex = this.sliderData.length - 2;
             }
 
             // Тут контролим первый элемент слайдера
             setTimeout(() => {
                 this.$circles
-                    .eq(this.i5)
-                    .children(".innerCircle")
-                    .css("background-image", `url(${this.sliderData[prevImageIndex].url})`);
-            }, 400);
-
-            // Тут контролим пятый элемент слайдера
-            setTimeout(() => {
-                this.$circles
                     .eq(i5)
                     .children(".innerCircle")
-                    .css("background-color", "black");
+                    .css("background-image", `url(${this.sliderData[prevImageIndex].url})`);
             }, 400);
         });
     },
@@ -313,12 +304,13 @@ export default {
 section {
     background-color: #3f7e77;
     height: 1000px;
-    padding-top: 192px;
+    padding-top: 50px;
 }
 
 .slider-container {
     width: 1141px;
     margin: auto;
+    margin-top: 100px;
 }
 
 .research-slider__view {
@@ -398,6 +390,13 @@ section {
 .research-slider_arrow {
     width: 12px;
     height: 25px;
-    background-color: red;
+    /* background-color: red; */
+    background-image: url("../../assets/image/arrowWhite.svg");
+    cursor: pointer;
+}
+
+
+.research-slider_arrow:last-child {
+    transform: rotate(180deg)
 }
 </style>

@@ -5,67 +5,73 @@ Page - Страница исследования
 Тип страницы - TEMP NEWS_PAGE
 
 Используемые модули:
-- TEMP
+    - BANNER
+    - RESEARCH_MEMBER_ARRAY
+    - RESEARCH_IMAGE_SLIDER
+    - FIXME Новости пока с главной
 
 */
 
 <template>
     <div v-if="loadSuccess">
+        <ResearchTextSection :sectionData="BANNER"/>
 
-        <ResearchTextSection />
+        <ResearcMembersSection :sectionData="RESEARCH_MEMBER_ARRAY.RESEARCH_MEMBER"/>
 
-        <ResearcMembersSection />
+        <ResearchSliderSection :sectionData="RESEARCH_IMAGE_SLIDER"/>
 
-        <ResearchSliderSection />
-
-        <!-- <NewsMainSection :newsData="NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)"/> -->
-
+        <NewsMainSection :newsData="NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)" />
     </div>
 
     <div v-else>
-        <Preloader/>
+        <Preloader />
     </div>
 </template>
 
 <script>
-    import testMixin from "../../utils/methodsMixin.js";
+import testMixin from "../../utils/methodsMixin.js";
 
-    import Preloader from "./../unitComponents/CommonElements/Preloader"
+import Preloader from "./../unitComponents/CommonElements/Preloader";
 
-    import ResearchTextSection from "../unitComponents/ResearchTextSection";
-    import ResearcMembersSection from "../unitComponents/ResearcMembersSection";
-    import ResearchSliderSection from "../unitComponents/ResearchSliderSection";
-    // import NewsMainSection from "../unitComponents/NewsMainSection";
+import ResearchTextSection from "../unitComponents/ResearchTextSection";
+import ResearcMembersSection from "../unitComponents/ResearcMembersSection";
+import ResearchSliderSection from "../unitComponents/ResearchSliderSection";
+import NewsMainSection from "../unitComponents/NewsMainSection";
 
-    export default {
-        name: "ResearchPage",
-        components: {
-            ResearchTextSection,
-            ResearcMembersSection,
-            ResearchSliderSection,
-            // NewsMainSection,
-            Preloader
+export default {
+    name: "ResearchPage",
+    components: {
+        ResearchTextSection,
+        ResearcMembersSection,
+        ResearchSliderSection,
+        NewsMainSection,
+        Preloader,
+    },
+    props: {
+            pageId: String,
         },
-        mixins: [testMixin],
-        data() {
-            return {
-                loadSuccess: true,
-            };
-        },
+    mixins: [testMixin],
+    data() {
+        return {
+            loadSuccess: false,
+        };
+    },
 
-        async mounted() {
-        //     // FIXME
-        //     await this.getModulesTest("MAIN_PAGE");
-        //     console.log(this.NEWS_CAROUSEL);
-        //       setTimeout(()=>{
-        //   this.loadSuccess = true;
-        // },500)
-        }
-    };
+    async mounted() {
+        await this.getModulesTest("MAIN_PAGE");
+        await this.getModulesTest("", this.pageId);
+
+        console.log(this.modules);
+        console.log(this.RESEARCH_MEMBER_ARRAY)
+
+        setTimeout(() => {
+            this.loadSuccess = true;
+        }, 500);
+    },
+};
 </script>
 
 <style>
-
 /* TEMP НОВОСТИ */
 
 /*Новости*/
@@ -76,5 +82,4 @@ Page - Страница исследования
 .NewsSection {
     margin-bottom: 100px;
 }
-
 </style>

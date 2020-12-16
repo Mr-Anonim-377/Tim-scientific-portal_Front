@@ -361,7 +361,9 @@ export default {
     width: 160px;
     height: 182px;
     background-image: url("../../assets/image/Logo2.svg");
-    background-size: cover;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     transform: translate(340px, 216px);
 }
 
