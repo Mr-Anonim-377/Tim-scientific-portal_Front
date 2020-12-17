@@ -24,7 +24,12 @@
             <p>Участники</p>
         </div>
         <div class="footerNav-container__right">
-            <p>Контакты</p>
+            <router-link
+                    style="text-decoration: none"
+                    :to="{ name: 'contacts' }"
+            >
+             <p>Контакты</p>
+            </router-link>
             <router-link style="text-decoration: none" :to="{ name: 'news' }">
                 <p>Новости</p>
             </router-link>
