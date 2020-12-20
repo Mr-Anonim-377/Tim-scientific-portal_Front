@@ -32,7 +32,7 @@
         margin: auto;
         max-width: 1141px;
         align-items: center;
-        padding: 214px  0 23px 0;
+        padding: 134px  0 23px 0;
     }
 
     .bannerPromoMainSection-container h2{
@@ -58,7 +58,7 @@
         font-size: 72px;
         line-height: 90px;
         color: #F8F5E6;
-        margin: 8px 0 280px 0;
+        margin: 8px 0 162px 0;
         letter-spacing: 0.11em;
     }
     .banner-bottom{

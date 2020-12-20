@@ -25,7 +25,7 @@ Section - Консорциум (главная страница)
 
           <div class="researchText-controls">
             <router-link :to="{name:'notFound'}">
-              <ButtonElement title="Обучающие программы"/>
+              <ButtonElement title="Результаты исследования"/>
             </router-link>
 
             <router-link :to="{name:'notFound'}">

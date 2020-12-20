@@ -2,7 +2,7 @@
 
 Page - Страница исследования
 
-Тип страницы - TEMP NEWS_PAGE
+Данные с бэка получаем по this.pageId
 
 Используемые модули:
     - BANNER
@@ -72,7 +72,6 @@ export default {
 </script>
 
 <style>
-/* TEMP НОВОСТИ */
 
 /*Новости*/
 .newsSection__text {
