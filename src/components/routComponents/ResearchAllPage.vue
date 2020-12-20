@@ -11,7 +11,7 @@ Page - Страница Исследований
 
 <template>
     <div v-if="loadSucces">
-        <BannerPromoResearchSection />
+        <BannerPromoResearchSection :dataSection="BANNER" />
 
         <ResearchSection
             :listResearch="listResearch"
