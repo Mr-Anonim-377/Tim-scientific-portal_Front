@@ -177,8 +177,6 @@ export default {
         this.loadSucces = true;
         console.log(this.modules);
 
-        console.log(this.BANNER);
-        console.log(this.RESEARCH_ARRAY.RESEARCH);
     },
 };
 </script>

@@ -1,13 +1,12 @@
 <template>
     <section class="bannerPromoResearchSection"
-             :style="{ backgroundImage: `url(${dataSection.BANNER_IMAGE.image})`}">
+             :style="{ backgroundImage: `url(${dataSection.BANNER_IMAGE[0].image})`}">
         <div class="bannerPromoResearchSection-container">
-            <h1>“{{ dataSection.BANNER_TITLE.title }}”</h1>
-            <h2>{{dataSection.WAYS_NAME.title}}</h2>
+            <h1>“{{ dataSection.BANNER_TITLE[0].title }}”</h1>
+            <h2>{{dataSection.WAYS_NAME[0].title}}</h2>
             <buttonSection
                     :modifiers="modifiers.btn"
                     @click="showToggle"
-                    :title="titleResearchBtn"
             />
             <div class="banner-btn__bottom"></div>
         </div>
@@ -32,7 +31,6 @@
                 },
                 visibleResearch: false,
                 titleResearch:"“Агротехнологии будущего”",
-                titleResearchBtn:'Смотреть',
             }
         },
         methods: {
