@@ -5,14 +5,14 @@
                 <p class="headerSection__text-phone"> <router-link
                         style="text-decoration: none"
                         :to="{ name: 'notFound' }"
-                >+7 (978) 645-25-13
+                >(499) 976-01-25
                 </router-link></p>
                 <p class="headerSection__textMail">
                     <router-link
                             style="text-decoration: none"
                             :to="{ name: 'notFound' }"
                     >
-                    agrocons@gmail.com
+                    info@future-agro.ru
                     </router-link>
                 </p>
             <router-link style="text-decoration: none" :to="{ name: 'Main' }">
@@ -46,13 +46,13 @@
                     style="text-decoration: none"
                     :to="{ name: 'notFound' }"
                 >
-                    <p>База знаний</p>
+                    <p>Участники</p>
                 </router-link>
                 <router-link
                     style="text-decoration: none"
-                    :to="{ name: 'notFound' }"
+                    :to="{ name: 'news' }"
                 >
-                    <p>Участники</p>
+                    <p>Новости</p>
                 </router-link>
                 <router-link
                     style="text-decoration: none"

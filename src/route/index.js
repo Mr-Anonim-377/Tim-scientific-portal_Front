@@ -7,6 +7,8 @@ import news from "../components/routComponents/NewsPage";
 import ResearchPage from "../components/routComponents/ResearchPage";
 import ResearchAllPage from "../components/routComponents/ResearchAllPage";
 import newsItem from '../components/routComponents/NewsItemsPage';
+import party from  '../components/routComponents/PartyPage'
+import contacts from '../components/routComponents/ContactsPage'
 
 const routes = [
 	{
@@ -52,6 +54,16 @@ const routes = [
 		name: 'newsItem',
 		component: newsItem,
 		props: true
+	},
+	{
+		path: '/party',
+		name: 'party',
+		component: party,
+	},
+	{
+		path: '/contacts',
+		name: 'contacts',
+		component: contacts,
 	}
 	// {
 	// 	path: '/collection/collectionId=:collectionId' +

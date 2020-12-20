@@ -7,6 +7,7 @@
             <buttonSection
                     :modifiers="modifiers.btn"
                     @click="showToggle"
+                    :title="titleResearchBtn"
             />
             <div class="banner-btn__bottom"></div>
         </div>
@@ -31,6 +32,7 @@
                 },
                 visibleResearch: false,
                 titleResearch:"“Агротехнологии будущего”",
+                titleResearchBtn:'Смотреть',
             }
         },
         methods: {

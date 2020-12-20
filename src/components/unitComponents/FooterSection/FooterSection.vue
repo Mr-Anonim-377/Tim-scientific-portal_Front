@@ -4,7 +4,7 @@
         <div class="footerLogo-container">
             <img src="../../../assets/image/Logo.svg" />
             <p>
-                ©2021 <q>Агроконсорциум</q> <br />Научный центр мирового уровня
+                ©2020 <q>Агроконсорциум</q> <br />Научный центр мирового уровня
                 <br />
                 <q>Агротехнологии будущего</q>
             </p>
@@ -21,20 +21,35 @@
             <router-link style="text-decoration: none" :to="{ name: 'ways' }">
                 <p>Направления исследований</p>
             </router-link>
-            <p>Участники</p>
+            <router-link
+                style="text-decoration: none"
+                :to="{ name: 'notFound' }"
+            >
+                <p>Участники</p>
+            </router-link>
         </div>
         <div class="footerNav-container__right">
-            <p>Контакты</p>
+            <router-link
+                style="text-decoration: none"
+                :to="{ name: 'contacts' }"
+            >
+                <p>Контакты</p>
+            </router-link>
             <router-link style="text-decoration: none" :to="{ name: 'news' }">
                 <p>Новости</p>
             </router-link>
-            <p>Личный кабинет</p>
+            <router-link
+                style="text-decoration: none"
+                :to="{ name: 'notFound' }"
+            >
+                <p>Личный кабинет</p>
+            </router-link>
         </div>
 
         <!--            Контакты-->
         <div class="footerContact-container">
-            <p>E-mail: agrocons@gmail.com</p>
-            <p class="footerContact__text">+7 (978) 645-25-13</p>
+            <p>E-mail: info@future-agro.ru</p>
+            <p class="footerContact__text">(499) 976-01-25</p>
             <p style="cursor: default">Следите за нами:</p>
             <div class="footerContact__networks">
                 <img src="../../../assets/image/VK.svg" />
