@@ -61,7 +61,7 @@ export default {
       setTimeout(()=>{
         this.loadSucces = true;
       },500)
-      console.log(  this.NEWS_SLIDER.NEWS_ITEM)
+      console.log(  this.modules)
     },
 };
 </script>

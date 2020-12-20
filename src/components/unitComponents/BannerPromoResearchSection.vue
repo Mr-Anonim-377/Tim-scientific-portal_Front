@@ -1,8 +1,9 @@
 <template>
-    <section class="bannerPromoResearchSection">
+    <section class="bannerPromoResearchSection"
+             :style="{ backgroundImage: `url(${dataSection.BANNER_IMAGE.image})`}">
         <div class="bannerPromoResearchSection-container">
-            <h1>“Агротехнологии будущего”</h1>
-            <h2>Ускоренная селекция высокоурожайных и устойчивых сортов и гибридов растений, обладающих заданными характеристиками качества.</h2>
+            <h1>“{{ dataSection.BANNER_TITLE.title }}”</h1>
+            <h2>{{dataSection.WAYS_NAME.title}}</h2>
             <buttonSection
                     :modifiers="modifiers.btn"
                     @click="showToggle"
@@ -16,6 +17,9 @@
     import buttonSection from "./CommonElements/ButtonElement";
 
     export default {
+      props:{
+        dataSection:{}
+      },
         name: "bannerPromoResearchSection",
         components: {
             buttonSection
