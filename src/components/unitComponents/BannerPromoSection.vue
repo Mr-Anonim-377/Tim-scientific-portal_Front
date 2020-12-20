@@ -24,8 +24,9 @@
 <style scoped>
     .bannerPromoMainSection{
         width: 100%;
-        background: linear-gradient(0deg, rgba(51, 51, 51, 0.8), rgba(51, 51, 51, 0.8)), url("../../assets/image/backgroundPromo.png");
+        background: url("../../assets/image/newBanner.png");
         background-size: cover;
+        background-position:left;
     }
     .bannerPromoMainSection-container{
         text-align: center;
