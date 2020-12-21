@@ -21,7 +21,9 @@ Page - Главная страница проекта
 
         <ConsortiumMainSection :sectionData="CONSORTIUM_TEAM" />
 
-        <SliderSection :sectionData="PROGRAMS_RESULTS" />
+        <ResultSection/>
+
+        <!-- <SliderSection :sectionData="PROGRAMS_RESULTS" /> -->
 
         <PurposesSection :sectionData="PROJECT_GOALS" />
 
@@ -48,7 +50,8 @@ import PurposesSection from "../unitComponents/PurposesSection";
 import DirectionOfResearchSection from "../unitComponents/DirectionOfResearchSection";
 import NewsMainSection from "../unitComponents/NewsMainSection";
 import ConsortiumMainSection from "../unitComponents/ConsortiumMainSection";
-import SliderSection from "../unitComponents/SliderSection";
+import ResultSection from "../unitComponents/ResultSection"
+// import SliderSection from "../unitComponents/SliderSection";
 import BannerPromoSection from "../unitComponents/BannerPromoSection";
 
 export default {
@@ -57,10 +60,12 @@ export default {
     components: {
         BannerPromoSection,
         ConsortiumMainSection,
+        // ConsortiumTextSection,
+        ResultSection,
         NewsMainSection,
         DirectionOfResearchSection,
         PurposesSection,
-        SliderSection,
+        // SliderSection,
         Preloader
     },
     mixins: [testMixin],
