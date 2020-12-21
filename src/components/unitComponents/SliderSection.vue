@@ -230,7 +230,7 @@ export default {
         // Меняем текст
         $(".slider-right p:first-child").text(this.sliderData[this.i].title);
 
-        $(".slider-right p:last-child").text(
+        $(".slider-right p:last-child").html(
             this.sliderData[this.i].description
         );
 
@@ -268,7 +268,7 @@ export default {
                 this.sliderData[this.sliderDataIndex].title
             );
 
-            $(".slider-right p:last-child").text(
+            $(".slider-right p:last-child").html(
                 this.sliderData[this.sliderDataIndex].description
             );
 
@@ -311,7 +311,7 @@ export default {
                 this.sliderData[this.sliderDataIndex].title
             );
 
-            $(".slider-right p:last-child").text(
+            $(".slider-right p:last-child").html(
                 this.sliderData[this.sliderDataIndex].description
             );
 
