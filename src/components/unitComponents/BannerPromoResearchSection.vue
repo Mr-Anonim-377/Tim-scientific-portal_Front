@@ -1,6 +1,6 @@
 <template>
     <section class="bannerPromoResearchSection"
-             :style="{ backgroundImage: `url(${dataSection.BANNER_IMAGE[0].image})`}">
+             :style="{ background: `linear-gradient(0deg, rgba(51, 51, 51, 0.8), rgba(51, 51, 51, 0.8)), url(${dataSection.BANNER_IMAGE[0].image})`}">
         <div class="bannerPromoResearchSection-container">
             <h1>“{{ dataSection.BANNER_TITLE[0].title }}”</h1>
             <h2>{{dataSection.WAYS_NAME[0].title}}</h2>
@@ -47,8 +47,7 @@
 <style scoped>
     .bannerPromoResearchSection{
         width: 100%;
-        background: linear-gradient(0deg, rgba(51, 51, 51, 0.8), rgba(51, 51, 51, 0.8)), url("../../assets/image/research/backgroundReserch.png");
-        background-size: cover;
+        background-size: cover !important;
     }
     .bannerPromoResearchSection-container{
         text-align: center;
