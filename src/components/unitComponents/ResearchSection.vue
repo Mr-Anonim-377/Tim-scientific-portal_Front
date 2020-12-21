@@ -47,7 +47,7 @@ export default {
           "width: 170px; height: 35px; font-size: 14px; line-height: 17px; padding: 10px;",
         ],
       },
-      titleResearch: "РСЃСЃР»РµРґРѕРІР°РЅРёСЏ",
+      titleResearch: "Исследователи",
       visibleResearch: true,
     };
   },

@@ -49,7 +49,7 @@
         <!--            Контакты-->
         <div class="footerContact-container">
             <p>E-mail: info@future-agro.ru</p>
-            <p class="footerContact__text">(499) 976-01-25</p>
+            <p class="footerContact__text">+7 (499) 976-07-48</p>
             <p style="cursor: default">Следите за нами:</p>
             <div class="footerContact__networks">
                 <img src="../../../assets/image/VK.svg" />

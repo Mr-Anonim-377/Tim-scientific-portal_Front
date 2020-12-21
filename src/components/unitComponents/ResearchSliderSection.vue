@@ -7,7 +7,7 @@ Section - Слайдер (страница исследования)
 
 <template>
     <section>
-        <TitleSection title="С полей испытаний"/>
+        <TitleSection title="С полей испытаний" />
         <div class="slider-container">
             <div class="research-slider">
                 <div class="research-slider__view">
@@ -44,7 +44,7 @@ import sliderSkeleton from "../../utils/sliderSkeleton";
 import JQuery from "jquery";
 let $ = JQuery;
 
-import TitleSection from "./TitleSection"
+import TitleSection from "./TitleSection";
 
 export default {
     name: "ResearchSliderSection",
@@ -52,7 +52,7 @@ export default {
         sectionData: {},
     },
 
-    components:{TitleSection},
+    components: { TitleSection },
 
     mixins: [sliderSkeleton],
 
@@ -78,9 +78,7 @@ export default {
                 },
             },
 
-            sliderData: [
-
-            ],
+            sliderData: [],
         };
     },
 
@@ -162,15 +160,18 @@ export default {
     },
 
     mounted() {
-
-
         // Формируем массив данных
         this.sliderData = [];
-        this.sectionData.IMAGE.forEach(image => {
+        this.sectionData.IMAGE.forEach((image) => {
             this.sliderData.push({
-                url: image.image
+                url: image.image,
             });
         });
+
+        for (let i = 0; i < this.sliderData.length; i++) {
+            let img = new Image();
+            img.src = this.sliderData[i].url;
+        }
 
         console.log(this.sliderData);
 
@@ -190,36 +191,45 @@ export default {
                 `url(${this.sliderData[this.sliderDataIndex].url}`
             );
 
-        this.$circles
-            .eq(1)
-            .children(".innerCircle")
-            .css(
-                "background-image",
-                `url(${this.sliderData[this.sliderDataIndex + 1].url}`
-            );
-        this.$circles
-            .eq(0)
-            .children(".innerCircle")
-            .css(
-                "background-image",
-                `url(${this.sliderData[this.sliderDataIndex + 2].url}`
-            );
+        if (this.sliderData[this.sliderDataIndex + 1]) {
+            this.$circles
+                .eq(1)
+                .children(".innerCircle")
+                .css(
+                    "background-image",
+                    `url(${this.sliderData[this.sliderDataIndex + 1].url}`
+                );
+        }
 
-        this.$circles
-            .eq(3)
-            .children(".innerCircle")
-            .css(
-                "background-image",
-                `url(${this.sliderData[this.sliderData.length - 1].url}`
-            );
+        if (this.sliderData[this.sliderDataIndex + 2]) {
+            this.$circles
+                .eq(0)
+                .children(".innerCircle")
+                .css(
+                    "background-image",
+                    `url(${this.sliderData[this.sliderDataIndex + 2].url}`
+                );
+        }
 
-        this.$circles
-            .eq(4)
-            .children(".innerCircle")
-            .css(
-                "background-image",
-                `url(${this.sliderData[this.sliderData.length - 2].url}`
-            );
+        if (this.sliderData[this.sliderData.length - 1]) {
+            this.$circles
+                .eq(3)
+                .children(".innerCircle")
+                .css(
+                    "background-image",
+                    `url(${this.sliderData[this.sliderData.length - 1].url}`
+                );
+        }
+
+        if (this.sliderData[this.sliderData.length - 2]) {
+            this.$circles
+                .eq(4)
+                .children(".innerCircle")
+                .css(
+                    "background-image",
+                    `url(${this.sliderData[this.sliderData.length - 2].url}`
+                );
+        }
 
         // Вешаем событие для левой кнопки
         $(this.$leftArrow).on("click", () => {
@@ -227,7 +237,7 @@ export default {
             let isNext = true;
 
             // Ставим задержку для последующего нажатия
-            this.setControlsPing(400);
+            this.setControlsPing(500);
 
             // Двигаем DOM элементы
             this.changePosition(this.i, this.$circles, isNext);
@@ -254,8 +264,11 @@ export default {
                 this.$circles
                     .eq(this.i)
                     .children(".innerCircle")
-                    .css("background-image", `url(${this.sliderData[prevImageIndex].url})`);
-            }, 400);
+                    .css(
+                        "background-image",
+                        `url(${this.sliderData[prevImageIndex].url})`
+                    );
+            }, 500);
         });
 
         // Вешаем событие для правой кнопки
@@ -264,7 +277,7 @@ export default {
             let isNext = false;
 
             // Ставим задержку для последующего нажатия
-            this.setControlsPing(400);
+            this.setControlsPing(500);
 
             // Двигаем DOM элементы
             this.changePosition(this.i, this.$circles, isNext);
@@ -293,8 +306,11 @@ export default {
                 this.$circles
                     .eq(i5)
                     .children(".innerCircle")
-                    .css("background-image", `url(${this.sliderData[prevImageIndex].url})`);
-            }, 400);
+                    .css(
+                        "background-image",
+                        `url(${this.sliderData[prevImageIndex].url})`
+                    );
+            }, 500);
         });
     },
 };
@@ -395,8 +411,7 @@ section {
     cursor: pointer;
 }
 
-
 .research-slider_arrow:last-child {
-    transform: rotate(180deg)
+    transform: rotate(180deg);
 }
 </style>

@@ -48,9 +48,9 @@ Section - Слайдер (страница исследования)
     data() {
       return {
         isShow: false,
-        isDropDown: this.sectionData > 4 ? true : false,
+        isDropDown: this.sectionData > 4,
         // Стандартная высота списка
-        listHeight: {height: "305px"}
+        listHeight: {height: "370px"}
       }
     },
 

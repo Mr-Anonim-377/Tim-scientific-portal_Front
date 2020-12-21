@@ -24,7 +24,7 @@
 <style scoped>
     .bannerPromoMainSection{
         width: 100%;
-        background: url("../../assets/image/newBanner.png");
+        background:  radial-gradient(50% 50% at 50% 50%, rgba(63, 126, 119, 0.2) 0%, rgba(63, 126, 119, 0.5) 100%), url("../../assets/image/newBanner.png");
         background-size: cover;
         background-position:left;
     }

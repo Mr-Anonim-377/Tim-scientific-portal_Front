@@ -11,8 +11,7 @@
 
         </div>
     </div>
-    <div
-
+    <div v-if="index !== 4"
             class="waysSection-line"></div>
 </template>
 
@@ -22,7 +21,8 @@
         name: "SectionWaysItems",
         components: {ButtonElement},
         props:{
-            sectionData:{}
+            sectionData:{},
+            index: Number
         },
         mounted() {
             console.log(this.sectionData)

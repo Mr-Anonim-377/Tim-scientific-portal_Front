@@ -5,7 +5,7 @@
                 <p class="headerSection__text-phone"> <router-link
                         style="text-decoration: none"
                         :to="{ name: 'notFound' }"
-                >(499) 976-01-25
+                >+7 (499) 976-07-48
                 </router-link></p>
                 <p class="headerSection__textMail">
                     <router-link

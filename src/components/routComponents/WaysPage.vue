@@ -19,9 +19,10 @@ Page - Страница направления исследлова
                 style="margin-bottom: 100px"
             />
             <WaysSection
-                v-for="waysItem in WAYS_ARRAY.WAYS_ITEM"
+                v-for="(waysItem, index) in WAYS_ARRAY.WAYS_ITEM"
                 :key="waysItem"
                 :sectionData="waysItem"
+                :index="index"
             />
         </section>
     </div>

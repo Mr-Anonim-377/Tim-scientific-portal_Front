@@ -56,9 +56,9 @@ Section -Cлайдер консорциум (страница консорциу
                   <a :href="links[i]">
                     <div class="button">Перейти на сайт</div>
                   </a>
-                  <router-link style="text-decoration: none" :to="{name:'notFound'}">
+                  <!-- <router-link style="text-decoration: none" :to="{name:'notFound'}">
                     Стать участником консорциума
-                  </router-link>
+                  </router-link> -->
                 </div>
             </div>
         </div>
