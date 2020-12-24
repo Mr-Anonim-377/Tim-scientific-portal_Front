@@ -1,3 +1,9 @@
+/*
+
+Page - Заглушка для еще не созданных страниц
+
+*
+
 <template>
     <div class="zaglushka">
         <img src="https://i.gifer.com/5xDL.gif" alt="">

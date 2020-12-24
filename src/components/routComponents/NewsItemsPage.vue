@@ -55,6 +55,11 @@ export default {
 </script>
 
 <style scoped>
+
+section {
+  color: #3F7E77;
+}
+
 .bannerSlider {
   max-width: 1140px;
   align-items: center;

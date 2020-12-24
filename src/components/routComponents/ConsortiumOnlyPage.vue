@@ -1,3 +1,9 @@
+/*
+
+Страница находится в разработке
+
+*
+
 <template>
     <section class="consortiumOnly">
         <TitleSection/>

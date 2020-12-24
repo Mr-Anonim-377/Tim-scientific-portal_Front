@@ -1,3 +1,5 @@
+// Страница исследователей - в разработке
+
 <template>
         <PartySection
         :sectionData="partyData"

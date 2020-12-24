@@ -30,7 +30,6 @@
                     <div class="slider-right-text">
                         <p>{{ currentTitle }}</p>
                         <p>{{ currentDescription }}</p>
-                        <!-- TODO линия ::after -->
                     </div>
 
                     <div class="slider-right-content">
@@ -328,7 +327,6 @@ export default {
 </script>
 
 <style scoped>
-/* SECTION - Контролы */
 
 .slider-arrow-left {
     background-image: url("../../assets/image/slider-arrow-left.svg");

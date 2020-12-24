@@ -32,6 +32,12 @@
             <div class="headerSection__navigation-container">
                 <router-link
                     style="text-decoration: none"
+                    :to="{ name: 'Main' }"
+                >
+                    <p>Главная страница</p>
+                </router-link>
+                <router-link
+                    style="text-decoration: none"
                     :to="{ name: 'Consortium' }"
                 >
                     <p>Консорциум</p>

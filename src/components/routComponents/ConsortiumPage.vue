@@ -1,11 +1,11 @@
 /*
 
-Page - Главная страница проекта
+Page - Страница консорциума
 
 Тип страницы - CONSORTIUM
 
 Используемые модули:
-    -  CONSORTIUM_CARUSEL
+    -  CONSORTIUM_CARUSEL -> Принимает объекты типа CONSORTIUM_MEMBER
 
 */
 
@@ -17,10 +17,10 @@ Page - Главная страница проекта
 </template>
 
 <script>
+
 import ConsortioumSlider from "../unitComponents/ConsorciumSliderSection";
 import testMixin from "../../utils/methodsMixin.js"
 import Preloader from "./../unitComponents/CommonElements/Preloader"
-
 
 export default {
   name: "ConsortiumMain",
@@ -47,6 +47,7 @@ export default {
         },500)
   },
 };
+
 </script>
 
 <style>

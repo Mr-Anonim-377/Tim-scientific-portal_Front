@@ -8,7 +8,7 @@ Page - Страница исследования
     - BANNER
     - RESEARCH_MEMBER_ARRAY
     - RESEARCH_IMAGE_SLIDER
-    - FIXME Новости пока с главной
+    - NOTE Новости пока с главной
 
 */
 
@@ -58,11 +58,11 @@ export default {
     },
 
     async mounted() {
-        await this.getModulesTest("MAIN_PAGE");
-        await this.getModulesTest("", this.pageId);
 
-        console.log(this.modules);
-        console.log(this.RESEARCH_MEMBER_ARRAY)
+        // NOTE Вызов для новостей
+        await this.getModulesTest("MAIN_PAGE");
+        
+        await this.getModulesTest("", this.pageId);
 
         setTimeout(() => {
             this.loadSuccess = true;

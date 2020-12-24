@@ -71,7 +71,7 @@ export default {
   grid-template-columns: repeat(4, 1fr);
   flex-wrap: wrap;
   color: #3f7e77;
-  height: 610px;
+  /* height: 610px; */
   text-align: center;
   margin: 114px -10px 0 -10px;
 }

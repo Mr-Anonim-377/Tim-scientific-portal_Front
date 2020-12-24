@@ -12,7 +12,7 @@ Page - Главная страница проекта
     -  RESEARCH_DIRECTIONS
     -  NEWS_CAROUSEL
 
-*/
+*
 
 <template>
     <div v-if="loadSuccess">
@@ -23,27 +23,29 @@ Page - Главная страница проекта
 
         <ResultSection/>
 
-        <!-- <SliderSection :sectionData="PROGRAMS_RESULTS" /> -->
-
         <PurposesSection :sectionData="PROJECT_GOALS" />
 
         <DirectionOfResearchSection/>
+
 
         <NewsMainSection :newsData="NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)"/>
         <router-link style="text-decoration: none" :to="{ name: 'news' }">
             <p class="newsSection__text">Все новости</p>
         </router-link>
+
+
     </div>
 
     <div v-else>
         <Preloader/>
     </div>
+
 </template>
 
 <script>
-
+import JQuery from "jquery";
+let $ = JQuery;
 import testMixin from "../../utils/methodsMixin.js";
-
 import Preloader from "./../unitComponents/CommonElements/Preloader"
 
 import PurposesSection from "../unitComponents/PurposesSection";
@@ -51,7 +53,6 @@ import DirectionOfResearchSection from "../unitComponents/DirectionOfResearchSec
 import NewsMainSection from "../unitComponents/NewsMainSection";
 import ConsortiumMainSection from "../unitComponents/ConsortiumMainSection";
 import ResultSection from "../unitComponents/ResultSection"
-// import SliderSection from "../unitComponents/SliderSection";
 import BannerPromoSection from "../unitComponents/BannerPromoSection";
 
 export default {
@@ -60,12 +61,10 @@ export default {
     components: {
         BannerPromoSection,
         ConsortiumMainSection,
-        // ConsortiumTextSection,
         ResultSection,
         NewsMainSection,
         DirectionOfResearchSection,
         PurposesSection,
-        // SliderSection,
         Preloader
     },
     mixins: [testMixin],
@@ -73,10 +72,11 @@ export default {
     async mounted() {
 
         await this.getModulesTest("MAIN_PAGE");
-        setTimeout(()=>{
-          this.loadSuccess = true;
-        },500)
-      console.log(this.NEWS_CAROUSEL.NEWS_ITEM[0]._pageLink)
+        
+        // setTimeout(()=>{
+            $(document).ready(()=> this.loadSuccess = true)
+        //   this.loadSuccess = true;
+        // },500);
     },
 
     data() {
@@ -92,40 +92,16 @@ button {
     cursor: pointer;
 }
 
-/*Новости*/
-.newsSection {
-    text-align: center;
-    max-width: 1141px;
-    align-items: center;
-    margin: 100px auto 52px auto;
-    overflow: hidden;
-}
-
-.newsSection-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    margin: 98px -10px 0 -10px;
-    height: 560px;
-}
-
-.newsSection-container :hover {
-    background-color: #f8f5e6;
-}
-
-.newsSection-container :hover .news__btn {
-    display: block;
-    background-color: #3f7e77;
-}
-
 .newsSection__text {
-    font-size: 15px;
-    color: #3f7e77;
-    /*margin-top: 49px;*/
-    text-decoration-line: underline;
-    margin: 49px auto 97px auto;
-    text-align: center;
-    cursor: pointer;
-}
+        font-size: 15px;
+        color: #3f7e77;
+        /*margin-top: 49px;*/
+        text-decoration-line: underline;
+        margin: 49px auto 97px auto;
+        text-align: center;
+        cursor: pointer;
+    }
+
 
 .purposes {
     text-align: center;

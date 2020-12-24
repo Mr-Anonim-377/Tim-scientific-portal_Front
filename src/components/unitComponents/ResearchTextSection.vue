@@ -97,14 +97,10 @@ Section - Консорциум (главная страница)
 
   .researchText-text p {
     font-size: 15px;
-    /* color: white; */
     color: #F8F5E6;
     margin: 0 0 20px 0;
     max-width: 677px;
-
-    /* TODO Установить для всех шрифтов */
     letter-spacing: 1px;
-
     line-height: 19px;
   }
 
@@ -113,18 +109,14 @@ Section - Консорциум (главная страница)
     font-size: 24px;
     color: white;
     color: #F8F5E6;
-
-
   }
 
   .researchText__title::after {
     display: block;
     content: "";
-
     width: 35px;
     height: 1px;
     background-color: #F8F5E6;
-
     margin: 30px 0;
   }
 
@@ -138,9 +130,6 @@ Section - Консорциум (главная страница)
     width: 100%;
     margin-bottom: 50px;
     margin-left: auto;
-
-    /* FIXME придумать нормальную систему модификаторов, это говно полное */
-
     background: #F8F5E6;
     color: #3F7E77
   }
