@@ -1,131 +1,63 @@
-/*
-
-Page - Страница направления исследлова
-
-Тип страницы - MAIN_PAGE
-
-Используемые модули:
-    - WAYS_ARRAY
-
-
-*/
-
+// СТРАНИЦА НАПРАВЛЕНИЙ ИССЛЕДОВАНИЙ
 <template>
-    <div v-if="loadSucces">
-        <section class="waysSection">
-            <TitleSection
-                :title="this.titleWays"
-                :headerVisible="visibleWays"
-                style="margin-bottom: 100px"
-            />
-            <WaysSection
-                v-for="(waysItem, index) in WAYS_ARRAY.WAYS_ITEM"
-                :key="waysItem"
-                :sectionData="waysItem"
-                :index="index"
-            />
-        </section>
-    </div>
+	<div v-if="loadSucces">
+		<section class="waysSection">
+			<!-- Заголовок секции -->
+			<TitleSection
+				:title="this.titleWays"
+				:headerVisible="visibleWays"
+				style="margin-bottom: 100px"
+			/>
+			<!-- Итемы направлений -->
+			<WaysSection
+				v-for="(waysItem, index) in WAYS_ARRAY.WAYS_ITEM"
+				:key="waysItem"
+				:sectionData="waysItem"
+				:index="index"
+			/>
+		</section>
+	</div>
 
-    <div v-else>
-        <Preloader />
-    </div>
+	<div v-else>
+		<Preloader />
+	</div>
 </template>
 
 <script>
-import TitleSection from "../unitComponents/TitleSection";
-import WaysSection from "../unitComponents/WaysSection";
-import mixin from "../../utils/methodsMixin";
-import Preloader from "../unitComponents/CommonElements/Preloader";
+	import mixin from '../../utils/methodsMixin';
+	import Preloader from '../unitComponents/CommonElements/Preloader';
 
-export default {
-    name: "WaysBody",
-    components: {
-        WaysSection,
-        TitleSection,
-        Preloader,
-    },
+	import TitleSection from '../unitComponents/TitleSection';
+	import WaysSection from '../unitComponents/WaysSection';
 
-    mixins: [mixin],
-    data() {
-        return {
-            loadSucces: false,
-
-            titleWays: "Направления исследований",
-            visibleWays: true,
-            waysData: [
-                {
-                    id: "1",
-                    title:
-                        "Агробиотехнологии управления плодородием почв России " +
-                        "в интересах высокопродуктивного земледелия минимального экологического риска.",
-                    text:
-                        "Почва в сельском хозяйстве является основным средством производства и останется им" +
-                        " по крайней мере до начала нового тысячелетия. Поэтому плодородие почвы определяет ее " +
-                        "потребительную стоимость для растениеводства и производительность сельского хозяйства в целом",
-                    img: "waysImg1.png",
-                },
-                {
-                    id: "2",
-                    title:
-                        "Ускоренная селекция высокоурожайных и устойчивых" +
-                        "сортов и гибридов растений, обладающих заданными" +
-                        "характеристиками качества.",
-                    text:
-                        "Почва в сельском хозяйстве является основным средством производства" +
-                        " и останется им по крайней мере до начала нового тысячелетия. Поэтому плодородие" +
-                        " почвы определяет ее потребительную стоимость для растениеводства и производительность " +
-                        "сельского хозяйства в целом",
-                    img: "waysImg2.png",
-                },
-                {
-                    id: "3",
-                    title: "Новые цифровые технологии в сельском хозяйстве.",
-                    text:
-                        "Почва в сельском хозяйстве является основным средством производства и останется им по крайней" +
-                        " мере до начала нового тысячелетия. Поэтому плодородие почвы определяет ее потребительную стоимость" +
-                        " для растениеводства и производительность сельского хозяйства в целом",
-                    img: "waysImg3.png",
-                },
-                {
-                    id: "4",
-                    title:
-                        "Технологии переработки и валоризации малоценного" +
-                        "сельскохозяйственного сырья и отходов" +
-                        "агропромышленного комплекса.",
-                    text:
-                        "Почва в сельском хозяйстве является основным средством производства и останется" +
-                        " им по крайней мере до начала нового тысячелетия. Поэтому плодородие почвы определяет " +
-                        "ее потребительную стоимость для растениеводства и производительность сельского хозяйства в целом",
-                    img: "waysImg4.png",
-                },
-                {
-                    id: "5",
-                    title:
-                        "Создание безопасных, качественных, функциональных" +
-                        "кормов и продуктов питания.",
-                    text:
-                        "Почва в сельском хозяйстве является основным средством производства и останется им по крайней мере " +
-                        "до начала нового тысячелетия. Поэтому плодородие почвы определяет ее потребительную стоимость для " +
-                        "растениеводства и производительность сельского хозяйства в целом",
-                    img: "waysImg5.png",
-                },
-            ],
-        };
-    },
-
-    async mounted() {
-        await this.getModulesTest("WAYS");
-        this.loadSucces = true;
-        console.log(this.WAYS_ARRAY);
-    },
-};
+	export default {
+		name: 'WaysBody',
+		components: {
+			WaysSection,
+			TitleSection,
+			Preloader,
+		},
+		mixins: [mixin],
+		data() {
+			return {
+				loadSucces: false,
+				titleWays: 'Направления исследований',
+				visibleWays: true,
+			};
+		},
+		async mounted() {
+			await this.getModulesTest('WAYS');
+			setTimeout(() => {
+				this.loadSucces = true;
+			}, 500);
+		},
+	};
 </script>
 
 <style scoped>
-.waysSection {
-    max-width: 1111px;
-    align-items: center;
-    margin: 100px auto 126px auto;
-}
+	.waysSection {
+		max-width: 1111px;
+		align-items: center;
+		margin: 100px auto 126px auto;
+	}
 </style>

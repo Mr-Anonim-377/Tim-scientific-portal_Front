@@ -1,194 +1,172 @@
-/*
-
-Page - Главная страница проекта
-
-Тип страницы - MAIN_PAGE
-
-Используемые модули:
-    -  BANNER
-    -  CONSORTIUM_TEAM
-    -  PROGRAMS_RESULTS
-    -  PROJECT_GOALS
-    -  RESEARCH_DIRECTIONS
-    -  NEWS_CAROUSEL
-
-*
+// ГЛАВНАЯ СТРАНИЦА ПРОЕКТА
 
 <template>
-    <div v-if="loadSuccess">
+	<div v-if="loadSuccess">
+		<!-- Баннер главной страницы-->
+		<BannerPromoSection :sectionData="BANNER" />
 
-        <BannerPromoSection :sectionData="BANNER" />
+		<!--Секция консорциума -->
+		<ConsortiumMainSection :sectionData="CONSORTIUM_TEAM" />
 
-        <ConsortiumMainSection :sectionData="CONSORTIUM_TEAM" />
+		<!-- Секция результатов исследования -->
+		<ResultSection />
 
-        <ResultSection/>
+		<!-- Секция целей проекта -->
+		<PurposesSection :sectionData="PROJECT_GOALS" />
 
-        <PurposesSection :sectionData="PROJECT_GOALS" />
+		<!-- Секция направления исследований -->
+		<DirectionOfResearchSection />
 
-        <DirectionOfResearchSection/>
+		<!-- Секция новостей -->
+		<NewsSection :newsData="NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)" />
 
+		<!-- Кнопка для перехода к странице новостей -->
+		<router-link style="text-decoration: none" :to="{ name: 'news' }">
+			<p class="newsSection__text">Все новости</p>
+		</router-link>
+	</div>
 
-        <NewsMainSection :newsData="NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)"/>
-        <router-link style="text-decoration: none" :to="{ name: 'news' }">
-            <p class="newsSection__text">Все новости</p>
-        </router-link>
-
-
-    </div>
-
-    <div v-else>
-        <Preloader/>
-    </div>
-
+	<div v-else>
+		<Preloader />
+	</div>
 </template>
 
 <script>
-import JQuery from "jquery";
-let $ = JQuery;
-import testMixin from "../../utils/methodsMixin.js";
-import Preloader from "./../unitComponents/CommonElements/Preloader"
+	import testMixin from '../../utils/methodsMixin.js';
+	import Preloader from './../unitComponents/CommonElements/Preloader';
 
-import PurposesSection from "../unitComponents/PurposesSection";
-import DirectionOfResearchSection from "../unitComponents/DirectionOfResearchSection";
-import NewsMainSection from "../unitComponents/NewsMainSection";
-import ConsortiumMainSection from "../unitComponents/ConsortiumMainSection";
-import ResultSection from "../unitComponents/ResultSection"
-import BannerPromoSection from "../unitComponents/BannerPromoSection";
+	import PurposesSection from '../unitComponents/PurposesSection';
+	import DirectionOfResearchSection from '../unitComponents/DirectionOfResearchSection';
+	import NewsSection from '../unitComponents/NewsSection';
+	import ConsortiumMainSection from '../unitComponents/ConsortiumMainSection';
+	import ResultSection from '../unitComponents/ResultSection';
+	import BannerPromoSection from '../unitComponents/BannerPromoSection';
 
-export default {
+	export default {
+		name: 'MainBody',
+		components: {
+			BannerPromoSection,
+			ConsortiumMainSection,
+			ResultSection,
+			NewsSection,
+			DirectionOfResearchSection,
+			PurposesSection,
+			Preloader,
+		},
+		mixins: [testMixin],
 
-    name: "MainBody",
-    components: {
-        BannerPromoSection,
-        ConsortiumMainSection,
-        ResultSection,
-        NewsMainSection,
-        DirectionOfResearchSection,
-        PurposesSection,
-        Preloader
-    },
-    mixins: [testMixin],
+		async mounted() {
+			await this.getModulesTest('MAIN_PAGE');
+			setTimeout(() => {
+				this.loadSuccess = true;
+			}, 500);
+		},
 
-    async mounted() {
-
-        await this.getModulesTest("MAIN_PAGE");
-        
-        // setTimeout(()=>{
-            $(document).ready(()=> this.loadSuccess = true)
-        //   this.loadSuccess = true;
-        // },500);
-    },
-
-    data() {
-        return {
-            loadSuccess: false,
-        };
-    },
-};
+		data() {
+			return {
+				loadSuccess: false,
+			};
+		},
+	};
 </script>
 
 <style>
-button {
-    cursor: pointer;
-}
+	button {
+		cursor: pointer;
+	}
 
-.newsSection__text {
-        font-size: 15px;
-        color: #3f7e77;
-        /*margin-top: 49px;*/
-        text-decoration-line: underline;
-        margin: 49px auto 97px auto;
-        text-align: center;
-        cursor: pointer;
-    }
+	.newsSection__text {
+		font-size: 15px;
+		color: #3f7e77;
+		/*margin-top: 49px;*/
+		text-decoration-line: underline;
+		margin: 49px auto 97px auto;
+		text-align: center;
+		cursor: pointer;
+	}
 
+	.purposes {
+		text-align: center;
+		margin: auto;
+		max-width: 1141px;
+		align-items: center;
+		padding: 97px 0 136px 0;
+	}
 
-.purposes {
-    text-align: center;
-    margin: auto;
-    max-width: 1141px;
-    align-items: center;
-    padding: 97px 0 136px 0;
-}
+	.purposes-items {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 114px -34px 0 -34px;
+	}
 
-.purposes-items {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 114px -34px 0 -34px;
-}
+	.direction-of-research {
+		text-align: center;
+		width: 100%;
+		background: linear-gradient(0deg, rgba(63, 126, 119, 0.8), rgba(63, 126, 119, 0.8)),
+			url('../../assets/image/background-dir.png');
+		padding: 47px 0 40px 0;
+	}
 
-.direction-of-research {
-    text-align: center;
-    width: 100%;
-    background: linear-gradient(
-            0deg,
-            rgba(63, 126, 119, 0.8),
-            rgba(63, 126, 119, 0.8)
-        ),
-        url("../../assets/image/background-dir.png");
-    padding: 47px 0 40px 0;
-}
+	.newsMain {
+		text-align: center;
+		max-width: 1141px;
+		align-items: center;
+		padding: 104px 0 97px 0;
+		margin: auto;
+	}
 
-.newsMain {
-    text-align: center;
-    max-width: 1141px;
-    align-items: center;
-    padding: 104px 0 97px 0;
-    margin: auto;
-}
+	.line {
+		width: 35px;
+		height: 1px;
+		background: #3f7e77;
+	}
 
-.line {
-    width: 35px;
-    height: 1px;
-    background: #3f7e77;
-}
+	.newsMain-container {
+		display: flex;
+		margin-top: 98px;
+	}
 
-.newsMain-container {
-    display: flex;
-    margin-top: 98px;
-}
+	.newsMain-container :hover {
+		background-color: #f8f5e6;
+	}
 
-.newsMain-container :hover {
-    background-color: #f8f5e6;
-}
+	.newsMain-container :hover .newsMain__btn {
+		display: block;
+		background-color: #3f7e77;
+	}
 
-.newsMain-container :hover .newsMain__btn {
-    display: block;
-    background-color: #3f7e77;
-}
+	.newsMain__text {
+		font-size: 15px;
+		color: #3f7e77;
+		margin-top: 49px;
+		text-decoration-line: underline;
+	}
 
-.newsMain__text {
-    font-size: 15px;
-    color: #3f7e77;
-    margin-top: 49px;
-    text-decoration-line: underline;
-}
+	.consortiumMain {
+		text-align: center;
+		max-width: 1108px;
+		align-items: center;
+		padding: 92px 0 100px 0;
+		margin: auto;
+	}
 
-.consortiumMain {
-    text-align: center;
-    max-width: 1108px;
-    align-items: center;
-    padding: 92px 0 100px 0;
-    margin: auto;
-}
+	.consortium-container {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 100px -23px 0 -23px;
+		justify-content: center;
+	}
 
-.consortium-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 100px -23px 0 -23px;
-    justify-content: center;
-}
-
-.btn-consortium {
-    width: 300px;
-    height: 60px;
-    background: #3f7e77;
-    border-radius: 54px;
-    margin: auto;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 29px;
-    color: #f8f5e6;
-    padding: 16px;
-}
+	.btn-consortium {
+		width: 300px;
+		height: 60px;
+		background: #3f7e77;
+		border-radius: 54px;
+		margin: auto;
+		font-weight: bold;
+		font-size: 24px;
+		line-height: 29px;
+		color: #f8f5e6;
+		padding: 16px;
+	}
 </style>

@@ -7,8 +7,8 @@ import news from "../components/routComponents/NewsPage";
 import ResearchPage from "../components/routComponents/ResearchPage";
 import ResearchAllPage from "../components/routComponents/ResearchAllPage";
 import newsItem from '../components/routComponents/NewsItemsPage';
-import party from  '../components/routComponents/PartyPage'
-import contacts from '../components/routComponents/ContactsPage'
+import party from  '../components/routComponents/PartyPage';
+import contacts from '../components/routComponents/ContactsPage';
 
 const routes = [
 	{
@@ -65,15 +65,6 @@ const routes = [
 		name: 'contacts',
 		component: contacts,
 	}
-	// {
-	// 	path: '/collection/collectionId=:collectionId' +
-	// 		'&page=:page' +
-	// 		'&categoryIds=:categoryIds?' +
-	// 		'&price-min=:priceMin?' +
-	// 		'&price-max=:priceMax?',
-	// 	component: collection,
-	// 	props: true
-	// },
 ];
 
 const router = createRouter({
