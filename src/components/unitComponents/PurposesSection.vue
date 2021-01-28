@@ -2,7 +2,11 @@
 
 <template>
 	<section class="purposesMainSection">
-		<TitleSection :title="this.titlePurposes" :headerVisible="visiblePurposes" />
+		<TitleSection
+			:compactTitle="true"
+			:title="this.titlePurposes"
+			:headerVisible="visiblePurposes"
+		/>
 		<div class="purposesMainSection-container">
 			<div class="purposes-item" v-for="item in sectionData.PROJECT_GOAL" :key="item">
 				<img :src="item.image" />
@@ -30,6 +34,9 @@
 			};
 		},
 		mounted() {
+			setTimeout(() => {
+				console.log(this.sectionData);
+			}, 3000);
 			console.log(this.sectionData);
 		},
 	};
@@ -41,28 +48,30 @@
 		text-align: center;
 		max-width: 1141px;
 		align-items: center;
-		margin: 100px auto 87px auto;
+		/* margin: 100px auto 87px auto; */
 	}
 
 	.purposesMainSection-container {
 		display: flex;
-		justify-content: center;
+		justify-content: space-between;
 		flex-wrap: wrap;
-		margin: 100px -78px 0 -78px;
+		margin-top: 50px;
+		/* margin: 100px -78px 0 -78px; */
 	}
 
-	.purposes-item {
-		margin: 0 38px;
-	}
+	/* .purposes-item { */
+	/* FIXME Поправить */
+	/* margin: 0 38px; */
+	/* } */
 
 	.purposes-item img {
-		width: 100px;
-		height: 95px;
+		width: 70px;
+		height: 67px;
 	}
 	.purposes-item p {
 		width: 240px;
-		font-size: 15px;
-		color: #3f7e77;
+		font-size: 14px;
+		color: black;
 		margin-top: 48px;
 		position: relative;
 	}

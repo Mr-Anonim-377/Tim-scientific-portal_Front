@@ -23,19 +23,19 @@
 
 		<div class="headerSection__navigation">
 			<div class="headerSection__navigation-container">
-				<router-link style="text-decoration: none" :to="{ name: 'Main' }">
-					<p>Главная страница</p>
-				</router-link>
-				<router-link style="text-decoration: none" :to="{ name: 'Consortium' }">
-					<p>Консорциум</p>
-				</router-link>
-				<router-link style="text-decoration: none" :to="{ name: 'ways' }">
-					<p>Направления исследований</p>
+				<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+					<p>Участники консорциума НЦМУ "Агротехнологии будущего"</p>
 				</router-link>
 				<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
-					<p>Участники</p>
+					<p>Официальные документы</p>
 				</router-link>
-				<router-link style="text-decoration: none" :to="{ name: 'news' }">
+				<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+					<p>Научные направления</p>
+				</router-link>
+				<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+					<p>Контакты</p>
+				</router-link>
+				<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
 					<p>Новости</p>
 				</router-link>
 				<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
@@ -157,7 +157,7 @@
 		display: flex;
 		text-align: center;
 		margin: auto;
-		max-width: 1144px;
+		max-width: 1435px;
 		position: relative;
 	}
 	.headerSection__navigation p {

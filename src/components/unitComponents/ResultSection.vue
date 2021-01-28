@@ -2,7 +2,7 @@
 
 <template>
 	<section>
-		<TitleSection title="Результаты программы" :headerVisible="visible" />
+		<TitleSection compact-title="true" title="Результаты программы" :headerVisible="visible" />
 		<div class="container">
 			<div class="resultItem">
 				<div class="resultItem__logo">
@@ -121,22 +121,25 @@
 
 <style scoped>
 	.container {
-		width: 1144px;
+		width: 1075px;
 		display: flex;
 		justify-content: space-between;
-		margin-top: 100px;
+		/* margin-top: 50px; */
+		margin: 20px 0;
+		padding: 0 35px;
 	}
 
 	section {
-		height: 500px;
+		/* height: 500px; */
 		background-color: #f8f5e6;
-		padding: 50px;
+		padding-bottom: 20px;
+		padding-top: 16px;
 		color: #3f7e77;
 	}
 
 	.resultItem {
-		width: 130px;
-		height: 220px;
+		width: 109px;
+		height: 182px;
 		position: relative;
 	}
 
@@ -146,20 +149,25 @@
 	}
 
 	.resultItem__img {
-		width: 100px;
-		height: 100px;
+		width: 85px;
+		height: 85px;
 		border-radius: 100%;
 
 		background-color: green;
 	}
 
+	.resultItem__img img {
+		width: 85px;
+		height: 85px;
+	}
+
 	.resultItem__text {
 		text-align: center;
-		font-size: 15px;
+		font-size: 14px;
 	}
 
 	.resultItem__percent {
-		font-size: 36px;
+		font-size: 26px;
 		text-align: center;
 		position: absolute;
 		bottom: 0;

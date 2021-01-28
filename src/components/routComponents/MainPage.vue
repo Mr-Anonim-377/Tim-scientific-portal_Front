@@ -1,24 +1,48 @@
 // ГЛАВНАЯ СТРАНИЦА ПРОЕКТА
 
 <template>
+	<!-- TODO Убрать лишние блоки -->
 	<div v-if="loadSuccess">
+		<!-- Проттотип сетки для редизайна -->
+
+		<div class="container_mainPage">
+			<div class="grid">
+				<div class="plug-menu">
+					Вертикальное меню
+				</div>
+				<div class="plug-slider">
+					<!-- FIXME пока нет тестовых -->
+					<SliderSection :urls="sliderTestData" />
+				</div>
+				<div class="plug-news">
+					<NewsCompactSection :newsData="NEWS_CAROUSEL.NEWS_ITEM" />
+				</div>
+
+				<div class="plug_group">
+					<!-- Секция целей проекта -->
+					<PurposesSection :sectionData="PROJECT_GOALS" />
+
+					<!-- Секция результатов исследования -->
+					<ResultSection />
+				</div>
+
+				<div class="plug-calendar">
+					Календарь событий
+				</div>
+			</div>
+		</div>
+
 		<!-- Баннер главной страницы-->
-		<BannerPromoSection :sectionData="BANNER" />
-
-		<!--Секция консорциума -->
-		<ConsortiumMainSection :sectionData="CONSORTIUM_TEAM" />
-
-		<!-- Секция результатов исследования -->
-		<ResultSection />
-
-		<!-- Секция целей проекта -->
-		<PurposesSection :sectionData="PROJECT_GOALS" />
+		<!-- <BannerPromoSection :sectionData="BANNER" /> -->
 
 		<!-- Секция направления исследований -->
 		<DirectionOfResearchSection />
 
+		<!--Секция консорциума -->
+		<ConsortiumMainSection :sectionData="CONSORTIUM_TEAM" />
+
 		<!-- Секция новостей -->
-		<NewsSection :newsData="NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)" />
+		<!-- <NewsSection :newsData="NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)" /> -->
 
 		<!-- Кнопка для перехода к странице новостей -->
 		<router-link style="text-decoration: none" :to="{ name: 'news' }">
@@ -35,20 +59,26 @@
 	import testMixin from '../../utils/methodsMixin.js';
 	import Preloader from './../unitComponents/CommonElements/Preloader';
 
+	import NewsCompactSection from './../unitComponents/NewsCompactSection';
+
+	import SliderSection from './../unitComponents/MainPageSlider.vue';
+
 	import PurposesSection from '../unitComponents/PurposesSection';
 	import DirectionOfResearchSection from '../unitComponents/DirectionOfResearchSection';
-	import NewsSection from '../unitComponents/NewsSection';
+	// import NewsSection from '../unitComponents/NewsSection';
 	import ConsortiumMainSection from '../unitComponents/ConsortiumMainSection';
 	import ResultSection from '../unitComponents/ResultSection';
-	import BannerPromoSection from '../unitComponents/BannerPromoSection';
+	// import BannerPromoSection from '../unitComponents/BannerPromoSection';
 
 	export default {
 		name: 'MainBody',
 		components: {
-			BannerPromoSection,
+			// BannerPromoSection,
 			ConsortiumMainSection,
 			ResultSection,
-			NewsSection,
+			SliderSection,
+			// NewsSection,
+			NewsCompactSection,
 			DirectionOfResearchSection,
 			PurposesSection,
 			Preloader,
@@ -56,23 +86,88 @@
 		mixins: [testMixin],
 
 		async mounted() {
+			// FIXME пока нет тестовых
+			// 92e65ed8-c79e-4535-aa4f-3dcb5f9ca14c
+
+			// await this.getModulesTest('', '92e65ed8-c79e-4535-aa4f-3dcb5f9ca14c');
+
 			await this.getModulesTest('MAIN_PAGE');
 			setTimeout(() => {
 				this.loadSuccess = true;
 			}, 500);
+
+			console.log(this.modules);
 		},
 
 		data() {
 			return {
 				loadSuccess: false,
+				sliderTestData: [1, 2, 3],
 			};
 		},
 	};
 </script>
 
 <style>
+	/* Стили для сетки */
+	.container_mainPage {
+		width: 1437px;
+		margin: auto;
+	}
+
+	.grid {
+		/* border: 1px dotted red; */
+		/* height: 1000px; */
+
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
+	[class^='column'] {
+		/* background-color: blue; */
+		width: 300px;
+		/* height: 300px; */
+		height: fit-content;
+	}
+
+	.plug-menu {
+		width: 345px;
+	}
+
+	.plug-slider {
+		width: 710px;
+	}
+
+	.plug-news,
+	.plug-calendar {
+		width: 345px;
+		/* height: 728px; */
+	}
+
+	.plug_group {
+		width: 1079px;
+		height: auto !important;
+	}
+
+	/* TEMP */
+
+	[class^='plug'] {
+		/* width: 100%; */
+		/* height: 500px; */
+		margin-top: 20px;
+		/* color: white; */
+		/* background-color: black; */
+		/* border: 5px dashed black; */
+	}
+
 	button {
 		cursor: pointer;
+	}
+
+	.newsSection {
+		height: 780px;
+		/* overflow: scroll; */
 	}
 
 	.newsSection__text {
