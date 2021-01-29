@@ -1,0 +1,142 @@
+<template>
+	<section class="vertical-menu-section">
+		<ul>
+			<li>
+				<a href="https://ncmu.ru/">НЦМУ Научные центры мирового уровня</a>
+			</li>
+			<li>
+				<router-link :to="{ name: 'notFound' }">
+					Презентация НЦМУ
+				</router-link>
+			</li>
+
+			<li>
+				<router-link :to="{ name: 'notFound' }">
+					Образовательные программы центра
+				</router-link>
+			</li>
+			<li>
+				<router-link :to="{ name: 'notFound' }">
+					Динамика достижения индикаторов НЦМУ</router-link
+				>
+			</li>
+			<li>
+				Исследователи НЦМУ
+				<div class="popup">
+					<ul>
+						<li>
+							<router-link :to="{ name: 'notFound' }">
+								Исследователи РГАУ
+							</router-link>
+						</li>
+						<li>
+							<router-link :to="{ name: 'notFound' }">
+								Исследователи СПГУ
+							</router-link>
+						</li>
+
+						<li>
+							<router-link :to="{ name: 'notFound' }">
+								Исследователи ФГУП ВНИМС
+							</router-link>
+						</li>
+
+						<li>
+							<router-link :to="{ name: 'notFound' }">
+								Исследователи ФИЦ им. В.В. Докучаева
+							</router-link>
+						</li>
+
+						<li>
+							<router-link :to="{ name: 'notFound' }">
+								Исследователи ВИГРР
+							</router-link>
+						</li>
+
+						<li>
+							<router-link :to="{ name: 'notFound' }">
+								Исследователи ФИЦ "Информатика и управление" РАН
+							</router-link>
+						</li>
+
+						<li>
+							<router-link :to="{ name: 'notFound' }">
+								Исследователи ФИЦ "Фундаментальные основы биотехнологии" РАН
+							</router-link>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<router-link :to="{ name: 'notFound' }">База знанинй</router-link>
+			</li>
+			<li>
+				<router-link :to="{ name: 'notFound' }">Фундаментальный результат </router-link>
+			</li>
+			<li>
+				<router-link :to="{ name: 'notFound' }"> Трансфер технологий</router-link>
+			</li>
+			<li>
+				<router-link :to="{ name: 'notFound' }">Маркетинговые исследования </router-link>
+			</li>
+			<li>
+				<router-link :to="{ name: 'notFound' }">
+					Предложения для внедрения результатов НЦМУ</router-link
+				>
+			</li>
+			<li>
+				<router-link :to="{ name: 'notFound' }">
+					Запросы на исследования от индустриальных партнеров</router-link
+				>
+			</li>
+		</ul>
+	</section>
+
+	<!-- <h1>asdasd</h1> -->
+</template>
+
+<script>
+	export default {
+		name: 'VerticalMenuSection',
+	};
+</script>
+
+<style scoped>
+	section {
+		background-color: #f8f5e6;
+		color: black;
+		width: 345px;
+		/* height: 500px; */
+		padding: 30px 20px;
+		font-size: 14px;
+		color: #4d5668;
+	}
+
+	ul {
+		/* padding: 0; */
+	}
+
+	li {
+		margin-bottom: 23px;
+		position: relative;
+	}
+
+	li:last-child {
+		margin-bottom: 0;
+	}
+
+	.popup {
+		position: absolute;
+		padding: 30px 20px;
+		width: 345px;
+		right: -345px;
+		z-index: 10000000000;
+		background-color: #f8f5e6;
+		top: 0px;
+		display: none;
+	}
+
+	li:hover .popup {
+		display: block;
+	}
+</style>

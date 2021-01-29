@@ -53,7 +53,7 @@
 					><router-link style="text-decoration: none" :to="{ name: 'notFound' }">
 						<p>Исследования</p>
 					</router-link>
-					<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+					<router-link style="text-decoration: none" :to="{ name: 'ways' }">
 						<p>Направления исследований</p>
 					</router-link>
 					<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
@@ -88,7 +88,7 @@
 				<div class="footerNav-item">
 					<h3>Новости программы</h3>
 
-					<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+					<router-link style="text-decoration: none" :to="{ name: 'news' }">
 						<p>Последние новости</p>
 					</router-link>
 					<router-link style="text-decoration: none" :to="{ name: 'notFound' }">

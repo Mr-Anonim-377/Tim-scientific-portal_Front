@@ -100,7 +100,7 @@
 		flex-direction: column;
 		align-items: center;
 		padding: 12px 0;
-		height: 780px;
+		height: 710px;
 		overflow: scroll;
 	}
 

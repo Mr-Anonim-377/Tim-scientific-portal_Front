@@ -261,17 +261,6 @@
 						.eq(this.sliderDataIndex)
 						.addClass('news-slider__dot_active');
 				});
-
-			console.log(this.slideIntervalID);
-
-			// Автоклик для автоматического переключения слайдов
-			if (!this.slideIntervalID) {
-				this.slideIntervalID = setInterval(() => {
-					$('.news-slider__arrow')
-						.eq(1)
-						.click();
-				}, 4000);
-			}
 		},
 	};
 </script>
@@ -303,7 +292,7 @@
 		height: 25px;
 		position: absolute;
 		background-color: white;
-		bottom: -13px;
+		bottom: -80px;
 
 		display: flex;
 		justify-content: center;
@@ -322,7 +311,7 @@
 
 	.news-slider__arrow:last-child {
 		transform: rotate(180deg);
-		margin-left: 50px;
+		/* margin-left: 50px; */
 	}
 
 	.news-slider__slide {
@@ -357,7 +346,7 @@
 
 	.news-slider__dots {
 		position: absolute;
-		top: 44px;
+		top: -35px;
 		z-index: 10;
 		width: 780px;
 

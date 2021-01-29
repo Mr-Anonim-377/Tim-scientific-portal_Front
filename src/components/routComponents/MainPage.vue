@@ -8,7 +8,7 @@
 		<div class="container_mainPage">
 			<div class="grid">
 				<div class="plug-menu">
-					Вертикальное меню
+					<VerticalMenuSection />
 				</div>
 				<div class="plug-slider">
 					<!-- FIXME пока нет тестовых -->
@@ -27,7 +27,7 @@
 				</div>
 
 				<div class="plug-calendar">
-					Календарь событий
+					<CalendarSection />
 				</div>
 			</div>
 		</div>
@@ -58,10 +58,11 @@
 <script>
 	import testMixin from '../../utils/methodsMixin.js';
 	import Preloader from './../unitComponents/CommonElements/Preloader';
-
+	import VerticalMenuSection from './../unitComponents/VerticalMenuSection.vue';
 	import NewsCompactSection from './../unitComponents/NewsCompactSection';
 
 	import SliderSection from './../unitComponents/MainPageSlider.vue';
+	import CalendarSection from './../unitComponents/CalendarSection';
 
 	import PurposesSection from '../unitComponents/PurposesSection';
 	import DirectionOfResearchSection from '../unitComponents/DirectionOfResearchSection';
@@ -77,6 +78,8 @@
 			ConsortiumMainSection,
 			ResultSection,
 			SliderSection,
+			VerticalMenuSection,
+			CalendarSection,
 			// NewsSection,
 			NewsCompactSection,
 			DirectionOfResearchSection,
@@ -92,6 +95,7 @@
 			// await this.getModulesTest('', '92e65ed8-c79e-4535-aa4f-3dcb5f9ca14c');
 
 			await this.getModulesTest('MAIN_PAGE');
+			console.log(this.ACTIONS_CALENDAR);
 			setTimeout(() => {
 				this.loadSuccess = true;
 			}, 500);
@@ -122,6 +126,8 @@
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
+		margin-bottom: 30px;
+		margin-top: 30px;
 	}
 
 	[class^='column'] {
@@ -143,11 +149,16 @@
 	.plug-calendar {
 		width: 345px;
 		/* height: 728px; */
+		/* padding-bottom: 20px; */
 	}
 
 	.plug_group {
 		width: 1079px;
 		height: auto !important;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		/* padding-bottom: 20px; */
 	}
 
 	/* TEMP */
@@ -155,10 +166,11 @@
 	[class^='plug'] {
 		/* width: 100%; */
 		/* height: 500px; */
-		margin-top: 20px;
+		/* margin-top: 20px; */
 		/* color: white; */
 		/* background-color: black; */
 		/* border: 5px dashed black; */
+		padding-bottom: 20px;
 	}
 
 	button {
@@ -166,7 +178,7 @@
 	}
 
 	.newsSection {
-		height: 780px;
+		/* height: 780px; */
 		/* overflow: scroll; */
 	}
 

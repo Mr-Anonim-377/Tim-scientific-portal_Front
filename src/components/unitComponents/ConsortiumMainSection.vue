@@ -107,24 +107,27 @@
 
 	.consortiumTextContent {
 		/* height: 200px; */
-		margin-top: 75px;
+		margin: 75px auto 0;
 		padding: 40px 0;
 		text-align: center;
-		background: linear-gradient(0deg, rgba(63, 126, 119, 0.8), rgba(63, 126, 119, 0.8)),
-			url('../../assets/image/consTextSecBack.png');
+		/* background: linear-gradient(0deg, rgba(63, 126, 119, 0.8), rgba(63, 126, 119, 0.8)),
+			url('../../assets/image/consTextSecBack.png'); */
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;
-
+		/* color: #303e45; */
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		width: 1440px;
+		background-color: #f8f5e6;
+		/* margin: auto; */
 	}
 
 	.consortiumTextContent__text {
 		width: 850px;
 		margin: auto;
-		color: #f8f5e6;
+		color: #303e45;
 		/* justify-content: c; */
 	}
 </style>

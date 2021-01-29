@@ -1,24 +1,43 @@
 <template>
-	<HeaderSection :modifiers="modifiers.header" />
-	<router-view />
-	<FooterSection />
+	<div v-if="loadSuccess">
+		<HeaderSection
+			:ways="this.WAYS_ARRAY"
+			:news="this.NEWS_SLIDER.NEWS_ITEM"
+			:modifiers="modifiers.header"
+		/>
+		<router-view />
+		<FooterSection />
+	</div>
 </template>
 
 <script>
-	import HeaderSection from "./components/unitComponents/HeaderSection/HeaderSection";
-	import FooterSection from "./components/unitComponents/FooterSection/FooterSection";
+	import HeaderSection from './components/unitComponents/HeaderSection/HeaderSection';
+	import FooterSection from './components/unitComponents/FooterSection/FooterSection';
+
+	import testMixin from './utils/methodsMixin';
 
 	export default {
-		name: "App",
+		name: 'App',
 		components: {
 			HeaderSection,
 			FooterSection,
 		},
+		mixins: [testMixin],
+
+		async mounted() {
+			await this.getModulesTest('WAYS');
+			await this.getModulesTest('NEWS_PAGE');
+			this.loadSuccess = true;
+
+			console.log(this.modules);
+		},
+
 		data() {
 			return {
 				modifiers: {
-					header: ["header_border-none"],
+					header: ['header_border-none'],
 				},
+				loadSuccess: false,
 			};
 		},
 	};
@@ -80,29 +99,23 @@
 		color: black;
 	}
 	@font-face {
-		font-family: "Gilroy-Bold";
-		src: url("./assets/fonts/Gilroy/bold/gilroy-bold.eot");
-		src: url("./assets/fonts/Gilroy/bold/gilroy-bold.eot?#iefix")
-				format("embedded-opentype"),
-			url("./assets/fonts/Gilroy/bold/gilroy-bold.woff2") format("woff2"),
-			url("./assets/fonts/Gilroy/bold/gilroy-bold.woff") format("woff"),
-			url("./assets/fonts/Gilroy/bold/gilroy-bold.ttf") format("truetype"),
-			url("./assets/fonts/Gilroy/bold/gilroy-bold.svg#gilroy-bold")
-				format("svg");
+		font-family: 'Gilroy-Bold';
+		src: url('./assets/fonts/Gilroy/bold/gilroy-bold.eot');
+		src: url('./assets/fonts/Gilroy/bold/gilroy-bold.eot?#iefix') format('embedded-opentype'),
+			url('./assets/fonts/Gilroy/bold/gilroy-bold.woff2') format('woff2'),
+			url('./assets/fonts/Gilroy/bold/gilroy-bold.woff') format('woff'),
+			url('./assets/fonts/Gilroy/bold/gilroy-bold.ttf') format('truetype'),
+			url('./assets/fonts/Gilroy/bold/gilroy-bold.svg#gilroy-bold') format('svg');
 	}
 	@font-face {
-		font-family: "Gilroy-Regular";
-		src: url("./assets/fonts/Gilroy/regular/gilroy-regular.eot");
-		src: url("./assets/fonts/Gilroy/regular/gilroy-regular.eot?#iefix")
-				format("embedded-opentype"),
-			url("./assets/fonts/Gilroy/regular/gilroy-regular.woff2")
-				format("woff2"),
-			url("./assets/fonts/Gilroy/regular/gilroy-regular.woff")
-				format("woff"),
-			url("./assets/fonts/Gilroy/regular/gilroy-regular.ttf")
-				format("truetype"),
-			url("./assets/fonts/Gilroy/regular/gilroy-regular.svg#gilroy-regular")
-				format("svg");
+		font-family: 'Gilroy-Regular';
+		src: url('./assets/fonts/Gilroy/regular/gilroy-regular.eot');
+		src: url('./assets/fonts/Gilroy/regular/gilroy-regular.eot?#iefix')
+				format('embedded-opentype'),
+			url('./assets/fonts/Gilroy/regular/gilroy-regular.woff2') format('woff2'),
+			url('./assets/fonts/Gilroy/regular/gilroy-regular.woff') format('woff'),
+			url('./assets/fonts/Gilroy/regular/gilroy-regular.ttf') format('truetype'),
+			url('./assets/fonts/Gilroy/regular/gilroy-regular.svg#gilroy-regular') format('svg');
 	}
 
 	.swiper_slider_button_next {

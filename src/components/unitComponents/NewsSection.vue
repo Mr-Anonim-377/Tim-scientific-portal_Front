@@ -62,7 +62,7 @@
 
 	.newsSection-container {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(3, 1fr);
 		margin: 98px -10px 0 -10px;
 		/* height: 560px; */
 	}

@@ -2,12 +2,9 @@
 
 <template>
 	<section class="bannerSlider" v-if="loadSucces">
-		<TitleSection
-			:title="NEWS_TITLE.TITLE[0].title"
-			:headerVisible="true"
-		/>
+		<TitleSection :title="NEWS_TITLE.TITLE[0].title" :headerVisible="true" />
 
-		<p class="bannerSlider__years">2020</p>
+		<p class="bannerSlider__years">{{ NEWS_DATE.DATE[0].date }}</p>
 
 		<!-- Секция слайдера -->
 		<NewsSliderSection :urls="NEWS_IMAGE_CAROUSEL.IMAGE" />
