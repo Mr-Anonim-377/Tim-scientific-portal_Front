@@ -6,18 +6,16 @@
 		<div class="news-slider">
 			<div class="news-slider__view">
 				<div class="news-slider__slide">
+					<h3></h3>
+				</div>
+				<div class="news-slider__slide">
 					<h3>
-						Российский государственный аграрный университет – МСХА имени К.А.Тимирязева
+						<!-- Российский государственный аграрный университет – МСХА имени К.А.Тимирязева -->
 					</h3>
 				</div>
 				<div class="news-slider__slide">
 					<h3>
-						Российский государственный аграрный университет – МСХА имени К.А.Тимирязева
-					</h3>
-				</div>
-				<div class="news-slider__slide">
-					<h3>
-						Российский государственный аграрный университет – МСХА имени К.А.Тимирязева
+						<!-- Российский государственный аграрный университет – МСХА имени К.А.Тимирязева -->
 					</h3>
 				</div>
 			</div>
@@ -43,7 +41,7 @@
 		// FIXME перевести на скелетон
 		name: 'NewsSliderSection',
 		props: {
-			urls: [],
+			sectionData: [],
 		},
 		data() {
 			return {
@@ -160,32 +158,45 @@
 		},
 
 		async created() {
-			for (let i = 0; i < this.urls.length; i++) {
+			// console.log(this.sectionData);
+
+			for (let i = 0; i < this.sectionData.length; i++) {
 				this.sliderData.push({
-					url: this.urls[i].image,
+					url: this.sectionData[i].image,
+					title: this.sectionData[i].title,
 				});
 			}
+
+			console.log(this.sliderData);
+			console.log(this.sliderData[this.sliderDataIndex].url);
 		},
 
 		async mounted() {
 			// Получаем dom элементы
 			this.getDOM();
 
+			// console.log(
+			$('.news-slider__slide:nth-child(3)')
+				.css('background-image', `url(${this.sliderData[this.sliderData.length - 1].url}`)
+				.children('h3')
+				.val(1);
+			// );
+			// console.llog;
 			// Начальное положение картинок
-			$('.news-slider__slide:nth-child(2)').css(
-				'background-image',
-				`url(${this.sliderData[this.sliderDataIndex].url}`
-			);
+			$('.news-slider__slide:nth-child(2)')
+				.css('background', `url(${this.sliderData[this.sliderDataIndex].url})`)
+				.children('h3')
+				.text(this.sliderData[this.sliderDataIndex].title);
 
-			$('.news-slider__slide:nth-child(1)').css(
-				'background-image',
-				`url(${this.sliderData[this.sliderDataIndex + 1].url}`
-			);
+			$('.news-slider__slide:nth-child(1)')
+				.css('background-image', `url(${this.sliderData[this.sliderDataIndex + 1].url}`)
+				.children('h3')
+				.text(this.sliderData[this.sliderDataIndex + 1].title);
 
-			$('.news-slider__slide:nth-child(3)').css(
-				'background-image',
-				`url(${this.sliderData[this.sliderData.length - 1].url}`
-			);
+			$('.news-slider__slide:nth-child(3)')
+				.css('background-image', `url(${this.sliderData[this.sliderData.length - 1].url}`)
+				.children('h3')
+				.text(this.sliderData[this.sliderData.length - 1].title);
 
 			$('.news-slider__dot')
 				.eq(this.sliderDataIndex)
@@ -329,9 +340,25 @@
 
 		background-size: cover;
 		background-position: center;
+		color: #f8f5e6;
 	}
 
-	.news-slider__slide:nth-child(1) {
+	.news-slider__slide::before {
+		content: '';
+		width: inherit;
+		height: inherit;
+		background: linear-gradient(180deg, rgba(51, 51, 51, 0) 60.49%, rgba(51, 51, 51, 0.8) 100%);
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 10;
+	}
+
+	.news-slider__slide h3 {
+		z-index: 123123213123;
+	}
+
+	.news-slider .news-slider__slide:nth-child(1) {
 		/* right: 100%; */
 		transform: translatex(710px);
 		background-color: #cdf0cc;

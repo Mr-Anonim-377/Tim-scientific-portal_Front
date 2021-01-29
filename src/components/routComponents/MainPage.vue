@@ -12,7 +12,7 @@
 				</div>
 				<div class="plug-slider">
 					<!-- FIXME пока нет тестовых -->
-					<SliderSection :urls="sliderTestData" />
+					<SliderSection :sectionData="BANNERS.BANNER" />
 				</div>
 				<div class="plug-news">
 					<NewsCompactSection :newsData="NEWS_CAROUSEL.NEWS_ITEM" />
@@ -66,10 +66,8 @@
 
 	import PurposesSection from '../unitComponents/PurposesSection';
 	import DirectionOfResearchSection from '../unitComponents/DirectionOfResearchSection';
-	// import NewsSection from '../unitComponents/NewsSection';
 	import ConsortiumMainSection from '../unitComponents/ConsortiumMainSection';
 	import ResultSection from '../unitComponents/ResultSection';
-	// import BannerPromoSection from '../unitComponents/BannerPromoSection';
 
 	export default {
 		name: 'MainBody',
@@ -100,7 +98,7 @@
 				this.loadSuccess = true;
 			}, 500);
 
-			console.log(this.modules);
+			console.log(this.BANNERS);
 		},
 
 		data() {

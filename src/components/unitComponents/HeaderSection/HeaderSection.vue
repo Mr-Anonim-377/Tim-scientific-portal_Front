@@ -318,7 +318,8 @@
 		transition: opacity 0.5s;
 	}
 
-	.headerSection__item:hover .popup {
+	.headerSection__item:hover .popup,
+	.popup:hover {
 		display: block;
 	}
 
