@@ -21,14 +21,11 @@
 		</div>
 
 		<!--Нижняя часть хедера-->
-
 		<div class="headerSection__navigation">
 			<div class="headerSection__navigation-container">
-				<!-- <li> -->
-				<!-- <router-link style="text-decoration: none" :to="{ name: 'notFound' }"> -->
 				<div class="headerSection__item">
 					<p>Участники консорциума НЦМУ "Агротехнологии будущего"</p>
-					<!-- <img src="../../../assets/image/Vector.svg" alt="" /> -->
+
 					<div class="popup-arrow"></div>
 
 					<div class="popup">
@@ -68,25 +65,18 @@
 					</div>
 				</div>
 
-				<!-- </router-link> -->
-				<!-- </li> -->
-
 				<div class="headerSection__item">
 					<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
 						<p>Официальные документы</p>
 					</router-link>
 				</div>
 
-				<!-- <router-link style="text-decoration: none" :to="{ name: 'notFound' }"> -->
 				<div class="headerSection__item">
 					<p>Научные направления</p>
-					<!-- <img src="../../../assets/image/Vector.svg" alt="" /> -->
+
 					<div class="popup-arrow"></div>
 
 					<div class="popup">
-						<!-- <div v-for="WAY in ways.WAYS_ITEM" :key="WAY.title">
-							123
-						</div> -->
 						<router-link
 							v-for="way in ways.WAYS_ITEM"
 							:key="way"
@@ -106,17 +96,12 @@
 					</router-link>
 				</div>
 
-				<!-- <router-link style="text-decoration: none" :to="{ name: 'notFound' }"> -->
-				<!-- <p>Новости</p> -->
 				<div class="headerSection__item">
 					<p>Новости</p>
-					<!-- <img src="../../../assets/image/Vector.svg" alt="" /> -->
+
 					<div class="popup-arrow"></div>
 
 					<div class="popup">
-						<!-- <div v-for="WAY in ways.WAYS_ITEM" :key="WAY.title">
-							123
-						</div> -->
 						<router-link
 							v-for="newsItem in news"
 							:key="newsItem"
@@ -129,7 +114,6 @@
 						</router-link>
 					</div>
 				</div>
-				<!-- </router-link> -->
 				<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
 					<span class="login">Личный кабинет</span>
 				</router-link>
@@ -253,7 +237,6 @@
 		color: #f8f5e6;
 	}
 	.headerSection__navigation-container {
-		padding: 18px 0 18px 1px;
 		display: flex;
 		text-align: center;
 		margin: auto;
@@ -275,6 +258,7 @@
 		color: #f8f5e6;
 		position: absolute;
 		right: 1px;
+		padding: 18px 10px;
 	}
 	.login:before {
 		content: '';
@@ -282,28 +266,19 @@
 		width: 21px;
 		height: 25px;
 		background-image: url('../../../assets/image/Lk.svg');
+		background-repeat: no-repeat;
 		right: 135px;
-		top: -4px;
+		top: 15px;
 	}
 
 	.headerSection__item {
 		width: auto;
 		position: relative;
-		display: flex;
-		margin: 0 40px 0 0;
-		align-items: center;
-		padding-right: 2px;
-	}
+		padding: 18px 10px;
 
-	/* .headerSection__item img {
-		margin-left: 10px;
-		position: relative;
-		top: 2px;
-		width: 10px;
-		height: 5px;
-		/* width: 10px; */
-	/* height: 5px; */
-	/* transition: opacity 0.5s; */
+		display: flex;
+		align-items: center;
+	}
 
 	.headerSection__item .popup-arrow {
 		margin-left: 10px;
@@ -313,8 +288,6 @@
 		top: 2px;
 		width: 10px;
 		height: 5px;
-		/* width: 10px; */
-		/* height: 5px; */
 		transition: opacity 0.5s;
 	}
 
@@ -329,22 +302,23 @@
 	}
 
 	.popup {
-		min-width: calc(100% + 35px);
-		padding: 20px 20px 10px;
+		width: max-content;
+		padding: 10px 20px 10px;
 		position: absolute;
 		background-color: rgb(63, 126, 119);
 		z-index: 14;
 		display: none;
-		left: -20px;
-		top: 20px;
-
-		/* ЗФ */
+		left: 0;
+		right: 0;
+		margin: auto;
+		top: 53px;
 	}
 
 	.popup p {
-		margin: 20px 0;
+		margin: 0 0 15px;
 		font-size: 10px;
 		line-height: 13px;
 		text-align: left;
+		max-width: 500px;
 	}
 </style>

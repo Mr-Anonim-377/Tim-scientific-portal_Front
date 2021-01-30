@@ -1,9 +1,9 @@
 // ГЛАВНАЯ СТРАНИЦА ПРОЕКТА
 
 <template>
-	<!-- TODO Убрать лишние блоки -->
+	<!-- FIXME Переименовать названия классов после редизайна -->
 	<div v-if="loadSuccess">
-		<!-- Проттотип сетки для редизайна -->
+		<!-- Прототип сетки для редизайна -->
 
 		<div class="container_mainPage">
 			<div class="grid">
@@ -11,7 +11,6 @@
 					<VerticalMenuSection />
 				</div>
 				<div class="plug-slider">
-					<!-- FIXME пока нет тестовых -->
 					<SliderSection :sectionData="BANNERS.BANNER" />
 				</div>
 				<div class="plug-news">
@@ -31,23 +30,18 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- Баннер главной страницы-->
-		<!-- <BannerPromoSection :sectionData="BANNER" /> -->
-
 		<!-- Секция направления исследований -->
 		<DirectionOfResearchSection />
 
 		<!--Секция консорциума -->
 		<ConsortiumMainSection :sectionData="CONSORTIUM_TEAM" />
 
-		<!-- Секция новостей -->
-		<!-- <NewsSection :newsData="NEWS_CAROUSEL.NEWS_ITEM.slice(0, 3)" /> -->
+		<!-- NOTE Пока просто закомментировал на всякий -->
 
-		<!-- Кнопка для перехода к странице новостей -->
+		<!-- Кнопка для перехода к странице новостей
 		<router-link style="text-decoration: none" :to="{ name: 'news' }">
 			<p class="newsSection__text">Все новости</p>
-		</router-link>
+		</router-link> -->
 	</div>
 
 	<div v-else>
@@ -72,13 +66,11 @@
 	export default {
 		name: 'MainBody',
 		components: {
-			// BannerPromoSection,
 			ConsortiumMainSection,
 			ResultSection,
 			SliderSection,
 			VerticalMenuSection,
 			CalendarSection,
-			// NewsSection,
 			NewsCompactSection,
 			DirectionOfResearchSection,
 			PurposesSection,
@@ -87,18 +79,10 @@
 		mixins: [testMixin],
 
 		async mounted() {
-			// FIXME пока нет тестовых
-			// 92e65ed8-c79e-4535-aa4f-3dcb5f9ca14c
-
-			// await this.getModulesTest('', '92e65ed8-c79e-4535-aa4f-3dcb5f9ca14c');
-
 			await this.getModulesTest('MAIN_PAGE');
-			console.log(this.ACTIONS_CALENDAR);
 			setTimeout(() => {
 				this.loadSuccess = true;
 			}, 500);
-
-			console.log(this.BANNERS);
 		},
 
 		data() {
@@ -118,9 +102,6 @@
 	}
 
 	.grid {
-		/* border: 1px dotted red; */
-		/* height: 1000px; */
-
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
@@ -129,9 +110,7 @@
 	}
 
 	[class^='column'] {
-		/* background-color: blue; */
 		width: 300px;
-		/* height: 300px; */
 		height: fit-content;
 	}
 
@@ -146,8 +125,6 @@
 	.plug-news,
 	.plug-calendar {
 		width: 345px;
-		/* height: 728px; */
-		/* padding-bottom: 20px; */
 	}
 
 	.plug_group {
@@ -156,18 +133,9 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		/* padding-bottom: 20px; */
 	}
 
-	/* TEMP */
-
 	[class^='plug'] {
-		/* width: 100%; */
-		/* height: 500px; */
-		/* margin-top: 20px; */
-		/* color: white; */
-		/* background-color: black; */
-		/* border: 5px dashed black; */
 		padding-bottom: 20px;
 	}
 
@@ -175,15 +143,9 @@
 		cursor: pointer;
 	}
 
-	.newsSection {
-		/* height: 780px; */
-		/* overflow: scroll; */
-	}
-
 	.newsSection__text {
 		font-size: 15px;
 		color: #3f7e77;
-		/*margin-top: 49px;*/
 		text-decoration-line: underline;
 		margin: 49px auto 97px auto;
 		text-align: center;

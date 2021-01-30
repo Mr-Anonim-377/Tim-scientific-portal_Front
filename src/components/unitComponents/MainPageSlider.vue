@@ -9,27 +9,23 @@
 					<h3></h3>
 				</div>
 				<div class="news-slider__slide">
-					<h3>
-						<!-- Российский государственный аграрный университет – МСХА имени К.А.Тимирязева -->
-					</h3>
+					<h3></h3>
 				</div>
 				<div class="news-slider__slide">
-					<h3>
-						<!-- Российский государственный аграрный университет – МСХА имени К.А.Тимирязева -->
-					</h3>
+					<h3></h3>
 				</div>
 			</div>
 
 			<div class="news-slider__controls">
+				<div class="news-slider__arrow"></div>
+
 				<div class="news-slider__dots">
 					<div class="news-slider__dot" v-for="slide in sliderData" :key="slide"></div>
 				</div>
 
 				<div class="news-slider__arrow"></div>
-				<div class="news-slider__arrow"></div>
 			</div>
 		</div>
-		<!-- </div> -->
 	</section>
 </template>
 
@@ -68,6 +64,7 @@
 			getDOM() {
 				this.slider = $('.news-slider__view');
 				this.circles = $('.news-slider__slide');
+				this.dots = $('.news-slider__dot');
 			},
 
 			moveCircle(index, position) {
@@ -175,13 +172,11 @@
 			// Получаем dom элементы
 			this.getDOM();
 
-			// console.log(
 			$('.news-slider__slide:nth-child(3)')
 				.css('background-image', `url(${this.sliderData[this.sliderData.length - 1].url}`)
 				.children('h3')
 				.val(1);
-			// );
-			// console.llog;
+
 			// Начальное положение картинок
 			$('.news-slider__slide:nth-child(2)')
 				.css('background', `url(${this.sliderData[this.sliderDataIndex].url})`)
@@ -203,7 +198,7 @@
 				.addClass('news-slider__dot_active')
 				.eq(this.sliderDataIndex);
 
-			// Вешаем события на левую стрелку
+			// Вешаем события на стрелки
 			$('.news-slider__arrow')
 				.eq(0)
 				.on('click', () => {
@@ -299,24 +294,42 @@
 	}
 
 	.news-slider__controls {
-		width: 112px;
+		/* width: 112px;
+			height: 25px;
+			position: absolute;
+			background-color: white;
+			bottom: -80px;
+
+			display: flex;
+			justify-content: center;
+			align-items: center; */
+
+		/* width: 112px; */
 		height: 25px;
 		position: absolute;
 		background-color: white;
 		bottom: -80px;
-
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
 
 	.news-slider__arrow {
-		background-image: url('../../assets/image/slider-arrow-left.svg');
-		width: 15px;
+		/* background-image: url('../../assets/image/slider-arrow-left.svg');
+			width: 15px;
+			height: 25px;
+			background-size: cover;
+			cursor: pointer !important;
+			margin: 5px;
+			z-index: 10; */
+		cursor: pointer !important;
+
+		background-image: url(/img/slider-arrow-left.2dfd4e5c.svg);
+		width: 10px;
 		height: 25px;
 		background-size: cover;
 		cursor: pointer !important;
-		margin: 5px;
+		/* margin: 5px; */
 		z-index: 10;
 	}
 
@@ -359,23 +372,29 @@
 	}
 
 	.news-slider .news-slider__slide:nth-child(1) {
-		/* right: 100%; */
 		transform: translatex(710px);
 		background-color: #cdf0cc;
 	}
 
 	.news-slider__slide:nth-child(3) {
-		/* left: 100%; */
 		transform: translatex(-710px);
 		background-color: #ccdff0;
 		z-index: 0;
 	}
 
 	.news-slider__dots {
-		position: absolute;
+		/* position: absolute; */
 		top: -35px;
 		z-index: 10;
-		width: 780px;
+		/* width: 780px; */
+		/* position: absolute; */
+		/* top: -35px; */
+		z-index: 10;
+		/* width: 780px; */
+		display: flex;
+		/* margin: 0 20px; */
+		padding: 0 30px;
+		justify-content: center;
 
 		display: flex;
 		justify-content: center;

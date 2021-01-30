@@ -1,3 +1,5 @@
+//Вертикальное меню на главной странице
+
 <template>
 	<section class="vertical-menu-section">
 		<ul>
@@ -91,8 +93,6 @@
 			</li>
 		</ul>
 	</section>
-
-	<!-- <h1>asdasd</h1> -->
 </template>
 
 <script>
@@ -106,18 +106,13 @@
 		background-color: #f8f5e6;
 		color: black;
 		width: 345px;
-		/* height: 500px; */
 		padding: 30px 20px;
 		font-size: 14px;
 		color: #4d5668;
 	}
 
-	ul {
-		/* padding: 0; */
-	}
-
 	li {
-		margin-bottom: 23px;
+		padding-bottom: 23px;
 		position: relative;
 	}
 

@@ -176,14 +176,6 @@
 		cursor: default;
 	}
 
-	/* Навигация
-	.footerNav-container__left p,
-	.footerNav-container__right p {
-		cursor: pointer;
-		color: #f8f5e6;
-		line-height: 29px;
-	} */
-
 	.footerNav {
 		position: relative;
 	}
@@ -246,7 +238,6 @@
 	}
 
 	.footer-police img {
-		/* display: inline-block; */
 		margin-right: 30px;
 		width: 74px;
 		height: 75px;
@@ -257,21 +248,12 @@
 		font-weight: bold;
 		font-size: 24px;
 		position: relative;
-		/* margin-bottom: 43px; */
 		letter-spacing: 0.01em;
 	}
 
 	.footerContact-item {
 		margin-right: 50px;
 	}
-	/* .footerContact__text:before {
-		content: '';
-		position: absolute;
-		width: 35px;
-		height: 1px;
-		top: 42px;
-		background: #f8f5e6;
-	} */
 
 	.footerContact-container p {
 		cursor: pointer;
@@ -279,7 +261,6 @@
 		line-height: 10px;
 	}
 	.footerContact-container {
-		/* margin: -17px 50px; */
 		display: flex;
 	}
 
