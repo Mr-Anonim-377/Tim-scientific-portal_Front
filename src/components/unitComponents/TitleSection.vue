@@ -34,7 +34,7 @@
 	h2 {
 		font-size: 36px;
 		/* margin-top: 16px; */
-		font-weight: 900;
+		/* font-weight: 900; */
 		letter-spacing: 0.1em;
 	}
 	.text-white {
@@ -57,7 +57,7 @@
 
 	.compact-title h2 {
 		font-size: 26px;
-		font-weight: bold;
+		font-family: 'Gilroy-Bold';
 		color: #3f7e77;
 		margin-left: 18px;
 		letter-spacing: 0.21px;

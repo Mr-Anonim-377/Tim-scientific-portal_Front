@@ -37,7 +37,8 @@
 		color: #f8f5e6;
 	}
 	h1 {
-		font-weight: bold;
+		/* font-family: 'Gilroy-Bold'; */
+		font-family: 'Gilroy-Bold';
 		font-size: 26px;
 		line-height: 31px;
 		text-align: center;
@@ -45,7 +46,7 @@
 	}
 
 	.calendar {
-		width: 369px;
+		width: 345px;
 		height: 704px;
 		background-image: url('../../assets/image/calendarBackground.png');
 		background-size: cover;
@@ -60,7 +61,7 @@
 		display: flex;
 	}
 	h2 {
-		font-weight: bold;
+		font-family: 'Gilroy-Bold';
 		font-size: 20px;
 		line-height: 132.19%;
 		color: #74be97;
@@ -91,7 +92,7 @@
 	}
 
 	h3 {
-		font-weight: bold;
+		font-family: 'Gilroy-Bold';
 		font-size: 14px;
 		line-height: 19px;
 		border-bottom: 1px solid;
@@ -103,7 +104,7 @@
 		font-size: 14px;
 		line-height: 16px;
 		letter-spacing: 0.03em;
-		height: 45px;
+		/* height: 45px; */
 		overflow: hidden;
 	}
 	.calendar-details {

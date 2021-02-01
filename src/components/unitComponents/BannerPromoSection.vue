@@ -61,7 +61,7 @@
 	}
 
 	.bannerPromoMainSection-container h1 {
-		font-weight: 900;
+		/* font-weight: 900; */
 		font-size: 72px;
 		line-height: 90px;
 		color: #f8f5e6;

@@ -347,7 +347,7 @@
 	}
 
 	.slider-right-text p:nth-child(1) {
-		font-weight: bold;
+		font-family: 'Gilroy-Bold';
 	}
 
 	.slider-right-text p:nth-child(1)::after {

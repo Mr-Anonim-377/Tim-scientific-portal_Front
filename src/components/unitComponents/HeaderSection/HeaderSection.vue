@@ -92,7 +92,7 @@
 				<!-- </router-link> -->
 				<div class="headerSection__item">
 					<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
-						<p>Контакты</p>
+						<p>Пресс-служба</p>
 					</router-link>
 				</div>
 
@@ -212,7 +212,7 @@
 	}
 	::-webkit-input-placeholder {
 		color: rgba(63, 126, 119, 0.5);
-		font-weight: 500;
+		/* font-weight: 500; */
 		font-size: 15px;
 		line-height: 18px;
 	}
@@ -285,15 +285,16 @@
 		position: relative;
 		background-image: url('../../../assets/image/Vector.svg');
 		background-size: 10px 5px;
-		top: 2px;
+		/* top: 2px; */
 		width: 10px;
 		height: 5px;
 		transition: opacity 0.5s;
 	}
 
-	.headerSection__item:hover .popup,
-	.popup:hover {
-		display: block;
+	.headerSection__item:hover .popup {
+		/* display: block; */
+		visibility: visible;
+		opacity: 1;
 	}
 
 	.headerSection__item:hover .popup-arrow {
@@ -303,21 +304,24 @@
 
 	.popup {
 		width: max-content;
-		padding: 10px 20px 10px;
+		padding: 20px 20px 10px;
 		position: absolute;
 		background-color: rgb(63, 126, 119);
 		z-index: 14;
-		display: none;
+		/* display: none; */
+		visibility: hidden;
+		opacity: 0;
 		left: 0;
 		right: 0;
 		margin: auto;
 		top: 53px;
+		transition: opacity 0.5s;
 	}
 
 	.popup p {
 		margin: 0 0 15px;
-		font-size: 10px;
-		line-height: 13px;
+		font-size: 14px;
+		line-height: 17px;
 		text-align: left;
 		max-width: 500px;
 	}

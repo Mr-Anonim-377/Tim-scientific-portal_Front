@@ -86,6 +86,7 @@
 		padding: 12px 0;
 		height: 710px;
 		overflow: scroll;
+		overflow-x: hidden;
 	}
 
 	.news-item {
@@ -100,8 +101,8 @@
 
 	p,
 	h3 {
-		font-size: 14px;
-		font-weight: bold;
+		font-size: 16px;
+		font-family: 'Gilroy-Bold';
 		color: #4d5668;
 		line-height: 109.19%;
 	}
@@ -109,6 +110,7 @@
 	/*Стили года и линий*/
 	.news-item__years {
 		position: relative;
+		color: #3f7e77;
 	}
 
 	.news-item-title__date {
@@ -138,7 +140,7 @@
 	}
 
 	h3 {
-		font-weight: 900;
+		/* font-weight: 900; */
 	}
 
 	.news-item__text {

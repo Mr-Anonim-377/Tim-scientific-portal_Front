@@ -245,7 +245,7 @@
 
 	/*контакты*/
 	.footerContact__text {
-		font-weight: bold;
+		font-family: 'Gilroy-Bold';
 		font-size: 24px;
 		position: relative;
 		letter-spacing: 0.01em;

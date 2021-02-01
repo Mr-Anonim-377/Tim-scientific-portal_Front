@@ -87,7 +87,7 @@
 	.research-block h3 {
 		width: 193px;
 		height: 212px;
-		font-weight: bold;
+		font-family: 'Gilroy-Bold';
 		font-size: 15px;
 		line-height: 18px;
 		margin: auto;

@@ -396,7 +396,7 @@
 
 	.consortium-content h3 {
 		font-size: 24px;
-		font-weight: bold;
+		font-family: 'Gilroy-Bold';
 	}
 
 	.consortium-content p {

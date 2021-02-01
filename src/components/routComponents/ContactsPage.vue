@@ -60,7 +60,8 @@
 	}
 
 	p {
-		font-weight: bold;
+		font-family: 'Gilroy-Bold';
+		font-weight: normal;
 		font-size: 18px;
 		line-height: 22px;
 		text-align: center;

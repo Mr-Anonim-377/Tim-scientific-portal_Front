@@ -230,7 +230,8 @@
 		background: #3f7e77;
 		border-radius: 54px;
 		margin: auto;
-		font-weight: bold;
+		font-family: 'Gilroy-Bold';
+		/* font-family: 'Gilroy-Bold'; */
 		font-size: 24px;
 		line-height: 29px;
 		color: #f8f5e6;

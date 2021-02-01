@@ -73,7 +73,10 @@
 				<router-link :to="{ name: 'notFound' }">База знанинй</router-link>
 			</li>
 			<li>
-				<router-link :to="{ name: 'notFound' }">Фундаментальный результат </router-link>
+				<router-link :to="{ name: 'notFound' }">Фундаментальные результаты </router-link>
+			</li>
+			<li>
+				<router-link :to="{ name: 'notFound' }">Прикладные результаты</router-link>
 			</li>
 			<li>
 				<router-link :to="{ name: 'notFound' }"> Трансфер технологий</router-link>
@@ -107,17 +110,27 @@
 		color: black;
 		width: 345px;
 		padding: 30px 20px;
-		font-size: 14px;
-		color: #4d5668;
+		font-size: 16px;
 	}
 
 	li {
 		padding-bottom: 23px;
 		position: relative;
+		color: #4d5668;
+	}
+
+	section ul li:hover {
+		color: #3f7e77;
 	}
 
 	li:last-child {
 		margin-bottom: 0;
+	}
+
+	ul li a:link,
+	ul li a:visited,
+	ul li a:active {
+		color: #4d5668;
 	}
 
 	.popup {
@@ -128,10 +141,18 @@
 		z-index: 10000000000;
 		background-color: #f8f5e6;
 		top: 0px;
-		display: none;
+		/* display: none; */
+		visibility: hidden;
+		opacity: 0;
+		transition: 0.5s;
+	}
+
+	.popup li router-link a {
+		color: #4d5668 !important;
 	}
 
 	li:hover .popup {
-		display: block;
+		visibility: visible;
+		opacity: 1;
 	}
 </style>

@@ -7,7 +7,7 @@
 			<div class="resultItem">
 				<div class="resultItem__logo">
 					<div class="resultItem__img">
-						<img src="../../assets/image/results/1.png" alt="" />
+						<img src="../../assets/image/results/1.svg" alt="" />
 					</div>
 				</div>
 				<div class="resultItem__text">
@@ -21,7 +21,7 @@
 			<div class="resultItem">
 				<div class="resultItem__logo">
 					<div class="resultItem__img">
-						<img src="../../assets/image/results/2.png" alt="" />
+						<img src="../../assets/image/results/2.svg" alt="" />
 					</div>
 				</div>
 				<div class="resultItem__text">
@@ -35,7 +35,7 @@
 			<div class="resultItem">
 				<div class="resultItem__logo">
 					<div class="resultItem__img">
-						<img src="../../assets/image/results/3.png" alt="" />
+						<img src="../../assets/image/results/3.svg" alt="" />
 					</div>
 				</div>
 				<div class="resultItem__text">
@@ -49,7 +49,7 @@
 			<div class="resultItem">
 				<div class="resultItem__logo">
 					<div class="resultItem__img">
-						<img src="../../assets/image/results/4.png" alt="" />
+						<img src="../../assets/image/results/4.svg" alt="" />
 					</div>
 				</div>
 				<div class="resultItem__text">
@@ -63,7 +63,7 @@
 			<div class="resultItem">
 				<div class="resultItem__logo">
 					<div class="resultItem__img">
-						<img src="../../assets/image/results/5.png" alt="" />
+						<img src="../../assets/image/results/5.svg" alt="" />
 					</div>
 				</div>
 				<div class="resultItem__text">
@@ -77,7 +77,7 @@
 			<div class="resultItem">
 				<div class="resultItem__logo">
 					<div class="resultItem__img">
-						<img src="../../assets/image/results/6.png" alt="" />
+						<img src="../../assets/image/results/6.svg" alt="" />
 					</div>
 				</div>
 				<div class="resultItem__text">
@@ -91,7 +91,7 @@
 			<div class="resultItem">
 				<div class="resultItem__logo">
 					<div class="resultItem__img">
-						<img src="../../assets/image/results/7.png" alt="" />
+						<img src="../../assets/image/results/7.svg" alt="" />
 					</div>
 				</div>
 				<div class="resultItem__text">
@@ -176,6 +176,6 @@
 
 	.resultItem__percent p {
 		margin: 0;
-		font-weight: bolder;
+		font-family: 'Gilroy-Bold' er;
 	}
 </style>

@@ -62,7 +62,7 @@
 	}
 
 	.bannerPromoResearchSection-container h2 {
-		font-weight: 900;
+		/* font-weight: 900; */
 		font-size: 36px;
 		line-height: 45px;
 		margin: 18px auto;

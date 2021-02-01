@@ -61,7 +61,8 @@
 
 	.memberItem__memberName {
 		font-size: 15px;
-		font-weight: 700;
+		color: #3f7e77;
+		/* font-weight: 700; */
 	}
 
 	.memberItem__textContent > p:last-child {

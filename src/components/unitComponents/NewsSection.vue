@@ -121,7 +121,7 @@
 	}
 
 	h3 {
-		font-weight: 900;
+		/* font-weight: 900; */
 		margin: 17px 0 8px 0;
 		height: 20px;
 		white-space: nowrap;

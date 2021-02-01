@@ -103,7 +103,7 @@
 	}
 	h3,
 	h2 {
-		font-weight: bold;
+		font-family: 'Gilroy-Bold';
 		font-size: 24px;
 		line-height: 29px;
 		color: #3f7e77;
@@ -210,7 +210,7 @@
 		margin: 0;
 	}
 	.project-container-block p {
-		font-weight: 600;
+		/* font-weight: 600; */
 		font-size: 9px;
 		line-height: 11px;
 		text-align: center;

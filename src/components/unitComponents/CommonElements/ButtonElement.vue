@@ -28,7 +28,7 @@
 		background: #3f7e77;
 		border-radius: 54px;
 		margin: auto;
-		font-weight: bold;
+		font-family: 'Gilroy-Bold';
 		color: #f8f5e6;
 		padding: 16px;
 		font-size: 18px;
