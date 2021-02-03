@@ -50,7 +50,7 @@
 						<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
 							<p>
 								Всероссийский институт генетических ресурсов растений имени Н.И.
-								Вавиловаы
+								Вавилова
 							</p>
 						</router-link>
 						<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
