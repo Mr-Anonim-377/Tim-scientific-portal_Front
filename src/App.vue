@@ -77,7 +77,7 @@
 		min-height: 100vh;
 		height: 100%;
 		width: 100%;
-		min-width: 1300px;
+		min-width: 1440px;
 		cursor: default;
 		text-decoration: none;
 	}
@@ -92,7 +92,8 @@
 	}
 
 	.content {
-		min-height: calc(100vh - 377px);
+		/* min-height: calc(100vh - 817px); */
+		min-height: 100vh;
 	}
 
 	ul li a:link,

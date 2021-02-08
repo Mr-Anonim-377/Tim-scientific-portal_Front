@@ -246,7 +246,8 @@
 		position: relative;
 	}
 
-	.headerSection-container router-link {
+	.headerSection-container router-link,
+	.headerSection-container a {
 		position: relative;
 	}
 	.headerSection__navigation p {

@@ -117,6 +117,8 @@
 		padding-bottom: 23px;
 		position: relative;
 		color: #4d5668;
+		font-family: Gilroy-Bold;
+		list-style: disc;
 	}
 
 	section ul li:hover {

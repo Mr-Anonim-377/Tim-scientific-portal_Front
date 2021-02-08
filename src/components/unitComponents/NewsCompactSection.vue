@@ -68,7 +68,7 @@
 </script>
 
 <style scoped>
-	/*Новости*/
+	/* Новости */
 	.newsSection {
 		text-align: center;
 		max-width: 1141px;
@@ -87,6 +87,11 @@
 		height: 710px;
 		overflow: scroll;
 		overflow-x: hidden;
+	}
+
+	/* Скрываем полосу прокрутки */
+	.newsSection-container::-webkit-scrollbar {
+		width: 0;
 	}
 
 	.news-item {

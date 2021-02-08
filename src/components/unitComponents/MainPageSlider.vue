@@ -348,7 +348,7 @@
 	}
 
 	.news-slider__slide h3 {
-		z-index: 123123213123;
+		z-index: 1488888;
 	}
 
 	.news-slider .news-slider__slide:nth-child(1) {
