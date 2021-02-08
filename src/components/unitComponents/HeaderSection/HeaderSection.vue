@@ -29,39 +29,41 @@
 					<div class="popup-arrow"></div>
 
 					<div class="popup">
-						<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+						<a href="https://www.timacad.ru/">
 							<p>
 								Российский государственный аграрный университет - МСХА имени К. А.
 								Тимирязева
 							</p>
-						</router-link>
-						<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+						</a>
+
+						<a href="https://spbu.ru/">
 							<p>Санкт-Петербурский государственный университет</p>
-						</router-link>
-						<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+						</a>
+						<a href="https://arriam.ru/">
 							<p>
 								Всероссийский научно-исследовательский институт сельскохозяйственной
 								микробиологии
 							</p>
-						</router-link>
-						<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+						</a>
+
+						<a href="http://esoil.ru/>">
 							<p>ФИЦ "Почвенный институт имени В.В. Докучаева</p>
-						</router-link>
-						<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+						</a>
+
+						<a href="https://www.vir.nw.ru/">
 							<p>
 								Всероссийский институт генетических ресурсов растений имени Н.И.
 								Вавилова
 							</p>
-						</router-link>
-						<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+						</a>
+
+						<a href="http://www.frccsc.ru/">
 							<p>ФИЦ "Информатика и управление" РАН</p>
-						</router-link>
-						<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+						</a>
+
+						<a href="https://www.fbras.ru/">
 							<p>ФИЦ "Фундаменальные основы биотехнологии" РАН</p>
-						</router-link>
-						<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
-							<p>Официальные документы</p>
-						</router-link>
+						</a>
 					</div>
 				</div>
 
