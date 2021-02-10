@@ -107,7 +107,8 @@
 	p,
 	h3 {
 		font-size: 16px;
-		font-family: 'Gilroy-Bold';
+		font-family: Roboto;
+		/* font-family: 'Gilroy-Bold'; */
 		color: #4d5668;
 		line-height: 109.19%;
 	}
@@ -160,5 +161,33 @@
 	.news__btn {
 		display: none;
 		margin: 26px auto 32px auto;
+	}
+
+	@media (max-width: 1650px) {
+		.newsSection {
+			width: 285px;
+			font-size: 14px;
+		}
+
+		.newsSection-container {
+			width: 265px;
+			margin: auto;
+			/* padding: 0; */
+			height: 778px;
+		}
+
+		.news-item-title {
+			width: 190px;
+		}
+
+		.news-item {
+			width: inherit;
+			margin: 0 auto 20px;
+		}
+
+		p,
+		h3 {
+			font-size: 14px;
+		}
 	}
 </style>

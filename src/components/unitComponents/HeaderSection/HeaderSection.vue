@@ -24,7 +24,7 @@
 		<div class="headerSection__navigation">
 			<div class="headerSection__navigation-container">
 				<div class="headerSection__item">
-					<p>Участники консорциума НЦМУ "Агротехнологии будущего"</p>
+					<p>Участники консорциума НЦМУ</p>
 
 					<div class="popup-arrow"></div>
 
@@ -143,7 +143,7 @@
 	a {
 		cursor: pointer;
 		text-decoration: none;
-		font-size: 15px;
+		font-size: 14px;
 		line-height: 18px;
 		color: #3f7e77;
 	}
@@ -226,7 +226,7 @@
 		height: 20px;
 		border: none;
 		position: absolute;
-		right: 17px;
+		right: 42px;
 		text-decoration: none;
 		background-color: #ffffff;
 		outline: none;
@@ -242,7 +242,7 @@
 		display: flex;
 		text-align: center;
 		margin: auto;
-		max-width: 1435px;
+		max-width: 1200px;
 		position: relative;
 	}
 
@@ -322,10 +322,10 @@
 	}
 
 	.popup p {
-		margin: 0 0 15px;
+		margin: 0 0 20px;
 		font-size: 14px;
 		line-height: 17px;
 		text-align: left;
-		max-width: 500px;
+		max-width: 250px;
 	}
 </style>

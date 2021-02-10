@@ -57,9 +57,12 @@
 
 	.compact-title h2 {
 		font-size: 26px;
-		font-family: 'Gilroy-Bold';
+		font-family: Roboto;
+		/* font-family: 'Gilroy-Bold'; */
 		color: #3f7e77;
 		margin-left: 18px;
 		letter-spacing: 0.21px;
+		margin-bottom: 10px;
+		margin-top: 10px;
 	}
 </style>

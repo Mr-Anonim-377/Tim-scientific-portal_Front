@@ -47,6 +47,19 @@
 				visibleNews: true,
 			};
 		},
+
+		// Пробовал что-нибудь решить с перезагрузкой при изменении урла
+
+		// watch: {
+		// 	$route: {
+		// 		immediate: true,
+		// 		handler() {
+		// 			// this.$forceUpdate();
+		// 			this.loadSuccess = false;
+		// 			console.log(1213);
+		// 		},
+		// 	},
+		// },
 	};
 </script>
 

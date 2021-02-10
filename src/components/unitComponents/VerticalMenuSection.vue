@@ -117,7 +117,8 @@
 		padding-bottom: 23px;
 		position: relative;
 		color: #4d5668;
-		font-family: Gilroy-Bold;
+		/* font-family: Gilroy-Bold; */
+		font-family: Roboto;
 		list-style: disc;
 	}
 
@@ -143,7 +144,6 @@
 		z-index: 10000000000;
 		background-color: #f8f5e6;
 		top: 0px;
-		/* display: none; */
 		visibility: hidden;
 		opacity: 0;
 		transition: 0.5s;
@@ -156,5 +156,33 @@
 	li:hover .popup {
 		visibility: visible;
 		opacity: 1;
+	}
+
+	@media (max-width: 1650px) {
+		section {
+			width: 285px;
+			padding: 0px 20px;
+			height: 590px;
+		}
+
+		ul {
+			padding: 30px 20px;
+			margin: 0;
+			font-size: 14px;
+			/* padding-inline-start: 40px; */
+		}
+
+		.popup {
+			padding-bottom: 10px;
+		}
+
+		.popup ul {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+
+		li {
+			padding-bottom: 20px;
+		}
 	}
 </style>

@@ -45,13 +45,13 @@
 				sliderDataIndex: 0,
 				positions: {
 					circle1: {
-						transform: 'translatex(710px)',
+						transform: 'translatex(0)',
 					},
 					circle2: {
 						transform: 'translatex(0)',
 					},
 					circle3: {
-						transform: 'translatex(-710px)',
+						transform: 'translatex(0)',
 					},
 				},
 
@@ -67,9 +67,14 @@
 				this.dots = $('.news-slider__dot');
 			},
 
-			moveCircle(index, position) {
-				this.circles.eq(index).css('width', this.positions[position].width);
-				this.circles.eq(index).css('transform', this.positions[position].transform);
+			moveCircle(index, position, dinamicPosition) {
+				if (!dinamicPosition) {
+					// this.circles.eq(index).css('width', this.positions[position].width);
+					this.circles.eq(index).css('transform', this.positions[position].transform);
+				} else {
+					// this.circles.eq(index).css('width', this.positions[position].width);
+					this.circles.eq(index).css('transform', $('.'));
+				}
 			},
 
 			changePosition(i, arr, isNext) {
@@ -152,17 +157,35 @@
 					}, 1000);
 				}
 			},
+
+			changeTransformValue() {
+				let transformValue = Number;
+				console.log(window);
+				if (window.innerWidth <= 1650) {
+					transformValue = 590;
+				} else {
+					transformValue = 710;
+				}
+
+				this.positions.circle1.transform = `translatex(${transformValue}px)`;
+				this.positions.circle3.transform = `translatex(-${transformValue}px)`;
+			},
 		},
 
 		async created() {
-			// console.log(this.sectionData);
-
 			for (let i = 0; i < this.sectionData.length; i++) {
 				this.sliderData.push({
 					url: this.sectionData[i].image,
 					title: this.sectionData[i].title,
 				});
 			}
+
+			// Получаем размер окна для translate
+			this.changeTransformValue();
+			// Следим за изменением размера окна для корректной работы translate
+			window.onresize = () => {
+				this.changeTransformValue();
+			};
 
 			console.log(this.sliderData);
 			console.log(this.sliderData[this.sliderDataIndex].url);
@@ -179,7 +202,7 @@
 
 			// Начальное положение картинок
 			$('.news-slider__slide:nth-child(2)')
-				.css('background', `url(${this.sliderData[this.sliderDataIndex].url})`)
+				.css('background-image', `url(${this.sliderData[this.sliderDataIndex].url})`)
 				.children('h3')
 				.text(this.sliderData[this.sliderDataIndex].title);
 
@@ -287,8 +310,8 @@
 	}
 
 	.news-slider__view {
-		width: 710px;
-		height: 710px;
+		width: inherit;
+		height: inherit;
 		overflow: hidden;
 		position: relative;
 	}
@@ -296,7 +319,7 @@
 	.news-slider__controls {
 		height: 25px;
 		position: absolute;
-		background-color: white;
+		/* background-color: white; */
 		bottom: -50px;
 		display: flex;
 		justify-content: center;
@@ -392,5 +415,40 @@
 
 	.news-slider__dot_active {
 		background-color: #3f7e77;
+	}
+
+	@media (max-width: 1650px) {
+		.news-slider {
+			width: 590px;
+			height: 590px;
+		}
+
+		.news-slider__controls {
+			bottom: 13px;
+		}
+
+		.news-slider__dot {
+			border: 2px solid white;
+			background-color: transparent;
+		}
+
+		.news-slider__dot_active {
+			background-color: #3f7e77;
+		}
+
+		.news-slider__arrow {
+			background-image: url('../../assets/image/arrowWhite.svg');
+		}
+
+		.news-slider .news-slider__slide:nth-child(1) {
+			transform: translatex(590px);
+			background-color: #cdf0cc;
+		}
+
+		.news-slider__slide:nth-child(3) {
+			transform: translatex(-590px);
+			background-color: #ccdff0;
+			z-index: 0;
+		}
 	}
 </style>

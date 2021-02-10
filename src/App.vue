@@ -71,7 +71,8 @@
 		overflow-x: hidden;
 		padding: 0;
 		margin: 0;
-		font-family: 'Gilroy-Medium';
+		/* font-family: 'Gilroy-Medium'; */
+		font-family: Roboto;
 		background-color: #ffffff;
 		box-sizing: border-box;
 		min-height: 100vh;
@@ -80,6 +81,12 @@
 		min-width: 1440px;
 		cursor: default;
 		text-decoration: none;
+	}
+
+	@media (max-width: 1650px) {
+		body {
+			min-width: 0;
+		}
 	}
 
 	a {

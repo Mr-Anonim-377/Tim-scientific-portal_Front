@@ -60,7 +60,8 @@
 	}
 
 	p {
-		font-family: 'Gilroy-Bold';
+		/* font-family: 'Gilroy-Bold'; */
+		font-family: Roboto;
 		font-weight: normal;
 		font-size: 18px;
 		line-height: 22px;

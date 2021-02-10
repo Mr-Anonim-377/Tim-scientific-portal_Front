@@ -396,7 +396,8 @@
 
 	.consortium-content h3 {
 		font-size: 24px;
-		font-family: 'Gilroy-Bold';
+		font-family: Roboto;
+		/* font-family: 'Gilroy-Bold'; */
 	}
 
 	.consortium-content p {

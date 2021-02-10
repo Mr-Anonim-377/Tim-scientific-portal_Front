@@ -17,7 +17,6 @@
 <script>
 	import Preloader from './../unitComponents/CommonElements/Preloader';
 	import mixin from '../../utils/methodsMixin';
-
 	import BannerPromoResearchSection from '../unitComponents/BannerPromoResearchSection';
 	import ResearchSection from '../unitComponents/ResearchSection';
 

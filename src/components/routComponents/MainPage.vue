@@ -133,6 +133,42 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		order: 0;
+	}
+
+	@media (max-width: 1650px) {
+		.container_mainPage {
+			width: 1200px;
+		}
+
+		.grid {
+			margin: 20px auto;
+		}
+
+		.plug-menu {
+			width: 285px;
+		}
+		/* Адаптив для блока слайдера */
+		.plug-slider {
+			width: 590px;
+		}
+
+		/* Адаптив для блока новостей */
+		.plug-news {
+			width: 285px;
+			height: 590px;
+			/* position: absolute; */
+		}
+
+		.plug-calendar {
+			width: 895px;
+		}
+
+		.plug_group {
+			order: 1;
+			margin: auto;
+			width: 100%;
+		}
 	}
 
 	[class^='plug'] {
@@ -230,7 +266,7 @@
 		background: #3f7e77;
 		border-radius: 54px;
 		margin: auto;
-		font-family: 'Gilroy-Bold';
+		font-family: 'Roboto';
 		/* font-family: 'Gilroy-Bold'; */
 		font-size: 24px;
 		line-height: 29px;

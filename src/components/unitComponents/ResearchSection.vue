@@ -43,7 +43,7 @@
 						'width: 170px; height: 35px; font-size: 14px; line-height: 17px; padding: 10px;',
 					],
 				},
-				titleResearch: 'Исследователи',
+				titleResearch: 'Исследования',
 				visibleResearch: true,
 			};
 		},
@@ -87,7 +87,8 @@
 	.research-block h3 {
 		width: 193px;
 		height: 212px;
-		font-family: 'Gilroy-Bold';
+		font-family: Roboto;
+		/* font-family: 'Gilroy-Bold'; */
 		font-size: 15px;
 		line-height: 18px;
 		margin: auto;

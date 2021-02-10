@@ -51,7 +51,8 @@
 	.waysSection__text h2 {
 		font-size: 24px;
 		line-height: 29px;
-		font-family: 'Gilroy-Bold';
+		font-family: Roboto;
+		/* font-family: 'Gilroy-Bold'; */
 		text-overflow: clip;
 		overflow: hidden;
 		max-height: 85px;

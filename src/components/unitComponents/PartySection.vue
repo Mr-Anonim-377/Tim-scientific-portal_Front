@@ -103,7 +103,8 @@
 	}
 	h3,
 	h2 {
-		font-family: 'Gilroy-Bold';
+		font-family: Roboto;
+		/* font-family: 'Gilroy-Bold'; */
 		font-size: 24px;
 		line-height: 29px;
 		color: #3f7e77;

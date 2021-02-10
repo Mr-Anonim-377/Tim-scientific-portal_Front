@@ -119,7 +119,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: 1440px;
+		/* width: 1440px; */
 		background-color: #f8f5e6;
 		/* margin: auto; */
 	}

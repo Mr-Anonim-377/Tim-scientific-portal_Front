@@ -180,7 +180,7 @@
 		position: relative;
 	}
 	.footerNav-container {
-		width: 1433px;
+		width: 1200px;
 		margin: auto;
 		display: flex;
 		justify-content: space-between;
@@ -217,7 +217,7 @@
 	}
 
 	.footer-links {
-		width: 1433px;
+		width: 1200px;
 		margin: 30px auto;
 		display: flex;
 		justify-content: space-between;
@@ -245,7 +245,8 @@
 
 	/*контакты*/
 	.footerContact__text {
-		font-family: 'Gilroy-Bold';
+		font-family: Roboto;
+		/* font-family: 'Gilroy-Bold'; */
 		font-size: 24px;
 		position: relative;
 		letter-spacing: 0.01em;

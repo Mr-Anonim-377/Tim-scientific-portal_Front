@@ -176,6 +176,13 @@
 
 	.resultItem__percent p {
 		margin: 0;
-		font-family: 'Gilroy-Bold' er;
+		font-family: Roboto;
+		/* font-family: 'Gilroy-Bold'; */
+	}
+
+	@media (max-width: 1650px) {
+		.container {
+			margin: auto;
+		}
 	}
 </style>

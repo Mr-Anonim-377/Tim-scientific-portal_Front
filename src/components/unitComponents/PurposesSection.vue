@@ -59,6 +59,16 @@
 		/* margin: 100px -78px 0 -78px; */
 	}
 
+	@media (max-width: 1650px) {
+		.purposesMainSection {
+			max-width: 100%;
+		}
+
+		.purposesMainSection-container {
+			justify-content: space-around;
+		}
+	}
+
 	/* .purposes-item { */
 	/* FIXME Поправить */
 	/* margin: 0 38px; */

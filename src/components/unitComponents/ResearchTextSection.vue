@@ -91,7 +91,8 @@
 	}
 
 	.researchText__title {
-		font-family: 'Gilroy-Bold';
+		font-family: Roboto;
+		/* font-family: 'Gilroy-Bold'; */
 		font-size: 24px;
 		color: white;
 		color: #f8f5e6;

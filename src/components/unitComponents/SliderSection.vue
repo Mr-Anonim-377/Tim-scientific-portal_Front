@@ -347,7 +347,8 @@
 	}
 
 	.slider-right-text p:nth-child(1) {
-		font-family: 'Gilroy-Bold';
+		font-family: Roboto;
+		/* font-family: 'Gilroy-Bold'; */
 	}
 
 	.slider-right-text p:nth-child(1)::after {
