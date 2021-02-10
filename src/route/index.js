@@ -9,6 +9,11 @@ import ResearchAllPage from "../components/routComponents/ResearchAllPage";
 import newsItem from '../components/routComponents/NewsItemsPage';
 import party from  '../components/routComponents/PartyPage';
 import contacts from '../components/routComponents/ContactsPage';
+import form from '../components/routComponents/FormPage';
+import progress from '../components/routComponents/ProgressPage';
+import colleagues from '../components/routComponents/ColleaguesPage';
+import account from '../components/routComponents/AccountPage';
+import project from '../components/routComponents/ProjectPage';
 
 const routes = [
 	{
@@ -64,7 +69,34 @@ const routes = [
 		path: '/contacts',
 		name: 'contacts',
 		component: contacts,
-	}
+	},
+	{
+		path: "/form",
+		name: "form",
+		component: form,
+	},
+	{
+		path: "/progress",
+		name: "progress",
+		component: progress,
+	},
+	{
+		path: "/colleagues",
+		name: "colleagues",
+		component: colleagues,
+	},
+	{
+		path: "/account",
+		name: "account",
+		component: account,
+	},
+	{
+		path: "/project",
+		name: "project",
+		component: project,
+	},
+
+
 ];
 
 const router = createRouter({
