@@ -124,7 +124,7 @@
 		width: 1075px;
 		display: flex;
 		justify-content: space-between;
-		/* margin-top: 50px; */
+		/* margin-top: 20px; */
 		margin: 20px 0;
 		padding: 0 35px;
 	}
@@ -183,6 +183,7 @@
 	@media (max-width: 1650px) {
 		.container {
 			margin: auto;
+			margin-top: 25px;
 		}
 	}
 </style>

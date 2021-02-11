@@ -8,7 +8,7 @@
 			<div class="footerNav-container">
 				<div class="footerNav-item">
 					<h3>Участники консорциума</h3>
-
+					<!-- 
 					<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
 						<p>
 							Российский государственный аграрный университет - МСХА имени К. А.
@@ -37,7 +37,42 @@
 						<p>ФИЦ "Информатика и управление" РАН</p> </router-link
 					><router-link style="text-decoration: none" :to="{ name: 'notFound' }">
 						<p>ФИЦ "Фундаменальные основы биотехнологии" РАН</p>
-					</router-link>
+					</router-link> -->
+					<a href="https://www.timacad.ru/">
+						<p>
+							Российский государственный аграрный университет - МСХА имени К. А.
+							Тимирязева
+						</p>
+					</a>
+
+					<a href="https://spbu.ru/">
+						<p>Санкт-Петербурский государственный университет</p>
+					</a>
+					<a href="https://arriam.ru/">
+						<p>
+							Всероссийский научно-исследовательский институт сельскохозяйственной
+							микробиологии
+						</p>
+					</a>
+
+					<a href="http://esoil.ru/>">
+						<p>ФИЦ "Почвенный институт имени В.В. Докучаева</p>
+					</a>
+
+					<a href="https://www.vir.nw.ru/">
+						<p>
+							Всероссийский институт генетических ресурсов растений имени Н.И.
+							Вавилова
+						</p>
+					</a>
+
+					<a href="http://www.frccsc.ru/">
+						<p>ФИЦ "Информатика и управление" РАН</p>
+					</a>
+
+					<a href="https://www.fbras.ru/">
+						<p>ФИЦ "Фундаменальные основы биотехнологии" РАН</p>
+					</a>
 				</div>
 				<div class="footerNav-item">
 					<h3>О программе</h3>
@@ -143,11 +178,13 @@
 
 <style scoped>
 	span,
-	p {
+	p,
+	a {
 		cursor: pointer;
 		font-size: 15px;
 		color: #f8f5e6;
 		line-height: 17px;
+		text-decoration: none;
 	}
 
 	.footerSection {
