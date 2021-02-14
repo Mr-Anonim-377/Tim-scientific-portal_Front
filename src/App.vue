@@ -28,8 +28,6 @@
 			await this.getModulesTest('WAYS');
 			await this.getModulesTest('NEWS_PAGE');
 			this.loadSuccess = true;
-
-			console.log(this.modules);
 		},
 
 		data() {

@@ -1,64 +1,64 @@
-import { createRouter, createWebHistory } from "vue-router";
-import main from "../components/routComponents/MainPage";
-import notFound from "../components/routComponents/404Page";
-import consortium from "../components/routComponents/ConsortiumPage";
-import ways from "../components/routComponents/WaysPage";
-import news from "../components/routComponents/NewsPage";
-import ResearchPage from "../components/routComponents/ResearchPage";
-import ResearchAllPage from "../components/routComponents/ResearchAllPage";
+import { createRouter, createWebHistory } from 'vue-router';
+import main from '../components/routComponents/MainPage';
+import notFound from '../components/routComponents/404Page';
+import consortium from '../components/routComponents/ConsortiumPage';
+import ways from '../components/routComponents/WaysPage';
+import news from '../components/routComponents/NewsPage';
+import ResearchPage from '../components/routComponents/ResearchPage';
+import ResearchAllPage from '../components/routComponents/ResearchAllPage';
 import newsItem from '../components/routComponents/NewsItemsPage';
-import party from  '../components/routComponents/PartyPage';
+import party from '../components/routComponents/PartyPage';
 import contacts from '../components/routComponents/ContactsPage';
 import form from '../components/routComponents/FormPage';
 import progress from '../components/routComponents/ProgressPage';
 import colleagues from '../components/routComponents/ColleaguesPage';
 import account from '../components/routComponents/AccountPage';
 import project from '../components/routComponents/ProjectPage';
+import auth from '../components/unitComponents/AuthorizationeSection';
 
 const routes = [
 	{
-		path: "/",
-		name: "Main",
+		path: '/',
+		name: 'Main',
 		component: main,
 	},
 	{
-		path: "/consortium",
-		name: "Consortium",
+		path: '/consortium',
+		name: 'Consortium',
 		component: consortium,
 	},
 	{
-		path: "/404",
-		name: "notFound",
+		path: '/404',
+		name: 'notFound',
 		component: notFound,
 	},
 	{
-		path: "/ways",
-		name: "ways",
+		path: '/ways',
+		name: 'ways',
 		component: ways,
 	},
 	{
-		path: "/news",
-		name: "news",
+		path: '/news',
+		name: 'news',
 		component: news,
 	},
 	{
-		path: "/research/:pageId",
-		name: "research",
+		path: '/research/:pageId',
+		name: 'research',
 		component: ResearchPage,
-		props: true
+		props: true,
 	},
 	{
-		path: "/all-research/:pageId",
-		name: "all-research",
+		path: '/all-research/:pageId',
+		name: 'all-research',
 		component: ResearchAllPage,
-		props: true
-
+		props: true,
 	},
 	{
 		path: '/newsItem/:pageId',
 		name: 'newsItem',
 		component: newsItem,
-		props: true
+		props: true,
 	},
 	{
 		path: '/party',
@@ -71,32 +71,35 @@ const routes = [
 		component: contacts,
 	},
 	{
-		path: "/form",
-		name: "form",
+		path: '/form',
+		name: 'form',
 		component: form,
 	},
 	{
-		path: "/progress",
-		name: "progress",
+		path: '/progress',
+		name: 'progress',
 		component: progress,
 	},
 	{
-		path: "/colleagues",
-		name: "colleagues",
+		path: '/colleagues',
+		name: 'colleagues',
 		component: colleagues,
 	},
 	{
-		path: "/account",
-		name: "account",
+		path: '/account',
+		name: 'account',
 		component: account,
 	},
 	{
-		path: "/project",
-		name: "project",
+		path: '/project',
+		name: 'project',
 		component: project,
 	},
-
-
+	{
+		path: '/auth',
+		name: 'auth',
+		component: auth,
+	},
 ];
 
 const router = createRouter({
