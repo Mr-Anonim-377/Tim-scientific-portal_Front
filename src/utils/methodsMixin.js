@@ -1,70 +1,81 @@
 'use strict';
 // Глобальные методы, используемые в проекте
 
-import { mapActions } from 'vuex';
-import { setUri } from '../utils/сommonMethods';
+import {mapActions} from "vuex";
+import {setBasePath, setUri} from "../utils/сommonMethods";
 
 export default {
-	methods: {
-		...mapActions(['GET_DATA_FROM_API']),
+    methods: {
+        ...mapActions(["GET_DATA_FROM_API","POST_DATA_FROM_API"]),
 
-		// Метод для парса данных с бэка
-		// В качестве агрумента принимает строковое значение типа страницы
-		async getModulesTest(pageType, pageId) {
-			if (pageId) {
-				setUri(`/crm/v1/page/byId?pageId=${pageId}`);
-			} else {
-				setUri(`/crm/v1/page/byType?pageType=${pageType}`);
-			}
 
-			// Получаем модули
-			// Храним их в this.modules
-			await this.GET_DATA_FROM_API().then((response) => {
-				this.modules = response.data.modules;
-			});
+        customRequest(basePath,uri){
+           setBasePath(basePath)
+           setUri(uri)
+            var currentResponse;
+            this.POST_DATA_FROM_API().then((response) => {
+                currentResponse = response;
+            })
+            return currentResponse;
+        },
 
-			for (let module in this.modules) {
-				let moduleID = this.modules[module].id;
 
-				setUri(`/crm/v1/page/modules/objects?moduleId=${moduleID}`);
+        // Метод для парса данных с бэка
+        // В качестве агрумента принимает строковое значение типа страницы
+        async getModulesTest(pageType, pageId) {
+            if (pageId) {
+                setUri(`/crm/v1/page/byId?pageId=${pageId}`);
+            } else {
+                setUri(`/crm/v1/page/byType?pageType=${pageType}`);
+            }
 
-				await this.GET_DATA_FROM_API().then((response) => {
-					let moduleType = this.modules[module].moduleType;
+            // Получаем модули
+            // Храним их в this.modules
+            await this.GET_DATA_FROM_API().then((response) => {
+                this.modules = response.data.modules;
+            });
 
-					this[moduleType] = [];
+            for (let module in this.modules) {
+                let moduleID = this.modules[module].id;
 
-					response.data.forEach((moduleItem) => {
-						if (!this[moduleType][moduleItem.objectType]) this[moduleType][moduleItem.objectType] = [];
+                setUri(`/crm/v1/page/modules/objects?moduleId=${moduleID}`);
 
-						let titleValue = moduleItem.contents
-							.filter((item) => item.contentType === 'TITLE')
-							.map((item) => item.value.text)
-							.join(' ; ');
+                await this.GET_DATA_FROM_API().then((response) => {
+                    let moduleType = this.modules[module].moduleType;
 
-						let textValue = moduleItem.contents
-							.filter((item) => item.contentType === 'TEXT')
-							.map((item) => item.value.text)
-							.join(' ; ');
+                    this[moduleType] = [];
 
-						let imageValue = moduleItem.contents
-							.filter((item) => item.contentType === 'IMAGE')
-							.map((item) => item.value.url)
-							.join(' ; ');
+                    response.data.forEach(moduleItem => {
 
-						let dateValue = moduleItem.contents
-							.filter((item) => item.contentType === 'DATE')
-							.map((item) => item.value.date)
-							.join(' ; ');
+                        if (!this[moduleType][moduleItem.objectType]) this[moduleType][moduleItem.objectType] = [];
 
-						this[moduleType][moduleItem.objectType].push({
-							title: titleValue ? titleValue : null,
+                        let titleValue = moduleItem.contents.filter(
+                            (item) => item.contentType === "TITLE"
+                        )
+                            .map(item => item.value.text).join(" ; ");
 
-							text: textValue ? textValue : null,
 
-							image: imageValue ? imageValue : null,
+                        let textValue = moduleItem.contents.filter(
+                            (item) => item.contentType === "TEXT"
+                        )
+                            .map(item => item.value.text).join(" ; ");
 
-							date: dateValue ? dateValue : null,
+                        let imageValue = moduleItem.contents.filter(
+                            (item) => item.contentType === "IMAGE"
+                        )
+                            .map(item => item.value.url).join(" ; ");
 
+                        let dateValue = moduleItem.contents.filter(
+                            (item) => item.contentType === "DATE"
+                        )
+                            .map(item => item.value.date).join(" ; ");
+
+
+                        this[moduleType][moduleItem.objectType].push({
+
+                            title: titleValue ? titleValue : null,
+
+<<<<<<< HEAD
 							_pageLink: moduleItem.pageLink,
 						});
 					});
@@ -72,4 +83,19 @@ export default {
 			}
 		},
 	},
+=======
+                            text: textValue ? textValue : null,
+
+                            image: imageValue ? imageValue : null,
+
+                            date: dateValue ? dateValue : null,
+
+                            _pageLink: moduleItem.pageLink
+                        });
+                    });
+                });
+            }
+        },
+    },
+>>>>>>> 0ff92c6266c853e1c146b1acd8f6a4b0e3985058
 };

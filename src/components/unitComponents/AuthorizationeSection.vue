@@ -1,12 +1,12 @@
 <template>
 	<section class="authorization">
 		<TitleSection :stileTitle="stileTitle.stile" :headerVisible="visibleAuthorization" :title="this.titleAuthorization" />
-		<input type="text" placeholder="Логин / Email" class="authorization__inp" />
-		<input type="text" placeholder="Пароль" class="authorization__inp inp-indent" />
+		<input type="text" placeholder="Логин / Email" class="authorization__inp" v-model="this.login" />
+		<input type="text" placeholder="Пароль" class="authorization__inp inp-indent" v-model="this.password" />
 		<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
 			<p class="authorization-text">Забыли пароль?</p>
 		</router-link>
-		<ButtonElement @click="c" :modifiers="modifiers.btn" :title="titleAuthorizationBtn" />
+		<ButtonElement :modifiers="modifiers.btn" :title="titleAuthorizationBtn" @click="this.logIn()" />
 		<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
 			<p>Зарегистрироваться</p>
 		</router-link>
@@ -16,16 +16,20 @@
 <script>
 	import TitleSection from './TitleSection';
 	import ButtonElement from '@/components/unitComponents/CommonElements/ButtonElement';
+	import testMixin from '../../utils/methodsMixin.js';
 	import axios from 'axios';
-
 	export default {
 		name: 'AuthorizationeSection',
 		components: {
 			ButtonElement,
 			TitleSection,
 		},
+		mixins: [testMixin],
 		data() {
 			return {
+				login: '',
+				password: '',
+				isAuth: Boolean,
 				visibleAuthorization: true,
 				titleAuthorization: 'Вход в личный кабинет',
 				modifiers: {
@@ -37,13 +41,23 @@
 				},
 			};
 		},
-
 		methods: {
-			// auth: function() {
-			// 	this.axios.get("http://future-agro.ru:84/user/logIn", {
-			// 		headers:
-			// 	})
-			// },
+			logIn() {
+				axios
+					.get('http://localhost:80/utils/ping', {
+						headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+						auth: {
+							username: this.login,
+							password: this.password,
+						},
+					})
+					.then((data) => {
+						return data;
+					})
+					.catch((error) => {
+						console.log(error);
+					});
+			},
 		},
 	};
 </script>
