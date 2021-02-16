@@ -31,8 +31,7 @@
 					<div class="popup">
 						<a href="https://www.timacad.ru/">
 							<p>
-								Российский государственный аграрный университет - МСХА имени К. А.
-								Тимирязева
+								Российский государственный аграрный университет - МСХА имени К. А. Тимирязева
 							</p>
 						</a>
 
@@ -41,8 +40,7 @@
 						</a>
 						<a href="https://arriam.ru/">
 							<p>
-								Всероссийский научно-исследовательский институт сельскохозяйственной
-								микробиологии
+								Всероссийский научно-исследовательский институт сельскохозяйственной микробиологии
 							</p>
 						</a>
 
@@ -52,8 +50,7 @@
 
 						<a href="https://www.vir.nw.ru/">
 							<p>
-								Всероссийский институт генетических ресурсов растений имени Н.И.
-								Вавилова
+								Всероссийский институт генетических ресурсов растений имени Н.И. Вавилова
 							</p>
 						</a>
 
@@ -79,12 +76,7 @@
 					<div class="popup-arrow"></div>
 
 					<div class="popup">
-						<router-link
-							v-for="way in ways.WAYS_ITEM"
-							:key="way"
-							style="text-decoration: none"
-							:to="{ path: `/all-research/${way._pageLink}` }"
-						>
+						<router-link v-for="way in ways.WAYS_ITEM" :key="way" style="text-decoration: none" :to="{ path: `/all-research/${way._pageLink}` }">
 							<p>
 								{{ way.title[0] + way.title.slice(1).toLowerCase() }}
 							</p>
@@ -104,21 +96,23 @@
 					<div class="popup-arrow"></div>
 
 					<div class="popup">
-						<router-link
-							v-for="newsItem in news"
-							:key="newsItem"
-							style="text-decoration: none"
-							:to="{ path: `/newsItem/${newsItem._pageLink}` }"
-						>
+						<router-link v-for="newsItem in news" :key="newsItem" style="text-decoration: none" :to="{ path: `/newsItem/${newsItem._pageLink}` }">
 							<p>
 								{{ newsItem.title }}
 							</p>
 						</router-link>
 					</div>
 				</div>
-				<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
-					<span class="login">Личный кабинет</span>
-				</router-link>
+
+				<div v-if="isAuth">
+					<!-- <span class="login">sashafdtv@gmail.com</span> -->
+				</div>
+
+				<div v-else>
+					<router-link style="text-decoration: none" :to="{ name: 'auth' }">
+						<span class="login">Личный кабинет</span>
+					</router-link>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -130,10 +124,13 @@
 		props: {
 			ways: [],
 			news: [],
+			isAuth: String,
 		},
 
 		mounted() {
 			console.log(this.news);
+			console.log(this.isAuth);
+			console.log('Авторизация в хэдере ' + this.isAuth);
 		},
 	};
 </script>
@@ -270,7 +267,7 @@
 		height: 25px;
 		background-image: url('../../../assets/image/Lk.svg');
 		background-repeat: no-repeat;
-		right: 135px;
+		left: -20px;
 		top: 15px;
 	}
 

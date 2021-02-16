@@ -1,10 +1,6 @@
 <template>
 	<div v-if="loadSuccess">
-		<HeaderSection
-			:ways="this.WAYS_ARRAY"
-			:news="this.NEWS_SLIDER.NEWS_ITEM"
-			:modifiers="modifiers.header"
-		/>
+		<HeaderSection :ways="this.WAYS_ARRAY" :news="this.NEWS_SLIDER.NEWS_ITEM" :modifiers="modifiers.header" :isAuth="this.isAuth" />
 		<router-view />
 		<FooterSection />
 	</div>
@@ -24,9 +20,24 @@
 		},
 		mixins: [testMixin],
 
+		async beforeCreate() {
+			/**
+			 * Тут проверяем, авторизован ли пользователь
+			 */
+			/**
+			 * Запрос:
+			 *
+			 * Если не авторизован -> localStorage.setItem("isAuth", false);
+			 */
+		},
+
 		async mounted() {
 			await this.getModulesTest('WAYS');
 			await this.getModulesTest('NEWS_PAGE');
+
+			// Локально устанавливаем значение для isAuth
+			this.isAuth = localStorage.getItem('isAuth') === 'true' ? true : false;
+			console.log('Авторизация: ' + this.isAuth);
 			this.loadSuccess = true;
 		},
 
@@ -36,6 +47,7 @@
 					header: ['header_border-none'],
 				},
 				loadSuccess: false,
+				isAuth: false,
 			};
 		},
 	};
@@ -143,40 +155,35 @@
 		font-family: 'Gilroy-Bold';
 		font-style: normal;
 		font-weight: normal;
-		src: local('Gilroy-Bold'),
-			url('./assets/fonts/Gilroy/bold2/Gilroy-Bold.woff') format('woff');
+		src: local('Gilroy-Bold'), url('./assets/fonts/Gilroy/bold2/Gilroy-Bold.woff') format('woff');
 	}
 
 	@font-face {
 		font-family: 'Gilroy-Heavy';
 		font-style: normal;
 		font-weight: normal;
-		src: local('Gilroy-Heavy'),
-			url('./assets/fonts/Gilroy/bold2/Gilroy-Heavy.woff') format('woff');
+		src: local('Gilroy-Heavy'), url('./assets/fonts/Gilroy/bold2/Gilroy-Heavy.woff') format('woff');
 	}
 
 	@font-face {
 		font-family: 'Gilroy-Light';
 		font-style: normal;
 		font-weight: normal;
-		src: local('Gilroy-Light'),
-			url('./assets/fonts/Gilroy/bold2/Gilroy-Light.woff') format('woff');
+		src: local('Gilroy-Light'), url('./assets/fonts/Gilroy/bold2/Gilroy-Light.woff') format('woff');
 	}
 
 	@font-face {
 		font-family: 'Gilroy-Medium';
 		font-style: normal;
 		font-weight: normal;
-		src: local('Gilroy-Medium'),
-			url('./assets/fonts/Gilroy/bold2/Gilroy-Medium.woff') format('woff');
+		src: local('Gilroy-Medium'), url('./assets/fonts/Gilroy/bold2/Gilroy-Medium.woff') format('woff');
 	}
 
 	@font-face {
 		font-family: 'Gilroy-Regular';
 		font-style: normal;
 		font-weight: normal;
-		src: local('Gilroy-Regular'),
-			url('./assets/fonts/Gilroy/bold2/Gilroy-Regular.woff') format('woff');
+		src: local('Gilroy-Regular'), url('./assets/fonts/Gilroy/bold2/Gilroy-Regular.woff') format('woff');
 	}
 
 	.swiper_slider_button_next {
