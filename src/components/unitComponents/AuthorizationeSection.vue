@@ -1,40 +1,38 @@
 <template>
-  <section class="authorization">
-    <TitleSection
-        :stileTitle="stileTitle.stile"
-        :headerVisible="visibleAuthorization"
-        :title="this.titleAuthorization"
-    />
-    <input
-        type="text"
-        placeholder="Логин / Email"
-        class="authorization__inp"
-        v-model="this.login"
-    >
-    <input
-        type="text"
-        placeholder="Пароль"
-        class="authorization__inp inp-indent"
-        v-model="this.password"
-    >
-    <router-link
-        style="text-decoration: none"
-        :to="{ name: 'notFound' }"
-    >
-      <p class="authorization-text">Забыли пароль?</p>
-    </router-link>
-    <ButtonElement
-        :modifiers="modifiers.btn"
-        :title="titleAuthorizationBtn"
-        @click="this.logIn()"
-    />
-    <router-link
-        style="text-decoration: none"
-        :to="{ name: 'notFound' }"
-    >
-      <p>Зарегистрироваться</p>
-    </router-link>
-  </section>
+  <div class="error-windows" v-if="error">
+    Ошибка Сервера!<br>
+    Перезапустите страницу
+  </div>
+  <form autocomplete="on">
+    <section class="authorization">
+      <TitleSection
+          :stileTitle="stileTitle.stile"
+          :headerVisible="visibleAuthorization"
+          :title="this.titleAuthorization"
+      />
+      <p class="error-authorization" v-if="error">*Неверный логин или пароль</p>
+      <input
+          type="text"
+          placeholder="Логин / Email"
+          class="authorization__inp"
+      >
+      <input
+          type="password"
+          placeholder="Пароль"
+          class="authorization__inp"
+      >
+      <router-link
+          style="text-decoration: none"
+          :to="{ name: 'notFound' }"
+      >
+        <p class="authorization-text">Забыли пароль?</p>
+      </router-link>
+      <ButtonElement
+          :modifiers="modifiers.btn"
+          :title="titleAuthorizationBtn"
+      />
+    </section>
+  </form>
 </template>
 
 <script>
@@ -58,7 +56,7 @@ name: "AuthorizationeSection",
       titleAuthorization: 'Вход в личный кабинет',
       modifiers: {
         btn: [
-          '    width: 331px; height: 50px; margin: 34px 0 3px 0px;',
+          '    width: 331px; height: 50px; margin: 34px 0 20px 0px;',
         ],
       },
       titleAuthorizationBtn: 'Войти',
@@ -111,10 +109,10 @@ p{
  .authorization__inp {
    width: 330px;
    /* height: 34px; */
-   font-size: 15px;
+   font-size: 18px;
    line-height: 14px;
    color: #B1B1B1;
-   margin-top: 32px;
+   margin-top: 40px;
    border: 0;
    outline: 0;
    background: transparent;
@@ -140,5 +138,25 @@ p{
    line-height: 12px;
    color: #5C5C5C;
    text-align: left;
+   cursor: pointer;
  }
+
+ .error-authorization{
+   color: red;
+   text-align: left;
+ }
+
+.error-windows {
+  width: 340px;
+  height: 77px;
+  text-align: center;
+  padding: 15px;
+  border: 3px solid #3F7E77;
+  background: #f8f5e6;
+  border-radius: 10px;
+  color: #3F7E77;
+  position: absolute;
+  left: 61%;
+  top: 1%;
+}
 </style>

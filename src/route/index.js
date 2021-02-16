@@ -15,6 +15,7 @@ import colleagues from '../components/routComponents/ColleaguesPage';
 import account from '../components/routComponents/AccountPage';
 import project from '../components/routComponents/ProjectPage';
 import auth from '../components/unitComponents/AuthorizationeSection';
+import documents from '../components/routComponents/DocumentsPage';
 
 const routes = [
 	{
@@ -100,6 +101,13 @@ const routes = [
 		name: 'auth',
 		component: auth,
 	},
+    {
+        path:'/documents',
+        name: 'documents',
+        component: documents,
+    }
+
+
 ];
 
 const router = createRouter({
