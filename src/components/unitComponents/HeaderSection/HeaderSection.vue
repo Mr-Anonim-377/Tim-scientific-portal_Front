@@ -150,12 +150,6 @@
 			isAuth: String,
 		},
 
-		mounted() {
-			console.log(this.news);
-			console.log(this.isAuth);
-			console.log('Авторизация в хэдере ' + this.isAuth);
-		},
-
 		methods: {
 			logOut() {
 				localStorage.setItem('isAuth', false);
@@ -169,11 +163,9 @@
 						// console.log('Авторизация пройдена');
 						// this.isAuth = false;
 						localStorage.setItem('isAuth', false);
-						console.log(1);
 					})
 					.catch(() => {
 						localStorage.setItem('isAuth', false);
-						console.log(0);
 					});
 			},
 		},

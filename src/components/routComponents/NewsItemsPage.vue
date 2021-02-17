@@ -49,7 +49,6 @@
 			setTimeout(() => {
 				this.loadSucces = true;
 			}, 500);
-			console.log(this.NEWS_IMAGE_CAROUSEL);
 		},
 	};
 </script>

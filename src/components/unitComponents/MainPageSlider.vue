@@ -152,7 +152,6 @@
 
 			changeTransformValue() {
 				let transformValue = Number;
-				console.log(window);
 				if (window.innerWidth <= 1650) {
 					transformValue = 590;
 				} else {
@@ -178,20 +177,11 @@
 			window.onresize = () => {
 				this.changeTransformValue();
 			};
-
-			console.log(this.sliderData);
-			console.log(this.sliderData[this.sliderDataIndex].url);
-		},
-
-		beforeRouteUpdate() {
-			console.log('обновляем роут');
 		},
 
 		async mounted() {
 			// Получаем dom элементы
 			this.getDOM();
-
-			console.log(this.$route.name);
 
 			$('.news-slider__slide:nth-child(3)')
 				.css('background-image', `url(${this.sliderData[this.sliderData.length - 1].url}`)
@@ -296,7 +286,6 @@
 			let sliderAutoClick = () => {
 				setTimeout(() => {
 					if (!this.isArrowClicked && this.$route.name === 'Main') {
-						console.log('settimes');
 						$($arrow).trigger('click');
 						sliderAutoClick();
 					}

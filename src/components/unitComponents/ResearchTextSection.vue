@@ -46,10 +46,6 @@
 		props: {
 			sectionData: [],
 		},
-
-		mounted() {
-			console.log(this.sectionData);
-		},
 	};
 </script>
 

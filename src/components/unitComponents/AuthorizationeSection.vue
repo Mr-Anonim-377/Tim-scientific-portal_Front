@@ -49,8 +49,6 @@
 		},
 		methods: {
 			logIn() {
-				console.log(this.login);
-				console.log(this.password);
 				axios
 					.get('http://localhost:1024/user/logIn', {
 						headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
@@ -60,7 +58,6 @@
 						},
 					})
 					.then(() => {
-						console.log('Авторизация пройдена');
 						localStorage.setItem('isAuth', true);
 						// Тут имя аккаунта
 						localStorage.setItem('accountName', '');
@@ -75,9 +72,7 @@
 						// document.querySelector('.headerSection-container > a').click();
 					})
 					.catch(() => {
-						console.log('Ошибка авторизации');
 						this.error = true;
-						// console.log(this.errorObj.error);
 
 						setTimeout(() => {
 							this.error = false;

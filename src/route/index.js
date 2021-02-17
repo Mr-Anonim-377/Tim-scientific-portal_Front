@@ -71,43 +71,52 @@ const routes = [
 		name: 'contacts',
 		component: contacts,
 	},
-	{
-		path: '/form',
-		name: 'form',
-		component: form,
-	},
-	{
-		path: '/progress',
-		name: 'progress',
-		component: progress,
-	},
-	{
-		path: '/colleagues',
-		name: 'colleagues',
-		component: colleagues,
-	},
-	{
-		path: '/account',
-		name: 'account',
-		component: account,
-	},
-	{
-		path: '/project',
-		name: 'project',
-		component: project,
-	},
+
 	{
 		path: '/auth',
 		name: 'auth',
 		component: auth,
 	},
-    {
-        path:'/documents',
-        name: 'documents',
-        component: documents,
-    }
+	{
+		path: '/documents/:page',
+		name: 'documents',
+		component: documents,
+	},
 
+	/**
+	 * Анкета пользователя
+	 */
 
+	{
+		path: '/colleagues/:pageId',
+		name: 'colleagues',
+		component: colleagues,
+		props: true,
+	},
+	{
+		path: '/account/:pageId',
+		name: 'account',
+		component: account,
+		props: true,
+	},
+	{
+		path: '/project/:pageId',
+		name: 'project',
+		component: project,
+		props: true,
+	},
+	{
+		path: '/form/:pageId',
+		name: 'form',
+		component: form,
+		props: true,
+	},
+	{
+		path: '/progress/:pageId',
+		name: 'progress',
+		component: progress,
+		props: true,
+	},
 ];
 
 const router = createRouter({

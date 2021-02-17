@@ -43,41 +43,43 @@ export default {
 
 					this[moduleType] = [];
 
-					response.data.forEach((moduleItem) => {
-						if (!this[moduleType][moduleItem.objectType]) this[moduleType][moduleItem.objectType] = [];
+					if (response) {
+						response.data.forEach((moduleItem) => {
+							if (!this[moduleType][moduleItem.objectType]) this[moduleType][moduleItem.objectType] = [];
 
-						let titleValue = moduleItem.contents
-							.filter((item) => item.contentType === 'TITLE')
-							.map((item) => item.value.text)
-							.join(' ; ');
+							let titleValue = moduleItem.contents
+								.filter((item) => item.contentType === 'TITLE')
+								.map((item) => item.value.text)
+								.join(' ; ');
 
-						let textValue = moduleItem.contents
-							.filter((item) => item.contentType === 'TEXT')
-							.map((item) => item.value.text)
-							.join(' ; ');
+							let textValue = moduleItem.contents
+								.filter((item) => item.contentType === 'TEXT')
+								.map((item) => item.value.text)
+								.join(' ; ');
 
-						let imageValue = moduleItem.contents
-							.filter((item) => item.contentType === 'IMAGE')
-							.map((item) => item.value.url)
-							.join(' ; ');
+							let imageValue = moduleItem.contents
+								.filter((item) => item.contentType === 'IMAGE')
+								.map((item) => item.value.url)
+								.join(' ; ');
 
-						let dateValue = moduleItem.contents
-							.filter((item) => item.contentType === 'DATE')
-							.map((item) => item.value.date)
-							.join(' ; ');
+							let dateValue = moduleItem.contents
+								.filter((item) => item.contentType === 'DATE')
+								.map((item) => item.value.date)
+								.join(' ; ');
 
-						this[moduleType][moduleItem.objectType].push({
-							title: titleValue ? titleValue : null,
+							this[moduleType][moduleItem.objectType].push({
+								title: titleValue ? titleValue : null,
 
-							text: textValue ? textValue : null,
+								text: textValue ? textValue : null,
 
-							image: imageValue ? imageValue : null,
+								image: imageValue ? imageValue : null,
 
-							date: dateValue ? dateValue : null,
+								date: dateValue ? dateValue : null,
 
-							_pageLink: moduleItem.pageLink,
+								_pageLink: moduleItem.pageLink,
+							});
 						});
-					});
+					}
 				});
 			}
 		},

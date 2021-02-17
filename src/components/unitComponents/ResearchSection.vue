@@ -9,10 +9,7 @@
 				<h3>{{ data.title }}</h3>
 				<p>{{ data.date }}</p>
 
-				<router-link
-					style="text-decoration: none"
-					:to="{ path: `/research/${data._pageLink}` }"
-				>
+				<router-link style="text-decoration: none" :to="{ path: `/research/${data._pageLink}` }">
 					<ButtonSection class="research__btn" :modifiers="modifiers.btn" />
 				</router-link>
 			</div>
@@ -39,17 +36,11 @@
 		data() {
 			return {
 				modifiers: {
-					btn: [
-						'width: 170px; height: 35px; font-size: 14px; line-height: 17px; padding: 10px;',
-					],
+					btn: ['width: 170px; height: 35px; font-size: 14px; line-height: 17px; padding: 10px;'],
 				},
 				titleResearch: 'Исследования',
 				visibleResearch: true,
 			};
-		},
-
-		mounted() {
-			console.log(this.sectionData);
 		},
 	};
 </script>

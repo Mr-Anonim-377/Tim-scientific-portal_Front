@@ -129,8 +129,6 @@
 				img.src = this.sliderData[i].url;
 			}
 
-			console.log(this.sliderData);
-
 			// Получение DOM элементов
 			this.$circles = $('.circle');
 			// this.$imagesConta = $(".innerCircle");
@@ -148,40 +146,28 @@
 				this.$circles
 					.eq(1)
 					.children('.innerCircle')
-					.css(
-						'background-image',
-						`url(${this.sliderData[this.sliderDataIndex + 1].url}`
-					);
+					.css('background-image', `url(${this.sliderData[this.sliderDataIndex + 1].url}`);
 			}
 
 			if (this.sliderData[this.sliderDataIndex + 2]) {
 				this.$circles
 					.eq(0)
 					.children('.innerCircle')
-					.css(
-						'background-image',
-						`url(${this.sliderData[this.sliderDataIndex + 2].url}`
-					);
+					.css('background-image', `url(${this.sliderData[this.sliderDataIndex + 2].url}`);
 			}
 
 			if (this.sliderData[this.sliderData.length - 1]) {
 				this.$circles
 					.eq(3)
 					.children('.innerCircle')
-					.css(
-						'background-image',
-						`url(${this.sliderData[this.sliderData.length - 1].url}`
-					);
+					.css('background-image', `url(${this.sliderData[this.sliderData.length - 1].url}`);
 			}
 
 			if (this.sliderData[this.sliderData.length - 2]) {
 				this.$circles
 					.eq(4)
 					.children('.innerCircle')
-					.css(
-						'background-image',
-						`url(${this.sliderData[this.sliderData.length - 2].url}`
-					);
+					.css('background-image', `url(${this.sliderData[this.sliderData.length - 2].url}`);
 			}
 
 			// Вешаем событие для левой кнопки

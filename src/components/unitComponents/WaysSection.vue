@@ -24,9 +24,6 @@
 			sectionData: {},
 			index: Number,
 		},
-		mounted() {
-			console.log(this.sectionData);
-		},
 	};
 </script>
 

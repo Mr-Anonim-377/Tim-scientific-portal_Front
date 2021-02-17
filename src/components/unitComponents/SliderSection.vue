@@ -40,11 +40,7 @@
 
 						<div class="slider-right-conrols">
 							<div class="slider-arrow-left"></div>
-							<div
-								class="slider-control-"
-								v-for="slide in this.sliderData"
-								:key="slide.url"
-							>
+							<div class="slider-control-" v-for="slide in this.sliderData" :key="slide.url">
 								<div class="control-item"></div>
 							</div>
 							<div class="slider-arrow-right"></div>
@@ -211,8 +207,6 @@
 				});
 			});
 
-			console.log(this.sliderData);
-
 			this.getDOM();
 			this.circles
 				.eq(this.i)
@@ -247,10 +241,7 @@
 					.removeClass('control-item-active');
 				this.i = this.i === 3 ? 0 : this.i + 1;
 
-				this.sliderDataIndex =
-					this.sliderDataIndex === 0
-						? this.sliderData.length - 1
-						: this.sliderDataIndex - 1;
+				this.sliderDataIndex = this.sliderDataIndex === 0 ? this.sliderData.length - 1 : this.sliderDataIndex - 1;
 
 				this.circles
 					.eq(this.i)
@@ -260,9 +251,7 @@
 
 				$('.slider-right p:first-child').text(this.sliderData[this.sliderDataIndex].title);
 
-				$('.slider-right p:last-child').html(
-					this.sliderData[this.sliderDataIndex].description
-				);
+				$('.slider-right p:last-child').html(this.sliderData[this.sliderDataIndex].description);
 
 				$('.control-item')
 					.eq(this.sliderDataIndex)
@@ -285,10 +274,7 @@
 
 				this.i = this.i === 0 ? this.circles.length - 1 : this.i - 1;
 
-				this.sliderDataIndex =
-					this.sliderDataIndex === this.sliderData.length - 1
-						? 0
-						: this.sliderDataIndex + 1;
+				this.sliderDataIndex = this.sliderDataIndex === this.sliderData.length - 1 ? 0 : this.sliderDataIndex + 1;
 
 				this.circles
 					.eq(this.i)
@@ -298,9 +284,7 @@
 				// Меняем текст
 				$('.slider-right p:first-child').text(this.sliderData[this.sliderDataIndex].title);
 
-				$('.slider-right p:last-child').html(
-					this.sliderData[this.sliderDataIndex].description
-				);
+				$('.slider-right p:last-child').html(this.sliderData[this.sliderDataIndex].description);
 
 				$('.control-item')
 					.eq(this.sliderDataIndex)

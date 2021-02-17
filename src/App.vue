@@ -1,11 +1,6 @@
 <template>
 	<div v-if="loadSuccess">
-		<HeaderSection
-			:ways="this.WAYS_ARRAY"
-			:news="this.NEWS_SLIDER.NEWS_ITEM"
-			:modifiers="modifiers.header"
-			:isAuth="this.isAuth"
-		/>
+		<HeaderSection :ways="this.WAYS_ARRAY" :news="this.NEWS_SLIDER.NEWS_ITEM" :modifiers="modifiers.header" :isAuth="this.isAuth" />
 		<router-view />
 		<FooterSection />
 	</div>
@@ -37,8 +32,8 @@
 				.get('http://localhost:1024/user/auth?roleName=ROLE_USER', {
 					headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
 				})
-				.then(console.log(1))
-				.catch(console.log(2));
+				.then()
+				.catch();
 			/**
 			 * Запрос:
 			 *
@@ -52,7 +47,6 @@
 
 			// Локально устанавливаем значение для isAuth
 			this.isAuth = localStorage.getItem('isAuth') === 'true' ? true : false;
-			console.log('Авторизация: ' + this.isAuth);
 			this.loadSuccess = true;
 		},
 

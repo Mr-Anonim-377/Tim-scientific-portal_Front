@@ -2,19 +2,16 @@
 
 <template>
 	<article>
-		<router-link :to="{ name: 'notFound' }">
-			<div class="memberItem__image">
-				<div
-					class="memberItem__imageContainer"
-					:style="{ backgroundImage: `url(${articleData.image})` }"
-				></div>
-			</div>
+		<!-- <router-link :to="{ name: 'notFound' }"> -->
+		<div class="memberItem__image">
+			<div class="memberItem__imageContainer" :style="{ backgroundImage: `url(${articleData.image})` }"></div>
+		</div>
 
-			<div class="memberItem__textContent">
-				<p class="memberItem__memberName">{{ articleData.title }}</p>
-				<p>{{ articleData.text }}</p>
-			</div>
-		</router-link>
+		<div class="memberItem__textContent">
+			<p class="memberItem__memberName">{{ articleData.title }}</p>
+			<p>{{ articleData.text }}</p>
+		</div>
+		<!-- </router-link> -->
 	</article>
 </template>
 

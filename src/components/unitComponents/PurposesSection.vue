@@ -2,11 +2,7 @@
 
 <template>
 	<section class="purposesMainSection">
-		<TitleSection
-			:compactTitle="true"
-			:title="this.titlePurposes"
-			:headerVisible="visiblePurposes"
-		/>
+		<TitleSection :compactTitle="true" :title="this.titlePurposes" :headerVisible="visiblePurposes" />
 		<div class="purposesMainSection-container">
 			<div class="purposes-item" v-for="item in sectionData.PROJECT_GOAL" :key="item">
 				<img :src="item.image" />
@@ -32,12 +28,6 @@
 				titlePurposes: 'Цели проекта',
 				visiblePurposes: true,
 			};
-		},
-		mounted() {
-			setTimeout(() => {
-				console.log(this.sectionData);
-			}, 3000);
-			console.log(this.sectionData);
 		},
 	};
 </script>

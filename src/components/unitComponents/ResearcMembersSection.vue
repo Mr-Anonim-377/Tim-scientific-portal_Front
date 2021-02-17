@@ -6,8 +6,12 @@
 			<TitleSection title="Исследователи" headerVisible="asdas" />
 
 			<ul :style="listHeight" :class="isDropDown ? 'ul_grid' : 'ul_flex'">
-				<li v-for="i in sectionData" :key="i">
-					<MemberItemArticle :articleData="i" />
+				<li v-for="member in sectionData" :key="member">
+					<!-- Прокидываем id для профиля -->
+					<!-- По умолчанию грузим вкладку form - оттуда получаем данные и кидаем в навигацию профиля -->
+					<router-link style="text-decoration: none" :to="{ path: `/form/${member._pageLink}` }">
+						<MemberItemArticle :articleData="member" :pageId="member._pageLink" />
+					</router-link>
 				</li>
 			</ul>
 
@@ -42,10 +46,6 @@
 			};
 		},
 
-		mounted() {
-			console.log(this.sectionData);
-		},
-
 		methods: {
 			showToggle: function() {
 				this.listHeight = {
@@ -60,9 +60,11 @@
 					// margin:"0 auto",
 					height: 0,
 				};
-
-				console.log(this.listHeight);
 			},
+
+			// getMemberPath(data) {
+			// 	Boolean(data) == false ?
+			// },
 		},
 	};
 </script>
