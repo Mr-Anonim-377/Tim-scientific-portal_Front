@@ -1,15 +1,20 @@
 <template>
 	<section class="authorization">
-		<TitleSection :stileTitle="stileTitle.stile" :headerVisible="visibleAuthorization" :title="this.titleAuthorization" />
-		<input type="text" placeholder="Логин / Email" class="authorization__inp" v-model="this.login" />
-		<input type="text" placeholder="Пароль" class="authorization__inp inp-indent" v-model="this.password" />
-		<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
-			<p class="authorization-text">Забыли пароль?</p>
-		</router-link>
-		<ButtonElement :modifiers="modifiers.btn" :title="titleAuthorizationBtn" @click="this.logIn()" />
-		<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
-			<p>Зарегистрироваться</p>
-		</router-link>
+		<!-- <div class="error-windows" v-if="error">
+			Ошибка Сервера!<br />
+			Перезапустите страницу
+		</div> -->
+		<!-- <form autocomplete="on"> -->
+		<section class="authorization">
+			<TitleSection :stileTitle="stileTitle.stile" :headerVisible="visibleAuthorization" :title="this.titleAuthorization" />
+			<p class="error-authorization" :class="{ error_show: error }">*Неверный логин или пароль</p>
+			<div class="controls">
+				<input v-model="this.login" type="text" placeholder="Логин / Email" class="authorization__inp" />
+				<input v-model="this.password" type="password" placeholder="Пароль" class="authorization__inp" />
+			</div>
+			<ButtonElement @click="logIn" :modifiers="modifiers.btn" :title="titleAuthorizationBtn" />
+		</section>
+		<!-- </form> -->
 	</section>
 </template>
 
@@ -30,10 +35,11 @@
 				login: '',
 				password: '',
 				isAuth: Boolean,
+				error: false,
 				visibleAuthorization: true,
 				titleAuthorization: 'Вход в личный кабинет',
 				modifiers: {
-					btn: ['    width: 331px; height: 50px; margin: 34px 0 3px 0px;'],
+					btn: ['    width: 331px; height: 50px; margin: 34px 0 20px 0px;;'],
 				},
 				titleAuthorizationBtn: 'Войти',
 				stileTitle: {
@@ -43,19 +49,39 @@
 		},
 		methods: {
 			logIn() {
+				console.log(this.login);
+				console.log(this.password);
 				axios
-					.get('http://localhost:80/utils/ping', {
+					.get('http://localhost:1024/user/logIn', {
 						headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
 						auth: {
 							username: this.login,
 							password: this.password,
 						},
 					})
-					.then((data) => {
-						return data;
+					.then(() => {
+						console.log('Авторизация пройдена');
+						localStorage.setItem('isAuth', true);
+						// Тут имя аккаунта
+						localStorage.setItem('accountName', '');
+
+						// this.$router.go();
+						// this.$router.go();
+						// this.$router.push({ name: 'Main' });
+						// window.location.reload();
+						window.location.href = 'http://localhost:1024/';
+						// this.$router.go('');
+						// Переходим на главную страницу
+						// document.querySelector('.headerSection-container > a').click();
 					})
-					.catch((error) => {
-						console.log(error);
+					.catch(() => {
+						console.log('Ошибка авторизации');
+						this.error = true;
+						// console.log(this.errorObj.error);
+
+						setTimeout(() => {
+							this.error = false;
+						}, 4000);
 					});
 			},
 		},
@@ -72,44 +98,62 @@
 	}
 	.authorization {
 		width: 376px;
-		height: 393px;
+		/* height: 393px; */
 		background: #ffffff;
 		border-radius: 20px;
 		margin: auto;
-		padding: 38px 25px 0 25px;
+		padding: 38px 25px 38px 25px;
 	}
-
 	.authorization__inp {
-		width: 330px;
+		width: 300px;
 		/* height: 34px; */
 		font-size: 15px;
+		font-size: 18px;
 		line-height: 14px;
 		color: #b1b1b1;
-		margin-top: 32px;
-		border: 0;
+		margin-top: 20px;
+		margin-top: 30px;
 		outline: 0;
 		background: transparent;
-		border-bottom: 1px solid rgba(77, 86, 104, 0.2);
-	}
-	.inp-indent {
-		margin-top: 22px;
-	}
-	.authorization__inp :active,
-	:hover,
-	:focus {
-		outline: 0;
-		outline-offset: 0;
-	}
-	::-webkit-input-placeholder {
-		color: #b1b1b1;
-		font-weight: 500;
-		font-size: 12px;
-		line-height: 18px;
-	}
-	.authorization-text {
-		font-size: 10px;
 		line-height: 12px;
 		color: #5c5c5c;
 		text-align: left;
+		cursor: pointer;
+		border: none;
+		border-bottom: 2px solid #3f7e77;
+		padding: 10px;
+		/* border-radius: 51px; */
+	}
+	.error-authorization {
+		color: red;
+		text-align: center;
+		opacity: 0;
+		margin: 0;
+		transition: opacity 1s;
+	}
+
+	.error_show {
+		opacity: 1;
+	}
+
+	.error-windows {
+		width: 340px;
+		height: 77px;
+		text-align: center;
+		padding: 15px;
+		border: 3px solid #3f7e77;
+		background: #f8f5e6;
+		border-radius: 10px;
+		color: #3f7e77;
+		position: absolute;
+		left: 61%;
+		top: 1%;
+	}
+	.controls {
+		margin-bottom: 30px;
+		display: flex;
+		flex-wrap: wrap;
+		/* align-items: center; 0*/
+		justify-content: center;
 	}
 </style>

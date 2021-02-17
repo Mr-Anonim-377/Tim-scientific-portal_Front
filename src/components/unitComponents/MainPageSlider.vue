@@ -76,6 +76,14 @@
 					this.circles.eq(index).css('transform', $('.'));
 				}
 			},
+			// ch: {
+			// 	'$route'() {
+			// 		handler: function() {
+			// 			console.log('Совершён переход по ссылке');
+
+			// 		}
+			// 	},wat
+			// },
 
 			changePosition(i, arr, isNext) {
 				// Индексы соседних кругов
@@ -113,21 +121,13 @@
 					this.circles.eq(i3).css('z-index', 0);
 					this.moveCircle(i3, 'circle1');
 
-					this.sliderDataIndex =
-						this.sliderDataIndex === this.sliderData.length - 1
-							? 0
-							: this.sliderDataIndex + 1;
+					this.sliderDataIndex = this.sliderDataIndex === this.sliderData.length - 1 ? 0 : this.sliderDataIndex + 1;
 
-					let nextImageIndex =
-						this.sliderDataIndex === this.sliderData.length - 1
-							? 0
-							: this.sliderDataIndex + 1;
+					let nextImageIndex = this.sliderDataIndex === this.sliderData.length - 1 ? 0 : this.sliderDataIndex + 1;
 
 					// Определяем следующий
 					setTimeout(() => {
-						this.circles
-							.eq(i3)
-							.css('background-image', `url(${this.sliderData[nextImageIndex].url})`);
+						this.circles.eq(i3).css('background-image', `url(${this.sliderData[nextImageIndex].url})`);
 					}, 1000);
 				} else if (!isNext) {
 					this.circles.eq(i).css('z-index', 0);
@@ -139,21 +139,13 @@
 					this.circles.eq(i3).css('z-index', 1);
 					this.moveCircle(i3, 'circle2');
 
-					this.sliderDataIndex =
-						this.sliderDataIndex === 0
-							? this.sliderData.length - 1
-							: this.sliderDataIndex - 1;
+					this.sliderDataIndex = this.sliderDataIndex === 0 ? this.sliderData.length - 1 : this.sliderDataIndex - 1;
 
-					let prevImageIndex =
-						this.sliderDataIndex === 0
-							? this.sliderData.length - 1
-							: this.sliderDataIndex - 1;
+					let prevImageIndex = this.sliderDataIndex === 0 ? this.sliderData.length - 1 : this.sliderDataIndex - 1;
 
 					// Определяем следующий
 					setTimeout(() => {
-						this.circles
-							.eq(i)
-							.css('background-image', `url(${this.sliderData[prevImageIndex].url})`);
+						this.circles.eq(i).css('background-image', `url(${this.sliderData[prevImageIndex].url})`);
 					}, 1000);
 				}
 			},
@@ -191,9 +183,15 @@
 			console.log(this.sliderData[this.sliderDataIndex].url);
 		},
 
+		beforeRouteUpdate() {
+			console.log('обновляем роут');
+		},
+
 		async mounted() {
 			// Получаем dom элементы
 			this.getDOM();
+
+			console.log(this.$route.name);
 
 			$('.news-slider__slide:nth-child(3)')
 				.css('background-image', `url(${this.sliderData[this.sliderData.length - 1].url}`)
@@ -290,6 +288,33 @@
 						.eq(this.sliderDataIndex)
 						.addClass('news-slider__dot_active');
 				});
+
+			// Автопереключение слайдов
+
+			let $arrow = $('.news-slider__arrow').eq(1);
+
+			let sliderAutoClick = () => {
+				setTimeout(() => {
+					if (!this.isArrowClicked && this.$route.name === 'Main') {
+						console.log('settimes');
+						$($arrow).trigger('click');
+						sliderAutoClick();
+					}
+				}, 4000);
+			};
+
+			sliderAutoClick();
+
+			//Отменяем автоклики если мышка на контролах
+
+			$('.news-slider__controls').on('mousemove', () => {
+				this.isArrowClicked = true;
+			});
+
+			$('.news-slider__controls').on('mouseover', () => {
+				this.isArrowClicked = false;
+				sliderAutoClick();
+			});
 		},
 	};
 </script>

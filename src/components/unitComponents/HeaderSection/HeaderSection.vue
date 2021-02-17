@@ -76,7 +76,12 @@
 					<div class="popup-arrow"></div>
 
 					<div class="popup">
-						<router-link v-for="way in ways.WAYS_ITEM" :key="way" style="text-decoration: none" :to="{ path: `/all-research/${way._pageLink}` }">
+						<router-link
+							v-for="way in ways.WAYS_ITEM"
+							:key="way"
+							style="text-decoration: none"
+							:to="{ path: `/all-research/${way._pageLink}` }"
+						>
 							<p>
 								{{ way.title[0] + way.title.slice(1).toLowerCase() }}
 							</p>
@@ -96,7 +101,12 @@
 					<div class="popup-arrow"></div>
 
 					<div class="popup">
-						<router-link v-for="newsItem in news" :key="newsItem" style="text-decoration: none" :to="{ path: `/newsItem/${newsItem._pageLink}` }">
+						<router-link
+							v-for="newsItem in news"
+							:key="newsItem"
+							style="text-decoration: none"
+							:to="{ path: `/newsItem/${newsItem._pageLink}` }"
+						>
 							<p>
 								{{ newsItem.title }}
 							</p>
@@ -104,13 +114,25 @@
 					</div>
 				</div>
 
-				<div v-if="isAuth">
-					<!-- <span class="login">sashafdtv@gmail.com</span> -->
+				<div v-if="isAuth" class="authorization headerSection__item">
+					<span class="login">Тестовый аккаунт</span>
+
+					<div class="popup">
+						<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+							<p>Администрирование</p>
+						</router-link>
+						<p @click="logOut">Выход</p>
+					</div>
 				</div>
 
-				<div v-else>
+				<div v-else class="authorization headerSection__item">
 					<router-link style="text-decoration: none" :to="{ name: 'auth' }">
 						<span class="login">Личный кабинет</span>
+
+						<!-- <div class="popup">
+							<p>Администрирование</p>
+							<p @click="logOut">Выход</p>
+						</div> -->
 					</router-link>
 				</div>
 			</div>
@@ -119,6 +141,7 @@
 </template>
 
 <script>
+	import axios from 'axios';
 	export default {
 		name: 'headerSection',
 		props: {
@@ -131,6 +154,28 @@
 			console.log(this.news);
 			console.log(this.isAuth);
 			console.log('Авторизация в хэдере ' + this.isAuth);
+		},
+
+		methods: {
+			logOut() {
+				localStorage.setItem('isAuth', false);
+				// Перезагружаем страницу после выхода для обновления хэдера
+				this.$router.go();
+				axios
+					.post('http://future-agro.ru:1024/user/logout', {
+						headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+					})
+					.then(() => {
+						// console.log('Авторизация пройдена');
+						// this.isAuth = false;
+						localStorage.setItem('isAuth', false);
+						console.log(1);
+					})
+					.catch(() => {
+						localStorage.setItem('isAuth', false);
+						console.log(0);
+					});
+			},
 		},
 	};
 </script>
@@ -256,9 +301,10 @@
 	/*Стили Входа*/
 	.login {
 		color: #f8f5e6;
-		position: absolute;
+		/* position: absolute; */
 		right: 1px;
-		padding: 18px 10px;
+		font-size: 14px;
+		/* padding: 18px 10px; */
 	}
 	.login:before {
 		content: '';
@@ -278,6 +324,19 @@
 
 		display: flex;
 		align-items: center;
+	}
+
+	.authorization {
+		/* display: block; */
+		/* position: relative; */
+
+		position: absolute;
+		right: 0;
+	}
+
+	.authorization .popup {
+		/* width: 100%; */
+		left: -25px;
 	}
 
 	.headerSection__item .popup-arrow {

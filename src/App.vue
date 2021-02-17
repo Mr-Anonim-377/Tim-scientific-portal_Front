@@ -1,6 +1,11 @@
 <template>
 	<div v-if="loadSuccess">
-		<HeaderSection :ways="this.WAYS_ARRAY" :news="this.NEWS_SLIDER.NEWS_ITEM" :modifiers="modifiers.header" :isAuth="this.isAuth" />
+		<HeaderSection
+			:ways="this.WAYS_ARRAY"
+			:news="this.NEWS_SLIDER.NEWS_ITEM"
+			:modifiers="modifiers.header"
+			:isAuth="this.isAuth"
+		/>
 		<router-view />
 		<FooterSection />
 	</div>
@@ -9,6 +14,7 @@
 <script>
 	import HeaderSection from './components/unitComponents/HeaderSection/HeaderSection';
 	import FooterSection from './components/unitComponents/FooterSection/FooterSection';
+	import axios from 'axios';
 
 	import testMixin from './utils/methodsMixin';
 
@@ -24,6 +30,15 @@
 			/**
 			 * Тут проверяем, авторизован ли пользователь
 			 */
+
+			// axios.get('http://localhost:1024/user/auth?roleName=ROLE_USER');
+
+			axios
+				.get('http://localhost:1024/user/auth?roleName=ROLE_USER', {
+					headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+				})
+				.then(console.log(1))
+				.catch(console.log(2));
 			/**
 			 * Запрос:
 			 *
