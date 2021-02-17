@@ -9,7 +9,14 @@
 				<li v-for="member in sectionData" :key="member">
 					<!-- Прокидываем id для профиля -->
 					<!-- По умолчанию грузим вкладку form - оттуда получаем данные и кидаем в навигацию профиля -->
-					<router-link style="text-decoration: none" :to="{ path: `/form/${member._pageLink}` }">
+
+					<!-- Если есть ID -->
+					<router-link v-if="member._pageLink !== null" style="text-decoration: none" :to="{ path: `/form/${member._pageLink}` }">
+						<MemberItemArticle :articleData="member" :pageId="member._pageLink" />
+					</router-link>
+
+					<!-- Если нет ID -->
+					<router-link v-else style="text-decoration: none" :to="{ name: 'notFound' }">
 						<MemberItemArticle :articleData="member" :pageId="member._pageLink" />
 					</router-link>
 				</li>
@@ -61,10 +68,10 @@
 					height: 0,
 				};
 			},
-
-			// getMemberPath(data) {
-			// 	Boolean(data) == false ?
-			// },
+		},
+		mounted() {
+			console.log(this.sectionData);
+			// debugger;
 		},
 	};
 </script>
