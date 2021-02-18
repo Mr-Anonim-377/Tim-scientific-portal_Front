@@ -14,79 +14,39 @@
      <form>
        <select size="1" class="lists-item item-left">
          <option selected="selected">Выбрать...</option>
-         <option>Документ 1</option>
-         <option>Документ 2</option>
-         <option>Документ 3</option>
-         <option>Документ 4</option>
+         <option
+             v-for="dataList in documentData.lists.categories"
+             :key="dataList"
+         >{{dataList}}</option>
        </select>
      </form>
 
      <form>
        <select size="1" class="lists-item item-right">
          <option selected="selected">Выбрать...</option>
-         <option>Документ 1</option>
-         <option>Документ 2</option>
+         <option
+             v-for="dataListYears in documentData.lists.years"
+             :key="dataListYears"
+         >{{dataListYears}}</option>
        </select>
      </form>
 
    </div>
 
    <div class="documents-block">
-     <h2>Наименование первой категории материалов</h2>
+     <span>Наименование первой категории материалов</span>
 
-     <div class="documents-block__text">
-       <p class="documents-block__text-name">Название официального документа</p>
-       <p>(450 КБ)</p>
-       <p class="documents-block__text-data">от 01.01.2021</p>
-     </div>
-
-     <div class="documents-block__text">
-       <p class="documents-block__text-name">Название официального документа</p>
-       <p>(450 КБ)</p>
-       <p class="documents-block__text-data">от 01.01.2021</p>
-     </div>
-
-     <div class="documents-block__text">
-       <p class="documents-block__text-name">Название официального документа</p>
-       <p>(450 КБ)</p>
-       <p class="documents-block__text-data">от 01.01.2021</p>
-     </div>
-
-     <div class="documents-block__text">
-       <p class="documents-block__text-name">Название официального документа</p>
-       <p>(450 КБ)</p>
-       <p class="documents-block__text-data">от 01.01.2021</p>
-     </div>
+     <documents-section
+     :data="documentData.documents.oneDocs"
+     />
 
    </div>
 
    <div class="documents-block block__border">
-     <h2>Длинное наименование второй категории материалов на данном сайте, в которой содержатся официальные документы НЦМУ “Агротехнологии будущего”,
-       чтобы каждый пользователь мог просматривать информацию в них.</h2>
+     <span>Длинное наименование второй категории материалов на данном сайте, в которой содержатся официальные документы НЦМУ “Агротехнологии будущего”,
+       чтобы каждый пользователь мог просматривать информацию в них.</span>
 
-     <div class="documents-block__text">
-       <p class="documents-block__text-name">Название официального документа</p>
-       <p>(450 КБ)</p>
-       <p class="documents-block__text-data">от 01.01.2021</p>
-     </div>
-
-     <div class="documents-block__text">
-       <p class="documents-block__text-name">Название официального документа</p>
-       <p>(450 КБ)</p>
-       <p class="documents-block__text-data">от 01.01.2021</p>
-     </div>
-
-     <div class="documents-block__text">
-       <p class="documents-block__text-name">Название официального документа</p>
-       <p>(450 КБ)</p>
-       <p class="documents-block__text-data">от 01.01.2021</p>
-     </div>
-
-     <div class="documents-block__text">
-       <p class="documents-block__text-name">Название официального документа</p>
-       <p>(450 КБ)</p>
-       <p class="documents-block__text-data">от 01.01.2021</p>
-     </div>
+     <documents-section :data="documentData.documents.twoDocs"/>
 
    </div>
  </section>
@@ -94,10 +54,12 @@
 
 <script>
 import TitleSection from "../unitComponents/TitleSection";
+import DocumentsSection from "@/components/unitComponents/DocumentsSection";
 
 export default {
   name: "DocumentsPage",
   components: {
+    DocumentsSection,
     TitleSection
   },
   data() {
@@ -108,6 +70,62 @@ export default {
           'font-size: 26px'
         ]
       },
+      documentData:
+          {
+            lists: {
+              categories: [
+                'Документ 1',
+                'Документ 2',
+                'Документ 3',
+                'Документ 4'
+              ],
+              years: [
+                '2020',
+                '2021'
+              ],
+            },
+            documents: {
+               oneDocs: [
+                 {
+                 name: 'Название официального документа 1',
+                 date: '02.01.2021',
+                 size: '450'
+                 },
+                 {
+                   name: 'Название официального документа 2',
+                   date: '05.02.2021',
+                   size: '400'
+                 },
+                 {
+                   name: 'Название официального документа 3',
+                   date: '07.09.2020',
+                   size: '350'
+                 },
+                 {
+                   name: 'Название официального документа 4',
+                   date: '09.11.2020',
+                   size: '150'
+                 }
+               ],
+              twoDocs: [
+                    {
+                      name: 'Название официального документа 1',
+                      date: '02.01.2021',
+                      size: '450'
+                    },
+                    {
+                      name: 'Название официального документа 2',
+                      date: '05.02.2021',
+                      size: '400'
+                    },
+                    {
+                      name: 'Название официального документа 3',
+                      date: '07.09.2020',
+                      size: '350'
+                    }
+                  ]
+            },
+          }
     }
   }
 }
@@ -120,18 +138,17 @@ export default {
   margin: 55px auto 100px auto;
 }
 p{
-  font-weight: bold;
   font-size: 15px;
   line-height: 18px;
-  color:  #A6ABB4;
+  color:  #000000;
   margin: 0;
+  height: auto;
 }
-h2{
+span{
   font-size: 16px;
   line-height: 19px;
-  text-decoration-line: underline;
   color: #000000;
-  width: 100%;
+  border-bottom: 2px solid #000000;
 }
 
 .documents__lists{
@@ -141,9 +158,6 @@ h2{
   margin: 59px 0 0 0;
 }
 
-.documents__lists p{
-  color: #000000;
-}
 .lists-text{
   display: flex;
   width: 100%;
@@ -161,8 +175,7 @@ h2{
   padding: 0 10px 0 10px;
   margin: 15px 0 50px 0;
 }
-.lists-item :active,
-:hover,
+.lists-item :hover,
 :focus{
   text-decoration: none;
   outline: none;
@@ -179,7 +192,6 @@ h2{
   height: 35px;
 }
 
-
 .documents-block{
   border-bottom: 2px solid #C4C4C4;
   padding-bottom: 50px;
@@ -187,32 +199,6 @@ h2{
 }
 .block__border{
   border: none;
-}
-
-.documents-block__text{
-  margin: 20px 0 0 52px;
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.documents-block__text-name{
-  color: #3F7E77;
-  position: relative;
-  margin-right: 7px;
-}
-.documents-block__text-name:before{
-  content: url("../../assets/image/PDF.svg");
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  left: -28px;
-  top: -1px;
-}
-
-.documents-block__text-data{
-  width: 100%;
-  margin: 13px 0 0 0;
 }
 
 </style>
