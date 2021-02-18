@@ -4,17 +4,9 @@
 			<TitleSection :title="title" :headerVisible="true" :stileTitle="stileTitle.stile" />
 
 			<div class="form-container">
-				<!-- Прокидываем полученные данные в навигацию -->
-				<account-navigation-section
-					:profileData="{
-						RESEARCH_ARRAY: this.RESEARCH_ARRAY,
-						PERSONAL_INFORMATION: this.PERSONAL_INFORMATION,
-						ACHIEVEMENTS: this.ACHIEVEMENTS,
-						COLLEGES: this.COLLEGES,
-					}"
-				/>
+				<account-navigation-section />
 
-				<img src="" />
+				<img :src="this.PERSONAL_INFORMATION.IMAGE[0].image" />
 
 				<div class="form-block__information">
 					<h2>Вострухин Игорь Александрович</h2>
@@ -25,7 +17,7 @@
 					<div class="project-container">
 						<div class="project-container-block">
 							<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
-								<img src="" />
+								<img :src="1" />
 								<p>Проект</p>
 							</router-link>
 						</div>
@@ -36,7 +28,7 @@
 			<div class="form-block__edit">
 				<h3>Ф.И.О.</h3>
 				<input type="text" placeholder="Как Вас зовут..." class="edit__inp" v-if="authorization" />
-				<p class="edit-text" v-else>Вострухин Игорь Александрович</p>
+				<p class="edit-text" v-else>е</p>
 
 				<h3>Дата рождения</h3>
 				<input type="text" placeholder="Выбрать дату" class="edit__inp" v-if="authorization" />
@@ -81,17 +73,31 @@
 				stileTitle: {
 					stile: ['font-size: 26px'],
 				},
-				loadSucces: true,
+				loadSucces: false,
 			};
 		},
 		mixins: [mixin],
 
 		async mounted() {
 			/**
+			 * Получаем id профиля из адрессной строки
+			 */
+
+			this.profileID = this.$route.params.pageId;
+			console.log(this.$route.params.pageId);
+
+			/**
 			 * Получаем данные по id
 			 */
-			await this.getModulesTest('', this.pageId);
+			await this.getModulesTest('', this.profileID);
+
+			console.log(this.modules);
 			this.loadSucces = true;
+
+			/**
+			 * Берем PERSONAL_INFORMATION
+			 */
+			console.log(this.PERSONAL_INFORMATION);
 		},
 	};
 </script>
@@ -126,6 +132,7 @@
 		width: 220px;
 		height: 220px;
 		background: #c4c4c4;
+		background-size: contain;
 		margin: 0 60px 0 130px;
 		border-radius: 50%;
 		border: 3px solid #3f7e77;

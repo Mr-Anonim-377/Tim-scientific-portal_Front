@@ -33,6 +33,7 @@
 <script>
 	import TitleSection from '@/components/unitComponents/TitleSection';
 	import AccountNavigationSection from '@/components/unitComponents/AccountNavigationSection';
+	import mixin from '../../utils/methodsMixin';
 
 	export default {
 		name: 'ColleaguesPage',
@@ -51,6 +52,28 @@
 					stile: ['font-size: 26px'],
 				},
 			};
+		},
+
+		mixins: [mixin],
+
+		async mounted() {
+			/**
+			 * Получаем id профиля из адрессной строки
+			 */
+
+			this.profileID = this.$route.params.pageId;
+
+			/**
+			 * Получаем данные по id
+			 */
+			await this.getModulesTest('', this.profileID);
+			this.loadSucces = true;
+			console.log(this.modules);
+
+			/**
+			 * Берем ACHIEVEMENTS
+			 */
+			console.log(this.ACHIEVEMENTS);
 		},
 	};
 </script>
