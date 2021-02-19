@@ -1,4 +1,5 @@
 <template>
+  <div v-if="loadSucces">
 	<section class="project">
 		<TitleSection :title="title" :headerVisible="true" :stileTitle="stileTitle.stile" />
 
@@ -8,43 +9,26 @@
 			<div class="project-block__projects">
 				<h2>Проекты, в которых я участвую</h2>
 				<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
-					<div class="project-item">
-						<img src="https://cs8.pikabu.ru/post_img/big/2016/02/04/7/145458292112119207.jpg" />
-						<p>Отдаленная гибридизация</p>
-						<p class="project-text">2020</p>
+					<div class="project-item"
+               v-for="dataProject in this.RESEARCH_ARRAY.RESEARCH"
+               :key="dataProject">
+						<img :src="dataProject.image"/>
+						<p>{{dataProject.title}}</p>
+						<p class="project-text">{{dataProject.date}}</p>
 					</div>
 				</router-link>
-				<div class="project-item">
-					<img src="https://cs8.pikabu.ru/post_img/big/2016/02/04/7/145458292112119207.jpg" />
-					<p>Отдаленная гибридизация</p>
-					<p class="project-text">2020</p>
-				</div>
-				<div class="project-item">
-					<img src="https://cs8.pikabu.ru/post_img/big/2016/02/04/7/145458292112119207.jpg" />
-					<p>Отдаленная гибридизация</p>
-					<p class="project-text">2020</p>
-				</div>
-				<div class="project-item">
-					<img src="https://cs8.pikabu.ru/post_img/big/2016/02/04/7/145458292112119207.jpg" />
-					<p>Отдаленная гибридизация</p>
-					<p class="project-text">2020</p>
-				</div>
-				<div class="project-item">
-					<img src="https://cs8.pikabu.ru/post_img/big/2016/02/04/7/145458292112119207.jpg" />
-					<p>Отдаленная гибридизация</p>
-					<p class="project-text">2020</p>
-				</div>
-				<div class="project-item">
-					<img src="https://cs8.pikabu.ru/post_img/big/2016/02/04/7/145458292112119207.jpg" />
-					<p>Отдаленная гибридизация</p>
-					<p class="project-text">2020</p>
-				</div>
 			</div>
 		</div>
 	</section>
+  </div>
+
+  <div v-else>
+    <Preloader />
+  </div>
 </template>
 
 <script>
+  import Preloader from './../unitComponents/CommonElements/Preloader';
 	import TitleSection from '@/components/unitComponents/TitleSection';
 	import AccountNavigationSection from '@/components/unitComponents/AccountNavigationSection';
 	import mixin from '../../utils/methodsMixin';
@@ -52,14 +36,19 @@
 		name: 'ProjectPage',
 		components: {
 			AccountNavigationSection,
+      Preloader,
 			TitleSection,
 		},
+    props: {
+      pageId: String,
+    },
 		data() {
 			return {
 				title: 'Мои проекты',
 				stileTitle: {
 					stile: ['font-size: 26px'],
 				},
+        loadSucces: false,
 			};
 		},
 
@@ -80,9 +69,9 @@
 			console.log(this.modules);
 
 			/**
-			 * Берем COLLEGES
+			 * Берем RESEARCH_ARRAY
 			 */
-			console.log(this.COLLEGES);
+			console.log(this.RESEARCH_ARRAY);
 		},
 	};
 </script>
@@ -105,7 +94,7 @@
 		margin: 4px 0 77px 0;
 	}
 	.project {
-		max-width: 1340px;
+		max-width: 1200px;
 		align-items: center;
 		margin: 46px auto 100px auto;
 	}

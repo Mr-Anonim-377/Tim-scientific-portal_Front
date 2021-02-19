@@ -1,5 +1,5 @@
 <template>
-	<section class="account">
+	<section class="account" v-if="authorization">
 		<TitleSection :title="titleAccount" :headerVisible="true" :stileTitle="stileTitle.stile" />
 
 		<div class="account-container">
@@ -10,7 +10,7 @@
 				<input type="text" placeholder="kojevn@mail.ru" class="account__inp" v-if="authorization" />
 				<p class="text-inf__mail" v-else>adress@mail.ru</p>
 				<p v-if="authorization">Пароль</p>
-				<p class="text-inf" v-if="authorization">обновлён 2 месяца назад</p>
+				<p class="text-inf">обновлён 2 месяца назад</p>
 				<ButtonElement :modifiers="modifiers.btn" :title="titleAccountBtn" v-if="authorization" />
 			</div>
 		</div>
@@ -36,7 +36,7 @@
 		data() {
 			return {
 				titleAccount: 'Аккаунт',
-				authorization: true,
+				authorization: false,
 				modifiers: {
 					btn: ['width: 170px; height: 35px; background: #3F7E77; margin-top: 13px; padding: 0px;'],
 				},
@@ -79,7 +79,7 @@
 		margin: 0;
 	}
 	.account {
-		max-width: 1437px;
+		max-width: 1200px;
 		align-items: center;
 		margin: 94px auto 143px auto;
 	}

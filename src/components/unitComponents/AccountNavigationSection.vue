@@ -4,7 +4,7 @@
 			<div class="nav-btn">Личная информация</div>
 		</router-link>
 		<router-link style="text-decoration: none" :to="{ name: 'account' }">
-			<div class="nav-btn">Аккаунт</div>
+			<div class="nav-btn" v-if="authorization">Аккаунт</div>
 		</router-link>
 		<router-link style="text-decoration: none" :to="{ name: 'project' }">
 			<div class="nav-btn" v-if="authorization">Мои проекты</div>

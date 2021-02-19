@@ -1,4 +1,5 @@
 <template>
+  <div v-if="loadSucces">
   <section class="progress">
     <TitleSection
         :title="title"
@@ -12,37 +13,41 @@
 
       <div class="progress-block__inf">
         <h2>Мои Достижения</h2>
-          <img src="">
-        <div class="inf-text">
-          <p>Награда за вклад в развитие систем рационального применения средств химической защиты </p>
-          <span  class="inf-text__years">2020</span>
-        </div>
-
-        <img src="">
-        <div class="inf-text">
-          <p>Награда за вклад в развитие систем рационального применения средств химической защиты </p>
-          <span class="inf-text__years">2020</span>
-        </div>
-
-        <img src="">
-        <div class="inf-text">
-          <p>Награда за вклад в развитие систем рационального применения средств химической защиты </p>
-          <span class="inf-text__years">2020</span>
-        </div>
+          <div class="inf-img">
+            <img src="../../assets/image/progress-Img.svg">
+          </div>
+          <div class="inf-text"
+               v-for="dataProgress in this.ACHIEVEMENTS.ACTION"
+               :key="dataProgress">
+            <p>{{dataProgress.title}}</p>
+            <span  class="inf-text__years">{{dataProgress.date}}</span>
+          </div>
 
       </div>
     </div>
   </section>
+  </div>
+
+  <div v-else>
+    <Preloader />
+  </div>
 </template>
 
 <script>
 import TitleSection from '../unitComponents/TitleSection';
 import AccountNavigationSection from "@/components/unitComponents/AccountNavigationSection";
+import Preloader from './../unitComponents/CommonElements/Preloader';
+import mixin from "@/utils/methodsMixin";
+
 export default {
 name: "ProgressPage",
   components:{
     AccountNavigationSection,
-    TitleSection
+    TitleSection,
+    Preloader
+  },
+  props: {
+    pageId: String,
   },
   data() {
     return {
@@ -51,9 +56,34 @@ name: "ProgressPage",
         stile:[
           'font-size: 26px'
         ]
-      }
+      },
+      loadSucces: false,
     }
-  }
+  },
+
+  mixins: [mixin],
+
+  async mounted() {
+    /**
+     * Получаем id профиля из адрессной строки
+     */
+
+    this.profileID = this.$route.params.pageId;
+    console.log(this.$route.params.pageId);
+
+    /**
+     * Получаем данные по id
+     */
+    await this.getModulesTest('', this.profileID);
+
+    console.log(this.modules);
+    this.loadSucces = true;
+
+    /**
+     * Берем ACHIEVEMENTS
+     */
+    console.log(this.ACHIEVEMENTS);
+  },
 }
 </script>
 
@@ -66,7 +96,7 @@ h2, p{
 }
 
 .progress{
-  max-width: 1426px;
+  max-width: 1200px;
   align-items: center;
   margin: 85px auto 100px auto;
 }
@@ -80,13 +110,16 @@ h2, p{
   display: flex;
   flex-wrap: wrap;
 }
-.progress-block__inf img{
+.inf-img{
   width: 132px;
   height: 132px;
   border-radius: 50%;
   border: 3px solid #3F7E77;
-  background: yellow;
   margin-bottom: 47px;
+}
+.progress-block__inf img{
+  width: 130px;
+  height: 130px;
 }
 
 .progress-block__inf p{
@@ -101,17 +134,17 @@ h2{
 .inf-text{
   display: flex;
   flex-wrap: wrap;
-  width: 900px;
-  margin: 0 0 50px 44px;
+  margin: 0 0 86px 44px;
   overflow-y: auto;
 }
 
 .inf-text__years{
-  margin: 10px 0 0 45px;
+  margin: 0 0 0 45px;
   font-size: 15px;
   font-weight: bold;
   color: #3F7E77;
   position: relative;
+  width: 100%;
 }
 .inf-text__years:after {
   content: '';
@@ -119,7 +152,7 @@ h2{
   width: 35px;
   height: 1px;
   background: #3F7E77;
+  left: -39px;
   top: 9px;
-  right: 43px;
 }
 </style>
