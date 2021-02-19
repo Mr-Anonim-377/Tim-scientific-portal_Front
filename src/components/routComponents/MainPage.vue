@@ -205,8 +205,7 @@
 	.direction-of-research {
 		text-align: center;
 		width: 100%;
-		background: linear-gradient(0deg, rgba(63, 126, 119, 0.8), rgba(63, 126, 119, 0.8)),
-			url('../../assets/image/background-dir.png');
+		background: linear-gradient(0deg, rgba(63, 126, 119, 0.8), rgba(63, 126, 119, 0.8)), url('../../assets/image/background-dir.png');
 		padding: 47px 0 40px 0;
 	}
 

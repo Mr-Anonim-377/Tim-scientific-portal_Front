@@ -13,7 +13,7 @@
 				</router-link>
 			</p>
 			<router-link style="text-decoration: none" :to="{ name: 'Main' }">
-				<img src="../../../assets/image/Logo2.svg" />
+				<img src="../../../assets/image/logo2.svg" />
 				<div class="popup-arrow"></div>
 			</router-link>
 			<input type="text" placeholder="Поиск" class="headerSection__research" />
@@ -29,36 +29,36 @@
 					<div class="popup-arrow"></div>
 
 					<div class="popup">
-						<a href="https://www.timacad.ru/">
+						<a target="_blank" href="https://www.timacad.ru/">
 							<p>
 								Российский государственный аграрный университет - МСХА имени К. А. Тимирязева
 							</p>
 						</a>
 
-						<a href="https://spbu.ru/">
+						<a target="_blank" href="https://spbu.ru/">
 							<p>Санкт-Петербурский государственный университет</p>
 						</a>
-						<a href="https://arriam.ru/">
+						<a target="_blank" href="https://arriam.ru/">
 							<p>
 								Всероссийский научно-исследовательский институт сельскохозяйственной микробиологии
 							</p>
 						</a>
 
-						<a href="http://esoil.ru/>">
+						<a target="_blank" href="http://esoil.ru/>">
 							<p>ФИЦ "Почвенный институт имени В.В. Докучаева</p>
 						</a>
 
-						<a href="https://www.vir.nw.ru/">
+						<a target="_blank" href="https://www.vir.nw.ru/">
 							<p>
 								Всероссийский институт генетических ресурсов растений имени Н.И. Вавилова
 							</p>
 						</a>
 
-						<a href="http://www.frccsc.ru/">
+						<a target="_blank" href="http://www.frccsc.ru/">
 							<p>ФИЦ "Информатика и управление" РАН</p>
 						</a>
 
-						<a href="https://www.fbras.ru/">
+						<a target="_blank" href="https://www.fbras.ru/">
 							<p>ФИЦ "Фундаменальные основы биотехнологии" РАН</p>
 						</a>
 					</div>
@@ -142,6 +142,7 @@
 
 <script>
 	import axios from 'axios';
+	// import moduleName from ;
 	export default {
 		name: 'headerSection',
 		props: {
@@ -184,6 +185,11 @@
 	p:active,
 	p:hover {
 		color: #666;
+	}
+
+	img {
+		/* TEMP размер пока дизайнеры не подгонят svg */
+		width: 50px;
 	}
 
 	.headerSection {

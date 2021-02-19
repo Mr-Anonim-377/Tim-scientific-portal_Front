@@ -4,7 +4,7 @@
 	<section class="vertical-menu-section">
 		<ul>
 			<li>
-				<a href="https://ncmu.ru/">НЦМУ Научные центры мирового уровня</a>
+				<a target="_blank" href="https://ncmu.ru/">НЦМУ Научные центры мирового уровня</a>
 			</li>
 			<li>
 				<router-link :to="{ name: 'notFound' }">
@@ -18,9 +18,7 @@
 				</router-link>
 			</li>
 			<li>
-				<router-link :to="{ name: 'notFound' }">
-					Динамика достижения индикаторов НЦМУ</router-link
-				>
+				<router-link :to="{ name: 'notFound' }"> Динамика достижения индикаторов НЦМУ</router-link>
 			</li>
 			<li>
 				Исследователи НЦМУ
@@ -85,14 +83,10 @@
 				<router-link :to="{ name: 'notFound' }">Маркетинговые исследования </router-link>
 			</li>
 			<li>
-				<router-link :to="{ name: 'notFound' }">
-					Предложения для внедрения результатов НЦМУ</router-link
-				>
+				<router-link :to="{ name: 'notFound' }"> Предложения для внедрения результатов НЦМУ</router-link>
 			</li>
 			<li>
-				<router-link :to="{ name: 'notFound' }">
-					Запросы на исследования от индустриальных партнеров</router-link
-				>
+				<router-link :to="{ name: 'notFound' }"> Запросы на исследования от индустриальных партнеров</router-link>
 			</li>
 		</ul>
 	</section>

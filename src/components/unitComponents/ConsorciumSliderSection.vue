@@ -44,7 +44,7 @@
 				</div>
 
 				<div class="consortium-footer">
-					<a :href="links[i]">
+					<a target="_blank" :href="links[i]">
 						<div class="button">Перейти на сайт</div>
 					</a>
 				</div>
@@ -135,9 +135,7 @@
 			moveCircle(index, position) {
 				this.consortiumCircles.eq(index).css('width', this.positions[position].width);
 				this.consortiumCircles.eq(index).css('height', this.positions[position].height);
-				this.consortiumCircles
-					.eq(index)
-					.css('transform', this.positions[position].transform);
+				this.consortiumCircles.eq(index).css('transform', this.positions[position].transform);
 			},
 
 			changePosition(i, arr, isNext) {
