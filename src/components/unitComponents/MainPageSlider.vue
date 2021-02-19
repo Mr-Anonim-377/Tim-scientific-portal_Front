@@ -56,8 +56,17 @@
 				},
 
 				sliderData: [],
-				// slideIntervalID: false,
+				slideIntervalID: Number,
 			};
+		},
+
+		watch: {
+			$route: function() {
+				/**
+				 * Очищаем интервал при переходе на другую страницу
+				 */
+				clearInterval(window.sliderAutoClickInterval);
+			},
 		},
 
 		methods: {
@@ -76,14 +85,6 @@
 					this.circles.eq(index).css('transform', $('.'));
 				}
 			},
-			// ch: {
-			// 	'$route'() {
-			// 		handler: function() {
-			// 			console.log('Совершён переход по ссылке');
-
-			// 		}
-			// 	},wat
-			// },
 
 			changePosition(i, arr, isNext) {
 				// Индексы соседних кругов
@@ -127,7 +128,11 @@
 
 					// Определяем следующий
 					setTimeout(() => {
-						this.circles.eq(i3).css('background-image', `url(${this.sliderData[nextImageIndex].url})`);
+						this.circles
+							.eq(i3)
+							.css('background-image', `url(${this.sliderData[nextImageIndex].url})`)
+							.children('h3')
+							.text(this.sliderData[nextImageIndex].title);
 					}, 1000);
 				} else if (!isNext) {
 					this.circles.eq(i).css('z-index', 0);
@@ -145,7 +150,11 @@
 
 					// Определяем следующий
 					setTimeout(() => {
-						this.circles.eq(i).css('background-image', `url(${this.sliderData[prevImageIndex].url})`);
+						this.circles
+							.eq(i)
+							.css('background-image', `url(${this.sliderData[prevImageIndex].url})`)
+							.children('h3')
+							.text(this.sliderData[prevImageIndex].title);
 					}, 1000);
 				}
 			},
@@ -182,6 +191,8 @@
 		async mounted() {
 			// Получаем dom элементы
 			this.getDOM();
+
+			console.log(this.sectionData);
 
 			$('.news-slider__slide:nth-child(3)')
 				.css('background-image', `url(${this.sliderData[this.sliderData.length - 1].url}`)
@@ -280,29 +291,48 @@
 				});
 
 			// Автопереключение слайдов
-
 			let $arrow = $('.news-slider__arrow').eq(1);
 
-			let sliderAutoClick = () => {
-				setTimeout(() => {
-					if (!this.isArrowClicked && this.$route.name === 'Main') {
-						$($arrow).trigger('click');
-						sliderAutoClick();
+			/**
+			 * Функция устанавливает новый интервал и хранит его id в window.slideAutoClickInterval()
+			 */
+			const createInterval = () => {
+				window.sliderAutoClickInterval = setInterval(() => {
+					if (this.$route.name !== 'Main') {
+						console.log('Очищаем интервал');
+						clearInterval(window.sliderAutoClickInterval);
 					}
+					$($arrow).trigger('click');
+					console.log('tick');
 				}, 4000);
 			};
 
-			sliderAutoClick();
+			createInterval();
 
-			//Отменяем автоклики если мышка на контролах
-
-			$('.news-slider__controls').on('mousemove', () => {
-				this.isArrowClicked = true;
+			/**
+			 * Вешаем слушатели на события мыши при наведении мыши на слайдер
+			 */
+			$('.news-slider__view').on('mouseenter', () => {
+				clearInterval(window.sliderAutoClickInterval);
 			});
 
-			$('.news-slider__controls').on('mouseover', () => {
+			$('.news-slider__view').on('mouseleave', () => {
 				this.isArrowClicked = false;
-				sliderAutoClick();
+				createInterval();
+			});
+
+			/**
+			 * Так же обрабатываем события мыши для контролов, т.к. они за слайдером
+			 */
+			$('.news-slider__controls ').on('mouseenter', () => {
+				console.log('Мышь на контролах');
+				clearInterval(window.sliderAutoClickInterval);
+			});
+
+			$('.news-slider__controls').on('mouseleave', () => {
+				console.log('Мышь за слайдером');
+				this.isArrowClicked = false;
+				createInterval();
 			});
 		},
 	};
