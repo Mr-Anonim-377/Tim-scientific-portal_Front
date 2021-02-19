@@ -3,7 +3,7 @@
 <template>
 	<div class="zaglushka">
 		<div class="circle">
-			<img src="../../../assets/image/Logo2.svg" alt="" />
+			<img src="../../../assets/image/logo2.svg" alt="" />
 		</div>
 	</div>
 </template>

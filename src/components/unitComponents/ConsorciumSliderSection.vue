@@ -345,7 +345,7 @@
 	.consortium-logo {
 		width: 160px;
 		height: 182px;
-		background-image: url('../../assets/image/Logo2.svg');
+		background-image: url('../../assets/image/logo2.svg');
 		background-size: contain;
 		background-position: center;
 		background-repeat: no-repeat;
