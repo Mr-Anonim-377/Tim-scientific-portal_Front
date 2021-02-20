@@ -74,9 +74,8 @@
 				<div class="footerNav-item">
 					<h3>О программе</h3>
 
-					<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
-						<p>НЦМУ Научные центры мирового уровня</p>
-					</router-link>
+          <a target="_blank" href="https://ncmu.ru/">
+            НЦМУ Научные центры мирового уровня</a>
 					<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
 						<p>Презентация НЦМУ</p>
 					</router-link>

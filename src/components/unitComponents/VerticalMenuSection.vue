@@ -7,7 +7,7 @@
 				<a target="_blank" href="https://ncmu.ru/">НЦМУ Научные центры мирового уровня</a>
 			</li>
 			<li>
-				<router-link :to="{ name: 'notFound' }">
+				<router-link :to="{ name: 'presentation' }">
 					Презентация НЦМУ
 				</router-link>
 			</li>

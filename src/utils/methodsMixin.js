@@ -67,6 +67,11 @@ export default {
 								.map((item) => item.value.date)
 								.join(' ; ');
 
+							let linkValue = moduleItem.contents
+								.filter((item) => item.contentType === 'LINK')
+								.map((item) => item.value.date)
+								.join(' ; ');
+
 							this[moduleType][moduleItem.objectType].push({
 								title: titleValue ? titleValue : null,
 
@@ -75,6 +80,8 @@ export default {
 								image: imageValue ? imageValue : null,
 
 								date: dateValue ? dateValue : null,
+
+								link: linkValue ? linkValue : null,
 
 								_pageLink: moduleItem.pageLink,
 							});

@@ -184,7 +184,7 @@
 				this.sliderData.push({
 					url: this.sectionData[i].image,
 					title: this.sectionData[i].title,
-					pageLink: this.sectionData[i].pageLink ? this.sectionData[i].pageLink : '',
+					pageLink: this.sectionData[i].link ? this.sectionData[i].link : '',
 				});
 			}
 
@@ -412,6 +412,8 @@
 		position: absolute;
 		width: 100%;
 		height: 100%;
+		top: 0;
+		left: 0;
 	}
 
 	.news-slider__slide::before {
