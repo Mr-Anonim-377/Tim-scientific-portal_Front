@@ -7,12 +7,15 @@
 			<div class="news-slider__view">
 				<div class="news-slider__slide">
 					<h3></h3>
+					<a href="#" target="_blank"></a>
 				</div>
 				<div class="news-slider__slide">
 					<h3></h3>
+					<a href="#" target="_blank"></a>
 				</div>
 				<div class="news-slider__slide">
 					<h3></h3>
+					<a href="#" target="_blank"></a>
 				</div>
 			</div>
 
@@ -78,10 +81,8 @@
 
 			moveCircle(index, position, dinamicPosition) {
 				if (!dinamicPosition) {
-					// this.circles.eq(index).css('width', this.positions[position].width);
 					this.circles.eq(index).css('transform', this.positions[position].transform);
 				} else {
-					// this.circles.eq(index).css('width', this.positions[position].width);
 					this.circles.eq(index).css('transform', $('.'));
 				}
 			},
@@ -132,7 +133,10 @@
 							.eq(i3)
 							.css('background-image', `url(${this.sliderData[nextImageIndex].url})`)
 							.children('h3')
-							.text(this.sliderData[nextImageIndex].title);
+							.text(this.sliderData[nextImageIndex].title)
+							.next('a')
+							.attr('href', this.sliderData[nextImageIndex].pageLink)
+							.css('display', this.sliderData[nextImageIndex].pageLink === '' ? 'none' : 'block');
 					}, 1000);
 				} else if (!isNext) {
 					this.circles.eq(i).css('z-index', 0);
@@ -154,7 +158,10 @@
 							.eq(i)
 							.css('background-image', `url(${this.sliderData[prevImageIndex].url})`)
 							.children('h3')
-							.text(this.sliderData[prevImageIndex].title);
+							.text(this.sliderData[prevImageIndex].title)
+							.next('a')
+							.attr('href', this.sliderData[prevImageIndex].pageLink)
+							.css('display', this.sliderData[prevImageIndex].pageLink === '' ? 'none' : 'block');
 					}, 1000);
 				}
 			},
@@ -177,6 +184,7 @@
 				this.sliderData.push({
 					url: this.sectionData[i].image,
 					title: this.sectionData[i].title,
+					pageLink: this.sectionData[i].pageLink ? this.sectionData[i].pageLink : '',
 				});
 			}
 
@@ -192,29 +200,38 @@
 			// Получаем dom элементы
 			this.getDOM();
 
-			console.log(this.sectionData);
+			/**
+			 * Вешаем хэндлер на ссылки в слайдере для контроля над видимостью <a> блока
+			 */
 
 			$('.news-slider__slide:nth-child(3)')
 				.css('background-image', `url(${this.sliderData[this.sliderData.length - 1].url}`)
 				.children('h3')
 				.val(1);
 
-			// Начальное положение картинок
+			// Начальное положение картинок, текста и ссылок
 			$('.news-slider__slide:nth-child(2)')
 				.css('background-image', `url(${this.sliderData[this.sliderDataIndex].url})`)
 				.children('h3')
-				.text(this.sliderData[this.sliderDataIndex].title);
+				.text(this.sliderData[this.sliderDataIndex].title)
+				.next('a')
+				.attr('href', this.sliderData[this.sliderDataIndex].pageLink)
+				.css('display', this.sliderData[this.sliderDataIndex].pageLink === '' ? 'none' : 'block');
 
 			$('.news-slider__slide:nth-child(1)')
 				.css('background-image', `url(${this.sliderData[this.sliderDataIndex + 1].url}`)
 				.children('h3')
-				.text(this.sliderData[this.sliderDataIndex + 1].title);
-
+				.text(this.sliderData[this.sliderDataIndex + 1].title)
+				.next('a')
+				.attr('href', this.sliderData[this.sliderDataIndex + 1].pageLink)
+				.css('display', this.sliderData[this.sliderDataIndex + 1].pageLink === '' ? 'none' : 'block');
 			$('.news-slider__slide:nth-child(3)')
 				.css('background-image', `url(${this.sliderData[this.sliderData.length - 1].url}`)
 				.children('h3')
-				.text(this.sliderData[this.sliderData.length - 1].title);
-
+				.text(this.sliderData[this.sliderData.length - 1].title)
+				.next('a')
+				.attr('href', this.sliderData[this.sliderData.length - 1].pageLink)
+				.css('display', this.sliderData[this.sliderData.length - 1].pageLink === '' ? 'none' : 'block');
 			$('.news-slider__dot')
 				.eq(this.sliderDataIndex)
 				.addClass('news-slider__dot_active')
@@ -252,12 +269,6 @@
 						.eq(this.sliderDataIndex)
 						.removeClass('news-slider__dot_active');
 
-					//Меняем индекс слайдов (индекс для данных)
-					// this.sliderDataIndex =
-					//     this.sliderDataIndex === 0
-					//         ? this.sliderData.length - 1
-					//         : this.sliderDataIndex - 1;
-
 					$('.news-slider__dot')
 						.eq(this.sliderDataIndex)
 						.addClass('news-slider__dot_active');
@@ -290,7 +301,9 @@
 						.addClass('news-slider__dot_active');
 				});
 
-			// Автопереключение слайдов
+			/**
+			 * Автопереключение слайдов
+			 */
 			let $arrow = $('.news-slider__arrow').eq(1);
 
 			/**
@@ -299,11 +312,9 @@
 			const createInterval = () => {
 				window.sliderAutoClickInterval = setInterval(() => {
 					if (this.$route.name !== 'Main') {
-						console.log('Очищаем интервал');
 						clearInterval(window.sliderAutoClickInterval);
 					}
 					$($arrow).trigger('click');
-					console.log('tick');
 				}, 4000);
 			};
 
@@ -325,12 +336,10 @@
 			 * Так же обрабатываем события мыши для контролов, т.к. они за слайдером
 			 */
 			$('.news-slider__controls ').on('mouseenter', () => {
-				console.log('Мышь на контролах');
 				clearInterval(window.sliderAutoClickInterval);
 			});
 
 			$('.news-slider__controls').on('mouseleave', () => {
-				console.log('Мышь за слайдером');
 				this.isArrowClicked = false;
 				createInterval();
 			});
@@ -342,10 +351,7 @@
 	.news-slider {
 		width: 710px;
 		height: 710px;
-		/* border: 1px solid #3f7e77; */
 
-		/* TEMP */
-		/* margin: 50px auto; */
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -402,6 +408,11 @@
 		background-position: center;
 		color: #f8f5e6;
 	}
+	.news-slider__slide a {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
 
 	.news-slider__slide::before {
 		content: '';
@@ -430,19 +441,12 @@
 	}
 
 	.news-slider__dots {
-		/* position: absolute; */
 		top: -35px;
 		z-index: 10;
-		/* width: 780px; */
-		/* position: absolute; */
-		/* top: -35px; */
 		z-index: 10;
-		/* width: 780px; */
 		display: flex;
-		/* margin: 0 20px; */
 		padding: 0 30px;
 		justify-content: center;
-
 		display: flex;
 		justify-content: center;
 	}

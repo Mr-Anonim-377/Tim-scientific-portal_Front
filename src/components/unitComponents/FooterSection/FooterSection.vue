@@ -133,7 +133,7 @@
 			<!-- Логотип и политика конф-->
 			<div class="footer-police">
 				<div class="footer-police__img">
-					<img src="../../../assets/image/logo2.svg" />
+					<img src="../../../assets/image/newLogo.png" />
 				</div>
 				<div class="footer-police__text">
 					<p>
@@ -264,6 +264,7 @@
 	.footer-police p {
 		color: #a2a5a7;
 		margin: 0;
+		width: 370px;
 	}
 
 	.footer-police span {
@@ -272,7 +273,7 @@
 
 	.footer-police img {
 		margin-right: 30px;
-		width: 74px;
+		/* width: 74px; */
 		height: 75px;
 	}
 

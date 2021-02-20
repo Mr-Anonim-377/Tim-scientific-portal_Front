@@ -13,7 +13,7 @@
 				</router-link>
 			</p>
 			<router-link style="text-decoration: none" :to="{ name: 'Main' }">
-				<img src="../../../assets/image/logo2.svg" />
+				<img src="../../../assets/image/newLogo.png" />
 				<div class="popup-arrow"></div>
 			</router-link>
 			<input type="text" placeholder="Поиск" class="headerSection__research" />
@@ -189,7 +189,7 @@
 
 	img {
 		/* TEMP размер пока дизайнеры не подгонят svg */
-		width: 50px;
+		width: 150px;
 	}
 
 	.headerSection {
@@ -201,15 +201,21 @@
 		display: flex;
 		text-align: center;
 		margin: auto;
-		max-width: 1144px;
+		max-width: 1200px;
 		align-items: center;
 		position: relative;
 	}
 
 	/*Телефон с картинкой*/
 	.headerSection__text-phone {
-		margin: 0 83px 0 32px;
+		margin: 0 63px 0 32px;
 		position: relative;
+		font-size: 12px;
+	}
+
+	.headerSection__text-phone p {
+		font-size: 12px;
+		/* flex-s */
 	}
 	.headerSection__text-phone:before {
 		content: '';

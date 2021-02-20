@@ -3,7 +3,7 @@
 <template>
 	<div class="zaglushka">
 		<div class="circle">
-			<img src="../../../assets/image/logo2.svg" alt="" />
+			<img src="../../../assets/image/newLogo.png" alt="" />
 		</div>
 	</div>
 </template>
@@ -25,7 +25,7 @@
 	}
 
 	img {
-		width: 150px;
+		width: 340px;
 	}
 
 	.circle {
@@ -36,8 +36,8 @@
 		bottom: 0;
 		margin: auto;
 
-		width: 300px;
-		height: 300px;
+		width: 450px;
+		height: 450px;
 
 		border: 5px solid #3f7e77;
 		border-radius: 100%;
@@ -52,8 +52,8 @@
 		display: block;
 
 		position: absolute;
-		width: 300px;
-		height: 300px;
+		width: 450px;
+		height: 450px;
 		border-radius: 100%;
 		border: 5px solid #3f7e77;
 

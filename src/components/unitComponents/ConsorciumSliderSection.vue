@@ -343,13 +343,13 @@
 	}
 
 	.consortium-logo {
-		width: 160px;
-		height: 182px;
-		background-image: url('../../assets/image/logo2.svg');
+		height: 85px;
+		background-image: url('../../assets/image/newLogo.png');
 		background-size: contain;
 		background-position: center;
 		background-repeat: no-repeat;
-		transform: translate(340px, 216px);
+		/* transform: translate(340px, 216px); */
+		transform: translate(0px, 266px);
 	}
 
 	.consortium-controls {
