@@ -5,33 +5,35 @@
        :headerVisible="true"
        :stileTitle="stileTitle.stile"
    />
-   <div class="documents__lists">
-     <div class="lists-text">
-       <p>Категория материалов</p>
-       <p class="lists-text__years">Год публикации</p>
-     </div>
 
-     <form>
-       <select size="1" class="lists-item item-left">
-         <option selected="selected">Выбрать...</option>
-         <option
-             v-for="dataList in documentData.lists.categories"
-             :key="dataList"
-         >{{dataList}}</option>
-       </select>
-     </form>
+<!--   Отказались от этого -->
 
-     <form>
-       <select size="1" class="lists-item item-right">
-         <option selected="selected">Выбрать...</option>
-         <option
-             v-for="dataListYears in documentData.lists.years"
-             :key="dataListYears"
-         >{{dataListYears}}</option>
-       </select>
-     </form>
+<!--   <div class="documents__lists">-->
+<!--     <div class="lists-text">-->
+<!--       <p>Категория материалов</p>-->
+<!--       <p class="lists-text__years">Год публикации</p>-->
+<!--     </div>-->
 
-   </div>
+<!--     <form>-->
+<!--       <select size="1" class="lists-item item-left">-->
+<!--         <option selected="selected">Выбрать...</option>-->
+<!--         <option-->
+<!--             v-for="dataList in documentData.lists.categories"-->
+<!--             :key="dataList"-->
+<!--         >{{dataList}}</option>-->
+<!--       </select>-->
+<!--     </form>-->
+
+<!--     <form>-->
+<!--       <select size="1" class="lists-item item-right">-->
+<!--         <option selected="selected">Выбрать...</option>-->
+<!--         <option-->
+<!--             v-for="dataListYears in documentData.lists.years"-->
+<!--             :key="dataListYears"-->
+<!--         >{{dataListYears}}</option>-->
+<!--       </select>-->
+<!--     </form>-->
+<!--   </div>-->
 
    <div class="documents-block">
      <span>Наименование первой категории материалов</span>
@@ -70,20 +72,7 @@ export default {
           'font-size: 26px'
         ]
       },
-      documentData:
-          {
-            lists: {
-              categories: [
-                'Документ 1',
-                'Документ 2',
-                'Документ 3',
-                'Документ 4'
-              ],
-              years: [
-                '2020',
-                '2021'
-              ],
-            },
+      documentData: {
             documents: {
                oneDocs: [
                  {

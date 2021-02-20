@@ -38,7 +38,6 @@ p{
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  overflow-y: auto;
 }
 
 .documentSection__text-name{
@@ -49,7 +48,7 @@ p{
   height: auto;
 }
 
-.documentSection__text-name :before{
+.documentSection__text-name:before{
   content: '';
   background-image: url("../../assets/image/PDF.svg");
   position: absolute;
