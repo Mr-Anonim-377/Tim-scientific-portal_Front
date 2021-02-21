@@ -40,7 +40,6 @@ export default {
 
 				await this.GET_DATA_FROM_API().then((response) => {
 					let moduleType = this.modules[module].moduleType;
-
 					this[moduleType] = [];
 
 					if (response) {
@@ -69,9 +68,8 @@ export default {
 
 							let linkValue = moduleItem.contents
 								.filter((item) => item.contentType === 'LINK')
-								.map((item) => item.value.date)
+								.map((item) => item.value.url)
 								.join(' ; ');
-
 							this[moduleType][moduleItem.objectType].push({
 								title: titleValue ? titleValue : null,
 

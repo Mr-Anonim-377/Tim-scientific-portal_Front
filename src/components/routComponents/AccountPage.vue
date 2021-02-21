@@ -65,7 +65,7 @@
 			/**
 			 * Берем RESEARCH_ARRAY
 			 */
-			console.log(this.RESEARCH_ARRAY);
+			// console.log(this.RESEARCH_ARRAY);
 		},
 	};
 </script>

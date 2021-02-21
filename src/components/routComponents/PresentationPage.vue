@@ -44,10 +44,11 @@
 		},
 		async mounted() {
 			await this.getModulesTest('POWER_POINT');
+			// console.log(this.DOCS);
 			setTimeout(() => {
 				this.loadSuccess = true;
 			}, 500);
-			console.log(this.DOCS);
+			// console.log(this.DOCS);
 		},
 	};
 </script>

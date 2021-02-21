@@ -161,7 +161,7 @@
 						headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
 					})
 					.then(() => {
-						// console.log('Авторизация пройдена');
+						// // console.log('Авторизация пройдена');
 						// this.isAuth = false;
 						localStorage.setItem('isAuth', false);
 					})

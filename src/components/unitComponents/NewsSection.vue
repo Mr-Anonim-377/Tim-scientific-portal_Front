@@ -11,10 +11,7 @@
 					{{ NEWS_ITEM.date.split('.')[2] }}
 				</p>
 				<p class="news-item__text">{{ NEWS_ITEM.text }}</p>
-				<router-link
-					style="text-decoration: none"
-					:to="{ path: `/newsItem/${NEWS_ITEM._pageLink}` }"
-				>
+				<router-link style="text-decoration: none" :to="{ path: `/newsItem/${NEWS_ITEM._pageLink}` }">
 					<ButtonElement :modifiers="modifiers.btn" class="news__btn" />
 				</router-link>
 			</div>
@@ -39,9 +36,7 @@
 		data() {
 			return {
 				modifiers: {
-					btn: [
-						'width: 170px; height: 35px; font-size: 14px; line-height: 17px; padding: 10px;',
-					],
+					btn: ['width: 170px; height: 35px; font-size: 14px; line-height: 17px; padding: 10px;'],
 				},
 				titleNews: 'Новости программы',
 				visibleNews: true,
@@ -56,7 +51,7 @@
 		// 		handler() {
 		// 			// this.$forceUpdate();
 		// 			this.loadSuccess = false;
-		// 			console.log(1213);
+		// 			// console.log(1213);
 		// 		},
 		// 	},
 		// },

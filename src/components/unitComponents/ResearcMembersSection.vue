@@ -70,7 +70,7 @@
 			},
 		},
 		mounted() {
-			console.log(this.sectionData);
+			// console.log(this.sectionData);
 			// debugger;
 		},
 	};

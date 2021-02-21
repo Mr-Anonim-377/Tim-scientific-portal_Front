@@ -79,6 +79,7 @@
 		mixins: [testMixin],
 
 		async mounted() {
+			// console.log(this.BANNERS);
 			await this.getModulesTest('MAIN_PAGE');
 			setTimeout(() => {
 				this.loadSuccess = true;
