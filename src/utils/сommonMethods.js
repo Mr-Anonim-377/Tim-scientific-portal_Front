@@ -36,7 +36,7 @@ export const store = createStore({
 					return data;
 				})
 				.catch((error) => {
-					// console.log(error)
+					console.log(error);
 				});
 		},
 		GET_DATA_FROM_API() {
@@ -46,7 +46,7 @@ export const store = createStore({
 					return data;
 				})
 				.catch((error) => {
-					// console.log(error)
+					console.log(error);
 				});
 		},
 	},
