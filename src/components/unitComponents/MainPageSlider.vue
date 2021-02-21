@@ -380,7 +380,7 @@
 		height: 25px;
 		background-size: cover;
 		cursor: pointer !important;
-		z-index: 10;
+		z-index: 11;
 	}
 
 	.news-slider__arrow:last-child {
@@ -407,10 +407,10 @@
 	.news-slider__slide a {
 		position: absolute;
 		width: 100%;
-		height: 100%;
+		height: 92%;
 		top: 0;
 		left: 0;
-		z-index: 9;
+		z-index: 10;
 	}
 
 	.news-slider__slide::before {
