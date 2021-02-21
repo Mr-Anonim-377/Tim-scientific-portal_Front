@@ -200,10 +200,6 @@
 			// Получаем dom элементы
 			this.getDOM();
 
-			/**
-			 * Вешаем хэндлер на ссылки в слайдере для контроля над видимостью <a> блока
-			 */
-
 			$('.news-slider__slide:nth-child(3)')
 				.css('background-image', `url(${this.sliderData[this.sliderData.length - 1].url}`)
 				.children('h3')
@@ -414,6 +410,7 @@
 		height: 100%;
 		top: 0;
 		left: 0;
+		z-index: 9;
 	}
 
 	.news-slider__slide::before {
