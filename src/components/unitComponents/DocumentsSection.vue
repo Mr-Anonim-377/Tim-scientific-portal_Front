@@ -20,6 +20,13 @@
 </script>
 
 <style scoped>
+	a:link,
+	a:visited,
+	a:active,
+	a:hover {
+		text-decoration: none;
+		color: black;
+	}
 	p {
 		font-size: 15px;
 		line-height: 18px;
