@@ -65,7 +65,7 @@
 				</div>
 
 				<div class="headerSection__item">
-					<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+					<router-link style="text-decoration: none" :to="{ name: 'documents' }">
 						<p>Официальные документы</p>
 					</router-link>
 				</div>

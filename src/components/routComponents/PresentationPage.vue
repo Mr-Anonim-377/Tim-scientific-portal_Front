@@ -9,7 +9,6 @@
 						<a :href="DOCS.DOC[0].link" download>
 							<p class="presentation-block__text-name">Скачать презентацию НЦМУ</p>
 						</a>
-						<p>450 КБ</p>
 						<p class="presentation-block__text-data">от 20.02.2020</p>
 					</div>
 				</div>
@@ -96,7 +95,7 @@
 		position: relative;
 		cursor: pointer;
 		height: auto;
-		margin: 0 15px 0 76px;
+		margin: 0 15px 0 100px;
 	}
 
 	.presentation-block__text-name:before {
@@ -110,7 +109,8 @@
 	}
 
 	.presentation-block__text-data {
-		margin: 10px 0 0 76px;
+		margin: 10px;
 		width: 100%;
+		text-align: center;
 	}
 </style>

@@ -79,7 +79,7 @@ const routes = [
 		component: auth,
 	},
 	{
-		path: '/documents/:page',
+		path: '/documents',
 		name: 'documents',
 		component: documents,
 	},

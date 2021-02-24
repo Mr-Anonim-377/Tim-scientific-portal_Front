@@ -18,7 +18,7 @@
 				</router-link>
 			</li>
 			<li>
-				<router-link :to="{ name: 'notFound' }"> Динамика достижения индикаторов НЦМУ</router-link>
+				<router-link :to="{ name: 'notFound' }"> Динамика достижения результатов программы</router-link>
 			</li>
 			<li>
 				Исследователи НЦМУ
