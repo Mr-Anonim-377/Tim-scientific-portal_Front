@@ -8,6 +8,9 @@
 
 				<documents-section :sectionData="DOCS" />
 			</div>
+			<router-link style="text-decoration: none" :to="{ name: 'auth' }">
+				<h3>Документы консорциума</h3>
+			</router-link>
 		</section>
 	</div>
 
@@ -94,6 +97,14 @@
 </script>
 
 <style scoped>
+	h3 {
+		color: rgb(63, 126, 119);
+		width: 800px;
+		margin: auto;
+		text-decoration: underline;
+		text-align: center;
+		margin-top: 50px;
+	}
 	.documents {
 		max-width: 1200px;
 		align-items: center;
@@ -165,7 +176,7 @@
 	}
 
 	.documents-block {
-		/* border-bottom: 2px solid #c4c4c4; */
+		border-bottom: 2px solid #c4c4c4;
 		padding-bottom: 50px;
 		/* margin-top: 44px; */
 		width: 800px;
