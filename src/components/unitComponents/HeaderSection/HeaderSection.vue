@@ -108,7 +108,7 @@
 							:to="{ path: `/newsItem/${newsItem._pageLink}` }"
 						>
 							<p>
-								{{ newsItem.title }}
+								{{ newsItem.title[0] + newsItem.title.slice(1).toLowerCase() }}
 							</p>
 						</router-link>
 					</div>
@@ -169,6 +169,10 @@
 						localStorage.setItem('isAuth', false);
 					});
 			},
+
+			// ucFirst(string) {
+			// 	return string[0].toUpperCase + string.slice(1)
+			// }
 		},
 	};
 </script>
