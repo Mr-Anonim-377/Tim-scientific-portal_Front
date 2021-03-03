@@ -53,6 +53,9 @@
 </script>
 
 <style scoped>
+  a {
+    z-index: 10;
+  }
 	.presentation {
 		max-width: 1200px;
 		align-items: center;

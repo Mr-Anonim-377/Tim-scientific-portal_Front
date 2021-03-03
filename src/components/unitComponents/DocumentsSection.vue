@@ -20,6 +20,10 @@
 </script>
 
 <style scoped>
+a {
+  z-index: 10;
+}
+
 	a:link,
 	a:visited,
 	a:active,

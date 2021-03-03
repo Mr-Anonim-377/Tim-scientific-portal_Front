@@ -109,6 +109,10 @@ name: "KnowledgeBasePage",
 </script>
 
 <style scoped>
+a {
+  z-index: 10;
+}
+
 p{
   font-weight: bold;
   font-size: 18px;
@@ -142,8 +146,8 @@ p{
 }
 
 .block-img{
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   margin: 0 auto 24px auto;
 }
 </style>

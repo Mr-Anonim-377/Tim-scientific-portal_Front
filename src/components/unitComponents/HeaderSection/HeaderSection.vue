@@ -108,7 +108,8 @@
 							:to="{ path: `/newsItem/${newsItem._pageLink}` }"
 						>
 							<p>
-								{{ newsItem.title[0] + newsItem.title.slice(1).toLowerCase() }}
+<!--								{{ newsItem.title[0] + newsItem.title.slice(1).toLowerCase() }}-->
+                {{ newsItem.title }}
 							</p>
 						</router-link>
 					</div>
