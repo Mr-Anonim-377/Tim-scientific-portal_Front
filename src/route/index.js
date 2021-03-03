@@ -17,6 +17,7 @@ import project from '../components/routComponents/ProjectPage';
 import auth from '../components/unitComponents/AuthorizationeSection';
 import documents from '../components/routComponents/DocumentsPage';
 import presentation from '../components/routComponents/PresentationPage';
+import recovery from '../components/routComponents/RecoveryPage';
 
 const routes = [
 	{
@@ -87,6 +88,11 @@ const routes = [
 		path: '/presentation',
 		name: 'presentation',
 		component: presentation,
+	},
+	{
+		path: '/recovery',
+		name: 'recovery',
+		component: recovery,
 	},
 
 	/**
