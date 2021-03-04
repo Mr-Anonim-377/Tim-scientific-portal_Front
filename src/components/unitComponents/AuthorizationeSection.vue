@@ -11,9 +11,9 @@
 			<div class="controls">
 				<input v-model="this.login" type="text" placeholder="Логин / Email" class="authorization__inp" />
 				<input v-model="this.password" type="password" placeholder="Пароль" class="authorization__inp" />
-        <router-link style="text-decoration: none" :to="{ name: 'recovery' }">
-        <p>Забыли пароль?</p>
-        </router-link>
+				<router-link style="text-decoration: none" :to="{ name: 'recovery' }">
+					<p>Забыли пароль?</p>
+				</router-link>
 			</div>
 			<ButtonElement @click="logIn" :modifiers="modifiers.btn" :title="titleAuthorizationBtn" />
 		</section>
@@ -53,7 +53,7 @@
 		methods: {
 			logIn() {
 				axios
-					.get('http://localhost:1024/user/logIn', {
+					.get('http://localhost:80/user/logIn', {
 						headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
 						auth: {
 							username: this.login,
@@ -69,7 +69,7 @@
 						// this.$router.go();
 						// this.$router.push({ name: 'Main' });
 						// window.location.reload();
-						window.location.href = 'http://localhost:1024/';
+						window.location.href = 'http://localhost:80/';
 						// this.$router.go('');
 						// Переходим на главную страницу
 						// document.querySelector('.headerSection-container > a').click();

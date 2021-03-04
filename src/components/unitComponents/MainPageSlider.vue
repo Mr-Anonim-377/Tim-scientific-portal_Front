@@ -417,7 +417,7 @@
 		content: '';
 		width: inherit;
 		height: inherit;
-		background: linear-gradient(180deg, rgba(51, 51, 51, 0) 60.49%, rgba(51, 51, 51, 0.8) 100%);
+		background: linear-gradient(180deg, rgba(51, 51, 51, 0) 34.49%, rgba(51, 51, 51, 0.8) 100%);
 		position: absolute;
 		top: 0;
 		left: 0;

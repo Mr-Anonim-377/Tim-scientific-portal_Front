@@ -18,7 +18,7 @@ import auth from '../components/unitComponents/AuthorizationeSection';
 import documents from '../components/routComponents/DocumentsPage';
 import presentation from '../components/routComponents/PresentationPage';
 import recovery from '../components/routComponents/RecoveryPage';
-// import knowledgeBase from '../components/routComponents/KnowledgeBasePage';
+import knowledgeBase from '../components/routComponents/KnowledgeBasePage';
 
 const routes = [
 	{
@@ -95,11 +95,11 @@ const routes = [
 		name: 'recovery',
 		component: recovery,
 	},
-	// {
-	// 	path: '/knowledgeBase',
-	// 	name: 'knowledgeBase',
-	// 	component: knowledgeBase,
-	// },
+	{
+		path: '/knowledgeBase',
+		name: 'knowledgeBase',
+		component: knowledgeBase,
+	},
 
 	/**
 	 * Анкета пользователя
