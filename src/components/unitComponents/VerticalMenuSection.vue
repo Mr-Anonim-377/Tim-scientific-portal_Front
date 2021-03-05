@@ -68,7 +68,7 @@
 				</div>
 			</li>
 			<li>
-				<router-link :to="{ name: 'notFound' }">База знанинй</router-link>
+				<router-link :to="{ name: 'knowledgeBase' }">База знанинй</router-link>
 			</li>
 			<li>
 				<router-link :to="{ name: 'notFound' }">Фундаментальные результаты </router-link>
