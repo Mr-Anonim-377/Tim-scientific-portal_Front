@@ -8,7 +8,7 @@
 		</p>
 		<form @submit.prevent="submitFunc()">
 			<div class="controls">
-				<input type="email" name="email" placeholder="Логин / Email" class="recovery__inp" required />
+				<input v-model="login" name="login" placeholder="Логин" class="recovery__inp" required />
 				<recaptcha ref="recaptcha" @verify="submit" />
 			</div>
 			<ButtonElement :modifiers="modifiers.btn" :title="titleRecoveryBtn" @click="executeRecaptcha" />
@@ -20,6 +20,7 @@
 	import TitleSection from '../unitComponents/TitleSection';
 	import ButtonElement from '@/components/unitComponents/CommonElements/ButtonElement';
 	import Recaptcha from '../unitComponents/RecaptchaSection';
+  import axios from 'axios';
 	export default {
 		name: 'RecoveryPage',
 		components: {
@@ -29,6 +30,7 @@
 		},
 		data() {
 			return {
+        login:'',
 				error: false,
 				visibleRecovery: true,
 				titleRecovery: 'Восстановление пароля',
@@ -51,7 +53,16 @@
 			},
 
 			submitFunc() {
-				console.log(123);
+        axios
+            .get('http://localhost:80/utils/update/password?login=' + this.login, {
+              headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+            })
+            .then(() => {
+              window.location.href = 'http://localhost:80/auth';
+        })
+        .catch(() => {
+          this.error = true;
+        });
 				return false;
 			},
 		},

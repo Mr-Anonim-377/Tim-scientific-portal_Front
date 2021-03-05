@@ -158,7 +158,7 @@
 				// Перезагружаем страницу после выхода для обновления хэдера
 				this.$router.go();
 				axios
-					.post('http://future-agro.ru:1024/user/logout', {
+					.post('http://future-agro.ru:80/user/logout', {
 						headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
 					})
 					.then(() => {

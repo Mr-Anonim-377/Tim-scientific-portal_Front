@@ -53,7 +53,7 @@
 		methods: {
 			logIn() {
 				axios
-					.get('http://localhost:1024/user/logIn', {
+					.get('http://localhost:80/user/logIn', {
 						headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
 						auth: {
 							username: this.login,
@@ -69,7 +69,7 @@
 						// this.$router.go();
 						// this.$router.push({ name: 'Main' });
 						// window.location.reload();
-						window.location.href = 'http://localhost:1024/';
+						window.location.href = 'http://localhost:80/';
 						// this.$router.go('');
 						// Переходим на главную страницу
 						// document.querySelector('.headerSection-container > a').click();
