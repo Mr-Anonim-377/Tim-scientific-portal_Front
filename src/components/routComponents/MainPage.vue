@@ -19,7 +19,7 @@
 
 				<div class="plug_group">
 					<!-- Секция целей проекта -->
-					<PurposesSection :sectionData="PROJECT_GOALS" />
+					<PurposesSection :compactTitlePurposes="titlePurposes" :sectionData="PROJECT_GOALS"/>
 
 					<!-- Секция результатов исследования -->
 					<ResultSection />
@@ -89,6 +89,7 @@
 			return {
 				loadSuccess: false,
 				sliderTestData: [1, 2, 3],
+        titlePurposes: true,
 			};
 		},
 	};

@@ -19,6 +19,8 @@ import documents from '../components/routComponents/DocumentsPage';
 import presentation from '../components/routComponents/PresentationPage';
 import recovery from '../components/routComponents/RecoveryPage';
 import knowledgeBase from '../components/routComponents/KnowledgeBasePage';
+import dynamics from '../components/routComponents/DynamicsPage';
+
 
 const routes = [
 	{
@@ -100,6 +102,12 @@ const routes = [
 		name: 'knowledgeBase',
 		component: knowledgeBase,
 	},
+	{
+		path: '/dynamics',
+		name: 'dynamics',
+		component: dynamics,
+	},
+
 
 	/**
 	 * Анкета пользователя

@@ -4,7 +4,7 @@
 	<!-- Компактный заголовок -->
 	<div v-if="compactTitle" class="compact-title">
 		<img src="../../assets/image/line3.svg" />
-		<h2>{{ title }}</h2>
+		<h2 :style="stileTitle">{{ title }}</h2>
 	</div>
 
 	<div v-else class="text-white" :class="{ 'text-blue': headerVisible }">
