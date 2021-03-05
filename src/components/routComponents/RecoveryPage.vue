@@ -1,7 +1,8 @@
 <template>
 	<section class="recovery">
 		<TitleSection :stileTitle="stileTitle.stile" :headerVisible="visibleRecovery" :title="this.titleRecovery" />
-		<p class="error-recovery" :class="{ error_show: error }">*Такого логина не существует</p>
+
+		<p class="error-recovery" :class="{ errorShow: error }">{{ errorMessage }}</p>
 		<p>
 			Укажите Вашу почту. На неё будет отправлено<br />
 			письмо с дальнейшими инструкциями
@@ -32,8 +33,10 @@
 			return {
         login:'',
 				error: false,
+				errorMessage: '',
 				visibleRecovery: true,
 				titleRecovery: 'Восстановление пароля',
+				compliteRecapcha: false,
 				modifiers: {
 					btn: ['width: 331px; height: 50px; margin: 10px 0 20px 0px;'],
 				},
@@ -44,25 +47,50 @@
 			};
 		},
 		methods: {
-			submit(response) {
-				console.log(response);
+			submit() {
+				/**
+				 * Метод слушает капчу
+				 * Срабатывает когда капча будет пройдена
+				 */
+				this.compliteRecapcha = true;
 			},
 			executeRecaptcha() {
 				this.$refs.recaptcha.execute();
-				console.log('click');
 			},
 
+			/**
+			 * Метод вызывается при попытке submit()
+			 */
 			submitFunc() {
-        axios
-            .get('http://localhost:80/utils/update/password?login=' + this.login, {
-              headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-            })
-            .then(() => {
-              window.location.href = 'http://localhost:80/auth';
-        })
-        .catch(() => {
-          this.error = true;
-        });
+				if (!this.compliteRecapcha) {
+					// Показываем ошибку
+					this.errorMessage = 'Необходимо пройти проверку reCAPCHA';
+					this.error = true;
+
+					// Скрываем через секунду
+					setTimeout(() => {
+						this.error = false;
+					}, 1000);
+				} else {
+					/**
+					 * Тут можно добавлять проверки
+					 * Если все ок, то можно отправлять запрос в блоке else
+					 */
+          axios
+              .get('http://localhost:80/utils/update/password?login=' + this.login, {
+                headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+              })
+              .then(() => {
+                window.location.href = 'http://localhost:80/auth';
+              })
+              .catch(() => {
+                this.error = true;
+              });
+				}
+
+				/**
+				 * Метод всегда должен возвращать false
+				 */
 				return false;
 			},
 		},
@@ -76,6 +104,7 @@
 		text-align: center;
 		color: #3f7e77;
 	}
+
 	.recovery {
 		width: 376px;
 		/* height: 393px; */
@@ -132,5 +161,9 @@
 	:hover,
 	:focus {
 		outline: none;
+	}
+
+	.errorShow {
+		opacity: 1;
 	}
 </style>

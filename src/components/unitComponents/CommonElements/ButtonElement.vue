@@ -28,7 +28,6 @@
 		background: #3f7e77;
 		border-radius: 54px;
 		margin: auto;
-		/* font-family: 'Gilroy-Bold'; */
 		font-family: Roboto;
 		color: #f8f5e6;
 		padding: 16px;

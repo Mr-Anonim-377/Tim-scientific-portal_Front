@@ -11,9 +11,9 @@
 			<div class="controls">
 				<input v-model="this.login" type="text" placeholder="Логин / Email" class="authorization__inp" />
 				<input v-model="this.password" type="password" placeholder="Пароль" class="authorization__inp" />
-        <router-link style="text-decoration: none" :to="{ name: 'recovery' }">
-        <p>Забыли пароль?</p>
-        </router-link>
+				<router-link style="text-decoration: none" :to="{ name: 'recovery' }">
+					<p>Забыли пароль?</p>
+				</router-link>
 			</div>
 			<ButtonElement @click="logIn" :modifiers="modifiers.btn" :title="titleAuthorizationBtn" />
 		</section>
