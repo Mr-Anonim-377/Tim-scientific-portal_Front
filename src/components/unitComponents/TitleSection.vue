@@ -4,13 +4,13 @@
 	<!-- Компактный заголовок -->
 	<div v-if="compactTitle" class="compact-title">
 		<img src="../../assets/image/line3.svg" />
-		<h2 :style="stileTitle">{{ title }}</h2>
+		<h2 :style="styleTitle">{{ title }}</h2>
 	</div>
 
 	<div v-else class="text-white" :class="{ 'text-blue': headerVisible }">
 		<img v-if="headerVisible" src="../../assets/image/Line.svg" />
 		<img v-else src="../../assets/image/Line2.svg" />
-		<h2 :style="stileTitle">{{ title }}</h2>
+		<h2 :style="styleTitle">{{ title }}</h2>
 	</div>
 </template>
 
@@ -20,15 +20,14 @@
 		 * @param {String} title - название заголовка
 		 * FIXME @param {String} headerVisible - в зависимости от наличия параметра менятеся цвет заголовка
 		 * @param {String} compactTitle - применяет стили для "компактного" заголовка (в блоках на главной странице)
-     * @param {Object} stileTitle - Принимает объект с кастомными стилями
+		 * @param {Object} styleTitle - Принимает объект с кастомными стилями
 		 */
 		name: 'newSectionHeader',
-		props:
-      {
+		props: {
 			title: String,
 			headerVisible: Boolean,
 			compactTitle: Boolean,
-      stileTitle: Object,
+			styleTitle: Object,
 		},
 	};
 </script>

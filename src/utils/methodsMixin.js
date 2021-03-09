@@ -70,6 +70,17 @@ export default {
 								.filter((item) => item.contentType === 'LINK')
 								.map((item) => item.value.url)
 								.join(' ; ');
+
+							let totalPercent = moduleItem.contents
+								.filter((item) => item.contentType === 'TOTAL_PERCENT')
+								.map((item) => item.value.percent)
+								.join(' ; ');
+
+							let dynamicsPercent = moduleItem.contents
+								.filter((item) => item.contentType === 'DYNAMIC_PERCENT')
+								.map((item) => item.value.percent)
+								.join(' ; ');
+
 							this[moduleType][moduleItem.objectType].push({
 								title: titleValue ? titleValue : null,
 
@@ -80,6 +91,10 @@ export default {
 								date: dateValue ? dateValue : null,
 
 								link: linkValue ? linkValue : null,
+
+								totalPercent: totalPercent ? totalPercent : null,
+
+								dinamicsPercent: dynamicsPercent ? dynamicsPercent : null,
 
 								_pageLink: moduleItem.pageLink,
 							});
