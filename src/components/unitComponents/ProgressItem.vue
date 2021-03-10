@@ -98,11 +98,6 @@
 				return '';
 			},
 		},
-
-		mounted() {
-			console.log(this.isPercent);
-			console.log(this.getProgressPercent);
-		},
 	};
 </script>
 
