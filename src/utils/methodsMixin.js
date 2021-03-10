@@ -81,6 +81,16 @@ export default {
 								.map((item) => item.value.percent)
 								.join(' ; ');
 
+							let dynamicsValue = moduleItem.contents
+								.filter((item) => item.contentType === 'DYNAMIC_VALUE')
+								.map((item) => item.value.value)
+								.join(' ; ');
+
+							let totalValue = moduleItem.contents
+								.filter((item) => item.contentType === 'TOTAL_VALUE')
+								.map((item) => item.value.value)
+								.join(' ; ');
+
 							this[moduleType][moduleItem.objectType].push({
 								title: titleValue ? titleValue : null,
 
@@ -94,7 +104,11 @@ export default {
 
 								totalPercent: totalPercent ? totalPercent : null,
 
-								dinamicsPercent: dynamicsPercent ? dynamicsPercent : null,
+								dynamicsPercent: dynamicsPercent ? dynamicsPercent : null,
+
+								totalValue: totalValue ? totalValue : null,
+
+								dynamicsValue: dynamicsValue ? dynamicsValue : null,
 
 								_pageLink: moduleItem.pageLink,
 							});
