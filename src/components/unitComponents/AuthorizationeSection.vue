@@ -42,7 +42,7 @@
 				visibleAuthorization: true,
 				titleAuthorization: 'Вход в личный кабинет',
 				modifiers: {
-					btn: ['    width: 331px; height: 50px; margin: 34px 0 20px 0px;;'],
+					btn: ['width: 325px; height: 50px; margin: auto;'],
 				},
 				titleAuthorizationBtn: 'Войти',
 				stileTitle: {

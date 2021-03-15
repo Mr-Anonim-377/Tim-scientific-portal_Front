@@ -20,6 +20,7 @@ import presentation from '../components/routComponents/PresentationPage';
 import recovery from '../components/routComponents/RecoveryPage';
 import knowledgeBase from '../components/routComponents/KnowledgeBasePage';
 import dynamics from '../components/routComponents/DynamicsPage';
+import calendar from '../components/routComponents/CalendarPage'
 
 
 const routes = [
@@ -107,6 +108,12 @@ const routes = [
 		name: 'dynamics',
 		component: dynamics,
 	},
+	{
+		path: '/calendar',
+		name: 'calendar',
+		component: calendar,
+	},
+
 
 
 	/**
