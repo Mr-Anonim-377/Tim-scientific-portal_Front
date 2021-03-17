@@ -20,7 +20,8 @@ import presentation from '../components/routComponents/PresentationPage';
 import recovery from '../components/routComponents/RecoveryPage';
 import knowledgeBase from '../components/routComponents/KnowledgeBasePage';
 import dynamics from '../components/routComponents/DynamicsPage';
-import calendar from '../components/routComponents/CalendarPage'
+import calendar from '../components/routComponents/CalendarPage';
+import educational from '../components/routComponents/EducationalProgramsPage'
 
 
 const routes = [
@@ -113,7 +114,11 @@ const routes = [
 		name: 'calendar',
 		component: calendar,
 	},
-
+	{
+		path: '/educational',
+		name: 'educational',
+		component: educational,
+	},
 
 
 	/**

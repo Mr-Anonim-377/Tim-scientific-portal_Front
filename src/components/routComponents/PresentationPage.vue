@@ -2,7 +2,7 @@
 	<div v-if="loadSuccess">
 		<section class="presentation">
 			<div class="presentation-block-container">
-				<TitleSection :title="titlePresentation" :headerVisible="true" :stileTitle="stileTitle.stile" />
+				<TitleSection :title="titlePresentation" :headerVisible="true" :styleTitle="stileTitle.stile" />
 
 				<div class="presentation-block">
 					<div class="presentation-block__text">

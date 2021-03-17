@@ -2,7 +2,7 @@
 
 <template>
 	<section class="purposesMainSection">
-		<TitleSection :stileTitle="stileTitle" :compactTitle="compactTitlePurposes" :title="this.titlePurposes" :headerVisible="visiblePurposes" />
+		<TitleSection :styleTitle="stileTitle" :compactTitle="compactTitlePurposes" :title="this.titlePurposes" :headerVisible="visiblePurposes" />
 		<div class="purposesMainSection-container">
 			<div class="purposes-item" v-for="item in sectionData.PROJECT_GOAL" :key="item">
 				<img :src="item.image" />
