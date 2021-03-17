@@ -1,30 +1,30 @@
 <template>
-    <div class="calendar-item">
-        <h3>{{ title }}</h3>
-        <p>{{ message }}</p>
+    <div class="calendar-item-body">
+        <h3>{{ articleData.date }}</h3>
+        <p>{{ articleData.text }}</p>
     </div>
 </template>
 
 <script>
     export default {
         name: 'CalendarItem',
-        data() {
-            return {
-                title: '12 июля',
-                message:
-                    '12-15 июля 2021 года в рамках НЦМУ будет проходить конференция BIATA-2021 (BIOINFORMATICS: FROM ALGORITHMS TO APPLICATIONS)',
-            };
+        props: {
+            articleData: {},
+        },
+
+        mounted() {
+            console.log(this.articleData);
         },
     };
 </script>
 
 <style scoped>
     /* Основные стили адаптива в CalendarSection.vue */
-    .calendar-item {
+    .calendar-item-body {
         width: 200px;
     }
 
-    .calendar-item h3 {
+    .calendar-item-body h3 {
         margin: 0;
     }
     p,

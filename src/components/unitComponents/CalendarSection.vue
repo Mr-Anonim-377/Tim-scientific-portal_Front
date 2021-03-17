@@ -1,35 +1,32 @@
 <template>
-    <!-- TODO реализовать смену месяца и списка событий через анимацию -->
-
-    <!-- 1.1 При нажатии на контрол анимация сдвигает контрол в определенную сторону и делает его прозрачным -->
-    <!-- 1.2 У родителя overflow: hidden -->
-    <!-- 1.3 В момент полного исчезновения название месяца меняется и передвигается на другую сторону обертки (пользователь не видит ) -->
-    <!-- 1.4 После смены названия месяца элемент появляется с другой стороны и плавно возвращается в начальное положение-->
-
-    <!-- TODO смоделировать данные с бэка после парса -->
-
-    <!-- TODO почитать про встроенные анимации vue -->
-    <!-- 3.1 Если ничего не найдется, контролируем анимацию с помощью JS -->
-    <!-- 3.2 Методы анимации должны быть универсальными для даты и списка событий-->
-    <!-- 3.2.1 Текущий список и текущая дата должна лежать в data()  -->
-
     <section class="calendar">
         <h1>Календарь событий</h1>
         <div class="calendar-container">
             <!-- Дата -->
             <div class="calendar-years">
                 <!-- Левая стрелка -->
-                <div class="calendar-slider__arrow"></div>
+                <div @click="arrowClick('left')" class="calendar-slider__arrow"></div>
 
-                <div class="calendar-yaers-dateWrapper">
-                    <h2>Июль, 2021</h2>
+                <!-- Формируем верстку из данных -->
+                <div class="calendar-yaers-dateWrapper" v-for="item in sectionData" :key="item.title">
+                    <!-- Vue элемент для анимации -->
+                    <transition :name="left ? 'date-animation' : 'date-animation-reverse'">
+                        <!-- Элемент отображается только в случае, если индекс элемента в массиве соответсвует this.index-->
+                        <h2 v-if="sectionData.indexOf(item) == index">{{ item.title }}</h2>
+                    </transition>
                 </div>
                 <!-- Правая стрелка -->
-                <div class="calendar-slider__arrow"></div>
+                <div @click="arrowClick('right')" class="calendar-slider__arrow"></div>
             </div>
 
-            <div class="calendar-items-wrapper">
-                <CalendarItem />
+            <!-- Логика анимации аналогична с описанным выше -->
+            <!-- Для анимации используется тот же name у transition -->
+            <div class="calendar-item" v-for="item in sectionData" :key="item.events">
+                <transition :name="left ? 'date-animation' : 'date-animation-reverse'">
+                    <div class="calendar-item_container" v-if="sectionData.indexOf(item) == index">
+                        <CalendarItem v-for="event in item.events" :key="event.date" :articleData="event" />
+                    </div>
+                </transition>
             </div>
         </div>
         <router-link style="text-decoration: none" :to="{ name: 'notFound' }">
@@ -46,14 +43,67 @@
         components: {
             CalendarItem,
         },
+
+        data() {
+            return {
+                left: false,
+                index: 0,
+
+                /**
+                 * Тестовые данные
+                 */
+                sectionData: [
+                    {
+                        title: 'Июль',
+                        events: [
+                            {
+                                date: '12 июля',
+                                text:
+                                    '12-15 июля 2021 года в рамках НЦМУ будет проходить конференция BIATA-2021 (BIOINFORMATICS: FROM ALGORITHMS TO APPLICATIONS)',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Январь',
+                        events: [
+                            {
+                                date: '13 июля',
+                                text:
+                                    '12-15 июля 2021 года в рамках НЦМУ будет проходить конференция BIATA-2021 (BIOINFORMATICS: FROM ALGORITHMS TO APPLICATIONS)',
+                            },
+                            {
+                                date: '15 июля',
+                                text:
+                                    '12-15 июля 2021 года в рамках НЦМУ будет проходить конференция BIATA-2021 (BIOINFORMATICS: FROM ALGORITHMS TO APPLICATIONS)',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Декабрь',
+                    },
+                ],
+            };
+        },
+        methods: {
+            /**
+             * Обработчик клика: меняет индекс и направление анимации в зависимости от аргумента
+             */
+            arrowClick(direction) {
+                if (direction == 'right') {
+                    this.index == 0 ? (this.index = this.sectionData.length - 1) : this.index--;
+
+                    this.left = false;
+                } else {
+                    this.index == this.sectionData.length - 1 ? (this.index = 0) : this.index++;
+
+                    this.left = true;
+                }
+            },
+        },
     };
 </script>
 
 <style scoped>
-    .calendar-years {
-        border: 1px solid white;
-    }
-
     h1,
     h3,
     p {
@@ -81,6 +131,8 @@
     }
     .calendar-years {
         display: flex;
+        width: 200px;
+        height: 100px;
     }
     h2 {
         font-family: Roboto;
@@ -106,7 +158,7 @@
         height: 11px;
         background-size: cover;
         cursor: pointer;
-        margin: 6px 0 0 30px;
+        margin: 6px 0;
     }
     .calendar-slider__arrow:last-child {
         transform: rotate(180deg);
@@ -125,7 +177,8 @@
     /* @media screen { */
     @media (max-width: 1650px) {
         .calendar-container {
-            height: auto;
+            height: 174px;
+            display: flex;
         }
 
         .calendar {
@@ -140,9 +193,10 @@
             padding: 23px 19px 30px 20px;
         }
 
-        .calendar-items-wrapper {
+        .calendar-item {
             display: flex;
             margin-bottom: 20px;
+            position: absolute;
         }
 
         .calendar-details {
@@ -154,26 +208,91 @@
             padding-bottom: 20px;
         }
 
-        .calendar-item {
+        /* .calendar-item {
             width: 200px;
-        }
-
-        .calendar-item h3 {
+        } */
+        /* .calendar-item h3 {
             margin: 0;
-        }
+        } */
 
         .calendar-years {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             position: absolute;
             right: 16px;
             font-size: 20px;
             top: 25px;
+            overflow: hidden;
         }
 
         .calendar-years h2:before {
             content: '';
             display: none;
+        }
+
+        .calendar-yaers-dateWrapper {
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            width: 80%;
+            height: 100%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .calendar-yaers-dateWrapper h2 {
+            position: absolute;
+            margin: auto;
+        }
+
+        .calendar-item_container {
+            display: flex;
+        }
+    }
+
+    /* CSS классы vue для входа и выхода из анимации */
+    /* Формируются по атрибуту name у vue элемента transition */
+    .date-animation-enter-active {
+        animation: dateAnimationShow 0.7s;
+    }
+
+    .date-animation-leave-active {
+        animation: dateAnimationHide 0.7s;
+    }
+
+    .date-animation-reverse-enter-active {
+        animation: dateAnimationHide 0.5s ease-in reverse;
+    }
+
+    .date-animation-reverse-leave-active {
+        animation: dateAnimationShow 0.5s ease-in reverse;
+    }
+
+    /* Нативные CSS анимации */
+    @keyframes dateAnimationHide {
+        from {
+            transform: translatex(0);
+            opacity: 1;
+        }
+
+        to {
+            transform: translatex(-80%);
+            opacity: 0;
+        }
+    }
+
+    /* Анимация появления */
+    @keyframes dateAnimationShow {
+        from {
+            transform: translatex(80%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translatex(0);
+            opacity: 1;
         }
     }
 </style>
