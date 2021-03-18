@@ -1,7 +1,7 @@
 <template>
 	<div v-if="loadSuccess">
 		<section class="purposes-container">
-			<PurposesSection style="margin: auto" :styleTitle="styleTitle.style" :sectionData="PROJECT_GOALS" />
+			<PurposesSection style="margin: auto" :stileTitle="styleTitle.style" :sectionData="PROJECT_GOALS" />
 		</section>
 		<section class="dynamics">
 			<div class="dynamics-container">

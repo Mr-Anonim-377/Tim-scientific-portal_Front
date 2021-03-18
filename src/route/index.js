@@ -21,6 +21,7 @@ import recovery from '../components/routComponents/RecoveryPage';
 import knowledgeBase from '../components/routComponents/KnowledgeBasePage';
 import dynamics from '../components/routComponents/DynamicsPage';
 import calendar from '../components/routComponents/CalendarPage';
+import educational from '../components/routComponents/EducationalProgramsPage';
 
 const routes = [
     {
@@ -75,6 +76,47 @@ const routes = [
         path: '/contacts',
         name: 'contacts',
         component: contacts,
+    },
+
+    {
+        path: '/auth',
+        name: 'auth',
+        component: auth,
+    },
+    {
+        path: '/documents',
+        name: 'documents',
+        component: documents,
+    },
+    {
+        path: '/presentation',
+        name: 'presentation',
+        component: presentation,
+    },
+    {
+        path: '/recovery',
+        name: 'recovery',
+        component: recovery,
+    },
+    {
+        path: '/knowledgeBase',
+        name: 'knowledgeBase',
+        component: knowledgeBase,
+    },
+    {
+        path: '/dynamics',
+        name: 'dynamics',
+        component: dynamics,
+    },
+    {
+        path: '/calendar',
+        name: 'calendar',
+        component: calendar,
+    },
+    {
+        path: '/educational',
+        name: 'educational',
+        component: educational,
     },
 
     {
