@@ -1,8 +1,10 @@
 <template>
-    <div class="calendar-item-body">
-        <h3>{{ articleData.date }}</h3>
-        <p>{{ articleData.text }}</p>
-    </div>
+    <router-link style="text-decoration: none" :to="{ name: `calendar`, params: { URI: this.encodeData } }">
+        <div class="calendar-item-body">
+            <h3>{{ articleData.short_date }}</h3>
+            <p>{{ articleData.short_text }}</p>
+        </div>
+    </router-link>
 </template>
 
 <script>
@@ -12,8 +14,10 @@
             articleData: {},
         },
 
-        mounted() {
-            console.log(this.articleData);
+        data() {
+            return {
+                encodeData: encodeURI(JSON.stringify(this.articleData)),
+            };
         },
     };
 </script>
@@ -47,5 +51,11 @@
         line-height: 16px;
         letter-spacing: 0.03em;
         overflow: hidden;
+    }
+
+    @media (max-width: 1650px) {
+        .calendar-item-body {
+            margin-right: 10px;
+        }
     }
 </style>
