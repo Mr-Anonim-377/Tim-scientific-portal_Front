@@ -71,10 +71,10 @@
                 <router-link :to="{ name: 'knowledgeBase' }">База знанинй</router-link>
             </li>
             <li>
-                <router-link :to="{ name: 'notFound' }">Фундаментальные результаты </router-link>
+                <a href="http://future-agro.ru:8080/pdf/Prezentation_lupin.pdf">Фундаментальные результаты </a>
             </li>
             <li>
-                <router-link :to="{ name: 'notFound' }">Прикладные результаты</router-link>
+                <a href="http://future-agro.ru:8080/pdf/Prezentation_lupin.pdf">Прикладные результаты</a>
             </li>
             <li>
                 <router-link :to="{ name: 'notFound' }"> Трансфер технологий</router-link>
