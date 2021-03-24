@@ -235,7 +235,7 @@
     .calendar-years {
         display: flex;
         width: 200px;
-        height: 100px;
+        /* height: 100px; */
     }
 
     @media (min-width: 1650px) {
@@ -315,16 +315,17 @@
         top: 36px;
     }
     .calendar-slider__arrow {
-        background-image: url('../../assets/image/slider-arrow-left.svg');
-        width: 7px;
-        height: 11px;
+        background-image: url('../../assets/image/arrow_bold.svg');
+        transform: rotate(180deg);
+        width: 15px;
+        height: 25px;
         background-size: cover;
         cursor: pointer;
-        margin: 6px 0;
+        /* margin: 6px 0; */
     }
     .calendar-slider__arrow:last-child {
-        transform: rotate(180deg);
-        margin: 6px 0 0 0;
+        transform: rotate(0deg);
+        /* margin: 6px 0 0 0; */
     }
 
     .calendar-details {
