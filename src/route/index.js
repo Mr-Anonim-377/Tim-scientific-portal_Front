@@ -22,6 +22,7 @@ import knowledgeBase from '../components/routComponents/KnowledgeBasePage';
 import dynamics from '../components/routComponents/DynamicsPage';
 import calendar from '../components/routComponents/CalendarPage';
 import educational from '../components/routComponents/EducationalProgramsPage';
+import participantNews from '../components/routComponents/ParticipantNewsPage';
 
 const routes = [
     {
@@ -48,6 +49,12 @@ const routes = [
         path: '/news',
         name: 'news',
         component: news,
+    },
+    {
+        path: '/participantNews/:tag',
+        name: 'participantNews',
+        component: participantNews,
+        props: true,
     },
     {
         path: '/research/:pageId',

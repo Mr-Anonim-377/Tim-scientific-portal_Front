@@ -3,7 +3,7 @@
 <template>
     <div v-if="loadSuccess">
         <!-- Секция новостей -->
-        <NewsSection :newsData="NEWS_SLIDER.NEWS_ITEM" :listNews="listNews" />
+        <NewsSection titlePage="Новости программы" tag="all" :newsData="NEWS_SLIDER.NEWS_ITEM" :listNews="listNews" />
 
         <!-- NOTE временно новости не скрываются -->
         <!-- <p class="newsSection__text" :style="btnStyle" @click="showToggle">

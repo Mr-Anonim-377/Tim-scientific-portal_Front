@@ -36,7 +36,11 @@ export default {
             for (let module in this.modules) {
                 let moduleID = this.modules[module].id;
 
+                // if (tag) {
+                // setUri(`/crm/v1/page/modules/objects?moduleId=${moduleID}&tag=${tag}`);
+                // } else {
                 setUri(`/crm/v1/page/modules/objects?moduleId=${moduleID}`);
+                // }
 
                 await this.GET_DATA_FROM_API().then((response) => {
                     let moduleType = this.modules[module].moduleType;
@@ -111,6 +115,8 @@ export default {
                                 dynamicsValue: dynamicsValue ? dynamicsValue : null,
 
                                 _pageLink: moduleItem.pageLink,
+
+                                _tag: moduleItem.tag,
                             });
                         });
                     }
