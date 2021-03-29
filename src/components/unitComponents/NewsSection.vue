@@ -73,10 +73,10 @@
 
             checkVoidNewsList() {
                 let result = this.newsData.filter((item) => item._tag === this.$route.params.tag);
-                if (result.length === 0) {
-                    return true;
+                if (result.length !== 0 || this.tag === 'all') {
+                    return false;
                 }
-                return false;
+                return true;
             },
         },
         watch: {
