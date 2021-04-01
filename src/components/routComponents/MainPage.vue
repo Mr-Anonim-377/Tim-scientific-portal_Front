@@ -80,6 +80,7 @@
 
         async mounted() {
             await this.getModulesTest('MAIN_PAGE');
+            await this.getModulesTest('RESEARCH_MEMBERS', 'cc92731b-841f-4dfd-9dad-b869acfb8074');
             setTimeout(() => {
                 this.loadSuccess = true;
                 this.$emit('load-success');

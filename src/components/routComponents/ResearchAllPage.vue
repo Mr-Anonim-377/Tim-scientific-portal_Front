@@ -5,7 +5,7 @@
         <!-- Баннер с текстом и кнопками -->
         <BannerPromoResearchSection :dataSection="BANNER" />
 
-        <!-- Список исследователей -->
+        <!-- Список исследований -->
         <ResearchSection :listResearch="listResearch" :sectionData="RESEARCH_ARRAY.RESEARCH" />
     </div>
 

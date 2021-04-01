@@ -75,9 +75,10 @@ const routes = [
         props: true,
     },
     {
-        path: '/party',
+        path: '/party/:pageId',
         name: 'party',
         component: party,
+        props: true,
     },
     {
         path: '/contacts',
