@@ -8,7 +8,6 @@
 
         <!-- Секция слайдера -->
         <NewsSliderSection :urls="NEWS_IMAGE_CAROUSEL.IMAGE" />
-
         <div v-html="NEWS_TEXT.TEXT[0].text"></div>
     </section>
     <div v-else>
@@ -62,6 +61,7 @@
         max-width: 1140px;
         align-items: center;
         margin: 100px auto 170px auto;
+        min-height: calc(100vh - 1010px);
     }
 
     .bannerSlider p {

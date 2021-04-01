@@ -95,6 +95,7 @@
         align-items: center;
         margin: 100px auto 52px auto;
         overflow: hidden;
+        min-height: calc(100vh - 1010px);
     }
 
     .newsSection-container {

@@ -6,7 +6,7 @@
         <!-- <div v-for="dataTitle in sectionData" :key="dataTitle"> -->
         <!-- <img :src="dataTitle.img" /> -->
         <!-- <h2>{{ dataTitle.title }}</h2> -->
-        <div class="party-container" :style="listResearch">
+        <div v-if="sectionData" class="party-container" :style="listResearch">
             <div class="party-block" v-for="researcher in sectionData" :key="researcher.text">
                 <img :src="researcher.image" />
                 <div class="party-block__right">
@@ -18,22 +18,23 @@
                                 .join(' ')
                         }}
                     </h3>
-                    <!-- <h3>
+                    <h3>
                         {{
-                            dataUsers.name
+                            researcher.text
                                 .split(' ')
                                 .slice(1, 3)
                                 .join(' ')
                         }}
-                    </h3> -->
+                    </h3>
                     <p class="party-block__text-project">
                         Участие в проектах:
                     </p>
-                    <div class="project-container" v-if="dataUsers.project.length > 0">
-                        <div class="project-container-block" v-for="dataProject in dataUsers.project" :key="dataProject">
-                            <router-link style="text-decoration: none" :to="{ name: 'notFound' }">
-                                <img :src="dataProject.img" />
-                                <p>{{ dataProject.titleProject }}</p>
+                    <div class="project-container" v-if="researcher._childModuleObject.length > 0">
+                        <div class="project-container-block" v-for="research in researcher._childModuleObject" :key="research.id">
+                            <router-link style="text-decoration: none" :to="{ path: `/research/${research.pageLink}` }">
+                                <img :src="research.contents.find((content) => content.contentType === 'IMAGE').value.url" />
+
+                                <p>{{ research.contents.find((content) => content.contentType === 'TITLE').value.text }}</p>
                             </router-link>
                         </div>
                     </div>
@@ -41,9 +42,13 @@
                 </div>
             </div>
         </div>
-        <p v-if="dataTitle.users.length > 6" class="partySection__text" :style="btnStyle" @click="showToggle">
+
+        <div class="researchersEmpty" v-else>
+            <h1>Исследователей нет</h1>
+        </div>
+        <!-- <p v-if="sectionData.length > 6" class="partySection__text" :style="btnStyle" @click="showToggle">
             Смотреть еще
-        </p>
+        </p> -->
         <!-- </div> -->
     </section>
 </template>
@@ -72,10 +77,23 @@
                 visibleParty: true,
             };
         },
+
+        mounted() {
+            console.log(this.sectionData);
+        },
     };
 </script>
 
 <style scoped>
+    section {
+        min-height: calc(100vh - 870px);
+    }
+    .researchersEmpty {
+        /* padding: 50px 0; */
+        margin-top: 50px;
+        margin-bottom: 150px;
+        color: #3f7e77;
+    }
     .partySection {
         text-align: center;
         max-width: 1141px;
@@ -109,6 +127,7 @@
     }
 
     .party-container {
+        padding-top: 50px;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         margin: 0 -10px;

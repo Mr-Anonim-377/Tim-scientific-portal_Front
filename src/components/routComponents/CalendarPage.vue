@@ -97,6 +97,7 @@
 
     .calendar {
         margin: auto;
+        min-height: calc(100vh - 870px);
     }
 
     .calendar-container-banner {

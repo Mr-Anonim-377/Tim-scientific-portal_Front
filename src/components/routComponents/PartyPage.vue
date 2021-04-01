@@ -2,7 +2,7 @@
 
 <template>
     <div v-if="loadSuccess">
-        <PartySection :title="this.HEADERS.TITLE[0].title" :sectionData="this.RESEARCH_MEMBER.RESEARCH_MEMBER" />
+        <PartySection :title="this.HEADERS.TITLE[0].title" :sectionData="this.RESEARCH_MEMBER.RESEARCH_MEMBER || false" />
     </div>
     <div v-else>
         <Preloader />
