@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Grid
+    </title>
+    <style>
+    
+    * {
+        box-sizing: border-box;
+    }
+
+        /* Стили для сетки */
+	.container_mainPage {
+		width: 1437px;
+		margin: auto;
+	}
+
+	.grid {
+		/* border: 1px dotted red; */
+		/* height: 1000px; */
+
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
+	.plug-menu {
+		width: 345px;
+	}
+
+	.plug-slider {
+		width: 710px;
+	}
+
+	.plug-news,
+	.plug-calendar {
+		width: 345px;
+        height: 1000px;
+	}
+
+    .plug_group {
+        width: 1079px;
+    }
+
+	/* TEMP */
+
+	[class^='plug'] {
+		/* width: 100%; */
+		height: 500px;
+		margin-top: 20px;
+		/* color: white; */
+		/* background-color: black; */
+		border: 5px dashed black;
+	}
+    </style>
+</head>
+<body>
+    <div class="container_mainPage">
+        <div class="grid">
+            <div class="plug-menu">
+                Вертикальное меню
+            </div>
+            <div class="plug-slider">
+                Слайдер
+            </div>
+            <div class="plug-news">
+                Новости
+            </div>
+
+            <div class="plug_group">
+
+            </div>
+
+            <div class="plug-calendar">
+                Календарь событий
+            </div>
+        </div>
+</body>
+</html>
