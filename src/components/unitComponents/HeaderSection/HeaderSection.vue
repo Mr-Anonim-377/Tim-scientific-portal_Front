@@ -36,7 +36,7 @@
                         </a>
 
                         <a target="_blank" href="https://spbu.ru/">
-                            <p>Санкт-Петербурский государственный университет</p>
+                            <p>Санкт-Петербургский государственный университет</p>
                         </a>
                         <a target="_blank" href="https://arriam.ru/">
                             <p>
@@ -59,7 +59,7 @@
                         </a>
 
                         <a target="_blank" href="https://www.fbras.ru/">
-                            <p>ФИЦ "Фундаменальные основы биотехнологии" РАН</p>
+                            <p>ФИЦ "Фундаментальные основы биотехнологии" РАН</p>
                         </a>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                         </router-link>
 
                         <router-link style="text-decoration: none" :to="{ name: 'participantNews', params: { tag: 'Санкт-Петербургский' } }">
-                            <p>Санкт-Петербурский государственный университет</p>
+                            <p>Санкт-Петербургский государственный университет</p>
                         </router-link>
                         <router-link
                             style="text-decoration: none"
@@ -137,7 +137,7 @@
                             style="text-decoration: none"
                             :to="{ name: 'participantNews', params: { tag: 'Фундаментальные_основы_биотехнологии' } }"
                         >
-                            <p>ФИЦ "Фундаменальные основы биотехнологии" РАН</p>
+                            <p>ФИЦ "Фундаментальные основы биотехнологии" РАН</p>
                         </router-link>
                         <router-link style="text-decoration: none" :to="{ name: 'news' }">
                             <p>Все новости</p>
