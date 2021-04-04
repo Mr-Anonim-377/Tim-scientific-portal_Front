@@ -128,14 +128,13 @@ export default {
         /**
          * Запрещаем скролл при использовании миксина для корректного отображения прелоодора на небольших экранах
          */
-        document.querySelector('body').style.overflow = 'hidden';
+        let body = document.querySelector('body');
+        body.style.overflow = 'hidden';
+        window.scrollTo(0, 0);
     },
 
     watch: {
         loadSuccess: function() {
-            // console.log('Изменение состояния загрузки');
-            // console.log(this.loadSuccess);
-
             /**
              * Возвращаем скролл после загрузки
              */

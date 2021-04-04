@@ -8,6 +8,7 @@
 
         <!-- Секция слайдера -->
         <NewsSliderSection :urls="NEWS_IMAGE_CAROUSEL.IMAGE" />
+
         <div v-html="NEWS_TEXT.TEXT[0].text"></div>
     </section>
     <div v-else>

@@ -139,6 +139,9 @@
                         >
                             <p>ФИЦ "Фундаменальные основы биотехнологии" РАН</p>
                         </router-link>
+                        <router-link style="text-decoration: none" :to="{ name: 'news' }">
+                            <p>Все новости</p>
+                        </router-link>
                     </div>
                 </div>
 

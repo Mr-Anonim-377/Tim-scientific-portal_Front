@@ -99,6 +99,9 @@
 </script>
 
 <style scoped>
+    .vertical-menu-section {
+        height: 709px;
+    }
     section {
         background-color: #f8f5e6;
         color: black;
@@ -153,6 +156,10 @@
     }
 
     @media (max-width: 1650px) {
+        .vertical-menu-section {
+            height: 590px;
+        }
+
         section {
             width: 285px;
             padding: 0px 20px;

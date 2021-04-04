@@ -42,6 +42,8 @@
 <script>
     import TitleSection from '../unitComponents/TitleSection';
 
+    // #TODO asdasd
+
     export default {
         name: 'NewsMain',
         components: {
@@ -87,7 +89,7 @@
 
     /* Скрываем полосу прокрутки */
     .newsSection-container::-webkit-scrollbar {
-        width: 10px;
+        width: 0px;
     }
 
     .news-item {
@@ -169,7 +171,7 @@
             width: 265px;
             margin: auto;
             /* padding: 0; */
-            height: 778px;
+            height: 807px;
         }
 
         .news-item-title {

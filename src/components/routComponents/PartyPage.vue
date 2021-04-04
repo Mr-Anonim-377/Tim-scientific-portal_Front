@@ -353,10 +353,9 @@
         async mounted() {
             console.log(this.pageId);
             await this.getModulesTest('RESEARCH_MEMBERS', `${this.pageId}`);
-            this.loadSuccess = true;
-            console.log(this.modules);
-            console.log(this.HEADERS);
-            console.log(this.RESEARCH_MEMBER);
+            setTimeout(() => {
+                this.loadSuccess = true;
+            }, 1000);
         },
     };
 </script>
