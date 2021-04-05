@@ -131,7 +131,7 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         margin: 0 -10px;
-        max-height: 863px;
+        /* max-height: 863px; */
         overflow: hidden;
     }
 

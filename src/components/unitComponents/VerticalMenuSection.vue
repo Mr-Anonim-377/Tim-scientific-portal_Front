@@ -68,13 +68,13 @@
                 </div>
             </li>
             <li>
-                <router-link :to="{ name: 'knowledgeBase' }">База знанинй</router-link>
+                <router-link :to="{ name: 'knowledgeBase' }">База знаний</router-link>
             </li>
             <li>
                 <a href="http://future-agro.ru:8080/pdf/Prezentation_lupin.pdf">Фундаментальные результаты </a>
             </li>
             <li>
-                <a href="http://future-agro.ru:8080/pdf/Prezentation_lupin.pdf">Прикладные результаты</a>
+                <a href="http://future-agro.ru:8080/pdf/Research_Information_rr.pdf">Прикладные результаты</a>
             </li>
             <li>
                 <router-link :to="{ name: 'notFound' }"> Трансфер технологий</router-link>

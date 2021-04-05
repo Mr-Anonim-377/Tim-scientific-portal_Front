@@ -55,7 +55,7 @@
 
         async mounted() {
             /**
-             * Получаем id профиля из адрессной строки
+             * Получаем id профиля из адресной строки
              */
 
             this.profileID = this.$route.params.pageId;

@@ -351,7 +351,6 @@
         },
 
         async mounted() {
-            console.log(this.pageId);
             await this.getModulesTest('RESEARCH_MEMBERS', `${this.pageId}`);
             setTimeout(() => {
                 this.loadSuccess = true;
