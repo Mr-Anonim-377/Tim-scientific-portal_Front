@@ -93,7 +93,7 @@
         border-radius: 100%;
         margin: 35px 12px;
         background-size: cover;
-        background-position: 50% 50%;
+        background-position: auto 50%;
     }
     section {
         min-height: calc(100vh - 870px);
