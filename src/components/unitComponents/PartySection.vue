@@ -8,7 +8,8 @@
         <!-- <h2>{{ dataTitle.title }}</h2> -->
         <div v-if="sectionData" class="party-container" :style="listResearch">
             <div class="party-block" v-for="researcher in sectionData" :key="researcher.text">
-                <img :src="researcher.image" />
+                <!-- <img :src="researcher.image" /> -->
+                <div class="researcher-image" :style="{ backgroundImage: `url(${researcher.image})` }"></div>
                 <div class="party-block__right">
                     <h3 class="party-block__text-name">
                         {{
@@ -85,6 +86,15 @@
 </script>
 
 <style scoped>
+    .researcher-image {
+        width: 200px;
+        height: 200px;
+        border: 3px solid #3f7e77;
+        border-radius: 100%;
+        margin: 35px 12px;
+        background-size: cover;
+        background-position: 50% 50%;
+    }
     section {
         min-height: calc(100vh - 870px);
     }
