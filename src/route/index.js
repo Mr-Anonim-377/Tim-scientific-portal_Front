@@ -23,6 +23,8 @@ import dynamics from '../components/routComponents/DynamicsPage';
 import calendar from '../components/routComponents/CalendarPage';
 import educational from '../components/routComponents/EducationalProgramsPage';
 import participantNews from '../components/routComponents/ParticipantNewsPage';
+import KnowledgeBaseList from '../components/routComponents/KnowledgeBaseList.vue';
+import KnowledgeBaseItem from '../components/routComponents/KnowledgeBaseItem.vue';
 
 const routes = [
     {
@@ -161,6 +163,18 @@ const routes = [
         path: '/calendar/:URI',
         name: 'calendar',
         component: calendar,
+        props: true,
+    },
+    {
+        path: '/knowledgeBaseList',
+        name: 'knowledgeBaseList',
+        component: KnowledgeBaseList,
+    },
+
+    {
+        path: '/KnowledgeBaseItem/:pageId',
+        name: 'knowledgeBaseItem',
+        component: KnowledgeBaseItem,
         props: true,
     },
 
