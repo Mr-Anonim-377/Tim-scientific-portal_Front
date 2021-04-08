@@ -29,7 +29,9 @@
                         :style="{ left: +getProgressPercent - 3 + '%' }"
                         class="dynamics-block-progressBar__currentValue"
                     >
-                        <p>{{ isPercent ? sectionData.dynamicsPercent + '%' : sectionData.dynamicsValue }}</p>
+                        <p>
+                            {{ isPercent ? sectionData.dynamicsPercent + '%' : sectionData.dynamicsValue }}
+                        </p>
                         <img src="../../assets/image/ProgressBarItem.svg" alt="" />
                     </div>
                 </div>
@@ -107,7 +109,7 @@
         bottom: -7px;
         color: #3f7e77;
         display: block;
-        min-width: 22px;
+        right: 14px;
         font-size: 14px;
     }
     .dynamics-block-progressBar__currentValue {
