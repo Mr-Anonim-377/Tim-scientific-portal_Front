@@ -74,7 +74,7 @@
                 </div>
             </router-link>
 
-            <router-link style="text-decoration: none" :to="{ name: 'knowledgeBaseList' }">
+            <router-link style="text-decoration: none" :to="{ name: 'KBMediaList' }">
                 <div class="knowledgeBase-block">
                     <div class="block-img">
                         <img src="../../assets/image/knowledgeBase/knowledge9.svg" />

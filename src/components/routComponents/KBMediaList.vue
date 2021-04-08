@@ -3,11 +3,11 @@
         <div class="container">
             <TitleSection title="Фото/Видео материалы" :headerVisible="true" />
             <ul>
-                <router-link style="text-decoration: none" :to="{ path: `/KnowledgeBaseItem/123` }">
-                    <li>
-                        <p class="documentSection__text-name">Белопухов Сергей Леонидович - Польза скорлупы + опыт фараонова змея [Видео]</p>
-                    </li>
-                </router-link>
+                <li v-for="page in this.VIDEOS.VIDEO" :key="page._pageLink">
+                    <router-link style="text-decoration: none" :to="{ path: `/KBMediaPage/${page._pageLink}` }">
+                        <p class="documentSection__text-name">{{ page.title }}</p>
+                    </router-link>
+                </li>
             </ul>
         </div>
     </div>
@@ -20,19 +20,25 @@
 <script>
     import Preloader from '../unitComponents/CommonElements/Preloader';
     import TitleSection from '../unitComponents/TitleSection';
-    // import mixin from '../../utils/methodsMixin';
+    import mixin from '../../utils/methodsMixin';
 
     export default {
-        name: 'KnowledgeBaseList',
+        name: 'KBMediaList',
         components: { Preloader, TitleSection },
-        // mixins: [mixin],
+        mixins: [mixin],
         data() {
             return {
-                loadSuccess: true,
+                loadSuccess: false,
                 stileTitle: {
                     stile: ['font-size: 26px'],
                 },
             };
+        },
+        async mounted() {
+            await this.getModulesTest('MEDIA_PAGE');
+            setTimeout(() => {
+                this.loadSuccess = true;
+            }, 1500);
         },
     };
 </script>
@@ -42,6 +48,10 @@
         width: 800px;
         margin: 100px auto 52px;
         min-height: calc(100vh - 273px);
+    }
+
+    a {
+        margin: auto;
     }
 
     ul {
@@ -64,7 +74,6 @@
         height: auto;
         color: #3f7e77;
         position: relative;
-        /* margin-right: 7px; */
         margin: auto;
         cursor: pointer;
         height: auto;
