@@ -166,14 +166,14 @@ const routes = [
         props: true,
     },
     {
-        path: '/knowledgeBaseList',
-        name: 'knowledgeBaseList',
+        path: '/KBMediaList',
+        name: 'KBMediaList',
         component: KBMediaList,
     },
 
     {
         path: '/KBMediaPage/:pageId',
-        name: 'knowledgeBaseItem',
+        name: 'KBMediaPage',
         component: KBMediaPage,
         props: true,
     },
