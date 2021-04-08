@@ -23,8 +23,8 @@ import dynamics from '../components/routComponents/DynamicsPage';
 import calendar from '../components/routComponents/CalendarPage';
 import educational from '../components/routComponents/EducationalProgramsPage';
 import participantNews from '../components/routComponents/ParticipantNewsPage';
-import KnowledgeBaseList from '../components/routComponents/KnowledgeBaseList.vue';
-import KnowledgeBaseItem from '../components/routComponents/KnowledgeBaseItem.vue';
+import KBMediaList from '../components/routComponents/KBMediaList.vue';
+import KBMediaPage from '../components/routComponents/KBMediaPage.vue';
 
 const routes = [
     {
@@ -168,13 +168,13 @@ const routes = [
     {
         path: '/knowledgeBaseList',
         name: 'knowledgeBaseList',
-        component: KnowledgeBaseList,
+        component: KBMediaList,
     },
 
     {
-        path: '/KnowledgeBaseItem/:pageId',
+        path: '/KBMediaPage/:pageId',
         name: 'knowledgeBaseItem',
-        component: KnowledgeBaseItem,
+        component: KBMediaPage,
         props: true,
     },
 
