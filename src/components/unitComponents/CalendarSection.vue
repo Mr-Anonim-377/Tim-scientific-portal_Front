@@ -42,12 +42,17 @@
         components: {
             CalendarItem,
         },
+        props: {
+            calendarData: {},
+        },
 
         data() {
             return {
                 left: false,
                 index: 0,
 
+                loadSuccess: false,
+                eventByTags: {},
                 /**
                  * Тестовые данные
                  */
@@ -218,6 +223,7 @@
         methods: {
             /**
              * Обработчик клика: меняет индекс и направление анимации в зависимости от аргумента
+             * @param {string} direction - направление -> left || right
              */
             arrowClick(direction) {
                 if (direction == 'left') {
@@ -230,9 +236,35 @@
                     this.left = true;
                 }
             },
+            /**
+             * Добавление события в массив компонента по тэгу
+             * @param {arr} arr - массив компонента
+             * @param {object} event - событие
+             */
+            addEvent(arr, event) {
+                arr[`${event._tag}`] ? arr[`${event._tag}`].push(event) : (arr[`${event._tag}`] = [event]);
+            },
+            /**
+             * Парс массива событий
+             * @param {array} calendarData - входящие данные по событиям календаря
+             * @param {array} eventByTags - массив, в который будем парсить события по тэгам
+             * @return {array} - массив тегов, используемых на странице
+             */
+            getTagsArray(calendarData, eventByTags) {
+                return calendarData.reduce((newArray, dataItem) => {
+                    if (!newArray.includes(dataItem._tag)) {
+                        newArray.push(dataItem._tag);
+                    }
+                    this.addEvent(eventByTags, dataItem);
+                    return newArray;
+                }, []);
+            },
         },
 
-        mounted() {},
+        mounted() {
+            this.getTagsArray(this.calendarData, this.eventByTags);
+            console.log(this.eventByTags);
+        },
     };
 </script>
 

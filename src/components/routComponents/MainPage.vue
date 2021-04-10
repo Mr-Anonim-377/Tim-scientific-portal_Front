@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="plug-calendar">
-                    <CalendarSection />
+                    <CalendarSection :calendarData="this.ACTIONS_CALENDAR.ACTION" />
                 </div>
             </div>
         </div>
