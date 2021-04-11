@@ -110,7 +110,7 @@
         },
 
         mounted() {
-            console.log(this.calendarData);
+            console.log(this.tagsArray);
         },
     };
 </script>
