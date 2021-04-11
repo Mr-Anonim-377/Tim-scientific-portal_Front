@@ -1,8 +1,8 @@
 <template>
-    <router-link style="text-decoration: none" :to="{ name: `calendar`, params: { URI: this.encodeData } }">
+    <router-link style="text-decoration: none" :to="{ name: `calendar`, params: { pageId: this.articleData._pageLink } }">
         <div class="calendar-item-body">
-            <h3>{{ articleData.short_date }}</h3>
-            <p>{{ articleData.short_text }}</p>
+            <h3>{{ transformDate(articleData.date) }}</h3>
+            <p>{{ articleData.text }}</p>
         </div>
     </router-link>
 </template>
@@ -13,11 +13,50 @@
         props: {
             articleData: {},
         },
+        methods: {
+            /**
+             * Трансформируем номер месяца в строк
+             * @param {string} numberMouth - номер месяца
+             * @return {string} - текстовое представление месяца
+             */
+            transformMouth(numberMouth) {
+                switch (+numberMouth) {
+                    case 1:
+                        return 'Января';
+                    case 2:
+                        return 'Февраля';
+                    case 3:
+                        return 'Марта';
+                    case 4:
+                        return 'Апреля';
+                    case 5:
+                        return 'Мая';
+                    case 6:
+                        return 'Июня';
+                    case 7:
+                        return 'Июля';
+                    case 8:
+                        return 'Августа';
+                    case 9:
+                        return 'Сентября';
+                    case 10:
+                        return 'Октября';
+                    case 11:
+                        return 'Ноября';
+                    case 12:
+                        return 'Декабря';
+                    default:
+                        break;
+                }
+            },
 
-        data() {
-            return {
-                encodeData: encodeURI(JSON.stringify(this.articleData)),
-            };
+            /**
+             * Трансформируем дату формата ДД.ММ.ГГ в тайтл события
+             */
+            transformDate(string) {
+                let dateArr = string.split('.').slice(0, 2);
+                return dateArr[0] + ' ' + this.transformMouth(dateArr[1]);
+            },
         },
     };
 </script>
