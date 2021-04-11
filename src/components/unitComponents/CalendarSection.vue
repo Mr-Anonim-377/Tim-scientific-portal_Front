@@ -242,7 +242,17 @@
              * @param {object} event - событие
              */
             addEvent(arr, event) {
-                arr[`${event._tag}`] ? arr[`${event._tag}`].push(event) : (arr[`${event._tag}`] = [event]);
+                if (arr[`${event._tag}`]) {
+                    arr[`${event._tag}`].events.push(event);
+                    // Формируем название месяца в формате "месяц, год"
+                } else {
+                    arr[`${event._tag}`] = {
+                        dateTitle: '',
+                        events: [event],
+                    };
+                    const dateTitle = event._tag.split('_').join(', ');
+                    arr[`${event._tag}`].dateTitle = dateTitle[0].toUpperCase() + dateTitle.slice(1);
+                }
             },
             /**
              * Парс массива событий
