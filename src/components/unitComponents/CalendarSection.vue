@@ -107,6 +107,15 @@
         created() {
             this.eventByTags = {};
             this.tagsArray = this.getTagsArray(this.calendarData, this.eventByTags);
+
+            /**
+             * FIXME
+             * Костыль меняет местами июль и апрель
+             */
+            let i1 = this.tagsArray.indexOf('июнь_21');
+            let i2 = this.tagsArray.indexOf('апрель_21');
+
+            [this.tagsArray[i1], this.tagsArray[i2]] = [this.tagsArray[i2], this.tagsArray[i1]];
         },
     };
 </script>
