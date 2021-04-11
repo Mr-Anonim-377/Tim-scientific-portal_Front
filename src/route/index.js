@@ -160,7 +160,7 @@ const routes = [
         component: dynamics,
     },
     {
-        path: '/calendar/:URI',
+        path: '/calendar/:pageId',
         name: 'calendar',
         component: calendar,
         props: true,

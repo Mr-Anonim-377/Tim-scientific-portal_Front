@@ -2,37 +2,20 @@
     <div v-if="loadSuccess">
         <section class="calendar">
             <div class="calendar-container-banner">
-                <TitleSection :styleTitle="styleTitle.style" :title="pageData.title" :headerVisible="visibleCalendar" />
+                <TitleSection :styleTitle="styleTitle.style" :title="CALENDAR_BANNER.TITLE[0].title" :headerVisible="visibleCalendar" />
                 <div class="banner-date">
-                    {{ pageData.full_date }}
+                    {{ CALENDAR_BANNER.DATE[0].date }}
                 </div>
-                <p>{{ pageData.place }}</p>
+                <p>{{ CALENDAR_BANNER.TEXT[0].text }}</p>
             </div>
 
             <div class="calendar-container-information">
-                <p v-for="paragraph in pageData.text" :key="paragraph">
+                <!-- <p v-for="paragraph in pageData.text" :key="paragraph">
                     {{ paragraph }}
+                </p> -->
+                <p>
+                    {{ CALENDAR_TEXT.TEXT[0].text }}
                 </p>
-
-                <!-- <div class="information-img">
-                    <div class="img-block">
-                        <img
-                            src="https://www.timacad.ru/uploads/media/cache/full_image/uploads/images/20180709/1531153061_1530284873_b_img5ad5b4b2609317.59118158.jpg"
-                        />
-                    </div>
-
-                    <div class="img-block">
-                        <img
-                            src="https://www.timacad.ru/uploads/media/cache/full_image/uploads/images/20180709/1531153061_1530284873_b_img5ad5b4b2609317.59118158.jpg"
-                        />
-                    </div>
-
-                    <div class="img-block">
-                        <img
-                            src="https://www.timacad.ru/uploads/media/cache/full_image/uploads/images/20180709/1531153061_1530284873_b_img5ad5b4b2609317.59118158.jpg"
-                        />
-                    </div>
-                </div> -->
             </div>
         </section>
     </div>
@@ -45,6 +28,7 @@
 <script>
     import TitleSection from '../unitComponents/TitleSection';
     import Preloader from '../unitComponents/CommonElements/Preloader.vue';
+    import mixin from '../../utils/methodsMixin';
 
     export default {
         name: 'CalendarPage',
@@ -52,21 +36,13 @@
             Preloader,
             TitleSection,
         },
-
         props: {
-            URI: {
-                type: String,
-                default: '',
-            },
+            pageId: String,
         },
-
+        mixins: [mixin],
         data() {
             return {
-                pageData: JSON.parse(decodeURI(this.URI)),
-                titleCalendar: 'Название первой новости из календаря событий',
-                visibleCalendar: false,
                 loadSuccess: false,
-
                 /**
                  * Стили
                  */
@@ -76,11 +52,11 @@
             };
         },
 
-        mounted() {
-            // console.log(this.pageData);
+        async mounted() {
+            await this.getModulesTest('', this.pageId);
             setTimeout(() => {
                 this.loadSuccess = true;
-            }, 1000);
+            }, 500);
         },
     };
 </script>

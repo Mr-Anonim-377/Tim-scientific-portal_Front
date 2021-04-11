@@ -27,7 +27,7 @@
 /.idea/vcs.xml
 .DS_Store
 node_modules/
-/dist
+dist
 
 
 # Log files
