@@ -39,9 +39,9 @@
         <!-- NOTE Пока просто закомментировал на всякий -->
 
         <!-- Кнопка для перехода к странице новостей -->
-        <router-link style="text-decoration: none" :to="{ name: 'news' }">
+        <!-- <router-link style="text-decoration: none" :to="{ name: 'news' }">
             <p class="newsSection__text">Все новости</p>
-        </router-link>
+        </router-link> -->
     </div>
 
     <div v-else>
