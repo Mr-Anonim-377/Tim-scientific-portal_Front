@@ -13,9 +13,6 @@
                 <p v-for="paragraph in this.CALENDAR_TEXT.TEXT[0].text.split(' ; ')" :key="paragraph">
                     {{ paragraph }}
                 </p>
-                <!-- <p>
-                    {{ CALENDAR_TEXT.TEXT[0].text }}
-                </p> -->
             </div>
         </section>
     </div>
@@ -40,12 +37,6 @@
             pageId: String,
         },
         mixins: [mixin],
-
-        methods: {
-            getParagraph() {
-                return;
-            },
-        },
         data() {
             return {
                 loadSuccess: false,

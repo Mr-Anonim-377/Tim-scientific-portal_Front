@@ -108,10 +108,6 @@
             this.eventByTags = {};
             this.tagsArray = this.getTagsArray(this.calendarData, this.eventByTags);
         },
-
-        mounted() {
-            console.log(this.tagsArray);
-        },
     };
 </script>
 
