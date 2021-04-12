@@ -68,23 +68,79 @@
                     this.left = true;
                 }
             },
+
+            /**
+             * Трансформируем номер месяца в строк
+             * @param {string} numberMouth - номер месяца
+             * @return {string} - текстовое представление месяца
+             */
+            transformMouth(numberMouth, nominative) {
+                let stringMouth;
+                switch (+numberMouth) {
+                    case 1:
+                        stringMouth = nominative ? 'Январь' : 'Января';
+                        return stringMouth;
+                    case 2:
+                        stringMouth = nominative ? 'Февраль' : 'Февраля';
+                        return stringMouth;
+                    case 3:
+                        stringMouth = nominative ? 'Март' : 'Марта';
+                        return stringMouth;
+                    case 4:
+                        stringMouth = nominative ? 'Апрель' : 'Апреля';
+                        return stringMouth;
+                    case 5:
+                        stringMouth = nominative ? 'Май' : 'Мая';
+                        return stringMouth;
+                    case 6:
+                        stringMouth = nominative ? 'Июнь' : 'Июня';
+                        return stringMouth;
+                    case 7:
+                        stringMouth = nominative ? 'Июль' : 'Июля';
+                        return stringMouth;
+                    case 8:
+                        stringMouth = nominative ? 'Август' : 'Августа';
+                        return stringMouth;
+                    case 9:
+                        stringMouth = nominative ? 'Сентябрь' : 'Сентября';
+                        return stringMouth;
+                    case 10:
+                        stringMouth = nominative ? 'Октябрь' : 'Октября';
+                        return stringMouth;
+                    case 11:
+                        stringMouth = nominative ? 'Ноябрь' : 'Ноября';
+                        return stringMouth;
+                    case 12:
+                        stringMouth = nominative ? 'Декабрь' : 'Декабря';
+                        return stringMouth;
+                    default:
+                        break;
+                }
+            },
+
+            /**
+             * Трансформируем тэг в читаемый вид
+             */
+            transformTag(tag) {
+                return ['20' + tag.slice(0, 2), this.transformMouth(tag.slice(2, 4), true)].reverse().join(', ');
+            },
             /**
              * Добавление события в массив компонента по тэгу
              * @param {arr} arr - массив компонента
              * @param {object} event - событие
              */
             addEvent(arr, event) {
-                if (arr[`${event._tag}`]) {
-                    arr[`${event._tag}`].events.push(event);
-                    // Формируем название месяца в формате "месяц, год"
+                let tag = this.transformTag(event._tag);
+
+                if (arr[`${tag}`]) {
+                    arr[`${tag}`].events.push(event);
                 } else {
-                    arr[`${event._tag}`] = {
-                        dateTitle: '',
+                    arr[`${tag}`] = {
+                        dateTitle: tag,
                         events: [event],
                     };
 
-                    const dateTitle = event._tag.split('_').join(', ');
-                    arr[`${event._tag}`].dateTitle = dateTitle[0].toUpperCase() + dateTitle.slice(1);
+                    console.log(arr);
                 }
             },
             /**
@@ -109,13 +165,14 @@
             this.tagsArray = this.getTagsArray(this.calendarData, this.eventByTags);
 
             /**
-             * FIXME
-             * Костыль меняет местами июль и апрель
+             * Сортируем и трансформируем тэги
              */
-            let i1 = this.tagsArray.indexOf('июнь_21');
-            let i2 = this.tagsArray.indexOf('апрель_21');
+            this.tagsArray = this.tagsArray.sort((a, b) => a - b);
+            this.tagsArray = this.tagsArray.map((tag) => {
+                return this.transformTag(tag);
+            });
 
-            [this.tagsArray[i1], this.tagsArray[i2]] = [this.tagsArray[i2], this.tagsArray[i1]];
+            console.log(this.tagsArray);
         },
     };
 </script>
