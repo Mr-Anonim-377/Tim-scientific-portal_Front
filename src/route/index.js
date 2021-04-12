@@ -26,6 +26,7 @@ import participantNews from '../components/routComponents/ParticipantNewsPage';
 import KBMediaList from '../components/routComponents/KBMediaList.vue';
 import KBMediaPage from '../components/routComponents/KBMediaPage.vue';
 import TranferPage from '../components/routComponents/TransferPage.vue';
+import OffersPage from '../components/routComponents/OffersPage.vue';
 
 const routes = [
     {
@@ -182,6 +183,11 @@ const routes = [
         path: '/TranferPage/',
         name: 'TranferPage',
         component: TranferPage,
+    },
+    {
+        path: '/OffersPage/',
+        name: 'OffersPage',
+        component: OffersPage,
     },
 
     /**

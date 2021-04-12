@@ -83,7 +83,7 @@
                 <router-link :to="{ name: 'notFound' }">Маркетинговые исследования </router-link>
             </li>
             <li>
-                <router-link :to="{ name: 'notFound' }"> Предложения для внедрения результатов НЦМУ</router-link>
+                <router-link :to="{ name: 'OffersPage' }"> Предложения для внедрения результатов НЦМУ</router-link>
             </li>
             <li>
                 <router-link :to="{ name: 'notFound' }"> Запросы на исследования от индустриальных партнеров</router-link>
