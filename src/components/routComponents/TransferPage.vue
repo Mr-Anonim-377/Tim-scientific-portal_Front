@@ -6,9 +6,6 @@
 
         <p class="bannerSlider__years">{{ NEWS_DATE.DATE[0].date }}</p>
 
-        <!-- Секция слайдера -->
-        <!-- <NewsSliderSection :urls="NEWS_IMAGE_CAROUSEL.IMAGE" /> -->
-
         <div v-html="NEWS_TEXT.TEXT[0].text"></div>
     </section>
     <div v-else>
@@ -21,14 +18,12 @@
     import testMixin from '../../utils/methodsMixin.js';
 
     import TitleSection from '../unitComponents/TitleSection';
-    // import NewsSliderSection from '../unitComponents/NewsSliderSection';
 
     export default {
         mixins: [testMixin],
         name: 'NewItemsPage',
         components: {
             TitleSection,
-            // NewsSliderSection,
             Preloader,
         },
         data() {
