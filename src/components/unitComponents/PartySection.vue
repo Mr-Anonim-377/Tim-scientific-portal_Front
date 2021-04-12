@@ -78,10 +78,6 @@
                 visibleParty: true,
             };
         },
-
-        mounted() {
-            console.log(this.sectionData);
-        },
     };
 </script>
 

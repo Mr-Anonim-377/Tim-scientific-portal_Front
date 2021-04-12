@@ -25,7 +25,12 @@
                 <div class="calendar-item" v-for="item in tagsArray" :key="item.events">
                     <transition :name="left ? 'date-animation' : 'date-animation-reverse'">
                         <div class="calendar-item_container" v-if="tagsArray.indexOf(item) == index">
-                            <CalendarItem v-for="event in eventByTags[`${item}`].events" :key="event.date" :articleData="event" />
+                            <CalendarItem
+                                v-for="event in eventByTags[`${item}`].events"
+                                :key="event.date"
+                                :articleData="event"
+                                :transformMouth="transformMouth"
+                            />
                         </div>
                     </transition>
                 </div>
@@ -130,17 +135,13 @@
              * @param {object} event - событие
              */
             addEvent(arr, event) {
-                let tag = this.transformTag(event._tag);
-
-                if (arr[`${tag}`]) {
-                    arr[`${tag}`].events.push(event);
+                if (arr[`${event._tag}`]) {
+                    arr[`${event._tag}`].events.push(event);
                 } else {
-                    arr[`${tag}`] = {
-                        dateTitle: tag,
+                    arr[`${event._tag}`] = {
+                        dateTitle: this.transformTag(event._tag),
                         events: [event],
                     };
-
-                    console.log(arr);
                 }
             },
             /**
@@ -163,16 +164,27 @@
         created() {
             this.eventByTags = {};
             this.tagsArray = this.getTagsArray(this.calendarData, this.eventByTags);
-
             /**
-             * Сортируем и трансформируем тэги
+             * Сортируем тэги
              */
             this.tagsArray = this.tagsArray.sort((a, b) => a - b);
-            this.tagsArray = this.tagsArray.map((tag) => {
-                return this.transformTag(tag);
+            /**
+             * Сортируем события тэга
+             */
+            this.tagsArray.forEach((tag) => {
+                this.eventByTags[tag].events.sort((a, b) => {
+                    return (
+                        +a.date
+                            .split('.')
+                            .reverse()
+                            .join('') -
+                        +b.date
+                            .split('.')
+                            .reverse()
+                            .join('')
+                    );
+                });
             });
-
-            console.log(this.tagsArray);
         },
     };
 </script>
