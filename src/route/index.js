@@ -25,8 +25,9 @@ import educational from '../components/routComponents/EducationalProgramsPage';
 import participantNews from '../components/routComponents/ParticipantNewsPage';
 import KBMediaList from '../components/routComponents/KBMediaList.vue';
 import KBMediaPage from '../components/routComponents/KBMediaPage.vue';
-import TranferPage from '../components/routComponents/TransferPage.vue';
+import MarketingPage from '../components/routComponents/MarketingPage.vue';
 import OffersPage from '../components/routComponents/OffersPage.vue';
+import TransferPage from '../components/routComponents/TransferPage';
 
 const routes = [
     {
@@ -180,14 +181,19 @@ const routes = [
         props: true,
     },
     {
-        path: '/TranferPage/',
-        name: 'TranferPage',
-        component: TranferPage,
+        path: '/MarketingPage/',
+        name: 'MarketingPage',
+        component: MarketingPage,
     },
     {
         path: '/OffersPage/',
         name: 'OffersPage',
         component: OffersPage,
+    },
+    {
+        path: '/TransferPage/',
+        name: 'TransferPage',
+        component: TransferPage,
     },
 
     /**

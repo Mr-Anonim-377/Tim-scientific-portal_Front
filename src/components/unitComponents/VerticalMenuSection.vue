@@ -77,10 +77,10 @@
                 <a href="http://future-agro.ru:8080/pdf/Research_Information_rr.pdf">Прикладные результаты</a>
             </li>
             <li>
-                <router-link :to="{ name: 'TranferPage' }"> Трансфер технологий</router-link>
+                <router-link :to="{ name: 'TransferPage' }"> Трансфер технологий</router-link>
             </li>
             <li>
-                <router-link :to="{ name: 'notFound' }">Маркетинговые исследования </router-link>
+                <router-link :to="{ name: 'MarketingPage' }">Маркетинговые исследования </router-link>
             </li>
             <li>
                 <router-link :to="{ name: 'OffersPage' }"> Предложения для внедрения результатов НЦМУ</router-link>
