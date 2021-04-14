@@ -1,22 +1,15 @@
 <template>
     <div v-if="loadSuccess">
         <section>
-            <TitleSection title='Трансфер технологий осуществляемый участниками Консорциума НЦМУ "Агротехнологии будущего"' :headerVisible="true" />
+            <TitleSection :title="TRANSFER_TITLE.TITLE[0].title" :headerVisible="true" />
 
             <ul>
-                <li>Российский государственный аграрный университет - МСХА имени К. А. Тимирязева</li>
-
-                <li>Санкт-Петербургский государственный университет</li>
-
-                <li>Всероссийский научно-исследовательский институт сельскохозяйственной микробиологии</li>
-
-                <li>ФИЦ "Почвенный институт имени В.В. Докучаева</li>
-
-                <li>Всероссийский институт генетических ресурсов растений имени Н.И. Вавилова</li>
-
-                <li>ФИЦ "Информатика и управление" РАН</li>
-
-                <li>ФИЦ "Фундаментальные основы биотехнологии" РАН</li>
+                <li v-for="link in this.TRANSFER_MEMBER.TRANSFER_ITEM"
+                    :key="link.title">
+                  <a target="_blank" :onclick="checkProperty" :href="link.link">
+                  {{link.title}}
+                  </a>
+                </li>
             </ul>
         </section>
     </div>
@@ -26,7 +19,7 @@
 </template>
 <script>
     import TitleSection from '../unitComponents/TitleSection';
-    // import mixin from '../../utils/methodsMixin';
+    import mixin from '../../utils/methodsMixin';
     import Preloader from './../unitComponents/CommonElements/Preloader';
     export default {
         name: 'pagename',
@@ -34,14 +27,14 @@
             TitleSection,
             Preloader,
         },
-        // mixins: [mixin],
+        mixins: [mixin],
         data() {
             return {
                 loadSuccess: false,
             };
         },
         async mounted() {
-            // await this.getModulesTest('');
+            await this.getModulesTest('TECHNOLOGY_TRANSFER');
             setTimeout(() => {
                 this.loadSuccess = true;
             }, 500);
@@ -49,6 +42,13 @@
     };
 </script>
 <style scoped>
+    a:link,
+    a:visited,
+    a:active,
+    a:hover {
+      text-decoration: none;
+      color: #3f7e77;
+    }
     section {
         max-width: 1140px;
         align-items: center;

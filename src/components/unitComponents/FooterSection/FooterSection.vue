@@ -75,7 +75,7 @@
                     <h3>О программе</h3>
 
                     <a target="_blank" href="https://ncmu.ru/"> НЦМУ Научные центры мирового уровня</a>
-                    <router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+                    <router-link style="text-decoration: none" :to="{ name: 'presentation' }">
                         <p>Презентация НЦМУ</p>
                     </router-link>
                     <router-link style="text-decoration: none" :to="{ name: 'notFound' }"> <p>Прогресс показателей</p> </router-link
