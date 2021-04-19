@@ -61,11 +61,6 @@
 
         async mounted() {
             await this.getModulesTest('', this.pageId);
-            console.log(this.modules);
-
-            console.log(this.CALENDAR_BANNER);
-            console.log(this.CALENDAR_TEXT.DOC);
-            console.log(this.CALENDAR_SLIDER);
             setTimeout(() => {
                 this.loadSuccess = true;
             }, 500);

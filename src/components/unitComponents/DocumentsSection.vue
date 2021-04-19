@@ -18,10 +18,6 @@
             /* Локальная дата */
             localData: Object,
         },
-
-        mounted() {
-            console.log(this.sectionData);
-        },
     };
 </script>
 
