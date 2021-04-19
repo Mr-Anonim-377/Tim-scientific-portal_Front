@@ -2,11 +2,11 @@
     <section class="documentSection" v-for="doc in sectionData.DOC" :key="doc">
         <!-- <router-link style="text-decoration: none" :to="{ name: 'notFound' }"> -->
         <a :href="doc.link" target="_blank">
-            <p class="documentSection__text-name">{{ doc.title }}</p>
+            <p class="documentSection__text-name">{{ localData.title || doc.title }}</p>
             <!-- </router-link> -->
             <!-- <p>({{ dataDoc.size }} КБ)</p> -->
         </a>
-        <p class="documentSection__text-data">от {{ doc.date }}</p>
+        <p v-if="doc.date" class="documentSection__text-data">от {{ doc.date }}</p>
     </section>
 </template>
 
@@ -15,6 +15,12 @@
         name: 'DocumentsSection',
         props: {
             sectionData: Object,
+            /* Локальная дата */
+            localData: Object,
+        },
+
+        mounted() {
+            console.log(this.sectionData);
         },
     };
 </script>
