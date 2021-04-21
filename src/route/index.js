@@ -28,6 +28,7 @@ import KBMediaPage from '../components/routComponents/KBMediaPage.vue';
 import MarketingPage from '../components/routComponents/MarketingPage.vue';
 import OffersPage from '../components/routComponents/OffersPage.vue';
 import TransferPage from '../components/routComponents/TransferPage';
+import UI_test from '../components/routComponents/UI_test.vue';
 
 const routes = [
     {
@@ -194,6 +195,11 @@ const routes = [
         path: '/TransferPage/',
         name: 'TransferPage',
         component: TransferPage,
+    },
+    {
+        path: '/UI_test',
+        name: 'UI_test',
+        component: UI_test,
     },
 
     /**

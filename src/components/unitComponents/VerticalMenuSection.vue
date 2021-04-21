@@ -8,7 +8,7 @@
             </li>
             <li>
                 <router-link :to="{ name: 'presentation' }">
-                    Презентация НЦМУ
+                    Презентации НЦМУ
                 </router-link>
             </li>
 
