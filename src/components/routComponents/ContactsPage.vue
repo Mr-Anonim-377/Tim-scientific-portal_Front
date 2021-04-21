@@ -6,6 +6,9 @@
             <TitleSection :headerVisible="visibleContacts" :title="this.titleContacts" />
             <p class="contacts-text-phone">тел.: +7 (499) 977-26-01</p>
             <p>E-mail: press-office@rgau-msha.ru</p>
+            <div class="qr">
+                <img src="../../assets/image/qr.gif" alt="" />
+            </div>
             <!-- <p class="contacts-text-networks">Мы в соц. сетях:</p>
             <div class="contacts-container">
                 <img src="../../assets/image/VK.svg" />
@@ -75,6 +78,12 @@
 </script>
 
 <style scoped>
+    .qr {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
     .contact-text {
         width: 800px;
         margin: auto;
