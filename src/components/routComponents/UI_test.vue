@@ -2,44 +2,39 @@
     <!-- test -->
     <section>
         <TitleSection title="Форма редактирования сущности" :headerVisible="true" />
-        <div class="form">
-            <!-- Название новости -->
-            <h1>Название новости</h1>
-            <el-input v-model="title" placeholder="Название"></el-input>
 
+        <div class="form">
+            <!-- Grid разметка -->
+            <el-row :gutter="20" type="flex" justify="space-between">
+                <el-col :span="10">
+                    <!-- Название новости -->
+                    <h1>Название новости</h1>
+                    <el-input
+                        type="textarea"
+                        maxlength="70"
+                        :autosize="{ minRows: 3, maxRows: 3 }"
+                        show-word-limit
+                        resize="none"
+                        v-model="title"
+                        placeholder="Название"
+                    ></el-input>
+                </el-col>
+                <el-col :span="10">
+                    <h1>Изображения</h1>
+                </el-col>
+            </el-row>
+        </div>
+
+        <div class="form">
             <!-- Дата -->
 
             <!-- <el-date-picker v-model="date" type="date" placeholder="Pick a day"> </el-date-picker> -->
 
             <!-- Изображения -->
 
-            <h1>Изображения</h1>
-            <el-upload
-                class="upload-demo"
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :on-preview="handlePreview"
-                :on-remove="handleRemove"
-                :before-remove="beforeRemove"
-                multiple
-                :limit="3"
-                :on-exceed="handleExceed"
-            >
-                <el-upload
-                    class="avatar-uploader"
-                    action="https://jsonplaceholder.typicode.com/posts/"
-                    :show-file-list="false"
-                    :on-success="handleAvatarSuccess"
-                    :before-upload="beforeAvatarUpload"
-                >
-                    <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
-                <el-button size="small" type="primary">Изображения для слайдера новостей</el-button>
-            </el-upload>
-
             <!-- Текст -->
             <h1>Тело новости</h1>
-            <el-input @input="clg" type="textarea" :rows="2" placeholder="Тело новости" v-model="text"> </el-input>
+            <el-input @input="clg" type="textarea" :rows="5" placeholder="Тело новости" v-model="text" maxlength="200" show-word-limit> </el-input>
 
             <!-- Превью -->
         </div>
@@ -73,35 +68,14 @@
 
 <style scoped>
     section {
-        width: 1200px;
+        width: 800px;
         margin: 100px auto;
         min-height: calc(100vh - 275px);
     }
 
-    .avatar-uploader {
-        border: 1px dashed black;
-        border-radius: 6px;
-        width: 100px;
-        height: 100px;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        margin: 50px auto;
-    }
-    .avatar-uploader:hover {
-        border-color: #409eff;
-    }
-    .avatar-uploader-icon {
-        font-size: 28px;
-        color: #8c939d;
-        width: 100px;
-        height: 100px;
-        line-height: 113px;
+    .form h1 {
+        color: #3f7e77;
         text-align: center;
-    }
-    .avatar {
-        width: 100px;
-        height: 100px;
-        display: block;
+        font-size: 20px;
     }
 </style>
