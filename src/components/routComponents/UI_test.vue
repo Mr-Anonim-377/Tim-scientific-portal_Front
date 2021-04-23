@@ -1,34 +1,34 @@
 <template>
     <!-- Форма добавления/редактирования новости -->
-    <!-- UI: https://element-plus.org/ -->
+    <!-- Документация по UI: https://element-plus.org/ -->
     <section>
         <!-- <TitleSection title="Форма редактирования сущности" :headerVisible="true" /> -->
         <TitleSection :title="mode === 'create' ? 'Добавление новости' : 'Редактирование новости'" :headerVisible="true" />
 
-        <div class="form">
-            <!-- Grid разметка -->
-
+        <el-form :model="form" class="form" :rules="rules" ref="form">
             <el-row type="flex" justify="center">
                 <el-col>
                     <h1>Название новости</h1>
-                    <el-input
-                        type="textarea"
-                        maxlength="70"
-                        :autosize="{ minRows: 3, maxRows: 3 }"
-                        show-word-limit
-                        resize="none"
-                        v-model="title"
-                        placeholder="Название"
-                    ></el-input>
+                    <el-form-item prop="title" required>
+                        <el-input
+                            type="textarea"
+                            maxlength="70"
+                            :autosize="{ minRows: 3, maxRows: 3 }"
+                            show-word-limit
+                            resize="none"
+                            v-model="form.title"
+                            placeholder="Название"
+                        ></el-input>
+                    </el-form-item>
                 </el-col>
             </el-row>
             <el-row :gutter="20" type="flex" justify="space-between">
-                <!-- Название новости -->
                 <el-col :span="12">
                     <!-- Изображения -->
                     <h1>Изображения для слайдера</h1>
                     <!-- Временно попробуем грузить через API IMGbb -->
                     <!-- https://api.imgbb.com/ -->
+                    <!-- <el-form-item> -->
                     <el-upload
                         class="upload-demo"
                         action="https://api.imgbb.com/1/upload"
@@ -37,7 +37,7 @@
                         list-type="picture"
                         :limit="3"
                         :file-list="sliderFileList"
-                        :v-model="sliderFileList"
+                        :v-model="form.sliderFileList"
                         :before-upload="beforeUploadHook"
                         name="image"
                     >
@@ -47,10 +47,12 @@
                             <div class="el-upload__tip">jpg/png файлы размером не более 500кб</div>
                         </template>
                     </el-upload>
+                    <!-- </el-form-item> -->
                 </el-col>
                 <el-col :span="12">
                     <!-- Изображения -->
                     <h1>Изображение для превью</h1>
+                    <!-- <el-form-item> -->
                     <el-upload
                         class="upload-demo"
                         action="https://api.imgbb.com/1/upload"
@@ -67,15 +69,24 @@
                             <div class="el-upload__tip">jpg/png файл размером не более 500кб</div>
                         </template>
                     </el-upload>
+                    <!-- </el-form-item> -->
                 </el-col>
             </el-row>
-        </div>
 
-        <div class="form">
-            <!-- Текст -->
-            <h1>Тело новости</h1>
-            <el-input @input="clg" type="textarea" :rows="5" placeholder="Тело новости" v-model="text" maxlength="200" show-word-limit> </el-input>
-        </div>
+            <div class="form">
+                <el-form-item prop="text" required>
+                    <!-- Поле текста -->
+                    <h1>Тело новости</h1>
+                    <el-input type="textarea" :rows="5" placeholder="Тело новости" v-model="form.text" maxlength="200" show-word-limit> </el-input>
+                </el-form-item>
+            </div>
+
+            <div class="submitWrapper">
+                <el-form-item>
+                    <el-button @click="onSubmit('form')" class="submitButton" type="primary">Добавить новость</el-button>
+                </el-form-item>
+            </div>
+        </el-form>
     </section>
 </template>
 
@@ -104,24 +115,44 @@
 
                 return validFormat && validSize;
             },
+
+            onSubmit(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        console.log('submit!');
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
         },
 
         data() {
             return {
-                /* 
-                mode -> режим рендера формы
-                    create для создания
-                    edit для редактирования */
+                /* mode -> режим рендера формы
+                   create для создания
+                   edit для редактирования */
+
                 mode: 'create',
 
-                /* Название новости */
-                title: '',
+                /* Поля формы */
+                form: {
+                    title: '',
+                    text: '',
+                },
 
-                /* Дата загрузки новости */
-                date: '',
-
-                /* Текст новости */
-                text: '',
+                /* Правила валидации для формы */
+                rules: {
+                    title: [
+                        { required: true, message: "Пожалуйста, заполните поле 'Название новости'", trigger: 'blur' },
+                        { min: 10, message: 'Название должно содержать минимум 10 символов' },
+                    ],
+                    text: [
+                        { required: true, message: "Пожалуйста, заполните поле 'Тело новости'", trigger: 'blur' },
+                        { min: 10, message: 'Текст новости должен содержать минимум 10 символов' },
+                    ],
+                },
 
                 /* УЖЕ загруженные изображения для превью главной страницы */
                 previewfileList: [],
@@ -129,9 +160,9 @@
                 /* УЖЕ загруженные изображения для слайдера страницы новостей */
                 sliderFileList: [],
 
-                /*  При загрузке изображений отправляем api key imgBB
-                    Если что-то пойдет не так, получить новый можно тут:
-                    https://api.imgbb.com/ */
+                /* При загрузке изображений отправляем api key imgBB
+                   Если что-то пойдет не так, получить новый можно тут:
+                   https://api.imgbb.com/ */
                 requestData: {
                     key: '2ca9c35e0d42896ec7e746b5daf2c924',
                 },
@@ -165,11 +196,13 @@
         width: 100% !important;
     }
 
-    .el-row {
-        margin: 40px 0;
-    }
-
     .el-upload--picture {
         width: 100%;
+    }
+
+    .submitWrapper {
+        margin: 30px;
+        display: flex;
+        justify-content: center;
     }
 </style>
