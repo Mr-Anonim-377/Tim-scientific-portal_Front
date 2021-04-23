@@ -2,7 +2,6 @@
     <!-- Форма добавления/редактирования новости -->
     <!-- Документация по UI: https://element-plus.org/ -->
     <section>
-        <!-- <TitleSection title="Форма редактирования сущности" :headerVisible="true" /> -->
         <TitleSection :title="mode === 'create' ? 'Добавление новости' : 'Редактирование новости'" :headerVisible="true" />
 
         <el-form :model="form" class="form" :rules="rules" ref="form">
@@ -28,7 +27,6 @@
                     <h1>Изображения для слайдера</h1>
                     <!-- Временно попробуем грузить через API IMGbb -->
                     <!-- https://api.imgbb.com/ -->
-                    <!-- <el-form-item> -->
                     <el-upload
                         class="upload-demo"
                         action="https://api.imgbb.com/1/upload"
@@ -47,29 +45,36 @@
                             <div class="el-upload__tip">jpg/png файлы размером не более 500кб</div>
                         </template>
                     </el-upload>
-                    <!-- </el-form-item> -->
                 </el-col>
                 <el-col :span="12">
                     <!-- Изображения -->
                     <h1>Изображение для превью</h1>
-                    <!-- <el-form-item> -->
-                    <el-upload
-                        class="upload-demo"
-                        action="https://api.imgbb.com/1/upload"
-                        multiple
-                        :data="requestData"
-                        list-type="picture"
-                        :limit="1"
-                        :file-list="previewfileList"
-                        name="image"
-                    >
-                        <el-button size="middle" type="success" plain>Выберите изображение</el-button>
-                        <template #tip>
-                            <div class="el-upload__tip">1 изображение для отображения в ленте новостей</div>
-                            <div class="el-upload__tip">jpg/png файл размером не более 500кб</div>
-                        </template>
-                    </el-upload>
-                    <!-- </el-form-item> -->
+                    <el-form-item>
+                        <el-upload
+                            class="upload-demo"
+                            action="https://api.imgbb.com/1/upload"
+                            multiple
+                            :data="requestData"
+                            list-type="picture"
+                            :limit="1"
+                            :file-list="previewfileList"
+                            name="image"
+                            :model="form.preview"
+                            :on-success="successLoadHook"
+                            :on-remove="removeImageHook"
+                        >
+                            <el-button size="middle" type="success" plain>Выберите изображение</el-button>
+                            <template #tip>
+                                <div class="el-upload__tip">1 изображение для отображения в ленте новостей</div>
+                                <div class="el-upload__tip">jpg/png файл размером не более 500кб</div>
+                            </template>
+                        </el-upload>
+                    </el-form-item>
+
+                    <!-- Скрытый form-item для валидации загрузки превью -->
+                    <el-form-item class="hiddenFormItem" prop="preview">
+                        <el-input class="hiddenInput" v-model="form.preview"></el-input>
+                    </el-form-item>
                 </el-col>
             </el-row>
 
@@ -83,7 +88,9 @@
 
             <div class="submitWrapper">
                 <el-form-item>
-                    <el-button @click="onSubmit('form')" class="submitButton" type="primary">Добавить новость</el-button>
+                    <el-button @click="onSubmit('form')" class="submitButton" type="primary">{{
+                        mode === 'create' ? 'Добавить новость' : 'Редактировать новость'
+                    }}</el-button>
                 </el-form-item>
             </div>
         </el-form>
@@ -100,9 +107,9 @@
         },
         methods: {
             /**
-             * Обработчик клика: меняет индекс и направление анимации в зависимости от аргумента
-             * @param {object} file - принимает объект с файлом
-             * @returns {boolean} validFormat и validSize
+             * Хук валидации перед загрузкой изображения
+             * @param {object} file - объект с файлом
+             * @returns {boolean} validFormat && validSize
              *
              * Если метод возвращает false - выводится сообщение о соответствующей ошибке
              */
@@ -116,7 +123,21 @@
                 return validFormat && validSize;
             },
 
+            /* Хук успешной загрузки изображения
+            При успешной загрузке заполняем скрытый инпут урлом из ответа */
+            successLoadHook(res) {
+                this.form.preview = res.data.url;
+            },
+
+            /* Хук удаления изображения */
+            removeImageHook() {
+                this.form.preview = '';
+            },
+
             onSubmit(formName) {
+                //eslint-disable-next-line
+                debugger;
+
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         console.log('submit!');
@@ -131,8 +152,8 @@
         data() {
             return {
                 /* mode -> режим рендера формы
-                   create для создания
-                   edit для редактирования */
+                       create для создания
+                       edit для редактирования */
 
                 mode: 'create',
 
@@ -140,6 +161,7 @@
                 form: {
                     title: '',
                     text: '',
+                    preview: '',
                 },
 
                 /* Правила валидации для формы */
@@ -152,6 +174,13 @@
                         { required: true, message: "Пожалуйста, заполните поле 'Тело новости'", trigger: 'blur' },
                         { min: 10, message: 'Текст новости должен содержать минимум 10 символов' },
                     ],
+                    preview: [
+                        {
+                            required: true,
+                            message: 'Для корректного отображения на главной странице необходимо загрузить превью изображение',
+                            trigger: 'blur',
+                        },
+                    ],
                 },
 
                 /* УЖЕ загруженные изображения для превью главной страницы */
@@ -160,9 +189,15 @@
                 /* УЖЕ загруженные изображения для слайдера страницы новостей */
                 sliderFileList: [],
 
+                /* Загружаемые изображения */
+                loadedImages: {
+                    preview: '',
+                    slider: [],
+                },
+
                 /* При загрузке изображений отправляем api key imgBB
-                   Если что-то пойдет не так, получить новый можно тут:
-                   https://api.imgbb.com/ */
+                       Если что-то пойдет не так, получить новый можно тут:
+                       https://api.imgbb.com/ */
                 requestData: {
                     key: '2ca9c35e0d42896ec7e746b5daf2c924',
                 },
@@ -192,6 +227,10 @@
         text-align: start;
     }
 
+    .el-upload__tip {
+        line-height: normal;
+    }
+
     .el-upload {
         width: 100% !important;
     }
@@ -204,5 +243,14 @@
         margin: 30px;
         display: flex;
         justify-content: center;
+    }
+
+    .hiddenInput {
+        display: none;
+        margin: 0;
+    }
+
+    .hiddenFormItem {
+        margin: 0;
     }
 </style>
