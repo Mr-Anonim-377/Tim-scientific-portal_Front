@@ -33,7 +33,7 @@
                         multiple
                         :data="requestData"
                         list-type="picture"
-                        :limit="3"
+                        :limit="7"
                         :file-list="sliderFileList"
                         :v-model="form.sliderFileList"
                         :before-upload="beforeUploadHook"
