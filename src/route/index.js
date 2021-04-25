@@ -228,9 +228,10 @@ const routes = [
         component: AdminResearchPage,
     },
     {
-        path: '/UI_test',
+        path: '/UI_test/:entityId?/:mode',
         name: 'UI_test',
         component: UI_test,
+        props: true,
     },
 
     /**

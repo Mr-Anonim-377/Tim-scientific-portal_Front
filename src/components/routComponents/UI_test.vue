@@ -98,6 +98,7 @@
 </template>
 
 <script>
+    import testMixin from '../../utils/methodsMixin.js';
     import TitleSection from '../unitComponents/TitleSection.vue';
 
     export default {
@@ -105,6 +106,7 @@
         components: {
             TitleSection,
         },
+        mixins: [testMixin],
         methods: {
             /**
              * Хук валидации перед загрузкой изображения
@@ -135,9 +137,6 @@
             },
 
             onSubmit(formName) {
-                //eslint-disable-next-line
-                debugger;
-
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         console.log('submit!');
@@ -148,19 +147,19 @@
                 });
             },
         },
-
+        props: {
+            /* mode -> режим рендера формы
+                   create для создания
+                   edit для редактирования */
+            mode: String,
+            entityId: String,
+        },
         data() {
             return {
-                /* mode -> режим рендера формы
-                       create для создания
-                       edit для редактирования */
-
-                mode: 'create',
-
                 /* Поля формы */
                 form: {
                     title: '',
-                    text: '',
+                    text: [],
                     preview: '',
                 },
 
@@ -202,6 +201,21 @@
                     key: '2ca9c35e0d42896ec7e746b5daf2c924',
                 },
             };
+        },
+
+        async mounted() {
+            await this.getModulesTest('', this.entityId);
+            // this.form.text = this.NEWS_TEXT.TEXT[0].text.split('<p>');
+            //eslint-disable-next-line
+            const self = this;
+            //eslint-disable-next-line
+            debugger;
+        },
+
+        watch: {
+            'form.text': function() {
+                console.log(this.form.text);
+            },
         },
     };
 </script>

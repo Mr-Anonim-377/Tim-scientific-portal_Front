@@ -4,7 +4,10 @@
         <AdminNavigation />
 
         <!--      Шапка и кнопка добавить-->
-        <button class="btn_add">Добавить новость</button>
+        <router-link style="text-decoration: none" :to="{ name: 'UI_test', params: { mode: 'create' } }">
+            <button class="btn_add">Добавить новость</button>
+        </router-link>
+
         <div class="admin-headers">
             <span class="admin-headers__number">№</span>
             <p class="admin-headers__left">Название</p>
@@ -19,24 +22,32 @@
 <script>
     import AdminItem from '@/components/unitComponents/AdminItem';
     import AdminNavigation from '@/components/unitComponents/AdminNavigation';
+    import mixin from '../../utils/methodsMixin';
+
     export default {
         name: 'AdminPanelPage',
         components: { AdminNavigation, AdminItem },
+        mixins: [mixin],
         data() {
             return {
                 tag: 'РГАУ-МСХА',
-                items: [
-                    { text: 'Новость «Агротехнологии будущего» на мастер-классе для агропредприятий' },
-                    { text: 'Новость обучение по новой программе ДПО.' },
-                    { text: 'Новость круглый стол «Агротехнологии будущего»' },
-                    { text: 'Новость «Агротехнологии будущего» на мастер-классе для агропредприятий' },
-                    { text: 'Новость обучение по новой программе ДПО.' },
-                    { text: 'Новость круглый стол «Агротехнологии будущего»' },
-                    { text: 'Новость «Агротехнологии будущего» на мастер-классе для агропредприятий' },
-                    { text: 'Новость обучение по новой программе ДПО.' },
-                    { text: 'Новость круглый стол «Агротехнологии будущего»' },
-                ],
+                loadSuccess: false,
+                items: [],
             };
+        },
+
+        async mounted() {
+            await this.getModulesTest('NEWS_PAGE', false, this.tag);
+            this.loadSuccess = true;
+            //eslint-disable-next-line
+            let self = this;
+
+            this.items = this.NEWS_SLIDER.NEWS_ITEM.map((news) => {
+                return {
+                    text: news.title,
+                    _pageLink: news._pageLink,
+                };
+            });
         },
     };
 </script>
