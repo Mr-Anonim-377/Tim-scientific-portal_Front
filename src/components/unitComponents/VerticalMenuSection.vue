@@ -8,7 +8,7 @@
             </li>
             <li>
                 <router-link :to="{ name: 'presentation' }">
-                    Презентация НЦМУ
+                    Презентации НЦМУ
                 </router-link>
             </li>
 
@@ -26,42 +26,42 @@
                     <ul>
                         <li>
                             <router-link :to="{ path: '/party/adcb4eef-0e3c-4d63-a0be-adc3bd1fd51d' }">
-                                Исследователи РГАУ
+                                Исследователи РГАУ-МСХА
                             </router-link>
                         </li>
                         <li>
                             <router-link :to="{ path: '/party/9910e682-4e2f-4ae1-bdaf-661104cce80f' }">
-                                Исследователи СПГУ
+                                Исследователи СПбГУ
                             </router-link>
                         </li>
 
                         <li>
                             <router-link :to="{ path: '/party/2efd4d2a-9dc4-4860-8706-53031fe341f6' }">
-                                Исследователи ФГУП ВНИМС
+                                Исследователи ФБГНУ ВНИИСХМ
                             </router-link>
                         </li>
 
                         <li>
                             <router-link :to="{ path: '/party/043703e2-e14e-4491-be23-4c22fe0bca82' }">
-                                Исследователи ФИЦ им. В.В. Докучаева
+                                Исследователи ФИЦ "Почвенный институт им. В.В. Докучаева
                             </router-link>
                         </li>
 
                         <li>
                             <router-link :to="{ path: '/party/f563f1e5-c465-4fa3-89a9-f9f17ba29048' }">
-                                Исследователи ВИГРР
+                                Исследователи ФИЦ ВИР
                             </router-link>
                         </li>
 
                         <li>
                             <router-link :to="{ path: '/party/2694ac87-48ab-405e-a4ee-038f9c2ef830' }">
-                                Исследователи ФИЦ "Информатика и управление" РАН
+                                Исследователи ФИЦ ИУ РАН
                             </router-link>
                         </li>
 
                         <li>
                             <router-link :to="{ path: '/party/cc92731b-841f-4dfd-9dad-b869acfb8074' }">
-                                Исследователи ФИЦ "Фундаментальные основы биотехнологии" РАН
+                                Исследователи ФИЦ Биотехнологии РАН
                             </router-link>
                         </li>
                     </ul>

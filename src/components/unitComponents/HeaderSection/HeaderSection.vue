@@ -90,7 +90,7 @@
                 </div>
                 <!-- </router-link> -->
                 <div class="headerSection__item">
-                    <router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+                    <router-link style="text-decoration: none" :to="{ name: 'contacts' }">
                         <p>Пресс-служба</p>
                     </router-link>
                 </div>

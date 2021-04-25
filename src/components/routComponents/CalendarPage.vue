@@ -10,6 +10,14 @@
             </div>
 
             <div class="calendar-container-information">
+                <div class="calendar-container-information__docs">
+                    <documents-section
+                        v-if="this.CALENDAR_TEXT.DOC"
+                        :sectionData="this.CALENDAR_TEXT"
+                        :localData="{ title: 'Информация о событии: Вавиловская школа-конференция аспирантов и молодых ученых' }"
+                    />
+                </div>
+
                 <p v-for="paragraph in this.CALENDAR_TEXT.TEXT[0].text.split(' ; ')" :key="paragraph">
                     {{ paragraph }}
                 </p>
@@ -26,12 +34,14 @@
     import TitleSection from '../unitComponents/TitleSection';
     import Preloader from '../unitComponents/CommonElements/Preloader.vue';
     import mixin from '../../utils/methodsMixin';
+    import DocumentsSection from '@/components/unitComponents/DocumentsSection';
 
     export default {
         name: 'CalendarPage',
         components: {
             Preloader,
             TitleSection,
+            DocumentsSection,
         },
         props: {
             pageId: String,
@@ -68,6 +78,13 @@
         color: #f8f5e6;
     }
 
+    .calendar-container-information__docs {
+        transform: translateX(28px);
+        margin: 50px 0;
+        font-weight: normal;
+        text-align: right;
+    }
+
     .calendar {
         margin: auto;
         min-height: calc(100vh - 870px);
@@ -97,7 +114,7 @@
 
     .calendar-container-information {
         max-width: 1200px;
-        margin: 129px auto 102px auto;
+        margin: 60px auto 102px auto;
     }
 
     .calendar-container-information p {
