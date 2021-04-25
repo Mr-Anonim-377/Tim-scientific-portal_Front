@@ -28,7 +28,14 @@ import KBMediaPage from '../components/routComponents/KBMediaPage.vue';
 import MarketingPage from '../components/routComponents/MarketingPage.vue';
 import OffersPage from '../components/routComponents/OffersPage.vue';
 import TransferPage from '../components/routComponents/TransferPage';
+
+import AdminNewsPage from '../components/routComponents/AdminNewslPage';
+import AdminDocumentPage from '../components/routComponents/AdminDocumentPage';
+import AdminCalendarPage from '../components/routComponents/AdminCalendarPage';
+import AdminPartyPage from '../components/routComponents/AdminPartyPage';
+import AdminResearchPage from '../components/routComponents/AdminResearchPage';
 import UI_test from '../components/routComponents/UI_test.vue';
+
 
 const routes = [
     {
@@ -197,9 +204,35 @@ const routes = [
         component: TransferPage,
     },
     {
+
+        path: '/AdminNewsPage/',
+        name: 'AdminNewsPage',
+        component: AdminNewsPage,
+    },
+    {
+        path: '/AdminDocumentPage/',
+        name: 'AdminDocumentPage',
+        component: AdminDocumentPage,
+    },
+    {
+        path: '/AdminCalendarPage/',
+        name: 'AdminCalendarPage',
+        component: AdminCalendarPage,
+    },
+    {
+        path: '/AdminPartyPage/',
+        name: 'AdminPartyPage',
+        component: AdminPartyPage,
+    },
+    {
+        path: '/AdminResearchPage/',
+        name: 'AdminResearchPage',
+        component: AdminResearchPage,
+
         path: '/UI_test',
         name: 'UI_test',
         component: UI_test,
+
     },
 
     /**
