@@ -36,7 +36,6 @@ import AdminPartyPage from '../components/routComponents/AdminPartyPage';
 import AdminResearchPage from '../components/routComponents/AdminResearchPage';
 import UI_test from '../components/routComponents/UI_test.vue';
 
-
 const routes = [
     {
         path: '/',
@@ -204,7 +203,6 @@ const routes = [
         component: TransferPage,
     },
     {
-
         path: '/AdminNewsPage/',
         name: 'AdminNewsPage',
         component: AdminNewsPage,
@@ -228,11 +226,11 @@ const routes = [
         path: '/AdminResearchPage/',
         name: 'AdminResearchPage',
         component: AdminResearchPage,
-
+    },
+    {
         path: '/UI_test',
         name: 'UI_test',
         component: UI_test,
-
     },
 
     /**
