@@ -2,7 +2,7 @@
     <section class="documentSection" v-for="doc in sectionData.DOC" :key="doc">
         <!-- <router-link style="text-decoration: none" :to="{ name: 'notFound' }"> -->
         <a :href="doc.link" target="_blank">
-            <p class="documentSection__text-name">{{ localData.title || doc.title }}</p>
+            <p class="documentSection__text-name">{{ localData?.title || doc.title }}</p>
             <!-- </router-link> -->
             <!-- <p>({{ dataDoc.size }} КБ)</p> -->
         </a>
