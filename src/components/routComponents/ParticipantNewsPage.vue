@@ -60,7 +60,7 @@
         },
 
         async mounted() {
-            await this.getModulesTest('NEWS_PAGE', false, 'Докучаева');
+            await this.getModulesTest('NEWS_PAGE');
             setTimeout(() => {
                 this.loadSuccess = true;
             }, 500);

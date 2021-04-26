@@ -62,6 +62,7 @@
 
 <style>
     /* @import url('./assets/fonts/Gilroy/bold2/style.css'); */
+
     * {
         box-sizing: border-box;
         -webkit-font-smoothing: antialiased;
@@ -205,5 +206,14 @@
         right: 3%;
         margin-top: auto;
         margin-bottom: auto;
+    }
+
+    /* Правим кривое сжатие изображений в компоненте загрузки element ui */
+    .upload-demo .el-upload-list__item-thumbnail {
+        object-fit: cover;
+    }
+
+    .el-textarea__inner {
+        font-family: Roboto;
     }
 </style>
