@@ -170,9 +170,10 @@
                         /* Обработка <b> */
                         .replace(/<b>|<\/b>|<strong>|<\/strong>/g, '**')
                         /* Обработка списков */
-                        .replace(/<ul>|<\/ul>/g, '\n\t')
-                        .replace(/<li>/g, '\n\t\t')
-                        .replace(/<\/li>/g, '')
+                        .replace(/<ul>/g, '\n>>>\n')
+                        .replace(/<\/ul>/g, '\n<<<\n')
+                        .replace(/<li>/g, '\n>>')
+                        .replace(/<\/li>/g, '<<')
 
                         // ! Обработка &ndash
                         .replace(/&ndash;/g, '-')
@@ -189,7 +190,7 @@
             // const test = string.replace(/\*\*/g, () => {
             /* start = !start;
                 if (!start) return '<b>';
-                return '</b>'; 
+                return '</b>';
                 });
                 */
         },
@@ -255,7 +256,7 @@
             /* Если форма открыта в режиме редактирования - загружаем данные по id новости */
             if (this.mode === 'edit') {
                 await this.getModulesTest('', this.entityId);
-                await this.getModulesTest('MAIN_PAGE');
+                await this.getModulesTest('NEWS_PAGE');
 
                 /* Заполняем инпуты */
                 this.form.text = this.transformHTMLtoString(this.NEWS_TEXT.TEXT[0].text);
@@ -268,14 +269,15 @@
                 });
 
                 /* Проверяем, есть ли превью */
-                const previewUrl = this.NEWS_CAROUSEL.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.image;
+                // const previewUrl = this.NEWS_CAROUSEL.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.image;
+                const previewUrl = this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.image;
 
                 /* Если превью есть - записываем в модель */
                 !previewUrl ||
                     (this.previewfileList = [
                         {
                             name: 'Превью-изображение',
-                            url: this.NEWS_CAROUSEL.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.image,
+                            url: previewUrl,
                         },
                     ]);
             }
