@@ -55,6 +55,8 @@
                             :file-list="sliderFileList"
                             :v-model="form.sliderFileList"
                             :before-upload="beforeUploadHook"
+                            :on-success="successLoadHookSlider"
+                            :on-remove="removeImageHookSlider"
                             name="image"
                         >
                             <el-button size="middle" type="success" plain>Выберите изображения</el-button>
@@ -78,8 +80,8 @@
                                 :file-list="previewfileList"
                                 name="image"
                                 :model="form.preview"
-                                :on-success="successLoadHook"
-                                :on-remove="removeImageHook"
+                                :on-success="successLoadHookPreview"
+                                :on-remove="removeImageHookPreview"
                             >
                                 <el-button size="middle" type="success" plain>Выберите изображение</el-button>
                                 <template #tip>
@@ -151,15 +153,28 @@
                 return validFormat && validSize;
             },
 
-            /* Хук успешной загрузки изображения
+            /* Хук успешной загрузки изображения (инпут превью)
                 При успешной загрузке заполняем скрытый инпут урлом из ответа */
-            successLoadHook(res) {
+            successLoadHookPreview(res) {
                 this.form.preview = res.data.url;
             },
 
-            /* Хук удаления изображения */
-            removeImageHook() {
+            /* Хук успешной загрузки изображения (инпут слайдера)
+                При успешной загрузке заполняем скрытый инпут урлом из ответа */
+            successLoadHookSlider(res, file, fileList) {
+                this.form.slider = fileList;
+                console.log(this.form.slider);
+            },
+
+            /* Хук удаления изображения (инпут превью) */
+            removeImageHookPreview() {
                 this.form.preview = '';
+            },
+
+            /* Хук удаления изображения (инпут слайдера) */
+            removeImageHookSlider(res, fileList) {
+                this.form.slider = fileList;
+                console.log(this.form.slider);
             },
 
             onSubmit(formName) {
@@ -228,6 +243,7 @@
                     shortTitle: '',
                     text: [],
                     preview: '',
+                    slider: [],
                 },
 
                 /* Правила валидации для формы */
@@ -289,20 +305,16 @@
                         url: image?.image,
                     };
                 });
+                this.form.slider = this.sliderFileList;
 
                 this.form.shortTitle = this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.title;
-
-                //eslint-disable-next-line
-                const self = this;
-                //eslint-disable-next-line
-                debugger;
-
                 this.previewfileList = [
                     {
                         name: 'Превью-изображение',
                         url: this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.image,
                     },
                 ];
+                this.form.preview = this.previewfileList;
             }
             this.loadSuccess = true;
         },
