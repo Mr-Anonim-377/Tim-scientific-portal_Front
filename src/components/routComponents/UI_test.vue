@@ -22,6 +22,23 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
+                <el-row type="flex" justify="center">
+                    <el-col>
+                        <h1>Короткое название новости</h1>
+                        <el-form-item prop="shortTitle" required>
+                            <el-input
+                                type="textarea"
+                                maxlength="70"
+                                :autosize="{ minRows: 2, maxRows: 3 }"
+                                show-word-limit
+                                resize="none"
+                                v-model="form.shortTitle"
+                                placeholder="Название"
+                            ></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+
                 <el-row :gutter="20" type="flex" justify="space-between">
                     <el-col :span="12">
                         <!-- Изображения -->
@@ -208,6 +225,7 @@
                 /* Поля формы */
                 form: {
                     title: '',
+                    shortTitle: '',
                     text: [],
                     preview: '',
                 },
@@ -216,6 +234,10 @@
                 rules: {
                     title: [
                         { required: true, message: "Пожалуйста, заполните поле 'Название новости'", trigger: 'blur' },
+                        { min: 10, message: 'Название должно содержать минимум 10 символов' },
+                    ],
+                    shortTitle: [
+                        { required: true, message: "Пожалуйста, заполните поле 'Короткое название новости'", trigger: 'blur' },
                         { min: 10, message: 'Название должно содержать минимум 10 символов' },
                     ],
                     text: [
@@ -268,18 +290,19 @@
                     };
                 });
 
-                /* Проверяем, есть ли превью */
-                // const previewUrl = this.NEWS_CAROUSEL.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.image;
-                const previewUrl = this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.image;
+                this.form.shortTitle = this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.title;
 
-                /* Если превью есть - записываем в модель */
-                !previewUrl ||
-                    (this.previewfileList = [
-                        {
-                            name: 'Превью-изображение',
-                            url: previewUrl,
-                        },
-                    ]);
+                //eslint-disable-next-line
+                const self = this;
+                //eslint-disable-next-line
+                debugger;
+
+                this.previewfileList = [
+                    {
+                        name: 'Превью-изображение',
+                        url: this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.image,
+                    },
+                ];
             }
             this.loadSuccess = true;
         },
