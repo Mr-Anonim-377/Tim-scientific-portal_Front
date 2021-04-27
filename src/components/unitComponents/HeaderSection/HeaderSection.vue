@@ -186,12 +186,16 @@
             logOut() {
                 localStorage.setItem('isAuth', false);
                 // Перезагружаем страницу после выхода для обновления хэдера
-                this.$router.go();
+                // this.$router.go();
                 axios
-                    .post('http://future-agro.ru:80/user/logout', {
+                    .get('http://localhost:1024/user/logout', {
                         headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
                     })
                     .then(() => {
+                        //eslint-disable-next-line
+                        const self = this;
+                        //eslint-disable-next-line
+                        debugger;
                         // // console.log('Авторизация пройдена');
                         // this.isAuth = false;
                         localStorage.setItem('isAuth', false);

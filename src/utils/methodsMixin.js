@@ -3,6 +3,7 @@
 
 import { mapActions } from 'vuex';
 import { setBasePath, setUri } from '../utils/сommonMethods';
+import axios from 'axios';
 
 export default {
     methods: {
@@ -121,6 +122,24 @@ export default {
                     }
                 });
             }
+        },
+
+        /* Метод проверки авторизации */
+        async authCheck() {
+            return new Promise((res, rej) => {
+                axios
+                    .get('http://localhost:1024/user/auth?roleName=ROLE_USER', {
+                        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+                    })
+                    .then(() => {
+                        localStorage.setItem('isAuth', true);
+                        return res(true);
+                    })
+                    .catch(() => {
+                        localStorage.setItem('isAuth', false);
+                        return rej(false);
+                    });
+            });
         },
     },
 

@@ -16,6 +16,7 @@ import account from '../components/routComponents/AccountPage';
 import project from '../components/routComponents/ProjectPage';
 import auth from '../components/unitComponents/AuthorizationeSection';
 import documents from '../components/routComponents/DocumentsPage';
+import privateDocuments from '../components/routComponents/PrivateDocumentsPage';
 import presentation from '../components/routComponents/PresentationPage';
 import recovery from '../components/routComponents/RecoveryPage';
 import knowledgeBase from '../components/routComponents/KnowledgeBasePage';
@@ -107,6 +108,11 @@ const routes = [
         path: '/documents',
         name: 'documents',
         component: documents,
+    },
+    {
+        path: '/privateDocuments',
+        name: 'privateDocuments',
+        component: privateDocuments,
     },
     {
         path: '/presentation',

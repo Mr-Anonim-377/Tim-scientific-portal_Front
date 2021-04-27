@@ -1,16 +1,13 @@
 <template>
     <div v-if="loadSuccess">
         <section class="documents">
-            <TitleSection :title="titleDocuments" :headerVisible="true" :styleTitle="stileTitle.stile" />
+            <TitleSection :title="DOCS_TITLE.TITLE[0].title" :headerVisible="true" :styleTitle="stileTitle.stile" />
 
             <div class="documents-block">
                 <span>{{ DOCS_TITLE.TITLE[0].title }}</span>
 
                 <documents-section :sectionData="DOCS" />
             </div>
-            <router-link style="text-decoration: none" :to="{ name: 'privateDocuments' }">
-                <h3>Документы консорциума</h3>
-            </router-link>
         </section>
     </div>
 
@@ -36,18 +33,34 @@
 
         data() {
             return {
-                titleDocuments: 'Официальные документы',
+                titleDocuments: 'Документы консорциума',
                 loadSuccess: false,
                 stileTitle: {
                     stile: ['font-size: 26px'],
                 },
             };
         },
+
+        created() {
+            /* Проверка авторизации */
+            this.authCheck().catch(() => {
+                this.$router.push('auth');
+            });
+        },
+
         async mounted() {
-            await this.getModulesTest('DOCUMENTS');
+            await this.getModulesTest('DOCUMENTS_CONSORTIUM');
             setTimeout(() => {
                 this.loadSuccess = true;
             }, 500);
+        },
+
+        beforeRouteEnter(to, from, next) {
+            if (localStorage.getItem('isAuth') == 'false') {
+                next({ name: 'auth' });
+            } else {
+                next();
+            }
         },
     };
 </script>
@@ -89,7 +102,6 @@
     }
 
     .documents-block {
-        border-bottom: 2px solid #c4c4c4;
         padding-bottom: 50px;
         /* margin-top: 44px; */
         width: 800px;

@@ -27,11 +27,12 @@
              */
 
             axios
-                .get('http://localhost:80/user/auth?roleName=ROLE_USER', {
+                .get('http://localhost:1024/user/auth?roleName=ROLE_USER', {
                     headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
                 })
-                .then()
-                .catch();
+                .then(localStorage.setItem('isAuth', true))
+
+                .catch(localStorage.setItem('isAuth', true));
             /**
              * Запрос:
              *
