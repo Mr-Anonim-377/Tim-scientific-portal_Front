@@ -195,7 +195,7 @@
 
                         // TODO
 
-                        JSON.stringify({
+                        let data = JSON.stringify({
                             name: this.form.title,
                             previewImageLink: this.form.preview,
                             imageLinks: this.form.slider.map((image) => image.response.data.url),
@@ -214,6 +214,8 @@
                             previewText: this.form.shortTitle,
                             data: this.getCurrentDate(),
                         });
+
+                        // TODO запрос
                     } else {
                         console.log('error submit!!');
                         return false;
