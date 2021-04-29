@@ -157,6 +157,7 @@ export default {
             /**
              * Возвращаем скролл после загрузки
              */
+
             document.querySelector('body').style.overflow = 'visible';
         },
     },

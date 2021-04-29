@@ -30,9 +30,14 @@
                 .get('http://localhost:1024/user/auth?roleName=ROLE_USER', {
                     headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
                 })
-                .then(localStorage.setItem('isAuth', true))
+                .then(() => {
+                    localStorage.setItem('isAuth', true);
+                })
 
-                .catch(localStorage.setItem('isAuth', true));
+                .catch(() => {
+                    localStorage.setItem('isAuth', false);
+                });
+
             /**
              * Запрос:
              *
@@ -55,7 +60,7 @@
                     header: ['header_border-none'],
                 },
                 loadSuccess: false,
-                isAuth: false,
+                // isAuth: false,
             };
         },
     };

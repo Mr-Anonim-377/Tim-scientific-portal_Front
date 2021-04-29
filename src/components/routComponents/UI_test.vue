@@ -127,6 +127,7 @@
     import testMixin from '../../utils/methodsMixin.js';
     import TitleSection from '../unitComponents/TitleSection.vue';
     import Preloader from './../unitComponents/CommonElements/Preloader';
+    // import { axios } from 'axios';
 
     export default {
         name: 'UI test',
@@ -154,13 +155,13 @@
             },
 
             /* Хук успешной загрузки изображения (инпут превью)
-                При успешной загрузке заполняем скрытый инпут урлом из ответа */
+                        При успешной загрузке заполняем скрытый инпут урлом из ответа */
             successLoadHookPreview(res) {
                 this.form.preview = res.data.url;
             },
 
             /* Хук успешной загрузки изображения (инпут слайдера)
-                При успешной загрузке заполняем скрытый инпут урлом из ответа */
+                        При успешной загрузке заполняем скрытый инпут урлом из ответа */
             successLoadHookSlider(res, file, fileList) {
                 this.form.slider = fileList;
                 console.log(this.form.slider);
@@ -177,10 +178,42 @@
                 console.log(this.form.slider);
             },
 
+            /* Функция возвращает текущее время */
+            getCurrentDate() {
+                let today = new Date();
+                let dd = String(today.getDate()).padStart(2, '0');
+                let mm = String(today.getMonth() + 1).padStart(2, '0');
+                let yyyy = today.getFullYear();
+                return dd + '.' + mm + '.' + yyyy;
+            },
+
             onSubmit(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        console.log('submit!');
+                        // Переменная для транформации закрытых тегов
+                        let start = true;
+
+                        // TODO
+
+                        JSON.stringify({
+                            name: this.form.title,
+                            previewImageLink: this.form.preview,
+                            imageLinks: this.form.slider.map((image) => image.response.data.url),
+                            tag: 'РГАУ-МСХА',
+                            text: this.form.text
+                                .replace(/\*\*/g, () => {
+                                    start = !start;
+                                    if (!start) return '<b>';
+                                    return '</b>';
+                                })
+                                .replace(/>>>/g, '<ul>')
+                                .replace(/<<</g, '</ul>')
+                                .replace(/>>/g, '<li>')
+                                .replace(/<</g, '</li>')
+                                .replace(/\n/g, '<br>'),
+                            previewText: this.form.shortTitle,
+                            data: this.getCurrentDate(),
+                        });
                     } else {
                         console.log('error submit!!');
                         return false;
@@ -194,48 +227,27 @@
                         /* Обработка <p> */
                         .split('</p>')
                         .map((i) => i.replace('<p>', '').trim())
-                        .join('\n')
                         /* Обработка <br> */
-                        .split('<br>')
-                        .map((i) => i.trim())
-                        .join('\n')
-                        /* Обработка <b> */
+                        .join('<br>')
                         .replace(/<b>|<\/b>|<strong>|<\/strong>/g, '**')
                         /* Обработка списков */
                         .replace(/<ul>/g, '\n>>>\n')
                         .replace(/<\/ul>/g, '\n<<<\n')
                         .replace(/<li>/g, '\n>>')
                         .replace(/<\/li>/g, '<<')
-
-                        // ! Обработка &ndash
-                        .replace(/&ndash;/g, '-')
-                        // ! Обработка &nbsp
-                        .replace(/&nbsp;/g, '')
                 );
             },
-
-            // ! Для обратной трансформации
-            /*  const HTML = '<b>Bold</b> asdadasdasd <b>Bold2</b>';
-                const string = HTML.replace(/<b>|<\/b>/g, '**');
-                let start = true;
-                */
-            // const test = string.replace(/\*\*/g, () => {
-            /* start = !start;
-                if (!start) return '<b>';
-                return '</b>';
-                });
-                */
         },
         props: {
             /* mode -> режим рендера формы
-                       create для создания
-                       edit для редактирования */
+                               create для создания
+                               edit для редактирования */
             mode: String,
             entityId: String,
         },
         data() {
             return {
-                loadSuccess: this.mode === 'create',
+                loadSuccess: false,
 
                 /* Поля формы */
                 form: {
@@ -282,8 +294,8 @@
                 },
 
                 /* При загрузке изображений отправляем api key imgBB
-                           Если что-то пойдет не так, получить новый можно тут:
-                           https://api.imgbb.com/ */
+                   Если что-то пойдет не так, получить новый можно тут:
+                   https://api.imgbb.com/ */
                 requestData: {
                     key: '2ca9c35e0d42896ec7e746b5daf2c924',
                 },
@@ -291,6 +303,11 @@
         },
 
         async mounted() {
+            //eslint-disable-next-line
+            const self = this;
+            //eslint-disable-next-line
+            debugger;
+
             /* Если форма открыта в режиме редактирования - загружаем данные по id новости */
             if (this.mode === 'edit') {
                 await this.getModulesTest('', this.entityId);
@@ -316,6 +333,7 @@
                 ];
                 this.form.preview = this.previewfileList;
             }
+
             this.loadSuccess = true;
         },
     };

@@ -173,7 +173,6 @@
 
 <script>
     import axios from 'axios';
-    // import moduleName from ;
     export default {
         name: 'headerSection',
         props: {
