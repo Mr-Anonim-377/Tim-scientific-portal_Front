@@ -7,7 +7,7 @@
                 <router-link style="text-decoration: none" :to="{ name: 'UI_test', params: { mode: 'edit', entityId: item._pageLink } }">
                     <button class="btn_edit">Редактировать</button>
                 </router-link>
-                <button @click="deliteNews(item._pageLink)" class="btn_delete">Удалить</button>
+                <button @click="deleteNews(item._pageLink)" class="btn_delete">Удалить</button>
             </div>
         </div>
     </div>
@@ -30,13 +30,13 @@
         mounted() {},
 
         methods: {
-            deliteNews(id) {
+            deleteNews(id) {
                 axios({
                     method: 'DELETE',
                     url: 'http://localhost:1024/user/delete/news',
                     params: { pageId: id },
-                }).then((response) => {
-                    console.log(response.data);
+                }).then(() => {
+                    this.$router.go();
                 });
             },
         },
