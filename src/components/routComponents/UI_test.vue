@@ -127,7 +127,7 @@
     import testMixin from '../../utils/methodsMixin.js';
     import TitleSection from '../unitComponents/TitleSection.vue';
     import Preloader from './../unitComponents/CommonElements/Preloader';
-    // import { axios } from 'axios';
+    import axios from 'axios';
 
     export default {
         name: 'UI test',
@@ -187,35 +187,55 @@
                 return dd + '.' + mm + '.' + yyyy;
             },
 
+            /**
+             * Формирование тела запроса из this.form
+             */
+            getRequestData() {
+                // Переменная для транформации закрытых тегов
+                let start = true;
+                return {
+                    name: this.form.title,
+                    previewImageLink: this.form.preview,
+                    imageLinks: this.form.slider.map((image) => image.response.data.url),
+                    text: this.form.text
+                        .replace(/\*\*/g, () => {
+                            start = !start;
+                            if (!start) return '<b>';
+                            return '</b>';
+                        })
+                        .replace(/>>>/g, '<ul>')
+                        .replace(/<<</g, '</ul>')
+                        .replace(/>>/g, '<li>')
+                        .replace(/<</g, '</li>')
+                        .replace(/\n/g, '<br>'),
+                    previewText: this.form.shortTitle,
+                    date: this.getCurrentDate(),
+                    // TODO
+                    tag: 'РГАУ-МСХА',
+                };
+            },
+
+            /**
+             * Метод добавления новости
+             * @param {object} data - тело запроса на создание новости
+             */
+            async addNews(data) {
+                // axios.post('', data);
+                console.log(data);
+                axios({
+                    method: 'POST',
+                    url: 'http://localhost:1024/user/create/news',
+                    data: data,
+                }).then((response) => {
+                    console.log(response.data);
+                });
+            },
+
             onSubmit(formName) {
-                this.$refs[formName].validate((valid) => {
+                this.$refs[formName].validate(async (valid) => {
                     if (valid) {
-                        // Переменная для транформации закрытых тегов
-                        let start = true;
-
-                        // TODO
-
-                        let data = JSON.stringify({
-                            name: this.form.title,
-                            previewImageLink: this.form.preview,
-                            imageLinks: this.form.slider.map((image) => image.response.data.url),
-                            tag: 'РГАУ-МСХА',
-                            text: this.form.text
-                                .replace(/\*\*/g, () => {
-                                    start = !start;
-                                    if (!start) return '<b>';
-                                    return '</b>';
-                                })
-                                .replace(/>>>/g, '<ul>')
-                                .replace(/<<</g, '</ul>')
-                                .replace(/>>/g, '<li>')
-                                .replace(/<</g, '</li>')
-                                .replace(/\n/g, '<br>'),
-                            previewText: this.form.shortTitle,
-                            data: this.getCurrentDate(),
-                        });
-
-                        // TODO запрос
+                        let data = this.getRequestData();
+                        await this.addNews(data);
                     } else {
                         console.log('error submit!!');
                         return false;
