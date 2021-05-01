@@ -7,13 +7,15 @@
                 <router-link style="text-decoration: none" :to="{ name: 'UI_test', params: { mode: 'edit', entityId: item._pageLink } }">
                     <button class="btn_edit">Редактировать</button>
                 </router-link>
-                <button class="btn_delete">Удалить</button>
+                <button @click="deliteNews(item._pageLink)" class="btn_delete">Удалить</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
         name: 'AdminItem',
         props: {
@@ -26,6 +28,18 @@
         },
 
         mounted() {},
+
+        methods: {
+            deliteNews(id) {
+                axios({
+                    method: 'DELETE',
+                    url: 'http://localhost:1024/user/delete/news',
+                    params: { pageId: id },
+                }).then((response) => {
+                    console.log(response.data);
+                });
+            },
+        },
     };
 </script>
 

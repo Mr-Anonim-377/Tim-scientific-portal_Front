@@ -9,7 +9,7 @@
         </div>
         <div class="newsSection-container">
             <div :class="{ 'news-item': NEWS_ITEM._tag === tag || tag === 'all' }" v-for="NEWS_ITEM in newsData" :key="NEWS_ITEM">
-                <div v-if="NEWS_ITEM._tag === tag || tag === 'all'">
+                <div v-if="(NEWS_ITEM._tag === tag && NEWS_ITEM.title) || tag === 'all'">
                     <img :src="NEWS_ITEM.image" />
                     <h3>{{ NEWS_ITEM.title }}</h3>
                     <p class="news-item__years">

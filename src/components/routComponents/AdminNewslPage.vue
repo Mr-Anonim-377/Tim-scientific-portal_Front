@@ -47,8 +47,6 @@
         async mounted() {
             await this.getModulesTest('NEWS_PAGE', false, this.tag);
             this.loadSuccess = true;
-            //eslint-disable-next-line
-            let self = this;
 
             this.items = this.NEWS_SLIDER.NEWS_ITEM.map((news) => {
                 return {

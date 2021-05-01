@@ -64,15 +64,8 @@
                         localStorage.setItem('isAuth', true);
                         // Тут имя аккаунта
                         localStorage.setItem('accountName', '');
-
-                        // this.$router.go();
-                        // this.$router.go();
-                        // this.$router.push({ name: 'Main' });
-                        // window.location.reload();
-                        window.location.href = 'http://localhost:80/';
-                        // this.$router.go('');
-                        // Переходим на главную страницу
-                        // document.querySelector('.headerSection-container > a').click();
+                        // Редиректим на главную
+                        window.location.href = 'http://localhost:1024/';
                     })
                     .catch(() => {
                         this.error = true;

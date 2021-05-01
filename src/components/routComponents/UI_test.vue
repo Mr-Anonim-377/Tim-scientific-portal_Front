@@ -155,13 +155,13 @@
             },
 
             /* Хук успешной загрузки изображения (инпут превью)
-                        При успешной загрузке заполняем скрытый инпут урлом из ответа */
+               При успешной загрузке заполняем скрытый инпут урлом из ответа */
             successLoadHookPreview(res) {
                 this.form.preview = res.data.url;
             },
 
             /* Хук успешной загрузки изображения (инпут слайдера)
-                        При успешной загрузке заполняем скрытый инпут урлом из ответа */
+               При успешной загрузке заполняем скрытый инпут урлом из ответа */
             successLoadHookSlider(res, file, fileList) {
                 this.form.slider = fileList;
                 console.log(this.form.slider);
@@ -191,7 +191,7 @@
              * Формирование тела запроса из this.form
              */
             getRequestData() {
-                // Переменная для транформации закрытых тегов
+                /* Переменная для транформации закрытых тегов */
                 let start = true;
                 return {
                     name: this.form.title,
@@ -219,8 +219,7 @@
              * Метод добавления новости
              * @param {object} data - тело запроса на создание новости
              */
-            async addNews(data) {
-                // axios.post('', data);
+            addNews(data) {
                 console.log(data);
                 axios({
                     method: 'POST',
@@ -231,18 +230,35 @@
                 });
             },
 
+            /**
+             * Метод обновления новости
+             * @param {object} data - тело запроса на создание новости
+             */
+            updateNews(data) {
+                console.log(data);
+                axios({
+                    method: 'POST',
+                    url: 'http://localhost:1024/user/create/news',
+                    data: data,
+                }).then((response) => {
+                    console.log(response.data);
+                });
+            },
+
+            /* Метод сабмита формы -> отправляет запросы при пройденной валидации */
             onSubmit(formName) {
                 this.$refs[formName].validate(async (valid) => {
                     if (valid) {
                         let data = this.getRequestData();
                         await this.addNews(data);
+                        window.location.href = 'http://localhost:1024/AdminNewsPage';
                     } else {
-                        console.log('error submit!!');
                         return false;
                     }
                 });
             },
 
+            /* Метод трансофрмации HTML в строку */
             transformHTMLtoString(string) {
                 return (
                     string
@@ -261,7 +277,7 @@
             },
         },
         props: {
-            /* mode -> режим рендера формы
+            /* mode -> режим рендера формы:
                                create для создания
                                edit для редактирования */
             mode: String,
@@ -325,15 +341,14 @@
         },
 
         async mounted() {
-            //eslint-disable-next-line
-            const self = this;
-            //eslint-disable-next-line
-            debugger;
-
             /* Если форма открыта в режиме редактирования - загружаем данные по id новости */
             if (this.mode === 'edit') {
                 await this.getModulesTest('', this.entityId);
                 await this.getModulesTest('NEWS_PAGE');
+                //eslint-disable-next-line
+                const self = this;
+                //eslint-disable-next-line
+                debugger;
 
                 /* Заполняем инпуты */
                 this.form.text = this.transformHTMLtoString(this.NEWS_TEXT.TEXT[0].text);
@@ -346,6 +361,7 @@
                 });
                 this.form.slider = this.sliderFileList;
 
+                this.form.shortTitle = this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.title;
                 this.form.shortTitle = this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.title;
                 this.previewfileList = [
                     {
