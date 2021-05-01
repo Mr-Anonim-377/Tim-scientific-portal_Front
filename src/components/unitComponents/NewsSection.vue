@@ -84,6 +84,13 @@
                 this.title = this.getFullTitlePage(this.$route.params.tag);
             },
         },
+
+        mounted() {
+            //eslint-disable-next-line
+            const self = this;
+            //eslint-disable-next-line
+            debugger;
+        },
     };
 </script>
 

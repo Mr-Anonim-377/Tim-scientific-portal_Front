@@ -149,7 +149,7 @@
                     <span class="login">Тестовый аккаунт</span>
 
                     <div class="popup">
-                        <router-link style="text-decoration: none" :to="{ name: 'participantNews', params: { tag: this.encodeData } }">
+                        <router-link style="text-decoration: none" :to="{ name: 'AdminNewsPage', params: { tag: this.encodeData } }">
                             <p>Администрирование</p>
                         </router-link>
                         <p @click="logOut">Выход</p>

@@ -221,12 +221,14 @@
              */
             addNews(data) {
                 console.log(data);
-                axios({
-                    method: 'POST',
-                    url: 'http://localhost:1024/user/create/news',
-                    data: data,
-                }).then((response) => {
-                    console.log(response.data);
+                return new Promise((res) => {
+                    axios({
+                        method: 'POST',
+                        url: 'http://localhost:1024/user/create/news',
+                        data: data,
+                    }).then((response) => {
+                        res(response.data);
+                    });
                 });
             },
 
@@ -235,13 +237,14 @@
              * @param {object} data - тело запроса на создание новости
              */
             updateNews(data) {
-                console.log(data);
-                axios({
-                    method: 'POST',
-                    url: 'http://localhost:1024/user/create/news',
-                    data: data,
-                }).then((response) => {
-                    console.log(response.data);
+                return new Promise((res) => {
+                    axios({
+                        method: 'POST',
+                        url: 'http://localhost:1024/user/create/news',
+                        data: data,
+                    }).then((response) => {
+                        res(response.data);
+                    });
                 });
             },
 
@@ -250,8 +253,9 @@
                 this.$refs[formName].validate(async (valid) => {
                     if (valid) {
                         let data = this.getRequestData();
-                        await this.addNews(data);
-                        window.location.href = 'http://localhost:1024/AdminNewsPage';
+                        this.addNews(data).then(() => {
+                            window.location.href = 'http://localhost:1024/AdminNewsPage';
+                        });
                     } else {
                         return false;
                     }
