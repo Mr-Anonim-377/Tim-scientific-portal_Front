@@ -31,6 +31,7 @@
 
     import AdminNavigation from '@/components/unitComponents/AdminNavigation';
     import mixin from '../../utils/methodsMixin';
+    import axios from 'axios';
 
     export default {
         name: 'AdminPanelPage',
@@ -45,7 +46,12 @@
         },
 
         async mounted() {
+            // TODO Убрать как заработает запрос на получение сущностей
             await this.getModulesTest('NEWS_PAGE', false, this.tag);
+
+            axios.get('http://future-agro:84/allEntityInstance?type=FULL_NEWS_PAGE').then((res) => {
+                /* Тут распарсим полученные данные и передадим в дочерние компоненты */
+            });
             this.loadSuccess = true;
 
             this.items = this.NEWS_SLIDER.NEWS_ITEM.map((news) => {

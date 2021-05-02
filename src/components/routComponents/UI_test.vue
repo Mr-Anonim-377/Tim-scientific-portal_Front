@@ -240,7 +240,7 @@
                 return new Promise((res) => {
                     axios({
                         method: 'POST',
-                        url: 'http://localhost:1024/user/create/news',
+                        url: 'http://localhost:1024/user/update/news',
                         data: data,
                     }).then((response) => {
                         res(response.data);
@@ -253,9 +253,19 @@
                 this.$refs[formName].validate(async (valid) => {
                     if (valid) {
                         let data = this.getRequestData();
-                        this.addNews(data).then(() => {
-                            window.location.href = 'http://localhost:1024/AdminNewsPage';
-                        });
+                        if (this.mode === 'create') {
+                            this.addNews(data).then(() => {
+                                window.location.href = 'http://localhost:1024/AdminNewsPage';
+                            });
+                        } else {
+                            /* Удаляем тэг и добавляем pageId в тело запроса */
+                            delete data.tag;
+                            delete data.previewText;
+                            data.pageId = this.entityId;
+                            this.updateNews(data).then(() => {
+                                window.location.href = 'http://localhost:1024/AdminNewsPage';
+                            });
+                        }
                     } else {
                         return false;
                     }
@@ -349,15 +359,10 @@
             if (this.mode === 'edit') {
                 await this.getModulesTest('', this.entityId);
                 await this.getModulesTest('NEWS_PAGE');
-                //eslint-disable-next-line
-                const self = this;
-                //eslint-disable-next-line
-                debugger;
-
                 /* Заполняем инпуты */
                 this.form.text = this.transformHTMLtoString(this.NEWS_TEXT.TEXT[0].text);
                 this.form.title = this.NEWS_TITLE.TITLE[0].title;
-                this.sliderFileList = this.NEWS_IMAGE_CAROUSEL.IMAGE.map((image, i) => {
+                this.sliderFileList = this.NEWS_IMAGE_CAROUSEL?.IMAGE?.map((image, i) => {
                     return {
                         name: 'Изображение ' + (i + 1),
                         url: image?.image,

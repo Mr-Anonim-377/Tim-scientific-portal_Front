@@ -7,7 +7,9 @@
         <p class="bannerSlider__years">{{ NEWS_DATE.DATE[0].date }}</p>
 
         <!-- Секция слайдера -->
-        <NewsSliderSection :urls="NEWS_IMAGE_CAROUSEL.IMAGE" />
+        <div v-if="NEWS_IMAGE_CAROUSEL?.IMAGE">
+            <NewsSliderSection :urls="NEWS_IMAGE_CAROUSEL.IMAGE" />
+        </div>
 
         <div v-html="NEWS_TEXT.TEXT[0].text"></div>
     </section>
