@@ -184,14 +184,13 @@
         methods: {
             logOut() {
                 localStorage.setItem('isAuth', false);
-                axios
-                    .get('http://localhost:1024/user/logout', {
-                        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-                    })
-                    .then(() => {
-                        // Перезагружаем страницу после выхода для обновления хэдера
-                        this.$router.go();
-                    });
+
+                axios({
+                    method: 'POST',
+                    url: 'http://localhost:1024/logout',
+                }).catch(() => {
+                    this.$router.go();
+                });
             },
 
             // ucFirst(string) {

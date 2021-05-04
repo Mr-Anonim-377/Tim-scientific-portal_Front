@@ -163,7 +163,9 @@
             /* Хук успешной загрузки изображения (инпут слайдера)
                При успешной загрузке заполняем скрытый инпут урлом из ответа */
             successLoadHookSlider(res, file, fileList) {
-                this.form.slider = fileList;
+                this.form.slider = fileList.map((image) => {
+                    return { name: image.name, url: image.response ? image.response.data.url : image.url };
+                });
                 console.log(this.form.slider);
             },
 
@@ -193,10 +195,14 @@
             getRequestData() {
                 /* Переменная для транформации закрытых тегов */
                 let start = true;
+                //eslint-disable-next-line
+                const self = this;
+                //eslint-disable-next-line
+                debugger;
                 return {
                     name: this.form.title,
                     previewImageLink: this.form.preview,
-                    imageLinks: this.form.slider.map((image) => image.response.data.url),
+                    imageLinks: this.form.slider?.map((image) => image.url) || [],
                     text: this.form.text
                         .replace(/\*\*/g, () => {
                             start = !start;
@@ -220,8 +226,11 @@
              * @param {object} data - тело запроса на создание новости
              */
             addNews(data) {
-                console.log(data);
                 return new Promise((res) => {
+                    //eslint-disable-next-line
+                    const self = this;
+                    //eslint-disable-next-line
+                    debugger;
                     axios({
                         method: 'POST',
                         url: 'http://localhost:1024/user/create/news',
@@ -238,6 +247,10 @@
              */
             updateNews(data) {
                 return new Promise((res) => {
+                    //eslint-disable-next-line
+                    const self = this;
+                    //eslint-disable-next-line
+                    debugger;
                     axios({
                         method: 'POST',
                         url: 'http://localhost:1024/user/update/news',
@@ -260,7 +273,6 @@
                         } else {
                             /* Удаляем тэг и добавляем pageId в тело запроса */
                             delete data.tag;
-                            delete data.previewText;
                             data.pageId = this.entityId;
                             this.updateNews(data).then(() => {
                                 window.location.href = 'http://localhost:1024/AdminNewsPage';
@@ -378,7 +390,7 @@
                         url: this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.image,
                     },
                 ];
-                this.form.preview = this.previewfileList;
+                this.form.preview = this.previewfileList[0].url;
             }
 
             this.loadSuccess = true;
