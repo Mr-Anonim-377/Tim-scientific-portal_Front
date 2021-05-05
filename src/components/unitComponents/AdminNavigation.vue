@@ -1,45 +1,54 @@
 <template>
-  <div class="admin-nav">
-    <ul>
-      <router-link style="text-decoration: none;" :to="{ name: 'AdminNewsPage' }"><li>Новости</li></router-link>
-      <router-link style="text-decoration: none" :to="{ name: 'AdminResearchPage' }"><li>Исследования</li></router-link>
-      <router-link style="text-decoration: none" :to="{ name: 'AdminCalendarPage' }"><li>События</li></router-link>
-      <router-link style="text-decoration: none" :to="{ name: 'AdminPartyPage' }"><li>Исследователи</li></router-link>
-      <router-link style="text-decoration: none" :to="{ name: 'AdminDocumentPage' }"><li>Документы</li></router-link>
-    </ul>
-  </div>
+    <div class="admin-nav">
+        <ul>
+            <router-link style="text-decoration: none;" :to="{ name: 'AdminNewsPage' }"><li class="active">Новости</li></router-link>
+            <!-- <router-link style="text-decoration: none" :to="{ name: 'AdminResearchPage' }"><li>Исследования</li></router-link> -->
+            <li class="disable">Исследования</li>
+            <!-- <router-link style="text-decoration: none" :to="{ name: 'AdminCalendarPage' }"><li>События</li></router-link> -->
+            <li class="disable">События</li>
+            <!-- <router-link style="text-decoration: none" :to="{ name: 'AdminPartyPage' }"><li>Исследователи</li></router-link> -->
+            <li class="disable">Исследователи</li>
+            <!-- <router-link style="text-decoration: none" :to="{ name: 'AdminDocumentPage' }"><li>Документы</li></router-link> -->
+            <li class="disable">Документы</li>
+        </ul>
+    </div>
 </template>
 
 <script>
-export default {
-name: "AdminNavigation"
-}
+    export default {
+        name: 'AdminNavigation',
+    };
 </script>
 
 <style scoped>
-.admin-nav{
-  margin-bottom: 54px;
-}
+    .disable {
+        opacity: 0.5;
+        cursor: auto;
+    }
 
-ul{
-  display: flex;
-  justify-content: space-between;
-  margin: 0;
-  padding: 0;
-}
+    .admin-nav {
+        margin-bottom: 54px;
+    }
 
-li{
-  list-style-type: none;
-  cursor: pointer;
-  color: #3f7e77;
-  margin: 0;
-  padding: 10px 49px;
-  border: 1px solid #3f7e77;
-  border-radius: 10px;
-}
+    ul {
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0;
+    }
 
-li:hover{
-  background: #3f7e77;
-  color: white;
-}
+    li {
+        list-style-type: none;
+        cursor: pointer;
+        color: #3f7e77;
+        margin: 0;
+        padding: 10px 49px;
+        border: 1px solid #3f7e77;
+        border-radius: 10px;
+    }
+
+    li.active:hover {
+        background: #3f7e77;
+        color: white;
+    }
 </style>

@@ -18,9 +18,12 @@
                     />
                 </div>
 
-                <p v-for="paragraph in this.CALENDAR_TEXT.TEXT[0].text.split(' ; ')" :key="paragraph">
-                    {{ paragraph }}
-                </p>
+                <p v-for="paragraph in this.CALENDAR_TEXT.TEXT[0].text.split(' ; ')" :key="paragraph" v-html="transformHhtmlLinks(paragraph)"></p>
+                <div class="calendar-container-images">
+                    <div v-for="image in CALENDAR_SLIDER.IMAGE" :key="image.image">
+                        <img :src="image.image" alt="" />
+                    </div>
+                </div>
             </div>
         </section>
     </div>
@@ -61,9 +64,26 @@
 
         async mounted() {
             await this.getModulesTest('', this.pageId);
+
+            //eslint-disable-next-line
+            const self = this;
+            //eslint-disable-next-line
+            debugger;
             setTimeout(() => {
                 this.loadSuccess = true;
             }, 500);
+        },
+
+        methods: {
+            transformHhtmlLinks(string) {
+                return string
+                    .split(' ')
+                    .map((word) => {
+                        if (word.slice(0, 5) === 'https') return `<a href=${word}}">${word}</a>`;
+                        return word;
+                    })
+                    .join(' ');
+            },
         },
     };
 </script>
@@ -138,5 +158,23 @@
     .img-block img {
         width: 100%;
         height: 100%;
+    }
+
+    .calendar-container-images {
+        display: flex;
+        justify-content: center;
+        max-width: 1200px;
+        margin: 30px auto;
+    }
+
+    .calendar-container-images > div {
+        width: max-content;
+        flex-grow: 1;
+        margin: 0 30px;
+        max-width: 70%;
+    }
+
+    .calendar-container-images > div > img {
+        width: 100%;
     }
 </style>

@@ -105,6 +105,41 @@
                         <el-input type="textarea" :autosize="true" placeholder="Тело новости" v-model="form.text" maxlength="3600" show-word-limit>
                         </el-input>
                     </el-form-item>
+                    <div class="tips">
+                        <p @click="showTips = !showTips">Правила форматирования текста для новости</p>
+
+                        <!-- <transition name="el-fade-in"> -->
+                        <el-collapse-transition>
+                            <div v-if="showTips" class="tips_wrapper">
+                                <p class="tips_h1">Для форматирования текста новости можно использовать:</p>
+                                <div class="tips_item">
+                                    <div class="tips_title">
+                                        <p class="tips_h2">Жирное выделение:</p>
+                                        <p class="tips_h3">** В начале и в конце выделения</p>
+                                    </div>
+
+                                    <div class="tips_example">
+                                        <p class="tips_h2">Пример жирного выделения:</p>
+                                        <p class="tips_h3">**Жирный текст**</p>
+                                    </div>
+                                </div>
+                                <div class="tips_item">
+                                    <div class="tips_title">
+                                        <p class="tips_h2">Ненумерованные списки:</p>
+                                        <!-- <p class="tips_h3">"&lt" В начале и в конце выделения</p> -->
+                                    </div>
+
+                                    <div class="tips_example">
+                                        <p class="tips_h2">Пример ненумерованного списка:</p>
+                                        <p class="tips_h3">**Жирный текст**</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </el-collapse-transition>
+                        <!-- </transition> -->
+
+                        <!-- TODO придумать стили -->
+                    </div>
                 </div>
 
                 <div class="submitWrapper">
@@ -312,6 +347,7 @@
         data() {
             return {
                 loadSuccess: false,
+                showTips: false,
 
                 /* Поля формы */
                 form: {
@@ -444,5 +480,64 @@
 
     .hiddenFormItem {
         margin: 0;
+    }
+
+    .tips_wrapper {
+        background-color: #3f7e77;
+        padding: 10px 26px;
+        border-radius: 20px;
+        color: #f8f5e6;
+    }
+
+    .tips p {
+        text-align: center;
+        font-size: 12px;
+        color: #3f7e77;
+    }
+
+    .tips_wrapper p {
+        text-align: left;
+        font-size: 12px;
+        color: #f8f5e6;
+    }
+
+    .tips_wrapper .tips_h1 {
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .tips_wrapper .tips_h2 {
+        font-weight: bold;
+        /* text-align: center; */
+    }
+
+    .tips_wrapper .tips_h3 {
+        /* text-align: center; */
+    }
+
+    .tips_item {
+        margin: 20px 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .tips_item > div {
+        width: 50%;
+    }
+
+    @keyframes tips {
+        from {
+            height: 0;
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        to {
+            height: 300px;
+            opacity: 1;
+            transform: translateX(0);
+        }
     }
 </style>
