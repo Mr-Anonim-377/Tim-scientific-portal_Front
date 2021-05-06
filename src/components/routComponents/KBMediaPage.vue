@@ -40,7 +40,6 @@
         async mounted() {
             await this.getModulesTest('', this.pageId);
             setTimeout(() => {
-                console.log(this.VIDEOS);
                 this.loadSuccess = true;
             }, 500);
         },

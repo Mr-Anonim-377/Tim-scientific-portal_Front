@@ -65,10 +65,6 @@
         async mounted() {
             await this.getModulesTest('', this.pageId);
 
-            //eslint-disable-next-line
-            const self = this;
-            //eslint-disable-next-line
-            debugger;
             setTimeout(() => {
                 this.loadSuccess = true;
             }, 500);

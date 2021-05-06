@@ -53,7 +53,7 @@
         methods: {
             logIn() {
                 axios
-                    .get('http://localhost:1024/user/logIn', {
+                    .get('http://localhost:80/user/logIn', {
                         headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
                         auth: {
                             username: this.login,
@@ -65,7 +65,7 @@
                         // Тут имя аккаунта
                         localStorage.setItem('accountName', '');
                         // Редиректим на главную
-                        window.location.href = 'http://localhost:1024/';
+                        window.location.href = 'http://future-agro.ru/';
                     })
                     .catch(() => {
                         this.error = true;

@@ -208,7 +208,6 @@
                 this.form.slider = fileList.map((image) => {
                     return { name: image.name, url: image.response ? image.response.data.url : image.url };
                 });
-                console.log(this.form.slider);
             },
 
             /* Хук удаления изображения (инпут превью) */
@@ -219,7 +218,6 @@
             /* Хук удаления изображения (инпут слайдера) */
             removeImageHookSlider(res, fileList) {
                 this.form.slider = fileList;
-                console.log(this.form.slider);
             },
 
             /* Функция возвращает текущее время */
@@ -254,8 +252,7 @@
                         .replace(/\n/g, '<br>'),
                     previewText: this.form.shortTitle,
                     date: this.getCurrentDate(),
-                    // TODO
-                    tag: 'РГАУ-МСХА',
+                    tag: this.form.tag,
                 };
             },
 
@@ -267,7 +264,7 @@
                 return new Promise((res) => {
                     axios({
                         method: 'POST',
-                        url: 'http://localhost:1024/user/create/news',
+                        url: 'http://localhost:80/user/create/news',
                         data: data,
                     }).then((response) => {
                         res(response.data);
@@ -281,13 +278,9 @@
              */
             updateNews(data) {
                 return new Promise((res) => {
-                    //eslint-disable-next-line
-                    const self = this;
-                    //eslint-disable-next-line
-                    debugger;
                     axios({
                         method: 'POST',
-                        url: 'http://localhost:1024/user/update/news',
+                        url: 'http://localhost:80/user/update/news',
                         data: data,
                     }).then((response) => {
                         res(response.data);
@@ -302,14 +295,14 @@
                         let data = this.getRequestData();
                         if (this.mode === 'create') {
                             this.addNews(data).then(() => {
-                                window.location.href = 'http://localhost:1024/AdminNewsPage';
+                                window.location.href = 'http://future-agro.ru/AdminNewsPage';
                             });
                         } else {
                             /* Удаляем тэг и добавляем pageId в тело запроса */
                             delete data.tag;
                             data.pageId = this.entityId;
                             this.updateNews(data).then(() => {
-                                window.location.href = 'http://localhost:1024/AdminNewsPage';
+                                window.location.href = 'http://future-agro.ru/AdminNewsPage';
                             });
                         }
                     } else {
@@ -404,12 +397,7 @@
         created() {
             /* Проверка авторизации */
             this.authCheck().then((res) => {
-                //eslint-disable-next-line
-                const self = this;
-                //eslint-disable-next-line
-                debugger;
-                console.log(res);
-                this.$router.push('auth');
+                this.form.tag = res.data;
             });
         },
 

@@ -27,18 +27,11 @@
             };
         },
 
-        mounted() {
-            //eslint-disable-next-line
-            const self = this;
-            //eslint-disable-next-line
-            debugger;
-        },
-
         methods: {
             deleteNews(id) {
                 axios({
                     method: 'DELETE',
-                    url: 'http://localhost:1024/user/delete/news',
+                    url: 'http://localhost:80/user/delete/news',
                     params: { pageId: id },
                 }).then(() => {
                     this.$router.go();

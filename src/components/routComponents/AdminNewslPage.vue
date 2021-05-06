@@ -48,7 +48,7 @@
         async mounted() {
             axios({
                 method: 'GET',
-                url: 'http://localhost:1024/user/allEntityInstance?type=FULL_NEWS_PAGE',
+                url: 'http://localhost:80/user/allEntityInstance?type=FULL_NEWS_PAGE',
             }).then((response) => {
                 this.availableEntities = response.data;
                 this.loadSuccess = true;

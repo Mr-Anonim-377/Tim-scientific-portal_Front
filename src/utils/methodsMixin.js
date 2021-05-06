@@ -126,18 +126,18 @@ export default {
 
         /* Метод проверки авторизации */
         async authCheck() {
-            return new Promise((res, rej) => {
+            return new Promise((resolve, reject) => {
                 axios
-                    .get('http://localhost:1024/user/auth?roleName=ROLE_USER', {
+                    .get('http://localhost:80/user/auth?roleName=ROLE_USER', {
                         headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
                     })
-                    .then(() => {
+                    .then((response) => {
                         localStorage.setItem('isAuth', true);
-                        return res(true);
+                        return resolve(response);
                     })
                     .catch(() => {
-                        localStorage.setItem('isAuth', false);
-                        return rej(false);
+                        localStorage.setItem('isAresponseth', false);
+                        return reject(false);
                     });
             });
         },
