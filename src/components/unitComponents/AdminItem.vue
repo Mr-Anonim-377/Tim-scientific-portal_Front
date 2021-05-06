@@ -2,12 +2,12 @@
     <div class="admin-elements">
         <div class="admin-elements__text" v-for="(item, i) in sectionData" @click="active = i" :class="{ active: i === active }" :key="item">
             <span class="admin-items__number">{{ i + 1 }}</span>
-            <p>{{ item.text }}</p>
+            <p>{{ item.name }}</p>
             <div class="admin-elements__btn">
-                <router-link style="text-decoration: none" :to="{ name: 'UI_test', params: { mode: 'edit', entityId: item._pageLink } }">
+                <router-link style="text-decoration: none" :to="{ name: 'UI_test', params: { mode: 'edit', entityId: item.pageId } }">
                     <button class="btn_edit">Редактировать</button>
                 </router-link>
-                <button @click="deleteNews(item._pageLink)" class="btn_delete">Удалить</button>
+                <button @click="deleteNews(item.pageId)" class="btn_delete">Удалить</button>
             </div>
         </div>
     </div>
@@ -27,7 +27,12 @@
             };
         },
 
-        mounted() {},
+        mounted() {
+            //eslint-disable-next-line
+            const self = this;
+            //eslint-disable-next-line
+            debugger;
+        },
 
         methods: {
             deleteNews(id) {

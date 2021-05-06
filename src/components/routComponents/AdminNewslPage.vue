@@ -16,7 +16,7 @@
             </div>
 
             <!-- список-->
-            <AdminItem :sectionData="items" />
+            <AdminItem :sectionData="availableEntities" />
         </section>
     </div>
 
@@ -41,28 +41,17 @@
             return {
                 tag: 'РГАУ-МСХА',
                 loadSuccess: false,
-                items: [],
+                availableEntities: [],
             };
         },
 
         async mounted() {
-            // TODO Убрать как заработает запрос на получение сущностей
-            await this.getModulesTest('NEWS_PAGE', false, this.tag);
-
             axios({
                 method: 'GET',
                 url: 'http://localhost:1024/user/allEntityInstance?type=FULL_NEWS_PAGE',
             }).then((response) => {
-                console.log(response);
-            });
-
-            this.loadSuccess = true;
-
-            this.items = this.NEWS_SLIDER.NEWS_ITEM.map((news) => {
-                return {
-                    text: news.title,
-                    _pageLink: news._pageLink,
-                };
+                this.availableEntities = response.data;
+                this.loadSuccess = true;
             });
         },
     };
