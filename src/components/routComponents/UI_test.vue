@@ -230,10 +230,6 @@
             getRequestData() {
                 /* Переменная для транформации закрытых тегов */
                 let start = true;
-                //eslint-disable-next-line
-                const self = this;
-                //eslint-disable-next-line
-                debugger;
                 return {
                     name: this.form.title,
                     previewImageLink: this.form.preview,

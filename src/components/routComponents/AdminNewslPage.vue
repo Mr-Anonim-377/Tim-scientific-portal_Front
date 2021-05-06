@@ -1,10 +1,10 @@
 <template>
     <div v-if="loadSuccess">
         <section class="admin">
-            <!--    Навигация-->
+            <!-- Навигация-->
             <AdminNavigation />
 
-            <!--      Шапка и кнопка добавить-->
+            <!-- Шапка и кнопка добавить-->
             <router-link style="text-decoration: none" :to="{ name: 'UI_test', params: { mode: 'create' } }">
                 <button class="btn_add">Добавить новость</button>
             </router-link>
