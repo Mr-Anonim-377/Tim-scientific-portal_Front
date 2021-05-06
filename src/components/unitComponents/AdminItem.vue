@@ -38,7 +38,7 @@
             deleteNews(id) {
                 axios({
                     method: 'DELETE',
-                    url: 'http://localhost/user/delete/news',
+                    url: 'http://localhost:1024/user/delete/news',
                     params: { pageId: id },
                 }).then(() => {
                     this.$router.go();

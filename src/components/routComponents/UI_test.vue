@@ -126,12 +126,19 @@
                                 <div class="tips_item">
                                     <div class="tips_title">
                                         <p class="tips_h2">Ненумерованные списки:</p>
-                                        <!-- <p class="tips_h3">"&lt" В начале и в конце выделения</p> -->
+                                        <p class="tips_h3">&gt;&gt;&gt; В начале списка</p>
+                                        <p class="tips_h3">&lt;&lt;&lt; В конце списка</p>
+                                        <p class="tips_h3">&gt;&gt; В начале элемента списка</p>
+                                        <p class="tips_h3">&lt;&lt; В конце элемента списка</p>
                                     </div>
 
                                     <div class="tips_example">
                                         <p class="tips_h2">Пример ненумерованного списка:</p>
-                                        <p class="tips_h3">**Жирный текст**</p>
+                                        <p>&gt;&gt;&gt;</p>
+                                        <p>&gt;&gt; Элемент списка &lt;&lt;</p>
+                                        <p>&gt;&gt; Элемент списка &lt;&lt;</p>
+
+                                        <p>&lt;&lt;&lt;</p>
                                     </div>
                                 </div>
                             </div>
@@ -258,10 +265,6 @@
              */
             addNews(data) {
                 return new Promise((res) => {
-                    //eslint-disable-next-line
-                    const self = this;
-                    //eslint-disable-next-line
-                    debugger;
                     axios({
                         method: 'POST',
                         url: 'http://localhost:1024/user/create/news',
@@ -396,6 +399,18 @@
                     key: '2ca9c35e0d42896ec7e746b5daf2c924',
                 },
             };
+        },
+
+        created() {
+            /* Проверка авторизации */
+            this.authCheck().then((res) => {
+                //eslint-disable-next-line
+                const self = this;
+                //eslint-disable-next-line
+                debugger;
+                console.log(res);
+                this.$router.push('auth');
+            });
         },
 
         async mounted() {
