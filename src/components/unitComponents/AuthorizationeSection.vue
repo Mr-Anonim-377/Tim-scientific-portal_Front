@@ -53,7 +53,7 @@
         methods: {
             logIn() {
                 axios
-                    .get('http://localhost:80/user/logIn', {
+                    .get('/user/logIn', {
                         headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
                         auth: {
                             username: this.login,
