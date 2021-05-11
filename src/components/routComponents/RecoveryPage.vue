@@ -77,7 +77,7 @@
                      * Если все ок, то можно отправлять запрос в блоке else
                      */
                     axios
-                        .get('http://localhost:80/utils/update/password?login=' + this.login, {
+                        .get('/utils/update/password?login=' + this.login, {
                             headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
                         })
                         .then(() => {

@@ -187,7 +187,7 @@
 
                 axios({
                     method: 'POST',
-                    url: 'http://localhost:80/logout',
+                    url: '/logout',
                 }).catch(() => {
                     this.$router.go();
                 });

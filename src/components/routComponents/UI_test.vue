@@ -264,7 +264,7 @@
                 return new Promise((res) => {
                     axios({
                         method: 'POST',
-                        url: 'http://localhost:80/user/create/news',
+                        url: '/user/create/news',
                         data: data,
                     }).then((response) => {
                         res(response.data);
@@ -280,7 +280,7 @@
                 return new Promise((res) => {
                     axios({
                         method: 'POST',
-                        url: 'http://localhost:80/user/update/news',
+                        url: '/user/update/news',
                         data: data,
                     }).then((response) => {
                         res(response.data);

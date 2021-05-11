@@ -128,7 +128,7 @@ export default {
         async authCheck() {
             return new Promise((resolve, reject) => {
                 axios
-                    .get('http://localhost:80/user/auth?roleName=ROLE_USER', {
+                    .get('/user/auth?roleName=ROLE_USER', {
                         headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
                     })
                     .then((response) => {
