@@ -2,14 +2,6 @@
     <!-- Форма добавления/редактирования исследователя -->
     <!-- Документация по UI: https://element-plus.org/ -->
     <div v-if="loadSuccess">
-        <!-- // * ФИО -->
-        <!-- // * Дата рождения -->
-        <!-- // * Специальность -->
-        <!-- // * Фото профиля -->
-        <!-- // ! Связанные исследования -->
-        <!-- // *  Электронная почта -->
-        <!-- // ! Достижения -->
-
         <section>
             <TitleSection
                 :title="mode === 'create' ? 'Добавление профиля исследователя' : 'Редактирование профиля исследования'"
@@ -35,7 +27,6 @@
                 </el-row>
 
                 <!-- Поле "Дата рождения" -->
-                <!-- // TODO   -->
                 <el-row type="flex" justify="center">
                     <el-col>
                         <h1>Дата рождения</h1>
@@ -89,9 +80,9 @@
                 <el-row type="flex" justify="center">
                     <el-col>
                         <h1>Исследования</h1>
-                        <el-form-item prop="research2" required>
-                            <el-select v-model="form.research" multiple placeholder="Select">
-                                <el-option v-for="item in from.research" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+                        <el-form-item prop="research">
+                            <el-select v-model="form.research" multiple placeholder="Выберите исследования, в которых принимал участие исследователь">
+                                <el-option v-for="item in researchList" :key="item.value" :label="item.value" :value="item.value"> </el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>
@@ -103,7 +94,7 @@
                         <!-- Изображения -->
                         <h1>Фотография профиля</h1>
                         <el-form-item>
-                            <!-- // TODO Почистить от лишнего -->
+                            <!-- TODO Почистить от лишнего -->
                             <el-upload
                                 class="upload-demo"
                                 action="https://api.imgbb.com/1/upload"
@@ -111,7 +102,7 @@
                                 :data="requestData"
                                 list-type="picture"
                                 :limit="1"
-                                :file-list="previewImage.avatar"
+                                :file-list="previewImages.avatar"
                                 name="image"
                                 :model="form.avatar"
                                 :on-success="successLoadHookAvatar"
@@ -131,6 +122,28 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
+
+                <!-- Поле "Связанные исследователи" -->
+                <el-row type="flex" justify="center">
+                    <el-col>
+                        <h1>Достижения</h1>
+                        <el-form-item prop="research">
+                            <el-select
+                                :span="12"
+                                class="formResearcher__progressSelect"
+                                v-model="form.progress"
+                                multiple
+                                filterable
+                                default-first-option
+                                placeholder="Выберите исследования, в которых принимал участие исследователь"
+                                `
+                                allow-create
+                            >
+                                <el-option v-for="item in progressList" :key="item.value" :label="item.value" :value="item.value"> </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
             </el-form>
         </section>
     </div>
@@ -139,6 +152,22 @@
     </div>
 </template>
 <script>
+    /*  
+    
+    Работа с UI:
+        TODO Проверить v-model у всех инпутов
+
+        TODO Написать валидацию для обязательных параметров
+
+        TODO Изменения текста в зависимости от мода
+
+        TODO Инпут даты 
+
+        TODO Разделить строки в верстке
+
+    Работа с данными:
+        TODO Парс данных при редактировании
+    */
     import TitleSection from '../../unitComponents/TitleSection';
     //* import mixin from '../../utils/methodsMixin';
     import Preloader from './../../unitComponents/CommonElements/Preloader';
@@ -163,8 +192,11 @@
                     email: '',
                     avatar: '',
                     dateOfBirth: '',
-                    research: [{ value: 'Исследование 1' }, { value: 'Исследование 2' }, { value: 'Исследование 3' }, { value: 'Исследование 4' }],
+                    research: [],
+                    progress: [],
                 },
+                /* Объект */
+
                 rules: {
                     // !
                     fullname: [],
@@ -178,9 +210,21 @@
                     dateOfBirth: [],
                     // !
                     research: [],
+                    // !
+                    progress: [],
                 },
 
-                previewImage: {
+                researchList: [
+                    { value: 'Исследование 1' },
+                    { value: 'Исследование 2' },
+                    { value: 'Исследование 3' },
+                    { value: 'Исследование 4' },
+                    { value: 'Исследование 5' },
+                ],
+
+                progressList: [],
+
+                previewImages: {
                     avatar: [],
                 },
 
@@ -190,9 +234,6 @@
                 requestData: {
                     key: '2ca9c35e0d42896ec7e746b5daf2c924',
                 },
-
-                // ? temp
-                researcherList: [1, 2, 3, 4],
             };
         },
 
@@ -209,7 +250,6 @@
             },
         },
         async mounted() {
-            console.log(this.mode);
             //* await this.getModulesTest('');
             setTimeout(() => {
                 this.loadSuccess = true;
@@ -218,6 +258,14 @@
     };
 </script>
 <style scoped>
+    .formResearcher__progressSelect.el-select {
+        width: 100%;
+    }
+
+    .el-tag {
+        width: 100%;
+    }
+
     section {
         width: 600px;
         margin: 50px auto;
