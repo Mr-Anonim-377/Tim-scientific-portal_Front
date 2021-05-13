@@ -84,6 +84,19 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
+
+                <!-- Поле "Связанные исследователи" -->
+                <el-row type="flex" justify="center">
+                    <el-col>
+                        <h1>Исследования</h1>
+                        <el-form-item prop="research2" required>
+                            <el-select v-model="form.research" multiple placeholder="Select">
+                                <el-option v-for="item in from.research" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+
                 <!-- Поле "Фото профиля" -->
                 <el-row type="flex" justify="center">
                     <el-col>
@@ -150,6 +163,7 @@
                     email: '',
                     avatar: '',
                     dateOfBirth: '',
+                    research: [{ value: 'Исследование 1' }, { value: 'Исследование 2' }, { value: 'Исследование 3' }, { value: 'Исследование 4' }],
                 },
                 rules: {
                     // !
@@ -162,6 +176,8 @@
                     avatar: [],
                     //!
                     dateOfBirth: [],
+                    // !
+                    research: [],
                 },
 
                 previewImage: {
@@ -174,6 +190,9 @@
                 requestData: {
                     key: '2ca9c35e0d42896ec7e746b5daf2c924',
                 },
+
+                // ? temp
+                researcherList: [1, 2, 3, 4],
             };
         },
 
