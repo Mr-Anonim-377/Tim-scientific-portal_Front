@@ -108,7 +108,6 @@
                     <div class="tips">
                         <p @click="showTips = !showTips">Правила форматирования текста для новости</p>
 
-                        <!-- <transition name="el-fade-in"> -->
                         <el-collapse-transition>
                             <div v-if="showTips" class="tips_wrapper">
                                 <p class="tips_h1">Для форматирования текста новости можно использовать:</p>
@@ -143,9 +142,6 @@
                                 </div>
                             </div>
                         </el-collapse-transition>
-                        <!-- </transition> -->
-
-                        <!-- TODO придумать стили -->
                     </div>
                 </div>
 
@@ -512,10 +508,6 @@
         /* text-align: center; */
     }
 
-    .tips_wrapper .tips_h3 {
-        /* text-align: center; */
-    }
-
     .tips_item {
         margin: 20px 0;
         display: flex;
@@ -524,19 +516,5 @@
 
     .tips_item > div {
         width: 50%;
-    }
-
-    @keyframes tips {
-        from {
-            height: 0;
-            opacity: 0;
-            transform: translateX(50px);
-        }
-
-        to {
-            height: 300px;
-            opacity: 1;
-            transform: translateX(0);
-        }
     }
 </style>

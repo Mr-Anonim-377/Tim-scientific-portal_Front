@@ -76,9 +76,9 @@
                     </el-col>
                 </el-row>
 
-                <!-- Поле "Связанные исследователи" -->
-                <el-row type="flex" justify="center">
-                    <el-col>
+                <!-- Поле "Связанные исследования" -->
+                <el-row type="flex" justify="center" :gutter="20">
+                    <el-col :span="12">
                         <h1>Исследования</h1>
                         <el-form-item prop="research">
                             <el-select v-model="form.research" multiple placeholder="Выберите исследования, в которых принимал участие исследователь">
@@ -86,15 +86,10 @@
                             </el-select>
                         </el-form-item>
                     </el-col>
-                </el-row>
-
-                <!-- Поле "Фото профиля" -->
-                <el-row type="flex" justify="center">
-                    <el-col>
+                    <el-col :span="12">
                         <!-- Изображения -->
                         <h1>Фотография профиля</h1>
                         <el-form-item>
-                            <!-- TODO Почистить от лишнего -->
                             <el-upload
                                 class="upload-demo"
                                 action="https://api.imgbb.com/1/upload"
@@ -123,6 +118,9 @@
                     </el-col>
                 </el-row>
 
+                <!-- Поле "Фото профиля" -->
+                <el-row type="flex" justify="center"> </el-row>
+
                 <!-- Поле "Связанные исследователи" -->
                 <el-row type="flex" justify="center">
                     <el-col>
@@ -136,7 +134,6 @@
                                 filterable
                                 default-first-option
                                 placeholder="Выберите исследования, в которых принимал участие исследователь"
-                                `
                                 allow-create
                             >
                                 <el-option v-for="item in progressList" :key="item.value" :label="item.value" :value="item.value"> </el-option>
@@ -144,6 +141,14 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
+
+                <div class="submitWrapper">
+                    <el-form-item>
+                        <el-button @click="onSubmit('form')" class="submitButton" type="primary">{{
+                            mode === 'create' ? 'Добавить исследователя' : 'Редактировать исследователя'
+                        }}</el-button>
+                    </el-form-item>
+                </div>
             </el-form>
         </section>
     </div>
@@ -152,21 +157,23 @@
     </div>
 </template>
 <script>
-    /*  
-    
+    /*
+
     Работа с UI:
-        TODO Проверить v-model у всех инпутов
-
-        TODO Написать валидацию для обязательных параметров
-
-        TODO Изменения текста в зависимости от мода
-
-        TODO Инпут даты 
-
-        TODO Разделить строки в верстке
+    TODO Написать валидацию для обязательных параметров
+    TODO Инпут даты
 
     Работа с данными:
-        TODO Парс данных при редактировании
+    ! Запросить у Антона тестовый акк
+    ! Внести правки в верстку
+    ! Парс данных для формы
+
+    Финальные штрихи:
+    TODO Редирект
+
+     Методы:
+    ! Добавление, редактирование
+    
     */
     import TitleSection from '../../unitComponents/TitleSection';
     //* import mixin from '../../utils/methodsMixin';
@@ -198,19 +205,33 @@
                 /* Объект */
 
                 rules: {
-                    // !
-                    fullname: [],
-                    // !
-                    specialty: [],
-                    // !
+                    fullname: [
+                        { required: true, message: "Пожалуйста, заполните поле 'ФИО'", trigger: 'blur' },
+                        { min: 10, message: 'ФИО должно содержать минимум 10 символов' },
+                    ],
+
+                    specialty: [
+                        { required: true, message: "Пожалуйста, заполните поле 'Специальность'", trigger: 'blur' },
+                        { min: 5, message: 'Название специальности должно содержать минимум 5 символов' },
+                    ],
+                    /* TODO Валидация емейла */
                     email: [],
-                    // !
-                    avatar: [],
-                    //!
+
+                    avatar: [
+                        {
+                            required: true,
+                            message: 'Для корректного отображения анкеты исследователя необхоидимо загрузить аватар',
+                            trigger: 'blur',
+                        },
+                    ],
+
+                    /* TODO Валидация даты */
                     dateOfBirth: [],
-                    // !
+
+                    /* TODO Валидация селекта */
                     research: [],
-                    // !
+
+                    /* TODO Валидация селекта */
                     progress: [],
                 },
 
@@ -247,6 +268,10 @@
             /* Хук удаления изображения (аватар) */
             removeImageHookPreview() {
                 this.form.avatar = '';
+            },
+
+            onSubmit(form) {
+                console.log(this.$refs[form]);
             },
         },
         async mounted() {
@@ -289,5 +314,10 @@
 
     .hiddenFormItem {
         margin: 0;
+    }
+    .submitWrapper {
+        margin: 30px;
+        display: flex;
+        justify-content: center;
     }
 </style>
