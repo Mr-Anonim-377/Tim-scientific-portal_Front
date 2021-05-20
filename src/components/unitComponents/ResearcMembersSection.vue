@@ -1,7 +1,7 @@
 // СЕКЦИЯ УЧАСТНИКОВ ИССЛЕДОВАНИЯ НА СТРАНИЦЕ ИССЛЕДОВАНИЯ
 
 <template>
-    <div v-if="articleData" class="container">
+    <div v-if="sectionData" class="container">
         <section>
             <TitleSection title="Исследователи" headerVisible="asdas" />
 
