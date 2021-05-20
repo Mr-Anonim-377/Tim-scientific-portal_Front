@@ -1,5 +1,5 @@
 <template>
-    <section class="account" v-if="authorization">
+    <section class="account">
         <TitleSection :title="titleAccount" :headerVisible="true" :stileTitle="stileTitle.stile" />
 
         <div class="account-container">
@@ -60,6 +60,12 @@
              * Получаем данные по id
              */
             await this.getModulesTest('', this.profileID);
+
+            //eslint-disable-next-line
+            const self = this;
+            //eslint-disable-next-line
+            debugger;
+
             this.loadSuccess = true;
 
             /**
