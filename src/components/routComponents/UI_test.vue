@@ -315,7 +315,7 @@
                         .split('</p>')
                         .map((i) => i.replace('<p>', '').trim())
                         /* Обработка <br> */
-                        .join('<br>')
+                        .join(`\n`)
                         .replace(/<b>|<\/b>|<strong>|<\/strong>/g, '**')
                         /* Обработка списков */
                         .replace(/<ul>/g, '\n>>>\n')

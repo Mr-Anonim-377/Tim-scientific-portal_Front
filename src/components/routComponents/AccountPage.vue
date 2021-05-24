@@ -60,12 +60,6 @@
              * Получаем данные по id
              */
             await this.getModulesTest('', this.profileID);
-
-            //eslint-disable-next-line
-            const self = this;
-            //eslint-disable-next-line
-            debugger;
-
             this.loadSuccess = true;
 
             /**
