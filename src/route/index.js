@@ -36,6 +36,7 @@ import AdminCalendarPage from '../components/routComponents/AdminCalendarPage';
 import AdminPartyPage from '../components/routComponents/AdminPartyPage';
 import AdminResearchPage from '../components/routComponents/AdminResearchPage';
 import UI_test from '../components/routComponents/UI_test.vue';
+import UI_calendar from '../components/routComponents/UI_calendar';
 
 const routes = [
     {
@@ -237,6 +238,12 @@ const routes = [
         path: '/UI_test/:entityId?/:mode',
         name: 'UI_test',
         component: UI_test,
+        props: true,
+    },
+    {
+        path: '/UI_calendar/:entityId?/:mode',
+        name: 'UI_calendar',
+        component: UI_calendar,
         props: true,
     },
 

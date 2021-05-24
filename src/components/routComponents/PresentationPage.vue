@@ -5,18 +5,13 @@
                 <TitleSection :title="titlePresentation" :headerVisible="true" :styleTitle="stileTitle.stile" />
 
                 <div class="presentation-block">
-                    <div class="presentation-block__text">
-                        <a :href="DOCS.DOC[0].link" download>
-                            <p class="presentation-block__text-name">Скачать презентацию НЦМУ №1</p>
+                    <div class="presentation-block__text" v-for="doc in DOCS.DOC" :key="doc">
+                        <a :href="doc.link" download>
+                            <p class="presentation-block__text-name">{{doc.title}}</p>
                         </a>
-                        <p class="presentation-block__text-data">от 20.02.2021</p>
+                        <p class="presentation-block__text-data">От {{doc.date}}</p>
                     </div>
-                    <div class="presentation-block__text">
-                        <a :href="DOCS.DOC[1].link" download>
-                            <p class="presentation-block__text-name">Скачать презентацию НЦМУ №2</p>
-                        </a>
-                        <p class="presentation-block__text-data">от 21.04.2021</p>
-                    </div>
+
                 </div>
             </div>
         </section>

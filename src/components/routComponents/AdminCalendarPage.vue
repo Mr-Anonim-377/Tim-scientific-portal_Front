@@ -1,42 +1,63 @@
 <template>
-  <section class="admin">
-    <!--    Навигация-->
-    <AdminNavigation/>
+    <div v-if="loadSuccess">
+      <section class="admin">
+        <!--    Навигация-->
+        <AdminNavigation/>
 
-    <!--      Шапка и кнопка добавить-->
-    <button class="btn_add">Добавить событие</button>
-    <div class="admin-headers">
-      <span class="admin-headers__number">№</span>
-      <p class="admin-headers__left">Название</p>
-      <p class="admin-headers__right">Действия</p>
+        <!--      Шапка и кнопка добавить-->
+        <router-link style="text-decoration: none" :to="{ name: 'UI_calendar', params: { mode: 'create' } }">
+          <button class="btn_add">Добавить событие</button>
+        </router-link>
+
+        <div class="admin-headers">
+          <span class="admin-headers__number">№</span>
+          <p class="admin-headers__left">Название</p>
+          <p class="admin-headers__right">Действия</p>
+        </div>
+
+        <!--    список-->
+        <AdminItemCalendar
+            :sectionData="ACTIONS_CALENDAR.ACTION"
+        />
+      </section>
     </div>
 
-    <!--    список-->
-    <AdminItem
-        :sectionData="items"
-    />
+    <div v-else>
+      <Preloader />
+    </div>
 
-  </section>
 </template>
 
 <script>
-import AdminItem from "@/components/unitComponents/AdminItem";
-import AdminNavigation from "@/components/unitComponents/AdminNavigation";
+  import AdminNavigation from "@/components/unitComponents/AdminNavigation";
+  import Preloader from './../unitComponents/CommonElements/Preloader';
+
+  import mixin from '../../utils/methodsMixin';
+  import AdminItemCalendar from "@/components/unitComponents/AdminItemCalendar";
 export default {
 name: "AdminCalendarPage",
   components: {
-  AdminNavigation,
-    AdminItem
+    AdminItemCalendar,
+    AdminNavigation,
+    Preloader
   },
+  mixins: [mixin],
   data() {
     return {
-      items: [
-        { text: 'Событие «Агротехнологии будущего» на мастер-классе для агропредприятий' },
-        { text: 'Событие обучение по новой программе ДПО.' },
-        { text: 'Событие круглый стол «Агротехнологии будущего»' },
-      ],
-    }
-  }
+      // tag: '2104',
+      loadSuccess: false,
+      availableEntities: [],
+    };
+  },
+
+  async mounted() {
+    await this.getModulesTest('MAIN_PAGE');
+    setTimeout(() => {
+      this.loadSuccess = true;
+      this.$emit('load-success');
+    }, 500);
+    return console.log(this.ACTIONS_CALENDAR.ACTION)
+  },
 }
 </script>
 

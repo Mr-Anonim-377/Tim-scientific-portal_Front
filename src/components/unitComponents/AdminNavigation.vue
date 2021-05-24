@@ -4,8 +4,8 @@
             <router-link style="text-decoration: none;" :to="{ name: 'AdminNewsPage' }"><li class="active">Новости</li></router-link>
             <!-- <router-link style="text-decoration: none" :to="{ name: 'AdminResearchPage' }"><li>Исследования</li></router-link> -->
             <li class="disable">Исследования</li>
-            <!-- <router-link style="text-decoration: none" :to="{ name: 'AdminCalendarPage' }"><li>События</li></router-link> -->
-            <li class="disable">События</li>
+             <router-link style="text-decoration: none" :to="{ name: 'AdminCalendarPage' }"><li>События</li></router-link>
+<!--            <li class="disable">События</li>-->
             <!-- <router-link style="text-decoration: none" :to="{ name: 'AdminPartyPage' }"><li>Исследователи</li></router-link> -->
             <li class="disable">Исследователи</li>
             <!-- <router-link style="text-decoration: none" :to="{ name: 'AdminDocumentPage' }"><li>Документы</li></router-link> -->
