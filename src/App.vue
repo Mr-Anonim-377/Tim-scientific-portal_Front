@@ -222,4 +222,7 @@
     .el-textarea__inner {
         font-family: Roboto;
     }
+
+    /* Ширина селекта в форме исследователя */
+    /* .el-select formResearcher__progressSelect */
 </style>

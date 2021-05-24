@@ -6,14 +6,15 @@
             <div class="progress-container">
                 <account-navigation-section />
 
-                <div class="progress-block__inf">
-                    <h2>Мои Достижения</h2>
-                    <div class="inf-img">
-                        <img src="../../assets/image/progress-Img.svg" />
-                    </div>
-                    <div class="inf-text" v-for="dataProgress in this.ACHIEVEMENTS.ACTION" :key="dataProgress">
-                        <p>{{ dataProgress.title }}</p>
-                        <span class="inf-text__years">{{ dataProgress.date }}</span>
+                <div class="progress-block-inf__container">
+                    <div class="progress-block-inf" v-for="dataProgress in this.ACHIEVEMENTS.COLLEGE" :key="dataProgress">
+                        <div class="inf-img">
+                            <img src="../../assets/image/progress-Img.svg" />
+                        </div>
+                        <div class="inf-text">
+                            <p>{{ dataProgress.title }}</p>
+                            <span class="inf-text__years">{{ dataProgress.date }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -57,22 +58,13 @@
             /**
              * Получаем id профиля из адресной строки
              */
-
             this.profileID = this.$route.params.pageId;
-            // console.log(this.$route.params.pageId);
 
             /**
              * Получаем данные по id
              */
             await this.getModulesTest('', this.profileID);
-
-            // console.log(this.modules);
             this.loadSuccess = true;
-
-            /**
-             * Берем ACHIEVEMENTS
-             */
-            // console.log(this.ACHIEVEMENTS);
         },
     };
 </script>
@@ -96,25 +88,27 @@
         margin-top: 69px;
     }
 
-    .progress-block__inf {
+    .progress-block-inf {
         margin-left: 129px;
         display: flex;
-        flex-wrap: wrap;
+        /* flex-wrap: wrap; */
     }
     .inf-img {
+        box-sizing: border-box;
         width: 132px;
-        height: 132px;
+        min-height: 132px;
         border-radius: 50%;
-        border: 3px solid #3f7e77;
+        box-shadow: 0 0 1pt 1pt #3f7e77;
         margin-bottom: 47px;
     }
-    .progress-block__inf img {
+    .progress-block-inf img {
         width: 130px;
         height: 130px;
     }
 
-    .progress-block__inf p {
+    .progress-block-inf p {
         height: auto;
+        width: 100%;
         margin: 0;
     }
     h2 {
@@ -123,21 +117,24 @@
     }
 
     .inf-text {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 0 86px 44px;
+        margin: 20px;
         overflow-y: auto;
     }
 
     .inf-text__years {
-        margin: 0 0 0 45px;
+        display: block;
+        margin-top: 15px;
+
         font-size: 15px;
         font-weight: bold;
         color: #3f7e77;
         position: relative;
         width: 100%;
     }
-    .inf-text__years:after {
+    .progress-block-inf__container {
+        width: 100%;
+    }
+    /* .inf-text__years:after {
         content: '';
         position: absolute;
         width: 35px;
@@ -145,5 +142,5 @@
         background: #3f7e77;
         left: -39px;
         top: 9px;
-    }
+    } */
 </style>

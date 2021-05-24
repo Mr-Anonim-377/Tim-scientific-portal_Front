@@ -64,12 +64,6 @@
              */
             await this.getModulesTest('', this.profileID);
             this.loadSuccess = true;
-            // console.log(this.modules);
-
-            /**
-             * Берем RESEARCH_ARRAY
-             */
-            // console.log(this.RESEARCH_ARRAY);
         },
     };
 </script>

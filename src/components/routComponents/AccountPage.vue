@@ -1,5 +1,5 @@
 <template>
-    <section class="account" v-if="authorization">
+    <section class="account">
         <TitleSection :title="titleAccount" :headerVisible="true" :stileTitle="stileTitle.stile" />
 
         <div class="account-container">

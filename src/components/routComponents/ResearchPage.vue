@@ -51,7 +51,6 @@
         async mounted() {
             // NOTE Вызов для новостей
             await this.getModulesTest('MAIN_PAGE');
-
             await this.getModulesTest('', this.pageId);
 
             setTimeout(() => {
