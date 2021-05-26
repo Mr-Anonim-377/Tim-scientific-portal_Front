@@ -25,14 +25,14 @@
         <el-row type="flex" justify="center">
           <el-col>
             <h1>Дата начала события(месяц.год)</h1>
-            <el-form-item prop="shortTitle" required>
+            <el-form-item prop="tag" required>
               <el-input
                   type="textarea"
                   maxlength="50"
                   :autosize="{ minRows: 2, maxRows: 3 }"
                   show-word-limit
                   resize="none"
-                  v-model="form.dateBeginning"
+                  v-model="form.tag"
                   placeholder="Дата"
               ></el-input>
             </el-form-item>
@@ -41,7 +41,7 @@
         <el-row type="flex" justify="center">
           <el-col>
             <h1>Дата/ы проведения события</h1>
-            <el-form-item prop="shortTitle" required>
+            <el-form-item prop="date" required>
               <el-input
                   type="textarea"
                   maxlength="50"
@@ -57,7 +57,7 @@
         <el-row type="flex" justify="center">
           <el-col>
             <h1>Место проведения события</h1>
-            <el-form-item prop="shortTitle" required>
+            <el-form-item prop="place" required>
               <el-input
                   type="textarea"
                   maxlength="70"
@@ -144,7 +144,14 @@
           <el-form-item prop="text" required>
             <!-- Поле текста -->
             <h1>Тело события</h1>
-            <el-input type="textarea" :autosize="true" placeholder="Тело события" v-model="form.text" maxlength="3600" show-word-limit>
+            <el-input
+                type="textarea"
+                :autosize="true"
+                placeholder="Тело события"
+                v-model="form.text"
+                maxlength="3600"
+                show-word-limit
+            >
             </el-input>
           </el-form-item>
 
@@ -171,7 +178,7 @@
 import TitleSection from "@/components/unitComponents/TitleSection";
 import Preloader from "@/components/unitComponents/CommonElements/Preloader";
 import testMixin from "@/utils/methodsMixin";
-// import axios from "axios";
+import axios from "axios";
 
 export default {
 name: "UI_calendar",
@@ -220,15 +227,6 @@ name: "UI_calendar",
       this.form.slider = fileList;
     },
 
-    /* Функция возвращает текущее время */
-    getCurrentDate() {
-      let today = new Date();
-      let dd = String(today.getDate()).padStart(2, '0');
-      let mm = String(today.getMonth() + 1).padStart(2, '0');
-      let yyyy = today.getFullYear();
-      return dd + '.' + mm + '.' + yyyy;
-    },
-
     transformHhtmlLinks(string) {
       return string
           .split(' ')
@@ -240,36 +238,36 @@ name: "UI_calendar",
     },
 
     /**
-     * Метод добавления новости
+     * Метод добавления события
      * @param {object} data - тело запроса на создание новости
      */
-    // addNews(data) {
-    //   return new Promise((res) => {
-    //     axios({
-    //       method: 'POST',
-    //       url: '/user/create/news',
-    //       data: data,
-    //     }).then((response) => {
-    //       res(response.data);
-    //     });
-    //   });
-    // },
+    addNews(data) {
+      return new Promise((res) => {
+        axios({
+          method: 'POST',
+          url: '/user/create/calendar',
+          data: data,
+        }).then((response) => {
+          res(response.data);
+        });
+      });
+    },
 
     /**
-     * Метод обновления новости
+     * Метод обновления события
      * @param {object} data - тело запроса на создание новости
      */
-    // updateNews(data) {
-    //   return new Promise((res) => {
-    //     axios({
-    //       method: 'POST',
-    //       url: '/user/update/news',
-    //       data: data,
-    //     }).then((response) => {
-    //       res(response.data);
-    //     });
-    //   });
-    // },
+    updateNews(data) {
+      return new Promise((res) => {
+        axios({
+          method: 'POST',
+          url: '/user/update/calendar',
+          data: data,
+        }).then((response) => {
+          res(response.data);
+        });
+      });
+    },
 
     /* Метод сабмита формы -> отправляет запросы при пройденной валидации */
     onSubmit(formName) {
@@ -292,6 +290,23 @@ name: "UI_calendar",
           return false;
         }
       });
+    },
+
+    /**
+     * Формирование тела запроса из this.form
+     */
+    getRequestData() {
+      /* Переменная для транформации закрытых тегов */
+      return {
+        name: this.form.title,
+        previewImageLink: this.form.preview,
+        imageLinks: this.form.slider?.map((image) => image.url) || [],
+        text: this.form.text,
+        previewText: this.form.shortTitle,
+        date: this.form.date,
+        tag: this.form.tag,
+        place: this.form.place,
+      };
     },
 
     /* Метод трансофрмации HTML в строку */
@@ -331,10 +346,9 @@ name: "UI_calendar",
         date: '',
         text: [],
         place: '',
-        preview: '',
         slider: [],
         documentCalendar: [],
-        dateBeginning: '',
+        tag: '',
       },
 
       /* Правила валидации для формы */
@@ -369,7 +383,6 @@ name: "UI_calendar",
 
       /* Загружаемые изображения */
       loadedImages: {
-        preview: '',
         slider: [],
       },
 
@@ -392,14 +405,14 @@ name: "UI_calendar",
   async mounted() {
     /* Если форма открыта в режиме редактирования - загружаем данные по id новости */
     if (this.mode === 'edit') {
-      await this.getModulesTest('CALENDAR', this.entityId);
+      await this.getModulesTest('', this.entityId);
       await this.getModulesTest('MAIN_PAGE');
       /* Заполняем инпуты */
       this.form.title = this.CALENDAR_BANNER.TITLE[0].title;
       this.form.place =  this.CALENDAR_BANNER.TEXT[0].text;
       this.form.date = this.ACTIONS_CALENDAR.ACTION.find(action => action._pageLink === this.entityId).date;
       this.form.shortTitle = this.ACTIONS_CALENDAR.ACTION.find(action => action._pageLink === this.entityId).text;
-      this.form.dateBeginning = this.ACTIONS_CALENDAR.ACTION.find(action => action._pageLink === this.entityId)._tag;
+      this.form.tag = this.ACTIONS_CALENDAR.ACTION.find(action => action._pageLink === this.entityId)._tag;
 
       this.form.text = this.transformHhtmlLinks(this.CALENDAR_TEXT.TEXT[0].text);
       this.sliderFileList = this.CALENDAR_SLIDER?.IMAGE?.map((image, i) => {

@@ -17,7 +17,7 @@
 
         <!--    список-->
         <AdminItemCalendar
-            :sectionData="ACTIONS_CALENDAR.ACTION"
+            :sectionData="availableEntities"
         />
       </section>
     </div>
@@ -34,6 +34,7 @@
 
   import mixin from '../../utils/methodsMixin';
   import AdminItemCalendar from "@/components/unitComponents/AdminItemCalendar";
+  import axios from "axios";
 export default {
 name: "AdminCalendarPage",
   components: {
@@ -51,12 +52,14 @@ name: "AdminCalendarPage",
   },
 
   async mounted() {
-    await this.getModulesTest('MAIN_PAGE');
-    setTimeout(() => {
+    axios({
+      method: 'GET',
+      url: '/user/allEntityInstance?type=CALENDAR',
+    }).then((response) => {
+      this.availableEntities = response.data;
       this.loadSuccess = true;
-      this.$emit('load-success');
-    }, 500);
-    return console.log(this.ACTIONS_CALENDAR.ACTION)
+      return console.log(response.data)
+    });
   },
 }
 </script>
