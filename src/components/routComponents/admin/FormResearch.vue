@@ -10,13 +10,14 @@
                 <el-row type="flex" justify="center">
                     <el-col>
                         <h1>Название исследования</h1>
-                        <el-form-item prop="title" required>
+                        <el-form-item prop="name" required>
                             <el-input
                                 type="textarea"
                                 maxlength="50"
+                                show-word-limit
                                 :autosize="{ minRows: 1, maxRows: 1 }"
                                 resize="none"
-                                v-model="form.title"
+                                v-model="form.name"
                                 placeholder="Название исследования"
                             ></el-input>
                         </el-form-item>
@@ -24,22 +25,23 @@
                 </el-row>
 
                 <!-- Поле "Направление исследования" -->
-                <el-row :gutter="20" type="flex" justify="space-between">
-                    <el-col :span="12">
+                <el-row type="flex" justify="space-between">
+                    <el-col>
                         <h1>Направление исследования</h1>
-                        <el-form-item prop="research">
-                            <el-select v-model="form.researchDirections" placeholder="Выберите направление исследования">
+                        <el-form-item prop="waysId">
+                            <el-select v-model="form.waysId" placeholder="Выберите направление исследования">
                                 <el-option v-for="item in researchDirectionsList" :key="item.title" :label="item.title" :value="item.title">
                                 </el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>
-
+                </el-row>
+                <el-row type="flex" justify="space-between">
                     <!-- Поле "Связанные исследователи" -->
-                    <el-col :span="12">
+                    <el-col>
                         <h1>Исследователи</h1>
-                        <el-form-item prop="research">
-                            <el-select v-model="form.researcher" multiple placeholder="Выберите исследователей, участвовавших в исследовании">
+                        <el-form-item prop="researcherUids">
+                            <el-select v-model="form.researcherUids" multiple placeholder="Выберите исследователей, участвовавших в исследовании">
                                 <el-option v-for="item in researcherList" :key="item.value" :label="item.value" :value="item.value"> </el-option>
                             </el-select>
                         </el-form-item>
@@ -47,16 +49,16 @@
                 </el-row>
 
                 <!-- Поле "Об исследовании" -->
-                <el-row type="flex" justify="center">
+                <el-row type="flex" justify="center" required>
                     <el-col>
                         <h1>Об исследовании:</h1>
-                        <el-form-item prop="description" required>
+                        <el-form-item prop="text" required>
                             <!-- Поле текста -->
                             <el-input
-                                type="tearea"
+                                type="textarea"
                                 :autosize="true"
                                 placeholder="Тело новости"
-                                v-model="form.description"
+                                v-model="form.text"
                                 maxlength="3600"
                                 show-word-limit
                             >
@@ -67,9 +69,9 @@
 
                 <el-row type="flex" justify="center" :gutter="20">
                     <el-col :span="12">
-                        <!-- Изображения для превью -->
+                        <!-- Изображени для превью -->
                         <h1>Изображение для превью</h1>
-                        <el-form-item>
+                        <el-form-item required>
                             <el-upload
                                 class="upload-demo"
                                 action="https://api.imgbb.com/1/upload"
@@ -79,7 +81,7 @@
                                 :limit="1"
                                 :file-list="previewImages.preview"
                                 name="image"
-                                :model="form.preview"
+                                :model="form.previewImageLink"
                                 :on-success="successLoadHookPreview"
                                 :on-remove="removeImageHookPreview"
                             >
@@ -88,42 +90,44 @@
                                     <div class="el-upload__tip">1 изображение для отображения в списке исследований</div>
                                     <div class="el-upload__tip">jpg/png файл размером не более 500кб</div>
                                 </template>
+                                <!-- Скрытый form-item для превью -->
                             </el-upload>
+                            <el-form-item class="hiddenFormItem" prop="previewImageLink" required>
+                                <el-input class="hiddenInput" v-model="form.previewImageLink"></el-input>
+                            </el-form-item>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
-                        <!-- Изображения для слайдера -->
-                        <h1>Изображения для слайдера</h1>
-                        <el-upload
-                            class="upload-demo"
-                            action="https://api.imgbb.com/1/upload"
-                            multiple
-                            :data="requestData"
-                            list-type="picture"
-                            :limit="7"
-                            :file-list="sliderFileList"
-                            :v-model="form.sliderFileList"
-                            :before-upload="beforeUploadHook"
-                            :on-success="successLoadHookSlider"
-                            :on-remove="removeImageHookSlider"
-                            name="image"
-                        >
-                            <el-button size="middle" type="success" plain>Выберите изображения</el-button>
-                            <template #tip>
-                                <div class="el-upload__tip">До 7 изображений для отображения в слайдере</div>
-                                <div class="el-upload__tip">jpg/png файлы размером не более 500кб</div>
-                            </template>
-                        </el-upload>
+                        <el-form-item required>
+                            <!-- Изображения для слайдера -->
+                            <h1>Изображения для слайдера</h1>
+                            <el-upload
+                                class="upload-demo"
+                                action="https://api.imgbb.com/1/upload"
+                                multiple
+                                :data="requestData"
+                                list-type="picture"
+                                :limit="7"
+                                :file-list="previewImages.slider"
+                                :v-model="form.slider"
+                                :before-upload="beforeUploadHook"
+                                :on-success="successLoadHookSlider"
+                                :on-remove="removeImageHookSlider"
+                                name="image"
+                            >
+                                <el-button size="middle" type="success" plain>Выберите изображения</el-button>
+                                <template #tip>
+                                    <div class="el-upload__tip">До 7 изображений для отображения в слайдере</div>
+                                    <div class="el-upload__tip">jpg/png файлы размером не более 500кб</div>
+                                </template>
+                                <!-- Скрытый form-item для слайдера  -->
+                            </el-upload>
+                            <el-form-item class="hiddenFormItem" prop="imgs" required>
+                                <el-input class="hiddenInput" v-model="form.imgs"></el-input>
+                            </el-form-item>
+                        </el-form-item>
                     </el-col>
                 </el-row>
-
-                <!-- Скрытый form-item для валидации загрузки превью -->
-                <el-form-item class="hiddenFormItem" prop="avatar">
-                    <el-input class="hiddenInput" v-model="form.preview"></el-input>
-                </el-form-item>
-
-                <!-- Поле "Фото профиля" -->
-                <el-row type="flex" justify="center"> </el-row>
 
                 <div class="submitWrapper">
                     <el-form-item>
@@ -141,30 +145,34 @@
 </template>
 <script>
     /*
-        Пропсы:
-         * TODO Направление исследования - селект
-         * TODO Превью фото - загрузка изображений
-         * TODO Название
-         * Об исследовании - текстовое поле
-         * Список исследователей
-         * TODO Слайдер - загрузка изображений
+          Пропсы:
+           * TODO Направление исследования - селект
+           * TODO Превью фото - загрузка изображений
+           * TODO Название
+           * Об исследовании - текстовое поле
+           * Список исследователей
+           * TODO Слайдер - загрузка изображений
 
-         Валидация:
-         TODO Написать валидацию для каждого пропса
+           Валидация:
+           TODO Написать валидацию для каждого пропса
 
-         Получение данных об исследовании:
-         ! TODO Парс данных при редактировании
+           Получение данных об исследовании:
+           TODO Парс данных при редактировании
+              TODO Слайдер
+              TODO Метод получения ID по тэгу
+              TODO Формирования JSON
 
-         Финальные штрихи:
-         TODO Редирект
+           Финальные штрихи:
+           TODO Редирект
 
-         Методы:
-         ! Добавление, редактирование
-    */
+           Методы:
+           TODO Добавление, редактирование
+      */
 
     import TitleSection from '../../unitComponents/TitleSection';
     import mixin from '../../../utils/methodsMixin';
     import Preloader from './../../unitComponents/CommonElements/Preloader';
+    import axios from 'axios';
 
     export default {
         name: 'research',
@@ -181,32 +189,44 @@
             return {
                 loadSuccess: false,
                 form: {
-                    title: '',
-                    researcher: [],
-                    description: '',
-                    preview: '',
-                    slider: [],
-                    researchDirections: [],
+                    date: this.getCurrentDate() + '',
+                    name: '',
+                    researcherUids: [],
+                    text: [],
+                    previewImageLink: '',
+                    imgs: [],
+                    waysId: [],
                 },
                 rules: {
-                    title: [{ required: true, message: "Пожалуйста, заполните поле 'Название исследования'", trigger: 'blur' }],
-                    /* TODO Валидация селекта */
-                    researcher: [],
-                    description: [
+                    name: [{ required: true, message: "Пожалуйста, заполните поле 'Название исследования'", trigger: 'blur' }],
+                    researcherUids: [],
+                    text: [
                         { required: true, message: "Пожалуйста, заполните поле 'Об исследовании'", trigger: 'blur' },
                         { min: 30, message: 'Текст исслдеования должен содержать минимум 30 символов' },
                     ],
-                    preview: [
+                    previewImageLink: [
                         {
                             required: true,
                             message: 'Для корректного отображения в списке исследований необходимо загрузить превью изображение',
                             trigger: 'blur',
                         },
                     ],
-                    /* TODO Валидация слайдера (если нужна) */
-                    slider: [],
-                    /* TODO Валидация селекта */
-                    researchDirections: [],
+                    imgs: [
+                        {
+                            type: 'array',
+                            required: true,
+                            message: 'Для корректного отображения исследования необходимо загрузить минимум 3 изображения в слайдер',
+                            trigger: 'blur',
+                            min: 3,
+                        },
+                    ],
+                    waysId: [
+                        {
+                            required: true,
+                            message: 'Необходимо выбрать направление исследования',
+                            trigger: 'blur',
+                        },
+                    ],
                 },
 
                 researcherList: [
@@ -233,8 +253,8 @@
                 },
 
                 /* При загрузке изображений отправляем api keyimgB`B
-                   Если что-то пойдет не так, получить новый можно тут:
-                   https://api.imgbb.com/ */
+                     Если что-то пойдет не так, получить новый можно тут:
+                     https://api.imgbb.com/ */
                 requestData: {
                     key: '2ca9c35e0d42896ec7e746b5daf2c924',
                 },
@@ -242,6 +262,29 @@
         },
 
         methods: {
+            getRequestData() {
+                const form = this.form;
+                return {
+                    name: form.name,
+                    text: form.text.split('\n'),
+                    date: form.date,
+                    waysId: this.researchDirectionsList.find((way) => way.title === this.form.waysId).id,
+                    previewImageLink: this.form.previewImageLink,
+                    researcherUids: this.form.researcherUids.map((researcherName) => {
+                        return this.researcherList.find((researcherObj) => researcherObj.value === researcherName).id;
+                    }),
+                    imgs: this.form.imgs.map((image) => image.url),
+                    tag: this.form.tag,
+                };
+            },
+
+            /* Функция возвращает текущее время */
+            getCurrentDate() {
+                let today = new Date();
+                let yyyy = today.getFullYear();
+                return yyyy;
+            },
+
             /**
              * Хук валидации перед загрузкой изображения
              * @param {object} file - объект с файлом
@@ -260,66 +303,154 @@
             },
 
             /* Хук успешной загрузки изображения (превью)
-               При успешной загрузке заполняем скрытый инпут урлом из ответа */
+                 При успешной загрузке заполняем скрытый инпут урлом из ответа */
             successLoadHookPreview(res) {
-                this.form.preview = res.data.url;
+                this.form.previewImageLink = res.data.url;
             },
 
             /* Хук удаления изображения (превью) */
-            removeImageHookPreview() {
-                this.form.preview = '';
+            removeImageHookpreviewImageLink() {
+                this.form.previewImageLink = '';
             },
 
             /* Хук успешной загрузки изображения (инпут слайдера)
-               При успешной загрузке заполняем скрытый инпут урлом из ответа */
+                 При успешной загрузке заполняем скрытый инпут урлом из ответа */
             successLoadHookSlider(res, file, fileList) {
-                this.form.slider = fileList.map((image) => {
+                this.form.imgs = fileList.map((image) => {
                     return { name: image.name, url: image.response ? image.response.data.url : image.url };
                 });
             },
             /* Хук удаления изображения (инпут слайдера) */
             removeImageHookSlider(res, fileList) {
-                this.form.slider = fileList;
+                this.form.imgs = fileList;
+            },
+
+            /**
+             * Метод добавления новости
+             * @param {object} data - тело запроса на создание новости
+             */
+            addResearch(data) {
+                return new Promise((res) => {
+                    axios({
+                        method: 'POST',
+                        url: '/user/create/research',
+                        data: data,
+                    }).then((response) => {
+                        res(response.data);
+                    });
+                });
+            },
+
+            /**
+             * Метод обновления новости
+             * @param {object} data - тело запроса на создание новости
+             */
+            updateResearch(data) {
+                return new Promise((res) => {
+                    axios({
+                        method: 'POST',
+                        url: '/user/update/research',
+                        data: data,
+                    }).then((response) => {
+                        res(response.data);
+                    });
+                });
             },
 
             onSubmit(form) {
-                console.log(this.$refs[form]);
+                this.$refs[form].validate(async (valid) => {
+                    if (valid) {
+                        let data = this.getRequestData();
+                        if (this.mode === 'create') {
+                            this.addResearch(data).then(() => {
+                                window.location.href = 'http://future-agro.ru/AdminResearchPage';
+                            });
+                        } else {
+                            data.pageId = this.entityId;
+                            this.updateResearch(data).then(() => {
+                                window.location.href = 'http://future-agro.ru/AdminResearchPage';
+                            });
+                        }
+                    } else {
+                        return false;
+                    }
+                });
             },
         },
+
+        created() {
+            /* Проверка авторизации */
+            this.authCheck().then((res) => {
+                this.form.tag = res.data;
+            });
+        },
+
         async mounted() {
-            /*
+            /* Получаем направления */
+            await this.getModulesTest('WAYS');
+            /* Получаем список исследователей */
+            await this.getModulesTest('RESEARCH_MEMBERS', `adcb4eef-0e3c-4d63-a0be-adc3bd1fd51d`);
+
+            /* Исследователи */
+            this.researcherList = this.RESEARCH_MEMBER.RESEARCH_MEMBER.filter((member) => member._pageLink).map((member) => {
+                return {
+                    value: member.text,
+                    id: member._pageLink,
+                };
+            });
+
+            /* Направления исследования */
+            this.researchDirectionsList = this.WAYS_ARRAY.WAYS_ITEM.map((way) => {
+                return {
+                    title: way.title,
+                    id: way._pageLink,
+                };
+            });
+
             if (this.mode === 'edit') {
+                /* Получаем список исследователей */
 
-                TODO Проще получать готовый json с бэка
+                /* т.к. нет запроса на получение данных формы по id сущноности
+                     снова получаем список и ищем нужный нам объект */
 
-                await this.getModulesTest('', this.entityId);
-                await this.getModulesTest('WAYS');
+                axios({
+                    method: 'GET',
+                    url: '/user/allEntityInstance?type=RESEARCH',
+                }).then((response) => {
+                    const formData = response.data.filter((entity) => entity.pageId === this.entityId);
 
-                this.form.title = this.BANNER.NAME[0].title;
-                this.form.description = this.BANNER.TEXT[0].text;
-                this.form.researcher = this.RESEARCH_MEMBER_ARRAY.RESEARCH_MEMBER.map((member) => {
-                    return {
-                        value: member.title,
-                        _pageLink: member._pageLink,
-                    };
+                    /* Засовываем даныне в модель */
+                    this.form.name = formData[0].name;
+                    this.form.text = formData[0].text;
+                    this.form.previewImageLink = formData[0].previewImageLink;
+                    this.previewImages.preview = [
+                        {
+                            name: 'Превью изображение',
+                            url: formData[0].previewImageLink,
+                        },
+                    ];
+                    /* Направления исследования */
+
+                    this.form.waysId = this.researchDirectionsList.filter((way) => way.id === formData[0].waysId)[0].title;
+                    this.previewImages.slider = formData[0].imgs?.map((image, i) => {
+                        return {
+                            name: 'Изображение ' + (i + 1),
+                            url: image,
+                        };
+                    });
+                    this.loadSuccess = true;
                 });
-                this.researchDirectionsList = this.WAYS_ARRAY.WAYS_ITEM.map((direction) => {
-                    return {
-                        title: direction.title,
-                    };
-                });
-
-                this.previewImages.slider = this.RESEARCH_IMAGE_SLIDER.IMAGE.map((img) => img.image);
-            }
-                */
-
-            setTimeout(() => {
+            } else {
                 this.loadSuccess = true;
-            }, 500);
+            }
         },
     };
 </script>
 <style scoped>
+    .el-select {
+        width: 100%;
+    }
+
     .formResearcher__progressSelect.el-select {
         width: 100%;
     }

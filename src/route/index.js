@@ -242,15 +242,14 @@ const routes = [
         props: true,
     },
     {
-        // path: '/FormResearcher/:entityId?/:mode',
-        path: '/FormResearcher/:mode',
+        path: '/FormResearcher/:entityId?/:status?/:mode',
+        // path: '/FormResearcher/:mode',
         name: 'FormResearcher',
         component: FormResearcher,
         props: true,
     },
     {
         path: '/FormResearch/:entityId?/:mode',
-        // path: '/FormResearch/:mode',
         name: 'FormResearch',
         component: FormResearch,
         props: true,

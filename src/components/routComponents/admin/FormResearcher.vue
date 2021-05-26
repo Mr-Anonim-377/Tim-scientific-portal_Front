@@ -4,7 +4,7 @@
     <div v-if="loadSuccess">
         <section>
             <TitleSection
-                :title="mode === 'create' ? 'Добавление профиля исследователя' : 'Редактирование профиля исследования'"
+                :title="mode === 'create' ? 'Добавление профиля исследователя' : 'Редактирование профиля исследователя'"
                 :headerVisible="true"
             />
 
@@ -178,6 +178,7 @@
     import TitleSection from '../../unitComponents/TitleSection';
     //* import mixin from '../../utils/methodsMixin';
     import Preloader from './../../unitComponents/CommonElements/Preloader';
+    import axios from 'axios';
 
     export default {
         name: 'pagename',
@@ -188,6 +189,7 @@
         props: {
             mode: String,
             //* entityId: String,
+            status: String,
         },
         // mixins: [mixin],
         data() {
@@ -276,6 +278,40 @@
         },
         async mounted() {
             //* await this.getModulesTest('');
+
+            console.log(this.status);
+
+            if (this.mode === 'edit') {
+                /* Получаем список исследователей */
+
+                /* т.к. нет запроса на получение данных формы по id сущноности
+                     снова получаем список и ищем нужный нам объект */
+
+                axios({
+                    method: 'GET',
+                    url: '/user/allEntityInstance?type=RESEARCHER',
+                }).then((response) => {
+                    const formData = response.data.filter((entity) => entity.pageId === this.entityId);
+
+                    /* Засовываем даныне в модель */
+                    this.form.name = formData[0].name;
+                    this.form.text = formData[0].text;
+                    this.form.previewImageLink = formData[0].previewImageLink;
+                    this.previewImages.preview = [
+                        {
+                            name: 'Превью изображение',
+                            url: formData[0].previewImageLink,
+                        },
+                    ];
+                    /* Направления исследования */
+
+                    this.form.waysId = this.researchDirectionsList.filter((way) => way.id === formData[0].waysId)[0].title;
+
+                    // ? this.form.imgs = [],
+
+                    this.loadSuccess = true;
+                });
+            }
             setTimeout(() => {
                 this.loadSuccess = true;
             }, 500);

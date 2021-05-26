@@ -6,7 +6,9 @@
         <ResearchTextSection :sectionData="BANNER" />
 
         <!-- Лист исследователей -->
-        <ResearcMembersSection :sectionData="RESEARCH_MEMBER_ARRAY.RESEARCH_MEMBER" />
+        <div v-if="RESEARCH_MEMBER_ARRAY?.RESEARCH_MEMBER">
+            <ResearcMembersSection :sectionData="RESEARCH_MEMBER_ARRAY.RESEARCH_MEMBER" />
+        </div>
 
         <!-- Слайдер -->
         <ResearchSliderSection :sectionData="RESEARCH_IMAGE_SLIDER" />
