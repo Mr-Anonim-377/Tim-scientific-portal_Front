@@ -13,7 +13,7 @@
                 <el-row type="flex" justify="center">
                     <el-col>
                         <h1>ФИО</h1>
-                        <el-form-item prop="fullname" required>
+                        <el-form-item prop="fullname">
                             <el-input
                                 type="textarea"
                                 maxlength="50"
@@ -30,9 +30,12 @@
                 <el-row type="flex" justify="center">
                     <el-col>
                         <h1>Дата рождения</h1>
-                        <el-form-item prop="dateOfBirth" required>
+                        <el-form-item prop="dateOfBirth">
                             <el-input
                                 type="date"
+                                id="dateInput"
+                                min="1920-01-01"
+                                max="2021-01-01"
                                 maxlength="50"
                                 :autosize="{ minRows: 1, maxRows: 1 }"
                                 resize="none"
@@ -46,7 +49,7 @@
                 <el-row type="flex" justify="center">
                     <el-col>
                         <h1>Специальность</h1>
-                        <el-form-item prop="specialty" required>
+                        <el-form-item prop="specialty">
                             <el-input
                                 type="textarea"
                                 maxlength="50"
@@ -63,7 +66,7 @@
                 <el-row type="flex" justify="center">
                     <el-col>
                         <h1>Электронная почта</h1>
-                        <el-form-item prop="email" required>
+                        <el-form-item prop="email">
                             <el-input
                                 type="textarea"
                                 maxlength="50"
@@ -129,16 +132,19 @@
                             <el-select
                                 :span="12"
                                 class="formResearcher__progressSelect"
-                                v-model="form.progress"
+                                v-model="form.achievements"
                                 multiple
                                 filterable
                                 default-first-option
-                                placeholder="Выберите исследования, в которых принимал участие исследователь"
+                                placeholder="Исследования, в которых принимал участие исследователь"
                                 allow-create
                             >
                                 <el-option v-for="item in progressList" :key="item.value" :label="item.value" :value="item.value"> </el-option>
                             </el-select>
                         </el-form-item>
+                        <div class="el-upload__tip">
+                            Для корректного отображения достижения в профиле необходимо заполнять исследования в формате "Достижение - год"
+                        </div>
                     </el-col>
                 </el-row>
 
@@ -160,23 +166,35 @@
     /*
 
     Работа с UI:
-    TODO Написать валидацию для обязательных параметров
-    TODO Инпут даты
+    * TODO Написать валидацию для обязательных параметров
+        * TODO Валидация емейла 
+        * TODO Валидация даты 
+        * TODO Проверить валидацию
+
+    * TODO Переделать инпут достижения / на первое время добавить типс
+    * TODO Инпут даты
+    * TODO Бага с тайтлом
+
+    * TODO Список с пустыми профилями
+
 
     Работа с данными:
-    ! Запросить у Антона тестовый акк
-    ! Внести правки в верстку
-    ! Парс данных для формы
+    * TODO Проверить корректное получение
 
-    Финальные штрихи:
-    TODO Редирект
+    * TODO Формирование json в ответе
+    TODO Переходы с аккаунта
+    TODO Скрыть лишние инпуты
 
-     Методы:
-    ! Добавление, редактирование
-    
+    Баги:
+    TODO Отписать Антону подробнее о кейсе воспроизведения хуйни с названиями
+
+    После правок по бэку:
+    ! getRequestData():
+        ! education лишнее
+        ! не хватает -> email: this.form.email
     */
     import TitleSection from '../../unitComponents/TitleSection';
-    //* import mixin from '../../utils/methodsMixin';
+    import mixin from '../../../utils/methodsMixin';
     import Preloader from './../../unitComponents/CommonElements/Preloader';
     import axios from 'axios';
 
@@ -188,10 +206,10 @@
         },
         props: {
             mode: String,
-            //* entityId: String,
+            entityId: String,
             status: String,
         },
-        // mixins: [mixin],
+        mixins: [mixin],
         data() {
             return {
                 loadSuccess: false,
@@ -202,7 +220,7 @@
                     avatar: '',
                     dateOfBirth: '',
                     research: [],
-                    progress: [],
+                    achievements: [],
                 },
                 /* Объект */
 
@@ -216,8 +234,10 @@
                         { required: true, message: "Пожалуйста, заполните поле 'Специальность'", trigger: 'blur' },
                         { min: 5, message: 'Название специальности должно содержать минимум 5 символов' },
                     ],
-                    /* TODO Валидация емейла */
-                    email: [],
+                    email: [
+                        { required: true, message: 'Пожалуйста, заполните поле email адреса', trigger: 'blur' },
+                        { type: 'email', message: 'Пожалуйста, введите корректный email' },
+                    ],
 
                     avatar: [
                         {
@@ -227,14 +247,7 @@
                         },
                     ],
 
-                    /* TODO Валидация даты */
-                    dateOfBirth: [],
-
-                    /* TODO Валидация селекта */
-                    research: [],
-
-                    /* TODO Валидация селекта */
-                    progress: [],
+                    dateOfBirth: [{ type: 'date', required: true, message: 'Пожалуйста, выберите или напишите дату рождения', trigger: 'blur' }],
                 },
 
                 researchList: [
@@ -261,6 +274,36 @@
         },
 
         methods: {
+            getRequestData() {
+                const form = this.form;
+                return {
+                    achievements: form.achievements.map((attainment) => {
+                        attainment = attainment.split(' - ');
+                        const name = attainment[0];
+                        const date = attainment[1];
+                        return {
+                            name,
+                            date,
+                        };
+                    }),
+                    date: this.form.dateOfBirth
+                        .split('-')
+                        .reverse()
+                        .join('.'),
+                    imageLink: form.avatar,
+                    institution: form.tag,
+                    name: form.fullname,
+                    pageId: this.entityId,
+                    researchIds: form.research.map((researchName) => {
+                        return this.researchList.find((research) => research.value === researchName).id;
+                    }),
+                    specialisation: form.specialty,
+                    tag: form.tag,
+                    // ! education лишнее
+                    // ! не хватает -> email: this.form.email
+                };
+            },
+
             /* Хук успешной загрузки изображения (аватар)
                При успешной загрузке заполняем скрытый инпут урлом из ответа */
             successLoadHookAvatar(res) {
@@ -272,15 +315,63 @@
                 this.form.avatar = '';
             },
 
+            /**
+             * Метод добавления исследования
+             * @param {object} data - тело запроса на создание исследователя
+             */
+            addResearcher(data) {
+                return new Promise((res) => {
+                    axios({
+                        method: 'POST',
+                        url: '/user/create/researchers',
+                        data: data,
+                    }).then((response) => {
+                        res(response.data);
+                    });
+                });
+            },
+
+            /**
+             * Метод обновления исследователя
+             * @param {object} data - тело запроса на создание исследователя
+             */
+            updateResearcher(data) {
+                return new Promise((res) => {
+                    axios({
+                        method: 'POST',
+                        url: '/user/update/researchers',
+                        data: data,
+                    }).then((response) => {
+                        res(response.data);
+                    });
+                });
+            },
+
             onSubmit(form) {
-                console.log(this.$refs[form]);
+                this.$refs[form].validate(async (valid) => {
+                    if (valid) {
+                        //eslint-disable-next-line
+                        const self = this;
+                        //eslint-disable-next-line
+                        debugger;
+                        let data = this.getRequestData();
+                        if (this.mode === 'create') {
+                            this.addResearch(data).then(() => {
+                                window.location.href = 'http://future-agro.ru/AdminResearchPage';
+                            });
+                        } else {
+                            data.pageId = this.entityId;
+                            this.updateResearch(data).then(() => {
+                                window.location.href = 'http://future-agro.ru/AdminResearchPage';
+                            });
+                        }
+                    } else {
+                        return false;
+                    }
+                });
             },
         },
         async mounted() {
-            //* await this.getModulesTest('');
-
-            console.log(this.status);
-
             if (this.mode === 'edit') {
                 /* Получаем список исследователей */
 
@@ -291,24 +382,43 @@
                     method: 'GET',
                     url: '/user/allEntityInstance?type=RESEARCHER',
                 }).then((response) => {
-                    const formData = response.data.filter((entity) => entity.pageId === this.entityId);
+                    const formData = response.data[this.status].filter((entity) => entity.pageId === this.entityId)[0];
 
-                    /* Засовываем даныне в модель */
-                    this.form.name = formData[0].name;
-                    this.form.text = formData[0].text;
-                    this.form.previewImageLink = formData[0].previewImageLink;
-                    this.previewImages.preview = [
+                    console.log('Объект с сервера', formData);
+
+                    this.form.fullname = formData.name;
+                    this.form.specialty = formData.specialisation;
+                    this.form.email = '...';
+
+                    this.form.avatar = formData.imageLink;
+                    this.previewImages.avatar = [
                         {
-                            name: 'Превью изображение',
-                            url: formData[0].previewImageLink,
+                            name: 'Изображение профиля',
+                            url: formData.imageLink,
                         },
                     ];
-                    /* Направления исследования */
 
-                    this.form.waysId = this.researchDirectionsList.filter((way) => way.id === formData[0].waysId)[0].title;
+                    this.form.dateOfBirth = formData.date
+                        .split('.')
+                        .reverse()
+                        .join('-');
 
-                    // ? this.form.imgs = [],
+                    this.form.achievements = formData.achievements.map((i) => i.name + ' - ' + i.date);
 
+                    /* Получаем исследования */
+                    axios({
+                        method: 'GET',
+                        url: '/user/allEntityInstance?type=RESEARCH',
+                    }).then((responce) => {
+                        this.researchList = responce.data.map((researcher) => {
+                            return {
+                                value: researcher.name,
+                                id: researcher.pageId,
+                            };
+                        });
+                    });
+
+                    console.log(formData);
                     this.loadSuccess = true;
                 });
             }
@@ -316,9 +426,19 @@
                 this.loadSuccess = true;
             }, 500);
         },
+
+        created() {
+            /* Проверка авторизации */
+            this.authCheck().then((res) => {
+                this.form.tag = res.data;
+            });
+        },
     };
 </script>
 <style scoped>
+    .el-upload__tip {
+        line-height: normal;
+    }
     .formResearcher__progressSelect.el-select {
         width: 100%;
     }

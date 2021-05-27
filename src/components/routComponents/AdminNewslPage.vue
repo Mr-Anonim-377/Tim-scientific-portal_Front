@@ -16,7 +16,7 @@
             </div>
 
             <!-- список-->
-            <AdminItem :sectionData="availableEntities" formName="UI_test" />
+            <AdminItem :sectionData="availableEntities" formName="UI_test" type="NEWS" />
         </section>
     </div>
 

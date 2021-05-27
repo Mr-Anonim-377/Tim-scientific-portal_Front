@@ -12,31 +12,24 @@
             <div class="admin-elements__btn">
                 <router-link
                     style="text-decoration: none"
-                    :to="{ name: `${formName}`, params: { mode: 'edit', entityId: item.previewObjectId, status: 'notEmpty' } }"
+                    :to="{ name: `${formName}`, params: { mode: 'edit', entityId: item.researchIds[0], status: 'notEmptyResearchs' } }"
                 >
                     <button class="btn_edit">Редактировать</button>
                 </router-link>
-                <button @click="deleteNews(item.previewObjectId)" class="btn_delete">Удалить</button>
+                <button @click="deleteNews(item.pageId)" class="btn_delete">Удалить</button>
             </div>
         </div>
 
-        <div
-            class="admin-elements__text"
-            v-for="(item, i) in sectionData.emptyResearchs"
-            @click="active = i"
-            :class="{ active: i === active }"
-            :key="item"
-        >
-            <span class="admin-items__number">{{ i + 1 }}</span>
-            <p>{{ item.name }}</p>
+        <div class="admin-elements__text empty" v-for="(item, i) in sectionData.emptyResearchs" @click="active = i" :key="item">
+            <span class="admin-items__number"> - </span>
+            <p>(Пустая анкета) {{ item.name }}</p>
             <div class="admin-elements__btn">
                 <router-link
                     style="text-decoration: none"
-                    :to="{ name: `${formName}`, params: { mode: 'edit', entityId: item.previewObjectId, status: 'notEmpty' } }"
+                    :to="{ name: `${formName}`, params: { mode: 'edit', entityId: item.previewObjectId, status: 'emptyResearchs' } }"
                 >
-                    <button class="btn_edit">Редактировать</button>
+                    <button class="btn_edit">Заполнить анкету</button>
                 </router-link>
-                <button @click="deleteNews(item.previewObjectId)" class="btn_delete">Удалить</button>
             </div>
         </div>
     </div>
@@ -50,6 +43,7 @@
         props: {
             sectionData: Object,
             formName: String,
+            type: String,
         },
         data() {
             return {
@@ -62,7 +56,7 @@
                 axios({
                     method: 'DELETE',
                     url: '/user/delete/news',
-                    params: { pageId: id },
+                    params: { pageId: id, type: this.type },
                 }).then(() => {
                     this.$router.go();
                 });
@@ -76,6 +70,11 @@
 </script>
 
 <style scoped>
+    .empty {
+        /* opacity: 0.5; */
+        background-color: white;
+    }
+
     .admin-items__number {
         margin: auto 42px auto 10px;
     }

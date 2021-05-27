@@ -17,7 +17,7 @@
             </div>
 
             <!-- список-->
-            <AdminItemResearcher :sectionData="availableEntities" formName="FormResearcher" />
+            <AdminItemResearcher :sectionData="availableEntities" formName="FormResearcher" type="RESEARCHER" />
         </section>
     </div>
 

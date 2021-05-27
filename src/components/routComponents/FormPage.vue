@@ -102,14 +102,7 @@
              */
             await this.getModulesTest('', this.profileID);
 
-            // console.log(this.modules);
             this.loadSuccess = true;
-
-            /**
-             * Берем PERSONAL_INFORMATION
-             */
-            // console.log(this.PERSONAL_INFORMATION);
-            // console.log(this.PERSONAL_INFORMATION.PERSONAL_EDUCATION);
         },
     };
 </script>
@@ -131,7 +124,6 @@
     }
 
     .formSection {
-        max-width: 1417px;
         align-items: center;
         margin: 85px auto 100px auto;
     }

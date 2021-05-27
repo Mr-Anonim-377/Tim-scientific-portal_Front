@@ -326,8 +326,8 @@
             },
 
             /**
-             * Метод добавления новости
-             * @param {object} data - тело запроса на создание новости
+             * Метод добавления исследования
+             * @param {object} data - тело запроса на создание исследования
              */
             addResearch(data) {
                 return new Promise((res) => {
@@ -342,8 +342,8 @@
             },
 
             /**
-             * Метод обновления новости
-             * @param {object} data - тело запроса на создание новости
+             * Метод обновления исследования
+             * @param {object} data - тело запроса на создание исследования
              */
             updateResearch(data) {
                 return new Promise((res) => {
@@ -447,6 +447,9 @@
     };
 </script>
 <style scoped>
+    .el-upload__tip {
+        line-height: normal;
+    }
     .el-select {
         width: 100%;
     }
