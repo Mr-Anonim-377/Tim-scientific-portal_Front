@@ -5,7 +5,7 @@
             <AdminNavigation />
 
             <!-- Шапка и кнопка добавить-->
-            <router-link style="text-decoration: none" :to="{ name: 'UI_test', params: { mode: 'create' } }">
+            <router-link style="text-decoration: none" :to="{ name: 'FormNews', params: { mode: 'create' } }">
                 <button class="btn_add">Добавить новость</button>
             </router-link>
 
@@ -16,7 +16,7 @@
             </div>
 
             <!-- список-->
-            <AdminItem :sectionData="availableEntities" formName="UI_test" type="NEWS" />
+            <AdminItem :sectionData="availableEntities" formName="FormNews" type="NEWS" />
         </section>
     </div>
 

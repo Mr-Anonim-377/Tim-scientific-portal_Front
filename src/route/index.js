@@ -35,7 +35,7 @@ import AdminDocumentPage from '../components/routComponents/AdminDocumentPage';
 import AdminCalendarPage from '../components/routComponents/AdminCalendarPage';
 import AdminPartyPage from '../components/routComponents/AdminPartyPage';
 import AdminResearchPage from '../components/routComponents/AdminResearchPage';
-import UI_test from '../components/routComponents/UI_test.vue';
+import FormNews from '../components/routComponents/FormNews.vue';
 import FormResearcher from '../components/routComponents/admin/FormResearcher.vue';
 import FormResearch from '../components/routComponents/admin/FormResearch.vue';
 
@@ -236,9 +236,9 @@ const routes = [
         component: AdminResearchPage,
     },
     {
-        path: '/UI_test/:entityId?/:mode',
-        name: 'UI_test',
-        component: UI_test,
+        path: '/FormNews/:entityId?/:mode',
+        name: 'FormNews',
+        component: FormNews,
         props: true,
     },
     {

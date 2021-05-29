@@ -24,15 +24,15 @@
                 </el-row>
                 <el-row type="flex" justify="center">
                     <el-col>
-                        <h1>Короткое название новости</h1>
-                        <el-form-item prop="shortTitle" required>
+                        <h1>Короткое описание нвоости</h1>
+                        <el-form-item prop="shortText" required>
                             <el-input
                                 type="textarea"
                                 maxlength="70"
                                 :autosize="{ minRows: 2, maxRows: 3 }"
                                 show-word-limit
                                 resize="none"
-                                v-model="form.shortTitle"
+                                v-model="form.shortText"
                                 placeholder="Название"
                             ></el-input>
                         </el-form-item>
@@ -246,7 +246,7 @@
                         .replace(/>>/g, '<li>')
                         .replace(/<</g, '</li>')
                         .replace(/\n/g, '<br>'),
-                    previewText: this.form.shortTitle,
+                    previewText: this.form.shortText,
                     date: this.getCurrentDate(),
                     tag: this.form.tag,
                 };
@@ -340,7 +340,7 @@
                 /* Поля формы */
                 form: {
                     title: '',
-                    shortTitle: '',
+                    shortText: '',
                     text: [],
                     preview: '',
                     slider: [],
@@ -352,7 +352,7 @@
                         { required: true, message: "Пожалуйста, заполните поле 'Название новости'", trigger: 'blur' },
                         { min: 10, message: 'Название должно содержать минимум 10 символов' },
                     ],
-                    shortTitle: [
+                    shortText: [
                         { required: true, message: "Пожалуйста, заполните поле 'Короткое название новости'", trigger: 'blur' },
                         { min: 10, message: 'Название должно содержать минимум 10 символов' },
                     ],
@@ -398,6 +398,12 @@
         },
 
         async mounted() {
+            /* 
+                TODO Переименовать компонент
+                TODO Вынести основные методы в отдельный подключаемый миксин/объект
+                TODO Заменить название инпута после ответа ребят
+             */
+
             /* Если форма открыта в режиме редактирования - загружаем данные по id новости */
             if (this.mode === 'edit') {
                 await this.getModulesTest('', this.entityId);
@@ -413,8 +419,8 @@
                 });
                 this.form.slider = this.sliderFileList;
 
-                this.form.shortTitle = this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.title;
-                this.form.shortTitle = this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.title;
+                this.form.shortText = this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.title;
+                this.form.shortText = this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.title;
                 this.previewfileList = [
                     {
                         name: 'Превью-изображение',
