@@ -25,7 +25,7 @@
                     <ResultSection />
                 </div>
 
-                <div class="plug-calendar">
+                <div class="plug-calendar" v-if="this.ACTIONS_CALENDAR.ACTION">
                     <CalendarSection :calendarData="this.ACTIONS_CALENDAR.ACTION" />
                 </div>
             </div>
