@@ -38,6 +38,7 @@ import AdminResearchPage from '../components/routComponents/AdminResearchPage';
 import FormNews from '../components/routComponents/FormNews.vue';
 import FormResearcher from '../components/routComponents/admin/FormResearcher.vue';
 import FormResearch from '../components/routComponents/admin/FormResearch.vue';
+import UI_calendar from '../components/routComponents/UI_calendar';
 
 const routes = [
     {
@@ -252,6 +253,12 @@ const routes = [
         path: '/FormResearch/:entityId?/:mode',
         name: 'FormResearch',
         component: FormResearch,
+        props: true,
+    },
+    {
+        path: '/UI_calendar/:entityId?/:mode',
+        name: 'UI_calendar',
+        component: UI_calendar,
         props: true,
     },
 

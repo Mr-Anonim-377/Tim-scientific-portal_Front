@@ -307,6 +307,7 @@
                 });
             },
 
+
             /* Метод трансофрмации HTML в строку */
             transformHTMLtoString(string) {
                 return (
