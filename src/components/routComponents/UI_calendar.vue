@@ -236,7 +236,12 @@ name: "UI_calendar",
           })
           .join(' ');
     },
-
+    transformTag(){
+      this.form.tag = this.tag.slice(2, 4) + "." + this.tag.slice(0, 2);
+    },
+    reqTag(){
+      this.form.tag = this.tag.split(".").reverse().join("");
+    },
     /**
      * Метод добавления события
      * @param {object} data - тело запроса на создание новости
@@ -304,7 +309,7 @@ name: "UI_calendar",
         text: this.form.text,
         previewText: this.form.shortTitle,
         date: this.form.date,
-        tag: this.form.tag,
+        tag: this.reqTag,
         place: this.form.place,
       };
     },
@@ -412,7 +417,7 @@ name: "UI_calendar",
       this.form.place =  this.CALENDAR_BANNER.TEXT[0].text;
       this.form.date = this.ACTIONS_CALENDAR.ACTION.find(action => action._pageLink === this.entityId).date;
       this.form.shortTitle = this.ACTIONS_CALENDAR.ACTION.find(action => action._pageLink === this.entityId).text;
-      this.form.tag = this.ACTIONS_CALENDAR.ACTION.find(action => action._pageLink === this.entityId)._tag;
+      this.form.tag = this.transformTag(this.ACTIONS_CALENDAR.ACTION.find(action => action._pageLink === this.entityId)._tag);
 
       this.form.text = this.transformHhtmlLinks(this.CALENDAR_TEXT.TEXT[0].text);
       this.sliderFileList = this.CALENDAR_SLIDER?.IMAGE?.map((image, i) => {
