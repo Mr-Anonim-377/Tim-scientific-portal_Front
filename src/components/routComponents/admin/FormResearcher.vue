@@ -320,6 +320,10 @@
              * @param {object} data - тело запроса на создание исследователя
              */
             addResearcher(data) {
+                //eslint-disable-next-line
+                const self = this;
+                //eslint-disable-next-line
+                debugger;
                 return new Promise((res) => {
                     axios({
                         method: 'POST',
@@ -336,6 +340,10 @@
              * @param {object} data - тело запроса на создание исследователя
              */
             updateResearcher(data) {
+                //eslint-disable-next-line
+                const self = this;
+                //eslint-disable-next-line
+                debugger;
                 return new Promise((res) => {
                     axios({
                         method: 'POST',
@@ -350,18 +358,14 @@
             onSubmit(form) {
                 this.$refs[form].validate(async (valid) => {
                     if (valid) {
-                        //eslint-disable-next-line
-                        const self = this;
-                        //eslint-disable-next-line
-                        debugger;
                         let data = this.getRequestData();
                         if (this.mode === 'create') {
-                            this.addResearch(data).then(() => {
+                            this.addResearcher(data).then(() => {
                                 window.location.href = 'http://future-agro.ru/AdminResearchPage';
                             });
                         } else {
                             data.pageId = this.entityId;
-                            this.updateResearch(data).then(() => {
+                            this.updateResearcher(data).then(() => {
                                 window.location.href = 'http://future-agro.ru/AdminResearchPage';
                             });
                         }
