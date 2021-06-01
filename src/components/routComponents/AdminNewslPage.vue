@@ -49,10 +49,13 @@
             axios({
                 method: 'GET',
                 url: '/user/allEntityInstance?type=FULL_NEWS_PAGE',
-            }).then((response) => {
-                this.availableEntities = response.data;
-                this.loadSuccess = true;
-            });
+            })
+                .then((response) => {
+                    this.availableEntities = response.data;
+                })
+                .finally(() => {
+                    this.loadSuccess = true;
+                });
         },
     };
 </script>

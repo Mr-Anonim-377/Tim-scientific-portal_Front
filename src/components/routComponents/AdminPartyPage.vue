@@ -50,10 +50,13 @@
             axios({
                 method: 'GET',
                 url: '/user/allEntityInstance?type=RESEARCHER',
-            }).then((response) => {
-                this.availableEntities = response.data;
-                this.loadSuccess = true;
-            });
+            })
+                .then((response) => {
+                    this.availableEntities = response.data;
+                })
+                .finally(() => {
+                    this.loadSuccess = true;
+                });
         },
     };
 </script>
