@@ -363,12 +363,12 @@
                         let data = this.getRequestData();
                         if (this.mode === 'create') {
                             this.addResearch(data).then(() => {
-                                window.location.href = 'http://future-agro.ru/AdminResearchPage';
+                                this.$router.push({ name: 'AdminResearchPage' });
                             });
                         } else {
                             data.pageId = this.entityId;
                             this.updateResearch(data).then(() => {
-                                window.location.href = 'http://future-agro.ru/AdminResearchPage';
+                                this.$router.push({ name: 'AdminResearchPage' });
                             });
                         }
                     } else {

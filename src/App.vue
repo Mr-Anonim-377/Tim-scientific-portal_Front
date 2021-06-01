@@ -30,8 +30,9 @@
                 .get('/user/auth?roleName=ROLE_USER', {
                     headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
                 })
-                .then(() => {
+                .then((res) => {
                     localStorage.setItem('isAuth', true);
+                    localStorage.setItem('tag', res.data);
                 })
 
                 .catch(() => {

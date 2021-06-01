@@ -65,7 +65,7 @@
                         // Тут имя аккаунта
                         localStorage.setItem('accountName', '');
                         // Редиректим на главную
-                        window.location.href = 'http://future-agro.ru/';
+                        window.location.href = window.location.origin;
                     })
                     .catch(() => {
                         this.error = true;

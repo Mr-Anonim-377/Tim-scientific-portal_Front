@@ -46,6 +46,17 @@
             };
         },
 
+        created() {
+            /* Проверка авторизации */
+            this.authCheck()
+                .then(() => {
+                    this.isAuth = true;
+                })
+                .catch(() => {
+                    this.$router.push({ name: 'auth' });
+                });
+        },
+
         async mounted() {
             axios({
                 method: 'GET',

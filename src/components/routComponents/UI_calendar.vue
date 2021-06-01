@@ -274,14 +274,14 @@
                         let data = this.getRequestData();
                         if (this.mode === 'create') {
                             this.addNews(data).then(() => {
-                                window.location.href = 'http://localhost/AdminCalendarPage';
+                                window.location.href = window.location.origin;
                             });
                         } else {
                             /* Удаляем тэг и добавляем pageId в тело запроса */
                             delete data.tag;
                             data.pageId = this.entityId;
                             this.updateNews(data).then(() => {
-                                window.location.href = 'http://localhost/AdminCalendarPage';
+                                window.location.href = window.location.origin;
                             });
                         }
                     } else {

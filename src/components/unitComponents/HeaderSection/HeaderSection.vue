@@ -146,7 +146,7 @@
                 </div>
 
                 <div v-if="isAuth" class="authorization headerSection__item">
-                    <span class="login">Тестовый аккаунт</span>
+                    <span class="login">Аккаунт {{ accountName }}</span>
 
                     <div class="popup">
                         <router-link style="text-decoration: none" :to="{ name: 'AdminNewsPage', params: { tag: this.encodeData } }">
@@ -181,6 +181,11 @@
             isAuth: String,
         },
 
+        data() {
+            return {
+                accountName: '',
+            };
+        },
         methods: {
             logOut() {
                 localStorage.setItem('isAuth', false);
@@ -196,6 +201,10 @@
             // ucFirst(string) {
             // 	return string[0].toUpperCase + string.slice(1)
             // }
+        },
+
+        mounted() {
+            this.accountName = localStorage.getItem('tag');
         },
     };
 </script>

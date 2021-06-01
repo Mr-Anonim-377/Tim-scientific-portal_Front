@@ -347,12 +347,12 @@
                         let data = this.getRequestData();
                         if (this.mode === 'create') {
                             this.addResearcher(data).then(() => {
-                                window.location.href = 'http://future-agro.ru/AdminResearchPage';
+                                this.$router.push({ name: 'AdminPartyPage' });
                             });
                         } else {
                             data.pageId = this.entityId;
                             this.updateResearcher(data).then(() => {
-                                window.location.href = 'http://future-agro.ru/AdminResearchPage';
+                                this.$router.push({ name: 'AdminPartyPage' });
                             });
                         }
                     } else {

@@ -81,7 +81,7 @@
                             headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
                         })
                         .then(() => {
-                            window.location.href = 'http://future-agro.ru//auth';
+                            this.$router.push({ name: 'auth' });
                         })
                         .catch(() => {
                             this.error = true;
