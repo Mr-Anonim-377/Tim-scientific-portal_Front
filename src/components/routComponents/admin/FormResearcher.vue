@@ -250,13 +250,7 @@
                     dateOfBirth: [{ type: 'date', required: true, message: 'Пожалуйста, выберите или напишите дату рождения', trigger: 'blur' }],
                 },
 
-                researchList: [
-                    { value: 'Исследование 1' },
-                    { value: 'Исследование 2' },
-                    { value: 'Исследование 3' },
-                    { value: 'Исследование 4' },
-                    { value: 'Исследование 5' },
-                ],
+                researchList: [],
 
                 progressList: [],
 
@@ -320,10 +314,6 @@
              * @param {object} data - тело запроса на создание исследователя
              */
             addResearcher(data) {
-                //eslint-disable-next-line
-                const self = this;
-                //eslint-disable-next-line
-                debugger;
                 return new Promise((res) => {
                     axios({
                         method: 'POST',
@@ -340,10 +330,6 @@
              * @param {object} data - тело запроса на создание исследователя
              */
             updateResearcher(data) {
-                //eslint-disable-next-line
-                const self = this;
-                //eslint-disable-next-line
-                debugger;
                 return new Promise((res) => {
                     axios({
                         method: 'POST',
