@@ -24,7 +24,7 @@
                 </el-row>
                 <el-row type="flex" justify="center">
                     <el-col>
-                        <h1>Короткое описание нвоости</h1>
+                        <h1>Короткое описание новости</h1>
                         <el-form-item prop="shortText" required>
                             <el-input
                                 type="textarea"
@@ -307,12 +307,12 @@
                 });
             },
 
-
             /* Метод трансофрмации HTML в строку */
             transformHTMLtoString(string) {
                 return (
                     string
                         /* Обработка <p> */
+                        .replace(/<br>/g, '\n')
                         .split('</p>')
                         .map((i) => i.replace('<p>', '').trim())
                         /* Обработка <br> */
@@ -399,7 +399,7 @@
         },
 
         async mounted() {
-            /* 
+            /*
                 TODO Переименовать компонент
                 TODO Вынести основные методы в отдельный подключаемый миксин/объект
                 TODO Заменить название инпута после ответа ребят
