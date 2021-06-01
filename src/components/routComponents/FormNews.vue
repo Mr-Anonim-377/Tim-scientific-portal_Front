@@ -294,8 +294,6 @@
                                 this.$router.push({ name: 'AdminNewsPage' });
                             });
                         } else {
-                            /* Удаляем тэг и добавляем pageId в тело запроса */
-                            delete data.tag;
                             data.pageId = this.entityId;
                             this.updateNews(data).then(() => {
                                 this.$router.push({ name: 'AdminNewsPage' });
