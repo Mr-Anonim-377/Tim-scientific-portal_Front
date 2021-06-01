@@ -247,7 +247,7 @@
                         .replace(/<</g, '</li>')
                         .replace(/\n/g, '<br>'),
                     previewText: this.form.shortText,
-                    date: this.getCurrentDate(),
+                    date: this.mode === 'create' ? this.getCurrentDate() : this.form.date,
                     tag: this.form.tag,
                 };
             },
@@ -345,6 +345,7 @@
                     text: [],
                     preview: '',
                     slider: [],
+                    date: '',
                 },
 
                 /* Правила валидации для формы */
@@ -429,6 +430,7 @@
                     },
                 ];
                 this.form.preview = this.previewfileList[0].url;
+                this.form.date = this.NEWS_DATE.DATE[0].date;
             }
 
             this.loadSuccess = true;
