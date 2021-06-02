@@ -197,7 +197,7 @@
             },
 
             /* Хук успешной загрузки изображения (инпут слайдера)
-       При успешной загрузке заполняем скрытый инпут урлом из ответа */
+            При успешной загрузке заполняем скрытый инпут урлом из ответа */
             successLoadHookSlider(res, file, fileList) {
                 this.form.slider = fileList.map((image) => {
                     return { name: image.name, url: image.response ? image.response.data.url : image.url };
@@ -205,7 +205,7 @@
             },
 
             /* Хук успешной загрузки изображения (инпут документа)
-       При успешной загрузке заполняем скрытый инпут урлом из ответа */
+              При успешной загрузке заполняем скрытый инпут урлом из ответа */
             successLoadHookDocument(res, file, fileList) {
                 this.form.documentCalendar = fileList.map((link) => {
                     return { name: link.name, url: link.response ? link.response.data.url : link.url };
@@ -226,8 +226,9 @@
                     })
                     .join(' ');
             },
+            //Изменение тега
             transformTag() {
-                this.form.tag = this.tag.slice(2, 4) + '.' + this.tag.slice(0, 2);
+                this._tag = this.tag.slice(2, 4) + '.' + this.tag.slice(0, 2);
             },
             reqTag() {
                 this.form.tag = this.tag
@@ -237,9 +238,9 @@
             },
             /**
              * Метод добавления события
-             * @param {object} data - тело запроса на создание новости
+             * @param {object} data - тело запроса на создание события
              */
-            addNews(data) {
+            addCalendar(data) {
                 return new Promise((res) => {
                     axios({
                         method: 'POST',
@@ -255,7 +256,7 @@
              * Метод обновления события
              * @param {object} data - тело запроса на создание новости
              */
-            updateNews(data) {
+            updateCalendar(data) {
                 return new Promise((res) => {
                     axios({
                         method: 'POST',
@@ -273,14 +274,14 @@
                     if (valid) {
                         let data = this.getRequestData();
                         if (this.mode === 'create') {
-                            this.addNews(data).then(() => {
+                            this.addCalendar(data).then(() => {
                                 window.location.href = window.location.origin;
                             });
                         } else {
                             /* Удаляем тэг и добавляем pageId в тело запроса */
                             delete data.tag;
                             data.pageId = this.entityId;
-                            this.updateNews(data).then(() => {
+                            this.updateCalendar(data).then(() => {
                                 window.location.href = window.location.origin;
                             });
                         }
@@ -302,33 +303,12 @@
                     text: this.form.text,
                     previewText: this.form.shortTitle,
                     date: this.form.date,
-                    tag: this.reqTag,
+                    tag: this.form.tag,
                     place: this.form.place,
                 };
             },
-
-            /* Метод трансофрмации HTML в строку */
-            // transformHTMLtoString(string) {
-            //   return (
-            //       string
-            //           /* Обработка <p> */
-            //           .split('</p>')
-            //           .map((i) => i.replace('<p>', '').trim())
-            //           /* Обработка <br> */
-            //           .join('<br>')
-            //           .replace(/<b>|<\/b>|<strong>|<\/strong>/g, '**')
-            //           /* Обработка списков */
-            //           .replace(/<ul>/g, '\n>>>\n')
-            //           .replace(/<\/ul>/g, '\n<<<\n')
-            //           .replace(/<li>/g, '\n>>')
-            //           .replace(/<\/li>/g, '<<')
-            //   );
-            // },
         },
         props: {
-            /* mode -> режим рендера формы:
-                       create для создания
-                       edit для редактирования */
             mode: String,
             entityId: String,
         },
@@ -373,10 +353,10 @@
                     ],
                 },
 
-                /* УЖЕ загруженные изображения для превью главной страницы */
+                /* УЖЕ загруженные изображения */
                 previewfileList: [],
 
-                /* УЖЕ загруженные изображения для слайдера страницы новостей */
+                /* УЖЕ загруженные изображения для слайдера страницы события */
                 sliderFileList: [],
 
                 /* Загружаемые изображения */
@@ -401,16 +381,18 @@
         },
 
         async mounted() {
-            /* Если форма открыта в режиме редактирования - загружаем данные по id новости */
+            /* Если форма открыта в режиме редактирования - загружаем данные по id события */
             if (this.mode === 'edit') {
-                await this.getModulesTest('', this.entityId);
+                await this.getModulesTest(' ', this.entityId);
                 await this.getModulesTest('MAIN_PAGE');
                 /* Заполняем инпуты */
                 this.form.title = this.CALENDAR_BANNER.TITLE[0].title;
                 this.form.place = this.CALENDAR_BANNER.TEXT[0].text;
-                this.form.date = this.ACTIONS_CALENDAR.ACTION.find((action) => action._pageLink === this.entityId).date;
-                this.form.shortTitle = this.ACTIONS_CALENDAR.ACTION.find((action) => action._pageLink === this.entityId).text;
-                this.form.tag = this.transformTag(this.ACTIONS_CALENDAR.ACTION.find((action) => action._pageLink === this.entityId)._tag);
+                this.form.date = this.CALENDAR_BANNER.DATE[0].date;
+
+                this.form.shortTitle = this.ACTIONS_CALENDAR.ACTION.filter((action) => action.entityId === this._pageLink)[0]?.text;
+                this.form.tag = this.ACTIONS_CALENDAR.ACTION.filter((action) => action.entityId === this._pageLink)[0]?._tag;
+              // ACTIONS_CALENDAR.ACTION.find((action) => action._pageLink === this.entityId)[0]?
 
                 this.form.text = this.transformHhtmlLinks(this.CALENDAR_TEXT.TEXT[0].text);
                 this.sliderFileList = this.CALENDAR_SLIDER?.IMAGE?.map((image, i) => {
@@ -427,8 +409,8 @@
                 });
                 this.form.slider = this.sliderFileList;
             }
-
             this.loadSuccess = true;
+          console.log(this.ACTIONS_CALENDAR.ACTION);
         },
     };
 </script>
