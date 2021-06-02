@@ -49,10 +49,10 @@
                 </el-row>
 
                 <!-- Поле "Об исследовании" -->
-                <el-row type="flex" justify="center" required>
+                <el-row type="flex" justify="center">
                     <el-col>
                         <h1>Об исследовании:</h1>
-                        <el-form-item prop="text" required>
+                        <el-form-item prop="text">
                             <!-- Поле текста -->
                             <el-input
                                 type="textarea"
@@ -421,8 +421,11 @@
 
                     /* Засовываем даныне в модель */
                     this.form.name = formData[0].name;
-                    this.form.text = formData[0].text;
+                    this.form.text = formData[0].text[0];
                     this.form.previewImageLink = formData[0].previewImageLink;
+                    this.form.researcherUids = formData[0].researcherUids.map((researcherId) => {
+                        return this.researcherList.find((researcher) => researcher.id === researcherId).value;
+                    });
                     this.previewImages.preview = [
                         {
                             name: 'Превью изображение',
@@ -438,6 +441,7 @@
                             url: image,
                         };
                     });
+                    this.form.imgs = this.previewImages.slider;
                     this.loadSuccess = true;
                 });
             } else {
