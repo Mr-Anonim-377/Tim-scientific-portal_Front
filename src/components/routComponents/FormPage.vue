@@ -31,9 +31,9 @@
                                 <input type="text" placeholder="Выбрать специальность" class="edit__inp" v-if="authorization" />
                                 <p class="edit-text" v-else>{{ PERSONAL_INFORMATION.RESEARCH_EDUCATION[0].title }}</p>
 
-                                <h3>Образование</h3>
+                                <!-- <h3>Образование</h3>
                                 <input type="text" placeholder="Выбрать участника консорциума" class="edit__inp" v-if="authorization" />
-                                <p class="edit-text" v-else>{{ PERSONAL_INFORMATION.RESEARCH_EDUCATION[0].text }}</p>
+                                <p class="edit-text" v-else>{{ PERSONAL_INFORMATION.RESEARCH_EDUCATION[0].text }}</p> -->
                             </div>
 
                             <!-- Пока решил убрать, чушь какая-то -->

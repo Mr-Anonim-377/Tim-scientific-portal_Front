@@ -1,5 +1,3 @@
-// СТРАНИЦА ИССЛЕДОВАТЕЛЕЙ // В разработке
-
 <template>
     <div v-if="loadSuccess">
         <PartySection :title="this.HEADERS.TITLE[0].title" :sectionData="this.RESEARCH_MEMBER.RESEARCH_MEMBER || false" />

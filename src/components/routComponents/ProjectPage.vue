@@ -7,17 +7,21 @@
                 <account-navigation-section />
 
                 <div class="project-block__projects">
-                    <h2>Проекты, в которых я участвую</h2>
-                    <router-link style="text-decoration: none" :to="{ name: 'notFound' }">
+                    <h2>{{ RESEARCH_ARRAY ? 'Участие в исследованиях' : 'Информация отсутствует в системе' }}</h2>
+                    <div v-if="RESEARCH_ARRAY">
                         <div class="project-item" v-for="dataProject in this.RESEARCH_ARRAY.RESEARCH" :key="dataProject">
-                            <img :src="dataProject.image" />
-                            <p>{{ dataProject.title }}</p>
-                            <p class="project-text">{{ dataProject.date }}</p>
+                            <router-link style="text-decoration: none" :to="{ path: `/research/${dataProject._pageLink}` }">
+                                <img :src="dataProject.image" />
+                                <p>{{ dataProject.title }}</p>
+                                <p class="project-text">{{ dataProject.date }}</p>
+                            </router-link>
                         </div>
-                    </router-link>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <section></section>
     </div>
 
     <div v-else>

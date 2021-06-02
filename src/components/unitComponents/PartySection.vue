@@ -9,7 +9,15 @@
         <div v-if="sectionData" class="party-container" :style="listResearch">
             <div class="party-block" v-for="researcher in sectionData" :key="researcher.text">
                 <!-- <img :src="researcher.image" /> -->
-                <div class="researcher-image" :style="{ backgroundImage: `url(${researcher.image})` }"></div>
+                <div v-if="researcher._pageLink">
+                    <router-link style="text-decoration: none" :to="{ path: `/form/${researcher._pageLink}` }">
+                        <div class="researcher-image" :style="{ backgroundImage: `url(${researcher.image})` }"></div>
+                    </router-link>
+                </div>
+                <div v-else>
+                    <div class="researcher-image" :style="{ backgroundImage: `url(${researcher.image})` }"></div>
+                </div>
+
                 <div class="party-block__right">
                     <h3 class="party-block__text-name">
                         {{
@@ -34,7 +42,6 @@
                         <div class="project-container-block" v-for="research in researcher._childModuleObject" :key="research.id">
                             <router-link style="text-decoration: none" :to="{ path: `/research/${research.pageLink}` }">
                                 <img :src="research.contents.find((content) => content.contentType === 'IMAGE').value.url" />
-
                                 <p>{{ research.contents.find((content) => content.contentType === 'TITLE').value.text }}</p>
                             </router-link>
                         </div>
