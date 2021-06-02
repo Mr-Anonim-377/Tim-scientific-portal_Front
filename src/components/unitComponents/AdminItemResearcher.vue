@@ -12,7 +12,7 @@
             <div class="admin-elements__btn">
                 <router-link
                     style="text-decoration: none"
-                    :to="{ name: `${formName}`, params: { mode: 'edit', entityId: item.researchIds[0], status: 'notEmptyResearchs' } }"
+                    :to="{ name: `${formName}`, params: { mode: 'edit', entityId: item.pageId, status: 'notEmptyResearchs' } }"
                 >
                     <button class="btn_edit">Редактировать</button>
                 </router-link>
@@ -64,6 +64,10 @@
         },
 
         mounted() {
+            //eslint-disable-next-line
+            const self = this;
+            //eslint-disable-next-line
+            debugger;
             console.log(this.sectionData);
         },
     };

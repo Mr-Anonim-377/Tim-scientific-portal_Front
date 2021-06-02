@@ -362,16 +362,16 @@
             },
         },
         async mounted() {
-            if (this.mode === 'edit') {
-                /* Получаем список исследователей */
+            /* Получаем список исследователей */
 
-                /* т.к. нет запроса на получение данных формы по id сущноности
+            /* т.к. нет запроса на получение данных формы по id сущноности
                      снова получаем список и ищем нужный нам объект */
 
-                axios({
-                    method: 'GET',
-                    url: '/user/allEntityInstance?type=RESEARCHER',
-                }).then((response) => {
+            axios({
+                method: 'GET',
+                url: '/user/allEntityInstance?type=RESEARCHER',
+            }).then((response) => {
+                if (this.mode === 'edit') {
                     const formData = response.data[this.status].filter((entity) => entity.pageId === this.entityId)[0];
 
                     console.log('Объект с сервера', formData);
@@ -396,22 +396,20 @@
                     this.form.achievements = formData.achievements.map((i) => i.name + ' - ' + i.date);
 
                     /* Получаем исследования */
-                    axios({
-                        method: 'GET',
-                        url: '/user/allEntityInstance?type=RESEARCH',
-                    }).then((responce) => {
-                        this.researchList = responce.data.map((researcher) => {
-                            return {
-                                value: researcher.name,
-                                id: researcher.pageId,
-                            };
-                        });
-                    });
-
-                    console.log(formData);
                     this.loadSuccess = true;
+                }
+                axios({
+                    method: 'GET',
+                    url: '/user/allEntityInstance?type=RESEARCH',
+                }).then((responce) => {
+                    this.researchList = responce.data.map((researcher) => {
+                        return {
+                            value: researcher.name,
+                            id: researcher.pageId,
+                        };
+                    });
                 });
-            }
+            });
             setTimeout(() => {
                 this.loadSuccess = true;
             }, 500);
