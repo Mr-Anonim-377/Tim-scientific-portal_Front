@@ -28,7 +28,7 @@
                         <el-form-item prop="shortText" required>
                             <el-input
                                 type="textarea"
-                                maxlength="70"
+                                maxlength="400"
                                 :autosize="{ minRows: 2, maxRows: 3 }"
                                 show-word-limit
                                 resize="none"
@@ -408,6 +408,7 @@
             if (this.mode === 'edit') {
                 await this.getModulesTest('', this.entityId);
                 await this.getModulesTest('NEWS_PAGE');
+
                 /* Заполняем инпуты */
                 this.form.text = this.transformHTMLtoString(this.NEWS_TEXT.TEXT[0].text);
                 this.form.title = this.NEWS_TITLE.TITLE[0].title;
@@ -419,8 +420,7 @@
                 });
                 this.form.slider = this.sliderFileList;
 
-                this.form.shortText = this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.title;
-                this.form.shortText = this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.title;
+                this.form.shortText = this.NEWS_SLIDER.NEWS_ITEM.filter((news) => news._pageLink === this.entityId)[0]?.text;
                 this.previewfileList = [
                     {
                         name: 'Превью-изображение',
