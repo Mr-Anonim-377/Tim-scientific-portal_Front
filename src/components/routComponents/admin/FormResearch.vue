@@ -71,7 +71,7 @@
                     <el-col :span="12">
                         <!-- Изображени для превью -->
                         <h1>Изображение для превью</h1>
-                        <el-form-item required>
+                        <el-form-item>
                             <el-upload
                                 class="upload-demo"
                                 action="https://api.imgbb.com/1/upload"
@@ -82,6 +82,7 @@
                                 :file-list="previewImages.preview"
                                 name="image"
                                 :model="form.previewImageLink"
+                                :before-upload="beforeUploadHook"
                                 :on-success="successLoadHookPreview"
                                 :on-remove="removeImageHookPreview"
                             >
@@ -98,7 +99,7 @@
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
-                        <el-form-item required>
+                        <el-form-item>
                             <!-- Изображения для слайдера -->
                             <h1>Изображения для слайдера</h1>
                             <el-upload
@@ -122,7 +123,7 @@
                                 </template>
                                 <!-- Скрытый form-item для слайдера  -->
                             </el-upload>
-                            <el-form-item class="hiddenFormItem" prop="imgs" required>
+                            <el-form-item class="hiddenFormItem" prop="imgs">
                                 <el-input class="hiddenInput" v-model="form.imgs"></el-input>
                             </el-form-item>
                         </el-form-item>
