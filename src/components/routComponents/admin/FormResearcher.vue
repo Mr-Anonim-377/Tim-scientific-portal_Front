@@ -388,7 +388,7 @@
                     this.form.specialty = formData.specialisation;
                     this.form.email = '...';
 
-                    this.form.research = formData.researchIds.map((id) => {
+                    this.form.research = formData.researchIds?.map((id) => {
                         return this.researchList.find((research) => research.id === id);
                     });
                     this.form.avatar = formData.imageLink;
