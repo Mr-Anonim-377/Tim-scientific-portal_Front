@@ -55,7 +55,7 @@
             deleteNews(id) {
                 axios({
                     method: 'DELETE',
-                    url: '/user/delete/news',
+                    url: '/user/delete',
                     params: { pageId: id, entityType: this.type },
                 }).then(() => {
                     this.$router.go();
