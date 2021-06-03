@@ -362,10 +362,18 @@
             },
         },
         async mounted() {
-            /* Получаем список исследователей */
-
-            /* т.к. нет запроса на получение данных формы по id сущноности
-                     снова получаем список и ищем нужный нам объект */
+            /* Список исследований */
+            await axios({
+                method: 'GET',
+                url: '/user/allEntityInstance?type=RESEARCH',
+            }).then((responce) => {
+                this.researchList = responce.data.map((researcher) => {
+                    return {
+                        value: researcher.name,
+                        id: researcher.pageId,
+                    };
+                });
+            });
 
             axios({
                 method: 'GET',
@@ -380,6 +388,9 @@
                     this.form.specialty = formData.specialisation;
                     this.form.email = '...';
 
+                    this.form.research = formData.researchIds.map((id) => {
+                        return this.researchList.find((research) => research.id === id);
+                    });
                     this.form.avatar = formData.imageLink;
                     this.previewImages.avatar = [
                         {
@@ -398,17 +409,6 @@
                     /* Получаем исследования */
                     this.loadSuccess = true;
                 }
-                axios({
-                    method: 'GET',
-                    url: '/user/allEntityInstance?type=RESEARCH',
-                }).then((responce) => {
-                    this.researchList = responce.data.map((researcher) => {
-                        return {
-                            value: researcher.name,
-                            id: researcher.pageId,
-                        };
-                    });
-                });
             });
             setTimeout(() => {
                 this.loadSuccess = true;
