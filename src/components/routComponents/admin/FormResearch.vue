@@ -57,7 +57,7 @@
                             <el-input
                                 type="textarea"
                                 :autosize="true"
-                                placeholder="Тело новости"
+                                placeholder="Описание исследования"
                                 v-model="form.text"
                                 maxlength="3600"
                                 show-word-limit
