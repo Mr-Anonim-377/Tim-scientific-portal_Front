@@ -64,10 +64,6 @@
         },
 
         mounted() {
-            //eslint-disable-next-line
-            const self = this;
-            //eslint-disable-next-line
-            debugger;
             console.log(this.sectionData);
         },
     };

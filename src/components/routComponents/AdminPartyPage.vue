@@ -64,10 +64,6 @@
             })
                 .then((response) => {
                     this.availableEntities = response.data;
-                    //eslint-disable-next-line
-                    const self = this;
-                    //eslint-disable-next-line
-                    debugger;
                 })
                 .finally(() => {
                     this.loadSuccess = true;
