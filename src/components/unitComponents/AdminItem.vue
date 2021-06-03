@@ -34,7 +34,7 @@
                 axios({
                     method: 'DELETE',
                     url: '/user/delete',
-                    params: { pageId: id, type: this.type },
+                    params: { pageId: id, entityType: this.type },
                 }).then(() => {
                     this.$router.go();
                 });
