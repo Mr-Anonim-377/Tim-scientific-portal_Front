@@ -380,9 +380,13 @@
 
         created() {
             /* Проверка авторизации */
-            this.authCheck().then((res) => {
-                this.form.tag = res.data;
-            });
+            this.authCheck()
+                .then((res) => {
+                    this.form.tag = res.data;
+                })
+                .catch(() => {
+                    this.$router.push({ name: 'auth' });
+                });
         },
 
         async mounted() {

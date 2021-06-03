@@ -375,9 +375,13 @@
 
         created() {
             /* Проверка авторизации */
-            this.authCheck().then((res) => {
-                this.form.tag = res.data;
-            });
+            this.authCheck()
+                .then((res) => {
+                    this.form.tag = res.data;
+                })
+                .catch(() => {
+                    this.$router.push({ name: 'auth' });
+                });
         },
 
         async mounted() {
@@ -392,7 +396,7 @@
 
                 this.form.shortTitle = this.ACTIONS_CALENDAR.ACTION.filter((action) => action.entityId === this._pageLink)[0]?.text;
                 this.form.tag = this.ACTIONS_CALENDAR.ACTION.filter((action) => action.entityId === this._pageLink)[0]?._tag;
-              // ACTIONS_CALENDAR.ACTION.find((action) => action._pageLink === this.entityId)[0]?
+                // ACTIONS_CALENDAR.ACTION.find((action) => action._pageLink === this.entityId)[0]?
 
                 this.form.text = this.transformHhtmlLinks(this.CALENDAR_TEXT.TEXT[0].text);
                 this.sliderFileList = this.CALENDAR_SLIDER?.IMAGE?.map((image, i) => {
@@ -410,7 +414,7 @@
                 this.form.slider = this.sliderFileList;
             }
             this.loadSuccess = true;
-          console.log(this.ACTIONS_CALENDAR.ACTION);
+            console.log(this.ACTIONS_CALENDAR.ACTION);
         },
     };
 </script>

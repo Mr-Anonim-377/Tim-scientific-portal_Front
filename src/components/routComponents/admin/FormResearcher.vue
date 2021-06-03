@@ -167,8 +167,8 @@
 
     Работа с UI:
     * TODO Написать валидацию для обязательных параметров
-        * TODO Валидация емейла 
-        * TODO Валидация даты 
+        * TODO Валидация емейла
+        * TODO Валидация даты
         * TODO Проверить валидацию
 
     * TODO Переделать инпут достижения / на первое время добавить типс
@@ -417,9 +417,13 @@
 
         created() {
             /* Проверка авторизации */
-            this.authCheck().then((res) => {
-                this.form.tag = res.data;
-            });
+            this.authCheck()
+                .then((res) => {
+                    this.form.tag = res.data;
+                })
+                .catch(() => {
+                    this.$router.push({ name: 'auth' });
+                });
         },
     };
 </script>
