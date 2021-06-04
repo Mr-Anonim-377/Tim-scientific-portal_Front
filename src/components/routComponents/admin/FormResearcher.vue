@@ -401,8 +401,6 @@
             },
         },
         async mounted() {
-            //! FIXME
-
             /* Список исследований */
             await axios({
                 method: 'GET',
@@ -416,11 +414,11 @@
                 });
             });
 
-            axios({
-                method: 'GET',
-                url: '/user/allEntityInstance?type=RESEARCHER',
-            }).then((response) => {
-                if (this.mode === 'edit') {
+            if (this.mode === 'edit') {
+                axios({
+                    method: 'GET',
+                    url: '/user/allEntityInstance?type=RESEARCHER',
+                }).then((response) => {
                     const formData = response.data[this.status].filter((entity) => entity.pageId === this.entityId)[0];
 
                     console.debug('Получаем', formData);
@@ -460,8 +458,8 @@
                     this.achievementsLenght = this.form.achievements.length;
 
                     this.loadSuccess = true;
-                }
-            });
+                });
+            }
             setTimeout(() => {
                 this.loadSuccess = true;
             }, 500);

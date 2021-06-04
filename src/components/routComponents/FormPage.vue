@@ -15,13 +15,18 @@
                         </div>
                         <div class="form-block__information">
                             <h2>{{ PERSONAL_INFORMATION.PERSONAL_INFORMATION[0].text }}</h2>
-                            <p class="information-text">32 года / Профессор ботаники</p>
+                            <p class="information-text">
+                                {{ old + ' ' + declOfNum(old, ['год', 'года', 'лет']) }} / {{ PERSONAL_INFORMATION.RESEARCH_EDUCATION[0].title }}
+                            </p>
 
                             <div class="form-block__edit">
                                 <h3>Ф.И.О.</h3>
                                 <input type="text" placeholder="Как Вас зовут..." class="edit__inp" v-if="authorization" />
 
                                 <p class="edit-text" v-else>{{ PERSONAL_INFORMATION.PERSONAL_INFORMATION[0].text }}</p>
+
+                                <h3>Электронная почта</h3>
+                                <p class="edit-text">{{ PERSONAL_INFORMATION.PERSONAL_INFORMATION[0].title }}</p>
 
                                 <h3>Дата рождения</h3>
                                 <input type="text" placeholder="Выбрать дату" class="edit__inp" v-if="authorization" />
@@ -30,10 +35,6 @@
                                 <h3>Специальность</h3>
                                 <input type="text" placeholder="Выбрать специальность" class="edit__inp" v-if="authorization" />
                                 <p class="edit-text" v-else>{{ PERSONAL_INFORMATION.RESEARCH_EDUCATION[0].title }}</p>
-
-                                <!-- <h3>Образование</h3>
-                                <input type="text" placeholder="Выбрать участника консорциума" class="edit__inp" v-if="authorization" />
-                                <p class="edit-text" v-else>{{ PERSONAL_INFORMATION.RESEARCH_EDUCATION[0].text }}</p> -->
                             </div>
 
                             <!-- Пока решил убрать, чушь какая-то -->
@@ -77,6 +78,7 @@
         props: {
             pageId: String,
         },
+
         data() {
             return {
                 title: 'Личная информация',
@@ -85,6 +87,7 @@
                     stile: ['font-size: 26px'],
                 },
                 loadSuccess: false,
+                old: new String(),
             };
         },
         mixins: [mixin],
@@ -102,7 +105,39 @@
              */
             await this.getModulesTest('', this.profileID);
 
+            /* Получаем возраст */
+            this.getOld();
+
             this.loadSuccess = true;
+        },
+
+        methods: {
+            getOld() {
+                const date = this.PERSONAL_INFORMATION.PERSONAL_INFORMATION[0].date;
+                const year = date.split('.')[date.split('.').length - 1];
+                // !FIXME пока считает только по году -> будут кейсы с некорректным расчетом
+                this.old = new Date().getFullYear() - year;
+            },
+
+            /* 
+            Правильный падеж 
+            Украл отсюда:
+            https://realadmin.ru/coding/sklonenie-na-javascript.html */
+
+            declOfNum(n, text_forms) {
+                n = Math.abs(n) % 100;
+                var n1 = n % 10;
+                if (n > 10 && n < 20) {
+                    return text_forms[2];
+                }
+                if (n1 > 1 && n1 < 5) {
+                    return text_forms[1];
+                }
+                if (n1 == 1) {
+                    return text_forms[0];
+                }
+                return text_forms[2];
+            },
         },
     };
 </script>
@@ -177,7 +212,7 @@
         width: 100%;
     }
 
-    .information-text:before {
+    /* .information-text:before {
         content: '';
         position: absolute;
         width: 33px;
@@ -185,7 +220,7 @@
         background: #3f7e77;
         top: 9px;
         left: 137px;
-    }
+    } */
 
     .form-block__text-project {
         font-size: 15px;
