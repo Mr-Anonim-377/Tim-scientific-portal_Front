@@ -239,7 +239,7 @@
         data() {
             return {
                 test: '',
-                achievementsLenght: Number,
+                achievementsLenght: new Number(),
                 loadSuccess: false,
                 form: {
                     fullname: '',
@@ -248,12 +248,7 @@
                     avatar: '',
                     dateOfBirth: '',
                     research: [],
-                    achievements: [
-                        {
-                            name: '',
-                            date: '',
-                        },
-                    ],
+                    achievements: [],
                 },
                 /* Объект */
 
@@ -370,6 +365,7 @@
                     if (valid) {
                         let data = this.getRequestData();
                         console.debug('Отправляем', data);
+
                         if (this.mode === 'create') {
                             this.addResearcher(data).then(() => {
                                 this.$router.push({ name: 'AdminPartyPage' });
@@ -445,15 +441,13 @@
                         .reverse()
                         .join('-');
 
-                    this.form.achievements = formData.achievements?.map((i) => {
-                        return {
-                            name: i.name,
-                            date: i.date,
-                        };
-                    }) || {
-                        name: '',
-                        date: '',
-                    };
+                    this.form.achievements =
+                        formData.achievements?.map((i) => {
+                            return {
+                                name: i.name,
+                                date: i.date,
+                            };
+                        }) || [];
 
                     console.debug('Получаем', formData);
                     console.debug('Данные формы', this.form);
