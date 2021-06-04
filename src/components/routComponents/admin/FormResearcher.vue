@@ -368,7 +368,6 @@
             onSubmit(form) {
                 this.$refs[form].validate(async (valid) => {
                     if (valid) {
-                        console.debug('Отправляем', data);
                         let data = this.getRequestData();
                         if (this.mode === 'create') {
                             this.addResearcher(data).then(() => {
@@ -431,7 +430,7 @@
                     this.form.email = formData.email;
 
                     this.form.research = formData.researchIds?.map((id) => {
-                        return this.researchList.find((research) => research.id === id);
+                        return this.researchList.find((research) => research.id === id).value;
                     });
                     this.form.avatar = formData.imageLink;
                     this.previewImages.avatar = [
