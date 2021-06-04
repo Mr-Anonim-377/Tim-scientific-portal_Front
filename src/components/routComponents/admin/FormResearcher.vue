@@ -21,6 +21,7 @@
                                 resize="none"
                                 v-model="form.fullname"
                                 placeholder="ФИО исследователя"
+                                show-word-limit
                             ></el-input>
                         </el-form-item>
                     </el-col>
@@ -57,6 +58,7 @@
                                 resize="none"
                                 v-model="form.specialty"
                                 placeholder="Специальность исследователя"
+                                show-word-limit
                             ></el-input>
                         </el-form-item>
                     </el-col>
@@ -66,7 +68,7 @@
                 <el-row type="flex" justify="center">
                     <el-col>
                         <h1>Электронная почта</h1>
-                        <el-form-item prop="email">
+                        <el-form-item>
                             <el-input
                                 type="textarea"
                                 maxlength="50"
@@ -74,13 +76,14 @@
                                 resize="none"
                                 v-model="form.email"
                                 placeholder="Специальность исследователя"
+                                show-word-limit
                             ></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
 
-                <!-- Поле "Связанные исследования" -->
                 <el-row type="flex" justify="center" :gutter="20">
+                    <!-- Поле "Связанные исследования" -->
                     <el-col :span="12">
                         <h1>Исследования</h1>
                         <el-form-item prop="research">
@@ -90,7 +93,7 @@
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
-                        <!-- Изображения -->
+                        <!-- Поле "Изображение профиля" -->
                         <h1>Фотография профиля</h1>
                         <el-form-item>
                             <el-upload
@@ -121,32 +124,55 @@
                     </el-col>
                 </el-row>
 
-                <!-- Поле "Фото профиля" -->
-                <el-row type="flex" justify="center"> </el-row>
-
-                <!-- Поле "Связанные исследователи" -->
-                <el-row type="flex" justify="center">
-                    <el-col>
-                        <h1>Достижения</h1>
-                        <el-form-item prop="research">
-                            <el-select
-                                :span="12"
-                                class="formResearcher__progressSelect"
-                                v-model="form.achievements"
-                                multiple
-                                filterable
-                                default-first-option
-                                placeholder="Исследования, в которых принимал участие исследователь"
-                                allow-create
+                <!-- Поле "Достижения" -->
+                <div class="achievements">
+                    <h1>Достижения</h1>
+                    <el-row type="flex" justify="center" :gutter="20" v-for="(ach, index) in achievementsLenght" :key="index">
+                        <el-col :span="12">
+                            <el-form-item
+                                :prop="'achievements.' + index + '.name'"
+                                :rules="[
+                                    {
+                                        required: true,
+                                        message: 'Пожалуйста, заполните название достижения',
+                                        trigger: 'blur',
+                                    },
+                                ]"
                             >
-                                <el-option v-for="item in progressList" :key="item.value" :label="item.value" :value="item.value"> </el-option>
-                            </el-select>
-                        </el-form-item>
-                        <div class="el-upload__tip">
-                            Для корректного отображения достижения в профиле необходимо заполнять исследования в формате "Достижение - год"
-                        </div>
-                    </el-col>
-                </el-row>
+                                <el-input show-word-limit maxlength="50" v-model="form.achievements[index].name"> </el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="12">
+                            <el-form-item
+                                :prop="'achievements.' + index + '.date'"
+                                :rules="[
+                                    {
+                                        required: true,
+                                        message: 'Пожалуйста, заполните год получения достижения',
+                                        trigger: 'blur',
+                                    },
+                                    {
+                                        max: 4,
+                                        min: 4,
+                                        trigger: blur,
+                                        message: 'Пожалуйста, укажите корректный год достижения',
+                                    },
+                                ]"
+                            >
+                                <el-input maxlength="4" type="number" v-model="this.form.achievements[index].date" show-word-limit placeholder="Год">
+                                    <template #append>
+                                        <el-button @click="deliteAchievement(event, index)" placeholder="Please input" clearable>
+                                            Удалить достижение</el-button
+                                        >
+                                    </template>
+                                </el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <el-row>
+                        <el-button class="addAchievementsBtn" @click="addAchievement">Добавить достижение</el-button>
+                    </el-row>
+                </div>
 
                 <div class="submitWrapper">
                     <el-form-item>
@@ -165,34 +191,34 @@
 <script>
     /*
 
-    Работа с UI:
-    * TODO Написать валидацию для обязательных параметров
-        * TODO Валидация емейла
-        * TODO Валидация даты
-        * TODO Проверить валидацию
+        Работа с UI:
+        * TODO Написать валидацию для обязательных параметров
+            * TODO Валидация емейла
+            * TODO Валидация даты
+            * TODO Проверить валидацию
 
-    * TODO Переделать инпут достижения / на первое время добавить типс
-    * TODO Инпут даты
-    * TODO Бага с тайтлом
+        * TODO Переделать инпут достижения / на первое время добавить типс
+        * TODO Инпут даты
+        * TODO Бага с тайтлом
 
-    * TODO Список с пустыми профилями
+        * TODO Список с пустыми профилями
 
 
-    Работа с данными:
-    * TODO Проверить корректное получение
+        Работа с данными:
+        * TODO Проверить корректное получение
 
-    * TODO Формирование json в ответе
-    TODO Переходы с аккаунта
-    TODO Скрыть лишние инпуты
+        * TODO Формирование json в ответе
+        TODO Переходы с аккаунта
+        TODO Скрыть лишние инпуты
 
-    Баги:
-    TODO Отписать Антону подробнее о кейсе воспроизведения хуйни с названиями
+        Баги:
+        TODO Отписать Антону подробнее о кейсе воспроизведения хуйни с названиями
 
-    После правок по бэку:
-    ! getRequestData():
-        ! education лишнее
-        ! не хватает -> email: this.form.email
-    */
+        После правок по бэку:
+        ! getRequestData():
+            ! education лишнее
+            ! не хватает -> email: this.form.email
+        */
     import TitleSection from '../../unitComponents/TitleSection';
     import mixin from '../../../utils/methodsMixin';
     import Preloader from './../../unitComponents/CommonElements/Preloader';
@@ -212,6 +238,8 @@
         mixins: [mixin],
         data() {
             return {
+                test: '',
+                achievementsLenght: Number,
                 loadSuccess: false,
                 form: {
                     fullname: '',
@@ -220,7 +248,12 @@
                     avatar: '',
                     dateOfBirth: '',
                     research: [],
-                    achievements: [],
+                    achievements: [
+                        {
+                            name: '',
+                            date: '',
+                        },
+                    ],
                 },
                 /* Объект */
 
@@ -259,8 +292,8 @@
                 },
 
                 /* При загрузке изображений отправляем api key imgBB
-                   Если что-то пойдет не так, получить новый можно тут:
-                   https://api.imgbb.com/ */
+                       Если что-то пойдет не так, получить новый можно тут:
+                       https://api.imgbb.com/ */
                 requestData: {
                     key: '2ca9c35e0d42896ec7e746b5daf2c924',
                 },
@@ -271,20 +304,13 @@
             getRequestData() {
                 const form = this.form;
                 return {
-                    achievements: form.achievements.map((attainment) => {
-                        attainment = attainment.split(' - ');
-                        const name = attainment[0];
-                        const date = attainment[1];
-                        return {
-                            name,
-                            date,
-                        };
-                    }),
+                    achievements: form.achievements,
                     date: this.form.dateOfBirth
                         .split('-')
                         .reverse()
                         .join('.'),
                     imageLink: form.avatar,
+                    email: form.email,
                     institution: form.tag,
                     name: form.fullname,
                     pageId: this.entityId,
@@ -293,13 +319,11 @@
                     }),
                     specialisation: form.specialty,
                     tag: form.tag,
-                    // ! education лишнее
-                    // ! не хватает -> email: this.form.email
                 };
             },
 
             /* Хук успешной загрузки изображения (аватар)
-               При успешной загрузке заполняем скрытый инпут урлом из ответа */
+                   При успешной загрузке заполняем скрытый инпут урлом из ответа */
             successLoadHookAvatar(res) {
                 this.form.avatar = res.data.url;
             },
@@ -344,6 +368,7 @@
             onSubmit(form) {
                 this.$refs[form].validate(async (valid) => {
                     if (valid) {
+                        console.debug('Отправляем', data);
                         let data = this.getRequestData();
                         if (this.mode === 'create') {
                             this.addResearcher(data).then(() => {
@@ -360,8 +385,25 @@
                     }
                 });
             },
+
+            /* Хэндлер удаления достижения */
+            deliteAchievement(event, index) {
+                this.achievementsLenght--;
+                this.form.achievements.splice(index, 1);
+            },
+
+            /* Хэндлер добавления достижения */
+            addAchievement() {
+                this.achievementsLenght++;
+                this.form.achievements.push({
+                    name: '',
+                    date: '',
+                });
+            },
         },
         async mounted() {
+            //! FIXME
+
             /* Список исследований */
             await axios({
                 method: 'GET',
@@ -382,11 +424,11 @@
                 if (this.mode === 'edit') {
                     const formData = response.data[this.status].filter((entity) => entity.pageId === this.entityId)[0];
 
-                    console.log('Объект с сервера', formData);
+                    console.debug('Получаем', formData);
 
                     this.form.fullname = formData.name;
                     this.form.specialty = formData.specialisation;
-                    this.form.email = '...';
+                    this.form.email = formData.email;
 
                     this.form.research = formData.researchIds?.map((id) => {
                         return this.researchList.find((research) => research.id === id);
@@ -404,9 +446,20 @@
                         .reverse()
                         .join('-');
 
-                    this.form.achievements = formData.achievements.map((i) => i.name + ' - ' + i.date);
+                    this.form.achievements = formData.achievements?.map((i) => {
+                        return {
+                            name: i.name,
+                            date: i.date,
+                        };
+                    }) || {
+                        name: '',
+                        date: '',
+                    };
 
-                    /* Получаем исследования */
+                    /* Кол-во достижений выносим в отдельную переменную во избежание
+                    вызова observer'а при редактировании инпута */
+                    this.achievementsLenght = this.form.achievements.length;
+
                     this.loadSuccess = true;
                 }
             });
@@ -428,6 +481,17 @@
     };
 </script>
 <style scoped>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none !important;
+        margin: 0 im !important;
+    }
+
+    .achievements .addAchievementsBtn {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
     .el-upload__tip {
         line-height: normal;
     }
