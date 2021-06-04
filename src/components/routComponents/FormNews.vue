@@ -289,6 +289,7 @@
                 this.$refs[formName].validate(async (valid) => {
                     if (valid) {
                         let data = this.getRequestData();
+                        console.debug('Отправляем', data);
                         if (this.mode === 'create') {
                             this.addNews(data).then(() => {
                                 this.$router.push({ name: 'AdminNewsPage' });
@@ -434,6 +435,8 @@
                 this.form.preview = this.previewfileList[0].url;
                 this.form.date = this.NEWS_DATE.DATE[0].date;
             }
+
+            console.debug('Данные формы', this.form);
 
             this.loadSuccess = true;
         },

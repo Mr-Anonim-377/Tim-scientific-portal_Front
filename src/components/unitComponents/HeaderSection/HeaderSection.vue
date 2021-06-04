@@ -1,4 +1,4 @@
-<template>
+§<template>
     <section class="headerSection">
         <!--Верхняя часть хедера-->
         <div class="headerSection-container">
@@ -78,7 +78,7 @@
                     <div class="popup">
                         <router-link
                             v-for="way in ways.WAYS_ITEM"
-                            :key="way"
+                            :key="way.title"
                             style="text-decoration: none"
                             :to="{ path: `/all-research/${way._pageLink}` }"
                         >
@@ -149,7 +149,7 @@
                     <span class="login">Аккаунт {{ accountName }}</span>
 
                     <div class="popup">
-                        <router-link style="text-decoration: none" :to="{ name: 'AdminNewsPage', params: { tag: this.encodeData } }">
+                        <router-link style="text-decoration: none" :to="{ name: 'AdminNewsPage' }">
                             <p>Администрирование</p>
                         </router-link>
                         <p @click="logOut">Выход</p>
@@ -176,9 +176,9 @@
     export default {
         name: 'headerSection',
         props: {
-            ways: [],
-            news: [],
-            isAuth: String,
+            ways: Object,
+            news: Object,
+            isAuth: Boolean,
         },
 
         data() {

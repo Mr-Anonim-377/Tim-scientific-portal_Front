@@ -369,6 +369,7 @@
                 this.$refs[form].validate(async (valid) => {
                     if (valid) {
                         let data = this.getRequestData();
+                        console.debug('Отправляем', data);
                         if (this.mode === 'create') {
                             this.addResearcher(data).then(() => {
                                 this.$router.push({ name: 'AdminPartyPage' });
@@ -402,26 +403,27 @@
         },
         async mounted() {
             /* Список исследований */
-            await axios({
-                method: 'GET',
-                url: '/user/allEntityInstance?type=RESEARCH',
-            }).then((responce) => {
-                this.researchList = responce.data.map((researcher) => {
-                    return {
-                        value: researcher.name,
-                        id: researcher.pageId,
-                    };
+            try {
+                await axios({
+                    method: 'GET',
+                    url: '/user/allEntityInstance?type=RESEARCH',
+                }).then((responce) => {
+                    this.researchList = responce.data.map((researcher) => {
+                        return {
+                            value: researcher.name,
+                            id: researcher.pageId,
+                        };
+                    });
                 });
-            });
-
+            } catch {
+                console.debug('Упало: allEntityInstance?type=RESEARCH');
+            }
             if (this.mode === 'edit') {
                 axios({
                     method: 'GET',
                     url: '/user/allEntityInstance?type=RESEARCHER',
                 }).then((response) => {
                     const formData = response.data[this.status].filter((entity) => entity.pageId === this.entityId)[0];
-
-                    console.debug('Получаем', formData);
 
                     this.form.fullname = formData.name;
                     this.form.specialty = formData.specialisation;
@@ -452,6 +454,9 @@
                         name: '',
                         date: '',
                     };
+
+                    console.debug('Получаем', formData);
+                    console.debug('Данные формы', this.form);
 
                     /* Кол-во достижений выносим в отдельную переменную во избежание
                     вызова observer'а при редактировании инпута */

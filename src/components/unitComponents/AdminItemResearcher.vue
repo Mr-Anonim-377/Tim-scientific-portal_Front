@@ -62,10 +62,6 @@
                 });
             },
         },
-
-        mounted() {
-            console.log(this.sectionData);
-        },
     };
 </script>
 

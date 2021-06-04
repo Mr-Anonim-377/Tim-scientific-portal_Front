@@ -362,6 +362,8 @@
                 this.$refs[form].validate(async (valid) => {
                     if (valid) {
                         let data = this.getRequestData();
+                        console.debug('Отправляем', data);
+
                         if (this.mode === 'create') {
                             this.addResearch(data).then(() => {
                                 this.$router.push({ name: 'AdminResearchPage' });
@@ -448,6 +450,9 @@
                     });
                     this.form.imgs = this.previewImages.slider;
                     this.loadSuccess = true;
+
+                    console.debug('Получаем', formData[0]);
+                    console.debug('Данные формы', this.form);
                 });
             } else {
                 this.loadSuccess = true;

@@ -40,10 +40,6 @@
                 });
             },
         },
-
-        mounted() {
-            console.log(this.type);
-        },
     };
 </script>
 
