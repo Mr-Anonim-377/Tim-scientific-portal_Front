@@ -16,7 +16,7 @@
             </div>
 
             <!-- список-->
-            <AdminItem :sectionData="availableEntities" formName="FormNews" type="NEWS" />
+            <AdminItem :sectionData="availableEntities" formName="FormNews" type="FULL_NEWS_PAGE" />
         </section>
     </div>
 
