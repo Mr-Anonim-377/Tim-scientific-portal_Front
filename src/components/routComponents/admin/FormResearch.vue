@@ -428,7 +428,7 @@
 
                     /* Засовываем даныне в модель */
                     this.form.name = formData[0].name;
-                    this.form.text = formData[0].text[0];
+                    this.form.text = formData[0].text.join('\n');
                     this.form.previewImageLink = formData[0].previewImageLink;
                     this.form.researcherUids = formData[0].researcherUids?.map((researcherId) => {
                         return this.researcherList.find((researcher) => researcher.id === researcherId).value;
