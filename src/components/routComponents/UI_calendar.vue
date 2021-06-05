@@ -9,14 +9,14 @@
                 <el-row type="flex" justify="center">
                     <el-col>
                         <h1>Название события</h1>
-                        <el-form-item prop="title">
+                        <el-form-item prop="name">
                             <el-input
                                 type="textarea"
                                 maxlength="250"
                                 :autosize="{ minRows: 3, maxRows: 3 }"
                                 show-word-limit
                                 resize="none"
-                                v-model="form.title"
+                                v-model="form.name"
                                 placeholder="Название"
                             ></el-input>
                         </el-form-item>
@@ -73,15 +73,15 @@
                 <el-row type="flex" justify="center">
                     <el-col>
                         <h1>Краткое описание события</h1>
-                        <el-form-item prop="shortTitle">
+                        <el-form-item prop="previewText">
                             <el-input
                                 type="textarea"
                                 maxlength="70"
                                 :autosize="{ minRows: 2, maxRows: 3 }"
                                 show-word-limit
                                 resize="none"
-                                v-model="form.shortTitle"
-                                placeholder="Место"
+                                v-model="form.previewText"
+                                placeholder="Краткое описание"
                             ></el-input>
                         </el-form-item>
                     </el-col>
@@ -114,28 +114,29 @@
                             </template>
                         </el-upload>
                     </el-col>
-                    <el-col :span="12">
-                        <h1>Добавить документ</h1>
-                        <el-form-item>
-                            <el-upload
-                                class="upload-demo"
-                                action="https://api.imgbb.com/1/upload"
-                                multiple
-                                :data="requestData"
-                                list-type="document"
-                                :file-list="documentCalendar"
-                                :v-model="form.documentCalendar"
-                                :limit="1"
-                                :on-success="successLoadHookDocument"
-                                name="link"
-                            >
-                                <el-button size="middle" type="success" plain>Выберите документ</el-button>
-                                <template #tip>
-                                    <div class="el-upload__tip">pdf файл размером не более 500кб</div>
-                                </template>
-                            </el-upload>
-                        </el-form-item>
-                    </el-col>
+
+<!--                    <el-col :span="12">-->
+<!--                        <h1>Добавить документ</h1>-->
+<!--                        <el-form-item>-->
+<!--                            <el-upload-->
+<!--                                class="upload-demo"-->
+<!--                                action="https://api.imgbb.com/1/upload"-->
+<!--                                multiple-->
+<!--                                :data="requestData"-->
+<!--                                list-type="document"-->
+<!--                                :file-list="documentCalendar"-->
+<!--                                :v-model="form.documentCalendar"-->
+<!--                                :limit="1"-->
+<!--                                :on-success="successLoadHookDocument"-->
+<!--                                name="link"-->
+<!--                            >-->
+<!--                                <el-button size="middle" type="success" plain>Выберите документ</el-button>-->
+<!--                                <template #tip>-->
+<!--                                    <div class="el-upload__tip">pdf файл размером не более 500кб</div>-->
+<!--                                </template>-->
+<!--                            </el-upload>-->
+<!--                        </el-form-item>-->
+<!--                    </el-col>-->
                 </el-row>
 
                 <div class="form">
@@ -199,7 +200,7 @@
             /* Хук успешной загрузки изображения (инпут слайдера)
             При успешной загрузке заполняем скрытый инпут урлом из ответа */
             successLoadHookSlider(res, file, fileList) {
-                this.form.slider = fileList.map((image) => {
+                this.form.imageLinks = fileList.map((image) => {
                     return { name: image.name, url: image.response ? image.response.data.url : image.url };
                 });
             },
@@ -214,28 +215,9 @@
 
             /* Хук удаления изображения (инпут слайдера) */
             removeImageHookSlider(res, fileList) {
-                this.form.slider = fileList;
+                this.form.imageLinks = fileList;
             },
 
-            transformHhtmlLinks(string) {
-                return string
-                    .split(' ')
-                    .map((word) => {
-                        if (word.slice(0, 5) === 'https') return `<a href=${word}}">${word}</a>`;
-                        return word;
-                    })
-                    .join(' ');
-            },
-            //Изменение тега
-            transformTag() {
-                this._tag = this.tag.slice(2, 4) + '.' + this.tag.slice(0, 2);
-            },
-            reqTag() {
-                this.form.tag = this.tag
-                    .split('.')
-                    .reverse()
-                    .join('');
-            },
             /**
              * Метод добавления события
              * @param {object} data - тело запроса на создание события
@@ -300,13 +282,12 @@
             getRequestData() {
                 /* Переменная для транформации закрытых тегов */
                 return {
-                    name: this.form.title,
-                    previewImageLink: this.form.preview,
-                    imageLinks: this.form.slider?.map((image) => image.url) || [],
-                    text: this.form.text,
-                    previewText: this.form.shortTitle,
+                    tag: this.form.tag.split('.').reverse().join(''),
+                    name: this.form.name,
+                    imageLinks: this.form.imageLinks?.map((image) => image.url) || [],
+                    text: this.form.text.replace(/\n/g, ";"),
+                    previewText: this.form.previewText,
                     date: this.form.date,
-                    tag: this.form.tag,
                     place: this.form.place,
                 };
             },
@@ -322,31 +303,31 @@
 
                 /* Поля формы */
                 form: {
-                    title: '',
-                    shortTitle: '',
+                    name: '',
+                    previewText: '',
                     date: '',
                     text: [],
                     place: '',
-                    slider: [],
+                    imageLinks: [],
                     documentCalendar: [],
                     tag: '',
                 },
 
                 /* Правила валидации для формы */
                 rules: {
-                    title: [
+                  name: [
                         { required: true, message: "Пожалуйста, заполните поле 'Название события'", trigger: 'blur' },
                         { min: 10, message: 'Название должно содержать минимум 10 символов' },
                     ],
                     date: [
                         { required: true, message: "Пожалуйста, заполните поле 'Дата проведения'", trigger: 'blur' },
-                        { min: 10, message: 'Дата проведения должна содержать минимум 10 символов' },
+                        { min: 3, message: 'Дата проведения должна содержать минимум 3 символов' },
                     ],
                     place: [
                         { required: true, message: "Пожалуйста, заполните поле 'Место проведения события'", trigger: 'blur' },
                         { min: 6, message: 'Место проведения должно содержать минимум 6 символов' },
                     ],
-                    shortTitle: [
+                    previewText: [
                         { required: true, message: "Пожалуйста, заполните поле 'Краткое описание события'", trigger: 'blur' },
                         { min: 10, message: 'Краткое описание должно содержать минимум 10 символов' },
                     ],
@@ -364,7 +345,7 @@
 
                 /* Загружаемые изображения */
                 loadedImages: {
-                    slider: [],
+                  imageLinks: [],
                 },
 
                 /* При загрузке изображений отправляем api key imgBB
@@ -390,18 +371,28 @@
         async mounted() {
             /* Если форма открыта в режиме редактирования - загружаем данные по id события */
             if (this.mode === 'edit') {
+              axios({
+                method: 'GET',
+                url: '/user/allEntityInstance?type=RESEARCH',
+              }).then((response) => {
+                const formData = response.data.filter((entity) => entity.pageId === this.entityId);
+                this.form.tag = formData[0].tag.slice(2, 4) + '.' + formData[0].tag.slice(0, 2);
+                this.form.previewText = formData[0]?.previewText;
+              });
+
+
                 await this.getModulesTest(' ', this.entityId);
                 await this.getModulesTest('MAIN_PAGE');
                 /* Заполняем инпуты */
-                this.form.title = this.CALENDAR_BANNER.TITLE[0].title;
+                this.form.name = this.CALENDAR_BANNER.TITLE[0].title;
                 this.form.place = this.CALENDAR_BANNER.TEXT[0].text;
                 this.form.date = this.CALENDAR_BANNER.DATE[0].date;
 
-                this.form.shortTitle = this.ACTIONS_CALENDAR.ACTION.filter((action) => action.entityId === this._pageLink)[0]?.text;
-                this.form.tag = this.ACTIONS_CALENDAR.ACTION.filter((action) => action.entityId === this._pageLink)[0]?._tag;
-                // ACTIONS_CALENDAR.ACTION.find((action) => action._pageLink === this.entityId)[0]?
+                // this.form.previewText = this.ACTIONS_CALENDAR.ACTION.filter((action) => action.entityId === this._pageLink)[0].text;
+                // this.form.tag = this.ACTIONS_CALENDAR.ACTION.filter((action) => action.entityId === this._pageLink)[0]._tag;
 
-                this.form.text = this.transformHhtmlLinks(this.CALENDAR_TEXT.TEXT[0].text);
+
+                this.form.text = this.CALENDAR_TEXT.TEXT[0].text.replace(/;/g, "\n");
                 this.sliderFileList = this.CALENDAR_SLIDER?.IMAGE?.map((image, i) => {
                     return {
                         name: 'Изображение ' + (i + 1),
@@ -414,11 +405,10 @@
                         url: link?.link,
                     };
                 });
-                this.form.slider = this.sliderFileList;
+                this.form.imageLinks = this.sliderFileList;
                 this.debug('Данные формы', this.form);
             }
             this.loadSuccess = true;
-            console.log(this.ACTIONS_CALENDAR.ACTION);
         },
     };
 </script>
