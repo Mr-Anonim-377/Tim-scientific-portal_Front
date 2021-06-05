@@ -289,13 +289,14 @@
                 this.$refs[formName].validate(async (valid) => {
                     if (valid) {
                         let data = this.getRequestData();
-                        console.debug('Отправляем', data);
                         if (this.mode === 'create') {
+                            this.debug('Отправляем', data, true);
                             this.addNews(data).then(() => {
                                 this.$router.push({ name: 'AdminNewsPage' });
                             });
                         } else {
                             data.pageId = this.entityId;
+                            this.debug('Отправляем', data, true);
                             this.updateNews(data).then(() => {
                                 this.$router.push({ name: 'AdminNewsPage' });
                             });
@@ -436,7 +437,7 @@
                 this.form.date = this.NEWS_DATE.DATE[0].date;
             }
 
-            console.debug('Данные формы', this.form);
+            this.debug('Данные формы', this.form);
 
             this.loadSuccess = true;
         },

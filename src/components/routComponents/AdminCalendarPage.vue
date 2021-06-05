@@ -65,7 +65,7 @@
             })
                 .then((response) => {
                     this.availableEntities = response.data;
-                    console.debug('Доступные сущности', this.availableEntities);
+                    this.debug('Доступные сущности', this.availableEntities);
                 })
                 .finally(() => {
                     this.loadSuccess = true;

@@ -364,14 +364,14 @@
                 this.$refs[form].validate(async (valid) => {
                     if (valid) {
                         let data = this.getRequestData();
-                        console.debug('Отправляем', data);
-
                         if (this.mode === 'create') {
+                            this.debug('Отправляем', data, true);
                             this.addResearcher(data).then(() => {
                                 this.$router.push({ name: 'AdminPartyPage' });
                             });
                         } else {
                             data.pageId = this.entityId;
+                            this.debug('Отправляем', data, true);
                             this.updateResearcher(data).then(() => {
                                 this.$router.push({ name: 'AdminPartyPage' });
                             });
@@ -412,7 +412,7 @@
                     });
                 });
             } catch {
-                console.debug('Упало: allEntityInstance?type=RESEARCH');
+                this.debug('Упало: allEntityInstance?type=RESEARCH');
             }
             if (this.mode === 'edit') {
                 axios({
@@ -449,8 +449,8 @@
                             };
                         }) || [];
 
-                    console.debug('Получаем', formData);
-                    console.debug('Данные формы', this.form);
+                    this.debug('Получаем', formData);
+                    this.debug('Данные формы', this.form);
 
                     /* Кол-во достижений выносим в отдельную переменную во избежание
                     вызова observer'а при редактировании инпута */

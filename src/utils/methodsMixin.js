@@ -141,6 +141,25 @@ export default {
                     });
             });
         },
+
+        /**
+         * Дебаггер
+         *
+         * @param {string} message - сообщение для дебага
+         * @param {any} data - объект для дебага
+         * @param {boolean} useDebugger - если true, ставится точка остановки после вывода в консоль
+         *
+         * self используется для доступа к компоненту vue с консоли браузера (this в коде)
+         */
+        debug(message, data, useDebugger) {
+            console.debug(message, data);
+            if (useDebugger) {
+                //eslint-disable-next-line
+                const self = this;
+                //eslint-disable-next-line
+                debugger;
+            }
+        },
     },
 
     mounted() {
@@ -157,7 +176,6 @@ export default {
             /**
              * Возвращаем скролл после загрузки
              */
-
             document.querySelector('body').style.overflow = 'visible';
         },
     },

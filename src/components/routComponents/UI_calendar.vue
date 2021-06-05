@@ -273,8 +273,8 @@
                 this.$refs[formName].validate(async (valid) => {
                     if (valid) {
                         let data = this.getRequestData();
-                        console.debug('Отправляем', data);
                         if (this.mode === 'create') {
+                            this.debug('Отправляем', data, true);
                             this.addCalendar(data).then(() => {
                                 window.location.href = window.location.origin;
                             });
@@ -282,6 +282,8 @@
                             /* Удаляем тэг и добавляем pageId в тело запроса */
                             delete data.tag;
                             data.pageId = this.entityId;
+
+                            this.debug('Отправляем', data, true);
                             this.updateCalendar(data).then(() => {
                                 window.location.href = window.location.origin;
                             });
@@ -413,7 +415,7 @@
                     };
                 });
                 this.form.slider = this.sliderFileList;
-                console.debug('Данные формы', this.form);
+                this.debug('Данные формы', this.form);
             }
             this.loadSuccess = true;
             console.log(this.ACTIONS_CALENDAR.ACTION);
