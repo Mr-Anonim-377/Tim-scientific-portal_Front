@@ -19,8 +19,11 @@
              * Трансформируем дату формата ДД.ММ.ГГ в тайтл события
              */
             transformDate(string) {
-                let dateArr = string.split('.').slice(0, 2);
-                return +dateArr[0] + ' ' + this.transformMouth(dateArr[1]);
+                if (string) {
+                    let dateArr = string?.split('.').slice(0, 2);
+                    return +dateArr[0] + ' ' + this.transformMouth(dateArr[1]);
+                }
+                return 'Дата не указана';
             },
         },
     };
