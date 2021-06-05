@@ -20,8 +20,6 @@
 </template>
 
 <script>
-    import mixin from '../../utils/methodsMixin';
-
     export default {
         name: 'AccountNavigationSection',
         data() {
@@ -31,19 +29,6 @@
         },
 
         props: { profileData: Object },
-        mixins: [mixin],
-
-        async mounted() {
-            /**
-             * Получаем тут данные о профиле из form
-             * Отсюда можно уже раскидать по роут линкам
-             */
-            /**
-             * Походу profileData надо кидать в каждый компонент, а там кидать обратно в навигацию.
-             * Получается, данные один раз получаются в form а потом по кругу кидаются туда-сюда.
-             */
-            // // console.log(this.profileData);
-        },
     };
 </script>
 
