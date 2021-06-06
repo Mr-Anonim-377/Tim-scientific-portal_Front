@@ -115,28 +115,28 @@
                         </el-upload>
                     </el-col>
 
-<!--                    <el-col :span="12">-->
-<!--                        <h1>Добавить документ</h1>-->
-<!--                        <el-form-item>-->
-<!--                            <el-upload-->
-<!--                                class="upload-demo"-->
-<!--                                action="https://api.imgbb.com/1/upload"-->
-<!--                                multiple-->
-<!--                                :data="requestData"-->
-<!--                                list-type="document"-->
-<!--                                :file-list="documentCalendar"-->
-<!--                                :v-model="form.documentCalendar"-->
-<!--                                :limit="1"-->
-<!--                                :on-success="successLoadHookDocument"-->
-<!--                                name="link"-->
-<!--                            >-->
-<!--                                <el-button size="middle" type="success" plain>Выберите документ</el-button>-->
-<!--                                <template #tip>-->
-<!--                                    <div class="el-upload__tip">pdf файл размером не более 500кб</div>-->
-<!--                                </template>-->
-<!--                            </el-upload>-->
-<!--                        </el-form-item>-->
-<!--                    </el-col>-->
+                    <!--                    <el-col :span="12">-->
+                    <!--                        <h1>Добавить документ</h1>-->
+                    <!--                        <el-form-item>-->
+                    <!--                            <el-upload-->
+                    <!--                                class="upload-demo"-->
+                    <!--                                action="https://api.imgbb.com/1/upload"-->
+                    <!--                                multiple-->
+                    <!--                                :data="requestData"-->
+                    <!--                                list-type="document"-->
+                    <!--                                :file-list="documentCalendar"-->
+                    <!--                                :v-model="form.documentCalendar"-->
+                    <!--                                :limit="1"-->
+                    <!--                                :on-success="successLoadHookDocument"-->
+                    <!--                                name="link"-->
+                    <!--                            >-->
+                    <!--                                <el-button size="middle" type="success" plain>Выберите документ</el-button>-->
+                    <!--                                <template #tip>-->
+                    <!--                                    <div class="el-upload__tip">pdf файл размером не более 500кб</div>-->
+                    <!--                                </template>-->
+                    <!--                            </el-upload>-->
+                    <!--                        </el-form-item>-->
+                    <!--                    </el-col>-->
                 </el-row>
 
                 <div class="form">
@@ -280,12 +280,14 @@
              * Формирование тела запроса из this.form
              */
             getRequestData() {
-                /* Переменная для транформации закрытых тегов */
                 return {
-                    tag: this.form.tag.split('.').reverse().join(''),
+                    tag: this.form.tag
+                        .split('.')
+                        .reverse()
+                        .join(''),
                     name: this.form.name,
                     imageLinks: this.form.imageLinks?.map((image) => image.url) || [],
-                    text: this.form.text.replace(/\n/g, ";"),
+                    text: this.form.text.replace(/\n/g, ';'),
                     previewText: this.form.previewText,
                     date: this.form.date,
                     place: this.form.place,
@@ -315,7 +317,7 @@
 
                 /* Правила валидации для формы */
                 rules: {
-                  name: [
+                    name: [
                         { required: true, message: "Пожалуйста, заполните поле 'Название события'", trigger: 'blur' },
                         { min: 10, message: 'Название должно содержать минимум 10 символов' },
                     ],
@@ -345,7 +347,7 @@
 
                 /* Загружаемые изображения */
                 loadedImages: {
-                  imageLinks: [],
+                    imageLinks: [],
                 },
 
                 /* При загрузке изображений отправляем api key imgBB
@@ -371,15 +373,14 @@
         async mounted() {
             /* Если форма открыта в режиме редактирования - загружаем данные по id события */
             if (this.mode === 'edit') {
-              axios({
-                method: 'GET',
-                url: '/user/allEntityInstance?type=RESEARCH',
-              }).then((response) => {
-                const formData = response.data.filter((entity) => entity.pageId === this.entityId);
-                this.form.tag = formData[0].tag.slice(2, 4) + '.' + formData[0].tag.slice(0, 2);
-                this.form.previewText = formData[0]?.previewText;
-              });
-
+                axios({
+                    method: 'GET',
+                    url: '/user/allEntityInstance?type=RESEARCH',
+                }).then((response) => {
+                    const formData = response.data.filter((entity) => entity.pageId === this.entityId);
+                    this.form.tag = formData[0].tag.slice(2, 4) + '.' + formData[0].tag.slice(0, 2);
+                    this.form.previewText = formData[0]?.previewText;
+                });
 
                 await this.getModulesTest(' ', this.entityId);
                 await this.getModulesTest('MAIN_PAGE');
@@ -391,8 +392,7 @@
                 // this.form.previewText = this.ACTIONS_CALENDAR.ACTION.filter((action) => action.entityId === this._pageLink)[0].text;
                 // this.form.tag = this.ACTIONS_CALENDAR.ACTION.filter((action) => action.entityId === this._pageLink)[0]._tag;
 
-
-                this.form.text = this.CALENDAR_TEXT.TEXT[0].text.replace(/;/g, "\n");
+                this.form.text = this.CALENDAR_TEXT.TEXT[0].text.replace(/;/g, '\n');
                 this.sliderFileList = this.CALENDAR_SLIDER?.IMAGE?.map((image, i) => {
                     return {
                         name: 'Изображение ' + (i + 1),

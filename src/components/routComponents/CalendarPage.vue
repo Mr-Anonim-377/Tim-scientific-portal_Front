@@ -19,7 +19,7 @@
                 </div>
 
                 <p v-for="paragraph in this.CALENDAR_TEXT.TEXT[0].text.split(' ; ')" :key="paragraph" v-html="transformHhtmlLinks(paragraph)"></p>
-                <div class="calendar-container-images">
+                <div v-if="CALENDAR_SLIDER?.IMAGE" class="calendar-container-images">
                     <div v-for="image in CALENDAR_SLIDER.IMAGE" :key="image.image">
                         <img :src="image.image" alt="" />
                     </div>
