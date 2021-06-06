@@ -22,29 +22,29 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
-                <el-row type="flex" justify="center">
-                    <el-col>
-                        <h1>Дата начала события (месяц.год)</h1>
-                        <el-form-item prop="tag">
-                            <el-input
-                                type="textarea"
-                                maxlength="50"
-                                :autosize="{ minRows: 2, maxRows: 3 }"
-                                show-word-limit
-                                resize="none"
-                                v-model="form.tag"
-                                placeholder="Дата"
-                            ></el-input>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
+<!--                <el-row type="flex" justify="center">-->
+<!--                    <el-col>-->
+<!--                        <h1>Дата начала события (месяц.год)</h1>-->
+<!--                        <el-form-item prop="tag">-->
+<!--                            <el-input-->
+<!--                                maxlength="50"-->
+<!--                                :autosize="{ minRows: 2, maxRows: 3 }"-->
+<!--                                show-word-limit-->
+<!--                                resize="none"-->
+<!--                                v-model="form.tag"-->
+<!--                                placeholder="Дата"-->
+<!--                                type="month"-->
+<!--                            ></el-input>-->
+<!--                        </el-form-item>-->
+<!--                    </el-col>-->
+<!--                </el-row>-->
                 <el-row type="flex" justify="center">
                     <el-col>
                         <h1>Дата проведения события</h1>
                         <el-form-item prop="date">
                             <el-input
-                                type="textarea"
-                                maxlength="50"
+                                type="date"
+                                id="dateInput"
                                 :autosize="{ minRows: 2, maxRows: 3 }"
                                 show-word-limit
                                 resize="none"
@@ -281,15 +281,15 @@
              */
             getRequestData() {
                 return {
-                    tag: this.form.tag
-                        .split('.')
-                        .reverse()
-                        .join(''),
+                    tag: this.form.date.slice(2, 4) + this.form.date.slice(5, 7),
                     name: this.form.name,
                     imageLinks: this.form.imageLinks?.map((image) => image.url) || [],
                     text: this.form.text.replace(/\n/g, ' ; '),
                     previewText: this.form.previewText,
-                    date: this.form.date,
+                    date: this.form.date
+                        .split('-')
+                        .reverse()
+                        .join('.'),
                     place: this.form.place,
                 };
             },
@@ -321,10 +321,7 @@
                         { required: true, message: "Пожалуйста, заполните поле 'Название события'", trigger: 'blur' },
                         { min: 10, message: 'Название должно содержать минимум 10 символов' },
                     ],
-                    date: [
-                        { required: true, message: "Пожалуйста, заполните поле 'Дата проведения'", trigger: 'blur' },
-                        { min: 3, message: 'Дата проведения должна содержать минимум 3 символов' },
-                    ],
+                    date: [{ type: 'date', required: true, message: 'Пожалуйста, выберите или напишите дату проведения события', trigger: 'blur' }],
                     place: [
                         { required: true, message: "Пожалуйста, заполните поле 'Место проведения события'", trigger: 'blur' },
                         { min: 6, message: 'Место проведения должно содержать минимум 6 символов' },
@@ -373,26 +370,16 @@
         async mounted() {
             /* Если форма открыта в режиме редактирования - загружаем данные по id события */
             if (this.mode === 'edit') {
-                axios({
-                    method: 'GET',
-                    url: '/user/allEntityInstance?type=RESEARCH',
-                }).then((response) => {
-                    const formData = response.data.filter((entity) => entity.pageId === this.entityId);
-                    this.form.tag = formData[0].tag.slice(2, 4) + '.' + formData[0].tag.slice(0, 2);
-                    this.form.previewText = formData[0]?.previewText;
-                });
-
                 await this.getModulesTest(' ', this.entityId);
                 await this.getModulesTest('MAIN_PAGE');
                 /* Заполняем инпуты */
                 this.form.name = this.CALENDAR_BANNER.TITLE[0].title;
                 this.form.place = this.CALENDAR_BANNER.TEXT[0].text;
-                this.form.date = this.CALENDAR_BANNER.DATE[0].date;
 
-                // this.form.previewText = this.ACTIONS_CALENDAR.ACTION.filter((action) => action.entityId === this._pageLink)[0].text;
-                // this.form.tag = this.ACTIONS_CALENDAR.ACTION.filter((action) => action.entityId === this._pageLink)[0]._tag;
-
+                this.form.previewText = this.ACTIONS_CALENDAR.ACTION.filter((action) => action._pageLink === this.entityId)[0].text;
+                this.form.tag = this.ACTIONS_CALENDAR.ACTION.filter((action) => action._pageLink === this.entityId)[0]._tag;
                 this.form.text = this.CALENDAR_TEXT.TEXT[0].text.replace(/;/g, '\n');
+                this.form.date = this.ACTIONS_CALENDAR.ACTION.filter((action) => action._pageLink === this.entityId)[0].date.split('.').reverse().join('-');
                 this.sliderFileList = this.CALENDAR_SLIDER?.IMAGE?.map((image, i) => {
                     return {
                         name: 'Изображение ' + (i + 1),
