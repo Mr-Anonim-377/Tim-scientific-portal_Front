@@ -76,7 +76,7 @@
                         <el-form-item prop="previewText">
                             <el-input
                                 type="textarea"
-                                maxlength="300"
+                                maxlength="200"
                                 :autosize="{ minRows: 2, maxRows: 3 }"
                                 show-word-limit
                                 resize="none"
@@ -99,7 +99,7 @@
                             multiple
                             :data="requestData"
                             list-type="picture"
-                            :limit="7"
+                            :limit="3"
                             :file-list="sliderFileList"
                             :v-model="form.sliderFileList"
                             :before-upload="beforeUploadHook"
@@ -261,8 +261,6 @@
                                 window.location.href = window.location.origin;
                             });
                         } else {
-                            /* Удаляем тэг и добавляем pageId в тело запроса */
-                            delete data.tag;
                             data.pageId = this.entityId;
 
                             this.debug('Отправляем', data, true);

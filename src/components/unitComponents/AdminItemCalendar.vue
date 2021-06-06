@@ -33,7 +33,8 @@
                     method: 'DELETE',
                     url: '/user/delete',
                     params: { pageId: id, entityType: this.type },
-                }).then(() => {
+                }).finally(() => {
+                    //finally заменить на then после показа
                     this.$router.go();
                 });
             },
