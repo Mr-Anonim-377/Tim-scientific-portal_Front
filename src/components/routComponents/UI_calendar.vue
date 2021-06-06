@@ -287,7 +287,7 @@
                         .join(''),
                     name: this.form.name,
                     imageLinks: this.form.imageLinks?.map((image) => image.url) || [],
-                    text: this.form.text.replace(/\n/g, ';'),
+                    text: this.form.text.replace(/\n/g, ' ; '),
                     previewText: this.form.previewText,
                     date: this.form.date,
                     place: this.form.place,
