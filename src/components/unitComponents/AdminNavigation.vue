@@ -6,8 +6,8 @@
             <router-link style="text-decoration: none" :to="{ name: 'AdminCalendarPage' }"><li>События</li></router-link>
 
             <router-link style="text-decoration: none" :to="{ name: 'AdminPartyPage' }"><li>Исследователи</li></router-link>
-            <!-- <router-link style="text-decoration: none" :to="{ name: 'AdminDocumentPage' }"><li>Документы</li></router-link> -->
-            <li class="disable">Документы</li>
+
+            <router-link style="text-decoration: none" :to="{ name: 'AdminDocumentPage' }"><li>Документы</li></router-link>
         </ul>
     </div>
 </template>

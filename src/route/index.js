@@ -38,6 +38,7 @@ import AdminResearchPage from '../components/routComponents/AdminResearchPage';
 import FormNews from '../components/routComponents/FormNews.vue';
 import FormResearcher from '../components/routComponents/admin/FormResearcher.vue';
 import FormResearch from '../components/routComponents/admin/FormResearch.vue';
+import FormDocuments from '../components/routComponents/admin/FormDocuments.vue';
 import UI_calendar from '../components/routComponents/UI_calendar';
 
 const routes = [
@@ -244,7 +245,6 @@ const routes = [
     },
     {
         path: '/FormResearcher/:entityId?/:status?/:mode',
-        // path: '/FormResearcher/:mode',
         name: 'FormResearcher',
         component: FormResearcher,
         props: true,
@@ -255,6 +255,13 @@ const routes = [
         component: FormResearch,
         props: true,
     },
+    {
+        path: '/FormDocuments/:entityId?/:mode',
+        name: 'FormDocuments',
+        component: FormDocuments,
+        props: true,
+    },
+
     {
         path: '/UI_calendar/:entityId?/:mode',
         name: 'UI_calendar',
