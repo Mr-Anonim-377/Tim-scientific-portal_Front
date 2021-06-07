@@ -22,22 +22,22 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
-<!--                <el-row type="flex" justify="center">-->
-<!--                    <el-col>-->
-<!--                        <h1>Дата начала события (месяц.год)</h1>-->
-<!--                        <el-form-item prop="tag">-->
-<!--                            <el-input-->
-<!--                                maxlength="50"-->
-<!--                                :autosize="{ minRows: 2, maxRows: 3 }"-->
-<!--                                show-word-limit-->
-<!--                                resize="none"-->
-<!--                                v-model="form.tag"-->
-<!--                                placeholder="Дата"-->
-<!--                                type="month"-->
-<!--                            ></el-input>-->
-<!--                        </el-form-item>-->
-<!--                    </el-col>-->
-<!--                </el-row>-->
+                <!--                <el-row type="flex" justify="center">-->
+                <!--                    <el-col>-->
+                <!--                        <h1>Дата начала события (месяц.год)</h1>-->
+                <!--                        <el-form-item prop="tag">-->
+                <!--                            <el-input-->
+                <!--                                maxlength="50"-->
+                <!--                                :autosize="{ minRows: 2, maxRows: 3 }"-->
+                <!--                                show-word-limit-->
+                <!--                                resize="none"-->
+                <!--                                v-model="form.tag"-->
+                <!--                                placeholder="Дата"-->
+                <!--                                type="month"-->
+                <!--                            ></el-input>-->
+                <!--                        </el-form-item>-->
+                <!--                    </el-col>-->
+                <!--                </el-row>-->
                 <el-row type="flex" justify="center">
                     <el-col>
                         <h1>Дата проведения события</h1>
@@ -258,14 +258,16 @@
                         if (this.mode === 'create') {
                             this.debug('Отправляем', data, true);
                             this.addCalendar(data).then(() => {
-                                window.location.href = window.location.origin;
+                                this.$router.push({ name: 'AdminCalendarPage' });
+                                // window.location.href = window.location.origin;
                             });
                         } else {
                             data.pageId = this.entityId;
 
                             this.debug('Отправляем', data, true);
                             this.updateCalendar(data).then(() => {
-                                window.location.href = window.location.origin;
+                                this.$router.push({ name: 'AdminCalendarPage' });
+                                // window.location.href = window.location.origin;
                             });
                         }
                     } else {
@@ -377,7 +379,10 @@
                 this.form.previewText = this.ACTIONS_CALENDAR.ACTION.filter((action) => action._pageLink === this.entityId)[0].text;
                 this.form.tag = this.ACTIONS_CALENDAR.ACTION.filter((action) => action._pageLink === this.entityId)[0]._tag;
                 this.form.text = this.CALENDAR_TEXT.TEXT[0].text.replace(/;/g, '\n');
-                this.form.date = this.ACTIONS_CALENDAR.ACTION.filter((action) => action._pageLink === this.entityId)[0].date.split('.').reverse().join('-');
+                this.form.date = this.ACTIONS_CALENDAR.ACTION.filter((action) => action._pageLink === this.entityId)[0]
+                    .date.split('.')
+                    .reverse()
+                    .join('-');
                 this.sliderFileList = this.CALENDAR_SLIDER?.IMAGE?.map((image, i) => {
                     return {
                         name: 'Изображение ' + (i + 1),
