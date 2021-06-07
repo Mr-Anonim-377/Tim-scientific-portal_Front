@@ -104,7 +104,7 @@
                 },
                 /* Параметры запроса на загрузку файлов */
                 requestData: {
-                    // TODO Указать корректный путь
+                    // TODO Указать корректный путь для хранения доков на серваке
                     // uploadFilePath: '/var/www/html/test',
                     uploadFilePath: 'test',
                     name: '',
@@ -133,7 +133,7 @@
              * TODO Написать валидацию
              */
             beforeUploadHook(file) {
-                this.debug('валидация', file, true);
+                // this.debug('валидация', file, true);
                 /* const validFormat = file.type === 'image/jpeg' || file.type === 'image/png';
                 const validSize = file.size <= 500000;
 
@@ -144,7 +144,6 @@
 
                 /* Кладем имя файла в параметр к запросу */
                 this.requestData.name = file.name;
-                console.log(file);
                 return true;
             },
 
