@@ -92,7 +92,7 @@
     .project {
         max-width: 1200px;
         align-items: center;
-        margin: 46px auto 100px auto;
+        margin: 85px auto 100px auto;
     }
     .project-container {
         display: flex;

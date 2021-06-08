@@ -111,7 +111,7 @@
                             >
                                 <el-button size="middle" type="success" plain>Выберите изображение</el-button>
                                 <template #tip>
-                                    <div class="el-upload__tip">1 изображение для отображения в ленте новостей</div>
+                                    <div class="el-upload__tip">1 изображение для отображения на странице профиля исследователя</div>
                                     <div class="el-upload__tip">jpg/png файл размером не более 500кб</div>
                                 </template>
                             </el-upload>

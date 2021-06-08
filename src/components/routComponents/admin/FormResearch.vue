@@ -118,7 +118,7 @@
                             >
                                 <el-button size="middle" type="success" plain>Выберите изображения</el-button>
                                 <template #tip>
-                                    <div class="el-upload__tip">До 7 изображений для отображения в слайдере</div>
+                                    <div class="el-upload__tip">От 3 до 7 изображений для отображения в слайдере</div>
                                     <div class="el-upload__tip">jpg/png файлы размером не более 500кб</div>
                                 </template>
                                 <!-- Скрытый form-item для слайдера  -->

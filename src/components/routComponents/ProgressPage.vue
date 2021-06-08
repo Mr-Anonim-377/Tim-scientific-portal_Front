@@ -7,13 +7,16 @@
                 <account-navigation-section />
 
                 <div class="progress-block-inf__container">
-                    <div class="progress-block-inf" v-for="dataProgress in this.ACHIEVEMENTS.COLLEGE" :key="dataProgress">
-                        <div class="inf-img">
-                            <img src="../../assets/image/progress-Img.svg" />
-                        </div>
-                        <div class="inf-text">
-                            <p>{{ dataProgress.title }}</p>
-                            <span class="inf-text__years">{{ dataProgress.date }}</span>
+                    <h2>{{ ACHIEVEMENTS ? 'Список наград и премий' : 'Информация отсутствует в системе' }}</h2>
+                    <div v-if="ACHIEVEMENTS">
+                        <div class="progress-block-inf" v-for="dataProgress in this.ACHIEVEMENTS.COLLEGE" :key="dataProgress">
+                            <div class="inf-img">
+                                <img src="../../assets/image/progress-Img.svg" />
+                            </div>
+                            <div class="inf-text">
+                                <p>{{ dataProgress.title }}</p>
+                                <span class="inf-text__years">{{ dataProgress.date }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -133,6 +136,7 @@
     }
     .progress-block-inf__container {
         width: 100%;
+        margin-left: 127px;
     }
     /* .inf-text__years:after {
         content: '';
