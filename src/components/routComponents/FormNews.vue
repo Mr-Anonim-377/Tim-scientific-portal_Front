@@ -261,7 +261,7 @@
                     axios({
                         method: 'POST',
                         url: '/user/create/news',
-                        data: JSON.stringify(data),
+                        data: data,
                     }).then((response) => {
                         res(response.data);
                     });
@@ -277,7 +277,7 @@
                     axios({
                         method: 'POST',
                         url: '/user/update/news',
-                        data: JSON.stringify(data),
+                        data: data,
                     }).then((response) => {
                         res(response.data);
                     });
