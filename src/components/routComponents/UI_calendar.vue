@@ -227,7 +227,7 @@
                     axios({
                         method: 'POST',
                         url: '/user/create/calendar',
-                        data: data,
+                        data: JSON.stringify(data),
                     }).then((response) => {
                         res(response.data);
                     });
@@ -243,7 +243,7 @@
                     axios({
                         method: 'POST',
                         url: '/user/update/calendar',
-                        data: data,
+                        data: JSON.stringify(data),
                     }).then((response) => {
                         res(response.data);
                     });

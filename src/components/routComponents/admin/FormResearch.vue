@@ -335,7 +335,7 @@
                     axios({
                         method: 'POST',
                         url: '/user/create/research',
-                        data: data,
+                        data: JSON.stringify(data),
                     }).then((response) => {
                         res(response.data);
                     });
@@ -351,7 +351,7 @@
                     axios({
                         method: 'POST',
                         url: '/user/update/research',
-                        data: data,
+                        data: JSON.stringify(data),
                     }).then((response) => {
                         res(response.data);
                     });
