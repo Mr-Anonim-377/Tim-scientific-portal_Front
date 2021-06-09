@@ -1,7 +1,6 @@
 <template>
     <section class="calendar">
         <h1>Календарь событий</h1>
-        <h1>{{ getCurrentIndex() }}</h1>
         <div class="calendar-container">
             <!-- Дата -->
             <div class="calendar-years">
