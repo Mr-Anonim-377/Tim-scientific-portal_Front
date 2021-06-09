@@ -40,15 +40,31 @@
                 <!--                </el-row>-->
                 <el-row type="flex" justify="center">
                     <el-col>
-                        <h1>Дата проведения события</h1>
-                        <el-form-item prop="date">
+                        <h1>Дата начала события</h1>
+                        <el-form-item prop="dateStart">
                             <el-input
                                 type="date"
                                 id="dateInput"
                                 :autosize="{ minRows: 2, maxRows: 3 }"
                                 show-word-limit
                                 resize="none"
-                                v-model="form.date"
+                                v-model="form.dateStart"
+                                placeholder="Дата"
+                            ></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row type="flex" justify="center">
+                    <el-col>
+                        <h1>Дата окончания события</h1>
+                        <el-form-item prop="dateEnd">
+                            <el-input
+                                type="date"
+                                id="dateInput"
+                                :autosize="{ minRows: 2, maxRows: 3 }"
+                                show-word-limit
+                                resize="none"
+                                v-model="form.dateEnd"
                                 placeholder="Дата"
                             ></el-input>
                         </el-form-item>
@@ -259,7 +275,6 @@
                             this.debug('Отправляем', data, true);
                             this.addCalendar(data).then(() => {
                                 this.$router.push({ name: 'AdminCalendarPage' });
-                                // window.location.href = window.location.origin;
                             });
                         } else {
                             data.pageId = this.entityId;
@@ -267,7 +282,6 @@
                             this.debug('Отправляем', data, true);
                             this.updateCalendar(data).then(() => {
                                 this.$router.push({ name: 'AdminCalendarPage' });
-                                // window.location.href = window.location.origin;
                             });
                         }
                     } else {
@@ -280,16 +294,28 @@
              * Формирование тела запроса из this.form
              */
             getRequestData() {
+                const date =
+                    /* Если дата начала и конца совпадают - отправляем любую */
+                    this.form.dateStart === this.form.dateEnd
+                        ? this.form.dateStart
+                        : /* Если нет - отправляем в формате "dateStart - dateEnd" */
+                          this.form.dateStart
+                              .split('-')
+                              .reverse()
+                              .join('.') +
+                          ' - ' +
+                          this.form.dateEnd
+                              .split('-')
+                              .reverse()
+                              .join('.');
+
                 return {
-                    tag: this.form.date.slice(2, 4) + this.form.date.slice(5, 7),
+                    tag: this.form.dateStart.slice(2, 4) + this.form.dateStart.slice(5, 7),
                     name: this.form.name,
                     imageLinks: this.form.imageLinks?.map((image) => image.url) || [],
                     text: this.form.text.replace(/\n/g, ' ; '),
                     previewText: this.form.previewText,
-                    date: this.form.date
-                        .split('-')
-                        .reverse()
-                        .join('.'),
+                    date: date,
                     place: this.form.place,
                 };
             },
@@ -307,7 +333,8 @@
                 form: {
                     name: '',
                     previewText: '',
-                    date: '',
+                    dateStart: '',
+                    dateEnd: '',
                     text: [],
                     place: '',
                     imageLinks: [],
@@ -321,7 +348,12 @@
                         { required: true, message: "Пожалуйста, заполните поле 'Название события'", trigger: 'blur' },
                         { min: 10, message: 'Название должно содержать минимум 10 символов' },
                     ],
-                    date: [{ type: 'date', required: true, message: 'Пожалуйста, выберите или напишите дату проведения события', trigger: 'blur' }],
+                    dateStart: [
+                        { type: 'date', required: true, message: 'Пожалуйста, выберите или напишите дату проведения события', trigger: 'blur' },
+                    ],
+                    dateEnd: [
+                        { type: 'date', required: true, message: 'Пожалуйста, выберите или напишите дату проведения события', trigger: 'blur' },
+                    ],
                     place: [
                         { required: true, message: "Пожалуйста, заполните поле 'Место проведения события'", trigger: 'blur' },
                         { min: 6, message: 'Место проведения должно содержать минимум 6 символов' },
