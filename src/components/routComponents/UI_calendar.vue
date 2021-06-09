@@ -76,7 +76,7 @@
                         <el-form-item prop="place">
                             <el-input
                                 type="textarea"
-                                maxlength="40"
+                                maxlength="100"
                                 :autosize="{ minRows: 2, maxRows: 3 }"
                                 show-word-limit
                                 resize="none"
