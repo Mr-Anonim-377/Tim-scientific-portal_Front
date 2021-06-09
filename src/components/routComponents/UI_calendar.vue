@@ -296,8 +296,11 @@
             getRequestData() {
                 const date =
                     /* Если дата начала и конца совпадают - отправляем любую */
-                    this.form.dateStart === this.form.dateEnd
+                    !this.form.dateEnd
                         ? this.form.dateStart
+                              .split('-')
+                              .reverse()
+                              .join('.')
                         : /* Если нет - отправляем в формате "dateStart - dateEnd" */
                           this.form.dateStart
                               .split('-')
@@ -351,9 +354,7 @@
                     dateStart: [
                         { type: 'date', required: true, message: 'Пожалуйста, выберите или напишите дату проведения события', trigger: 'blur' },
                     ],
-                    dateEnd: [
-                        { type: 'date', required: true, message: 'Пожалуйста, выберите или напишите дату проведения события', trigger: 'blur' },
-                    ],
+
                     place: [
                         { required: true, message: "Пожалуйста, заполните поле 'Место проведения события'", trigger: 'blur' },
                         { min: 6, message: 'Место проведения должно содержать минимум 6 символов' },
@@ -411,10 +412,25 @@
                 this.form.previewText = this.ACTIONS_CALENDAR.ACTION.filter((action) => action._pageLink === this.entityId)[0].text;
                 this.form.tag = this.ACTIONS_CALENDAR.ACTION.filter((action) => action._pageLink === this.entityId)[0]._tag;
                 this.form.text = this.CALENDAR_TEXT.TEXT[0].text.replace(/;/g, '\n');
-                this.form.date = this.ACTIONS_CALENDAR.ACTION.filter((action) => action._pageLink === this.entityId)[0]
-                    .date.split('.')
+
+                /* Парс даты */
+                const date = this.ACTIONS_CALENDAR.ACTION.filter((action) => action._pageLink === this.entityId)[0].date;
+
+                /* Дата начала события */
+                this.form.dateStart = date.length >= 10 ? date.split(' - ')[0] : date;
+                this.form.dateStart = this.form.dateStart
+                    .split('.')
                     .reverse()
                     .join('-');
+
+                /* Дата окончания события */
+                this.form.dateEnd = date.length >= 10 ? date.split(' - ')[1] : '';
+                this.form.dateEnd = this.form.dateEnd
+                    ? this.form.dateEnd
+                          .split('.')
+                          .reverse()
+                          .join('-')
+                    : '';
                 this.sliderFileList = this.CALENDAR_SLIDER?.IMAGE?.map((image, i) => {
                     return {
                         name: 'Изображение ' + (i + 1),

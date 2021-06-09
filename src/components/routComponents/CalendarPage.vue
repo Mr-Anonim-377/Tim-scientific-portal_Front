@@ -115,7 +115,7 @@
     }
 
     .banner-date {
-        width: 282px;
+        width: 380px;
         height: 45px;
         background: #f8f5e6;
         margin: 39px auto 41px auto;
