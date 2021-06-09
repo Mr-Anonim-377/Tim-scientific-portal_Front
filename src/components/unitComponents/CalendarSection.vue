@@ -1,6 +1,7 @@
 <template>
     <section class="calendar">
         <h1>Календарь событий</h1>
+        <h1>{{ getCurrentIndex() }}</h1>
         <div class="calendar-container">
             <!-- Дата -->
             <div class="calendar-years">
@@ -159,6 +160,41 @@
                     return newArray;
                 }, []);
             },
+
+            getCurrentIndex() {
+                let currentDate = new Date();
+                /* Текущий год */
+                let currentYear = String(currentDate.getFullYear()).slice(2, 4);
+                /* Текущий месяц */
+                let currentMouth = String(currentDate.getMonth() + 1);
+                /* Добавляем 0 если месяц однозначный */
+                currentMouth.length === 1 && (currentMouth = '0' + currentMouth);
+                /* Получаем текущий тэг */
+                let currentTag = currentYear + currentMouth;
+
+                /* Ищем в массиве тэгов ближайший к текущему */
+                let currentTagIndex = this.tagsArray.length - 1;
+                let breaker = false;
+
+                this.tagsArray.forEach((tag, index) => {
+                    if (!breaker) {
+                        switch (true) {
+                            case +tag < +currentTag:
+                                break;
+                            case +tag == +currentTag:
+                                currentTagIndex = index;
+                                breaker = true;
+                                break;
+                            case +tag > +currentTag:
+                                currentTagIndex = index;
+                                breaker = true;
+                                break;
+                        }
+                    }
+                });
+
+                return currentTagIndex;
+            },
         },
 
         created() {
@@ -185,6 +221,8 @@
                     );
                 });
             });
+
+            this.index = this.getCurrentIndex();
         },
     };
 </script>
