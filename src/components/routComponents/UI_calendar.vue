@@ -12,7 +12,7 @@
                         <el-form-item prop="name">
                             <el-input
                                 type="textarea"
-                                maxlength="250"
+                                maxlength="230"
                                 :autosize="{ minRows: 3, maxRows: 3 }"
                                 show-word-limit
                                 resize="none"

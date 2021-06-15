@@ -210,10 +210,12 @@
                 this.eventByTags[tag].events.sort((a, b) => {
                     return (
                         +a.date
+                            .slice(0, 10)
                             .split('.')
                             .reverse()
                             .join('') -
                         +b.date
+                            .slice(0, 10)
                             .split('.')
                             .reverse()
                             .join('')
@@ -358,8 +360,8 @@
 
     @media (max-width: 1650px) {
         .calendar-container {
-          height: 174px;
-          display: flex;
+            height: 174px;
+            display: flex;
         }
 
         .calendar {
@@ -430,30 +432,30 @@
             width: 100%;
             position: relative;
             overflow-x: auto;
-             overflow-y: hidden;
+            overflow-y: hidden;
         }
-      .calendar-items::-webkit-scrollbar {
-        display: none;
-      }
-      .calendar-items:hover::-webkit-scrollbar {
-        display: block;
-        width: 1px;
-        height: 10px;
-      }
+        .calendar-items::-webkit-scrollbar {
+            display: none;
+        }
+        .calendar-items:hover::-webkit-scrollbar {
+            display: block;
+            width: 1px;
+            height: 10px;
+        }
 
-      .calendar-items::-webkit-scrollbar-track {
-        height: 1px;
-      }
-      .calendar-items::-webkit-scrollbar-track-piece {
-        height: 1%;
-        background-color: rgba(63, 126, 119, 0.5);
-        border-radius: 23px;
-      }
-      .calendar-items::-webkit-scrollbar-thumb {
-        border-radius: 23px;
-        background: #3f7e77;
-        height: 9px;
-      }
+        .calendar-items::-webkit-scrollbar-track {
+            height: 1px;
+        }
+        .calendar-items::-webkit-scrollbar-track-piece {
+            height: 1%;
+            background-color: rgba(63, 126, 119, 0.5);
+            border-radius: 23px;
+        }
+        .calendar-items::-webkit-scrollbar-thumb {
+            border-radius: 23px;
+            background: #3f7e77;
+            height: 9px;
+        }
 
         .calendar-item_container {
             display: flex;
