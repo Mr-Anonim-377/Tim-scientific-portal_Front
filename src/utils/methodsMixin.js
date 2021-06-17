@@ -35,6 +35,9 @@ export default {
             });
 
             for (let module in this.modules) {
+                // Логирование неорректно созданных данных
+                const errors = [];
+
                 let moduleID = this.modules[module].id;
 
                 setUri(`/crm/v1/page/modules/objects?moduleId=${moduleID}`);
@@ -49,37 +52,37 @@ export default {
 
                             let titleValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'TITLE')
-                                .map((item) => item.value.text)
+                                .map((item) => item.value?.text || (errors.push(item) && ''))
                                 .join(' ; ');
 
                             let textValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'TEXT')
-                                .map((item) => item.value.text)
+                                .map((item) => item.value?.text || '')
                                 .join(' ; ');
 
                             let imageValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'IMAGE')
-                                .map((item) => item.value.url)
+                                .map((item) => item.value?.url || '')
                                 .join(' ; ');
 
                             let dateValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'DATE')
-                                .map((item) => item.value.date)
+                                .map((item) => item.value?.date || '')
                                 .join(' ; ');
 
                             let linkValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'LINK')
-                                .map((item) => item.value.url)
+                                .map((item) => item.value?.url || '')
                                 .join(' ; ');
 
                             let totalPercent = moduleItem.contents
                                 .filter((item) => item.contentType === 'TOTAL_PERCENT')
-                                .map((item) => item.value.percent)
+                                .map((item) => item.value?.percent || '')
                                 .join(' ; ');
 
                             let dynamicsPercent = moduleItem.contents
                                 .filter((item) => item.contentType === 'DYNAMIC_PERCENT')
-                                .map((item) => item.value.percent)
+                                .map((item) => item.value?.percent || '')
                                 .join(' ; ');
 
                             let dynamicsValue = moduleItem.contents
@@ -121,6 +124,16 @@ export default {
                         });
                     }
                 });
+
+                if (errors.length > 0) {
+                    console.debug('');
+                    console.debug(
+                        '%cНекорректные данные! Данные объекты необходимо удалить из административной панели для корректной работы портала.',
+                        'background: #222; color: #E56C6C; font-weight: bold'
+                    );
+                    console.debug('Данные сломаных объектов: ', errors);
+                    console.debug('Модуль, связанный со сломанными объектами: ' + moduleID);
+                }
             }
         },
 
