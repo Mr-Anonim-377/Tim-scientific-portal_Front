@@ -57,42 +57,42 @@ export default {
 
                             let textValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'TEXT')
-                                .map((item) => item.value?.text || '')
+                                .map((item) => item.value?.text || (errors.push(item) && ''))
                                 .join(' ; ');
 
                             let imageValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'IMAGE')
-                                .map((item) => item.value?.url || '')
+                                .map((item) => item.value?.url || (errors.push(item) && ''))
                                 .join(' ; ');
 
                             let dateValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'DATE')
-                                .map((item) => item.value?.date || '')
+                                .map((item) => item.value?.date || (errors.push(item) && ''))
                                 .join(' ; ');
 
                             let linkValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'LINK')
-                                .map((item) => item.value?.url || '')
+                                .map((item) => item.value?.url || (errors.push(item) && ''))
                                 .join(' ; ');
 
                             let totalPercent = moduleItem.contents
                                 .filter((item) => item.contentType === 'TOTAL_PERCENT')
-                                .map((item) => item.value?.percent || '')
+                                .map((item) => item.value?.percent || (errors.push(item) && ''))
                                 .join(' ; ');
 
                             let dynamicsPercent = moduleItem.contents
                                 .filter((item) => item.contentType === 'DYNAMIC_PERCENT')
-                                .map((item) => item.value?.percent || '')
+                                .map((item) => item.value?.percent || (errors.push(item) && ''))
                                 .join(' ; ');
 
                             let dynamicsValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'DYNAMIC_VALUE')
-                                .map((item) => item.value.value)
+                                .map((item) => item.value?.value || (errors.push(item) && ''))
                                 .join(' ; ');
 
                             let totalValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'TOTAL_VALUE')
-                                .map((item) => item.value.value)
+                                .map((item) => item.value?.value || (errors.push(item) && ''))
                                 .join(' ; ');
 
                             this[moduleType][moduleItem.objectType].push({
@@ -125,6 +125,7 @@ export default {
                     }
                 });
 
+                /* Выводим логи ошибок в verbose */
                 if (errors.length > 0) {
                     console.debug('');
                     console.debug(
