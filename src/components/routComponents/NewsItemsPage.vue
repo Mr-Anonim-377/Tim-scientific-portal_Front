@@ -11,7 +11,7 @@
             <NewsSliderSection :urls="NEWS_IMAGE_CAROUSEL.IMAGE" />
         </div>
 
-        <div v-html="NEWS_TEXT.TEXT[0].text"></div>
+        <div v-html="transformHhtmlLinks(NEWS_TEXT.TEXT[0].text)"></div>
     </section>
     <div v-else>
         <Preloader />
@@ -51,6 +51,24 @@
             setTimeout(() => {
                 this.loadSuccess = true;
             }, 500);
+        },
+
+        methods: {
+            transformHhtmlLinks(string) {
+                return string
+                    .split(' ')
+                    .map((word) => {
+                        if (word.slice(0, 5) === 'https') return `<a href=${word}}">${word}</a>`;
+                        return word;
+                    })
+                    .join(' ')
+                    .split('<br>')
+                    .map((word) => {
+                        if (word.slice(0, 5) === 'https') return `<a href=${word}}">${word}</a>`;
+                        return word;
+                    })
+                    .join(' ');
+            },
         },
     };
 </script>

@@ -15,7 +15,7 @@
                     <p class="news-item__years">
                         {{ NEWS_ITEM.date.split('.')[2] }}
                     </p>
-                    <p class="news-item__text">{{ NEWS_ITEM.text }}</p>
+                    <p class="news-item__text">{{ transformHhtmlLinks(NEWS_ITEM.text) }}</p>
                     <router-link style="text-decoration: none" :to="{ path: `/newsItem/${NEWS_ITEM._pageLink}` }">
                         <ButtonElement :modifiers="modifiers.btn" class="news__btn" />
                     </router-link>
@@ -69,6 +69,16 @@
                     case 'РГАУ-МСХА':
                         return 'Российский государственный аграрный университет - МСХА имени К. А. Тимирязева';
                 }
+            },
+
+            transformHhtmlLinks(string) {
+                return string
+                    .split(' ')
+                    .map((word) => {
+                        if (word.slice(0, 5) === 'https') return `<a href=${word}}">${word}</a>`;
+                        return word;
+                    })
+                    .join(' ');
             },
 
             checkVoidNewsList() {
