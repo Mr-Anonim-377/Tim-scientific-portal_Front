@@ -3,14 +3,14 @@
         <!--Верхняя часть хедера-->
         <div class="headerSection-container">
             <p class="headerSection__text-phone">
-                <router-link style="text-decoration: none" :to="{ name: 'notFound' }">
-                    +7 (499) 976-07-48
-                </router-link>
+                <!-- <router-link style="text-decoration: none" :to="{ name: 'notFound' }"> -->
+                +7 (499) 976-07-48
+                <!-- </router-link> -->
             </p>
             <p class="headerSection__textMail">
-                <router-link style="text-decoration: none" :to="{ name: 'notFound' }">
-                    info@future-agro.ru
-                </router-link>
+                <!-- <router-link style="text-decoration: none" :to="{ name: 'notFound' }"> -->
+                future-agro.info@yandex.ru
+                <!-- </router-link> -->
             </p>
             <router-link style="text-decoration: none" :to="{ name: 'Main' }">
                 <img src="../../../assets/image/newLogo.png" />
@@ -264,7 +264,7 @@
     }
     /*Почта с картинкой*/
     .headerSection__textMail {
-        margin: 0 155px 0 10px;
+        margin: 0 121px 0 10px;
     }
     .headerSection__textMail:before {
         content: '';
@@ -273,7 +273,7 @@
         height: 20px;
         background-image: url('../../../assets/image/Mail.svg');
         margin-left: -28px;
-        cursor: default;
+        /* cursor: default; */
     }
     /*Ститили input*/
     .headerSection__research {

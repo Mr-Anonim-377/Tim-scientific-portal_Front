@@ -147,7 +147,7 @@
                 <!-- Контакты-->
                 <div class="footerContact-container">
                     <div class="footerContact-item">
-                        <p>E-mail: info@future-agro.ru</p>
+                        <p>E-mail: future-agro.info@yandex.ru</p>
                         <p class="footerContact__text">+7 (499) 976-07-48</p>
                     </div>
                     <div class="footerContact-item">
