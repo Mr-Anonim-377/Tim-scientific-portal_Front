@@ -5,16 +5,10 @@
         <div>
             <TitleSection :headerVisible="visibleContacts" :title="this.titleContacts" />
             <p class="contacts-text-phone">тел.: +7 (499) 977-26-01</p>
-            <p>E-mail: press-office@rgau-msha.ru</p>
+            <p>E-mail: future-agro.info@yandex.ru</p>
             <div class="qr">
                 <img src="../../assets/image/qr.gif" alt="" />
             </div>
-            <!-- <p class="contacts-text-networks">Мы в соц. сетях:</p>
-            <div class="contacts-container">
-                <img src="../../assets/image/VK.svg" />
-                <img src="../../assets/image/faceBook.svg" />
-                <img src="../../assets/image/Instagram.svg" />
-            </div> -->
 
             <div class="contact-text">
                 <div class="contact-text__item">
@@ -45,24 +39,16 @@
                     </p>
                 </div>
             </div>
-            <!-- <router-link style="text-decoration: none" :to="{ name: 'notFound' }">
-                <ButtonElement :modifiers="modifiers.btn" :title="titleContactsBtn" />
-            </router-link> -->
         </div>
     </section>
 </template>
 
 <script>
-    //FIXME Решить вопрос с прелоадером на странице контактов
-    // import Preloader from "../unitComponents/CommonElements/Preloader";
     import TitleSection from '../unitComponents/TitleSection';
-    // import ButtonElement from '../unitComponents/CommonElements/ButtonElement';
     export default {
         name: 'ContactsPage',
         components: {
-            // ButtonElement,
             TitleSection,
-            // Preloader,
         },
         data() {
             return {
@@ -98,10 +84,6 @@
         text-align: left;
     }
 
-    /* .contact-text p:nth-child(2n) { */
-    /* text-align: right; */
-    /* } */
-
     li {
         color: #f8f5e6;
     }
@@ -121,8 +103,7 @@
     }
 
     p {
-        /* font-family: 'Gilroy-Bold'; */
-        font-family: Roboto;
+        ]font-family: Roboto;
         font-weight: normal;
         font-size: 18px;
         line-height: 22px;
