@@ -61,6 +61,10 @@
       "vue/require-prop-types": 0
     }
   },
+
+  "gitHooks": {
+    "pre-commit": "npm run lint"
+  },
   "browserslist": [
     "> 1%",
     "last 2 versions",

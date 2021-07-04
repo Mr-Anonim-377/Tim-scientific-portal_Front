@@ -1,4 +1,5 @@
 <template>
+<section>
         <TitleSection
             :stile-title="stileTitle.stile"
             :header-visible="visibleRecovery"
