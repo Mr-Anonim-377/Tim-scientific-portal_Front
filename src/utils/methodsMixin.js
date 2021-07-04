@@ -52,47 +52,47 @@ export default {
 
                             let titleValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'TITLE')
-                                .map((item) => item.value?.text || (errors.push(item) && ''))
+                                .map((item) => item.value?.text || (errors.push({moduleType, item}) && ''))
                                 .join(' ; ');
 
                             let textValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'TEXT')
-                                .map((item) => item.value?.text || (errors.push(item) && ''))
+                                .map((item) => item.value?.text || (errors.push({moduleType, item}) && ''))
                                 .join(' ; ');
 
                             let imageValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'IMAGE')
-                                .map((item) => item.value?.url || (errors.push(item) && ''))
+                                .map((item) => item.value?.url || (errors.push({moduleType, item}) && ''))
                                 .join(' ; ');
 
                             let dateValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'DATE')
-                                .map((item) => item.value?.date || (errors.push(item) && ''))
+                                .map((item) => item.value?.date || (errors.push({moduleType, item}) && ''))
                                 .join(' ; ');
 
                             let linkValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'LINK')
-                                .map((item) => item.value?.url || (errors.push(item) && ''))
+                                .map((item) => item.value?.url || (errors.push({moduleType, item}) && ''))
                                 .join(' ; ');
 
                             let totalPercent = moduleItem.contents
                                 .filter((item) => item.contentType === 'TOTAL_PERCENT')
-                                .map((item) => item.value?.percent || (errors.push(item) && ''))
+                                .map((item) => item.value?.percent || (errors.push({moduleType, item}) && ''))
                                 .join(' ; ');
 
                             let dynamicsPercent = moduleItem.contents
                                 .filter((item) => item.contentType === 'DYNAMIC_PERCENT')
-                                .map((item) => item.value?.percent || (errors.push(item) && ''))
+                                .map((item) => item.value?.percent || (errors.push({moduleType, item}) && ''))
                                 .join(' ; ');
 
                             let dynamicsValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'DYNAMIC_VALUE')
-                                .map((item) => item.value?.value || (errors.push(item) && ''))
+                                .map((item) => item.value?.value || (errors.push({moduleType, item}) && ''))
                                 .join(' ; ');
 
                             let totalValue = moduleItem.contents
                                 .filter((item) => item.contentType === 'TOTAL_VALUE')
-                                .map((item) => item.value?.value || (errors.push(item) && ''))
+                                .map((item) => item.value?.value || (errors.push({moduleType, item}) && ''))
                                 .join(' ; ');
 
                             this[moduleType][moduleItem.objectType].push({
@@ -130,7 +130,7 @@ export default {
                     console.debug('');
                     console.debug(
                         '%cНекорректные данные! Данные объекты необходимо удалить из административной панели для корректной работы портала.',
-                        'background: #222; color: #E56C6C; font-weight: bold'
+                        'color: #E56C6C; font-weight: bold'
                     );
                     console.debug('Данные сломаных объектов: ', errors);
                     console.debug('Модуль, связанный со сломанными объектами: ' + moduleID);
