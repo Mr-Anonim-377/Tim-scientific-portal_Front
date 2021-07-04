@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /*
 
@@ -31,85 +31,83 @@ SliderSceleton
 */
 
 export default {
-	data() {
-		return {
-			// Индекс DOM элементов слайдера
-			i: 0,
+    data() {
+        return {
+            // Индекс DOM элементов слайдера
+            i: 0,
 
-			// Индекс для данных слайдера
-			sliderDataIndex: 0,
-		};
-	},
+            // Индекс для данных слайдера
+            sliderDataIndex: 0
+        };
+    },
 
-	methods: {
-		// Рассчет новых индексов положения слайдов
-		setNewIndex(isNext) {
-			if (isNext) {
+    methods: {
+        // Рассчет новых индексов положения слайдов
+        setNewIndex(isNext) {
+            if (isNext) {
+                // Рассчет индекса активного элемента в верстке
+                this.i = this.i === 0 ? this.$circles.length - 1 : this.i - 1;
 
-				// Рассчет индекса активного элемента в верстке
-				this.i = this.i === 0 ? this.$circles.length - 1 : this.i - 1;
+                // Рассчет индекса активного элемента в данных
+                this.sliderDataIndex =
+                    this.sliderDataIndex === this.sliderData.length - 1
+                        ? 0
+                        : this.sliderDataIndex + 1;
+            } else {
+                // Рассчет индекса активного элемента в верстке
+                this.i = this.i === 4 ? 0 : this.i + 1;
 
-				// Рассчет индекса активного элемента в данных
-				this.sliderDataIndex =
-					this.sliderDataIndex === this.sliderData.length - 1
-						? 0
-						: this.sliderDataIndex + 1;
-			} else {
+                // Рассчет индекса активного элемента в данных
+                this.sliderDataIndex =
+                    this.sliderDataIndex === 0
+                        ? this.sliderData.length - 1
+                        : this.sliderDataIndex - 1;
+            }
+        },
 
-				// Рассчет индекса активного элемента в верстке
-				this.i = this.i === 4 ? 0 : this.i + 1;
+        // Задержка на элементы управления слайдером
+        setControlsPing(ping) {
+            this.$arrows.css('pointer-events', 'none');
+            setTimeout(() => {
+                this.$arrows.css('pointer-events', 'auto');
+            }, ping);
+        },
 
-				// Рассчет индекса активного элемента в данных
-				this.sliderDataIndex =
-					this.sliderDataIndex === 0
-						? this.sliderData.length - 1
-						: this.sliderDataIndex - 1;
-			}
-		},
+        // Вычисление соседних DOM элементов при движении
+        // Функция возвращает объект со значениями i2, i3, i4 и т.д.
+        getNeighborIndex(i, arr) {
+            let indexList = {
+                i: i
+            };
+            let z = 2;
+            let j = 1;
 
-		// Задержка на элементы управления слайдером
-		setControlsPing(ping) {
-			this.$arrows.css("pointer-events", "none");
-			setTimeout(() => {
-				this.$arrows.css("pointer-events", "auto");
-			}, ping);
-		},
+            for (let k = 1; k < arr.length - i; k++) {
+                indexList[`i${z}`] = i + j;
+                j++;
+                z++;
+            }
 
-		// Вычисление соседних DOM элементов при движении
-		// Функция возвращает объект со значениями i2, i3, i4 и т.д.
-		getNeighborIndex(i, arr) {
-			let indexList = {
-				i: i,
-			};
-			let z = 2;
-			let j = 1;
+            j = 0;
 
-			for (let k = 1; k < arr.length - i; k++) {
-				indexList[`i${z}`] = i + j;
-				j++;
-				z++;
-			}
+            for (let k = z; k <= 7; k++) {
+                indexList[`i${z}`] = j;
+                z++;
+                j++;
+            }
 
-			j = 0;
+            return indexList;
+        },
 
-			for (let k = z; k <= 7; k++) {
-				indexList[`i${z}`] = j;
-				z++;
-				j++;
-			}
+        // Движение элемента слайдера
+        moveCircle(propertyList, index, position) {
+            propertyList.forEach(property => {
+                this.$circles.eq(index);
 
-			return indexList;
-		},
-
-		// Движение элемента слайдера
-		moveCircle(propertyList, index, position) {
-			propertyList.forEach((property) => {
-				this.$circles.eq(index);
-
-				this.$circles
-					.eq(index)
-					.css(property, this.positions[position][property]);
-			});
-		},
-	},
+                this.$circles
+                    .eq(index)
+                    .css(property, this.positions[position][property]);
+            });
+        }
+    }
 };

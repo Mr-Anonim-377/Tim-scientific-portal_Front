@@ -11,23 +11,23 @@
 </template>
 
 <script>
-    export default {
-        name: 'LinkItem.vue',
-        props: {
-            linkData: {},
-        },
-    };
+export default {
+    name: 'LinkItem',
+    props: {
+        linkData: {}
+    }
+};
 </script>
 
 <style scoped>
-    article {
-        padding: 30px 0 0;
-        color: #3f7e77;
-        text-align: center;
-    }
+article {
+    padding: 30px 0 0;
+    color: #3f7e77;
+    text-align: center;
+}
 
-    a {
-        color: #729c97;
-        text-align: center;
-    }
+a {
+    color: #729c97;
+    text-align: center;
+}
 </style>

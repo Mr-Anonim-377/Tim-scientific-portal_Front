@@ -13,7 +13,7 @@ export default {
             setBasePath(basePath);
             setUri(uri);
             var currentResponse;
-            this.POST_DATA_FROM_API().then((response) => {
+            this.POST_DATA_FROM_API().then(response => {
                 currentResponse = response;
             });
             return currentResponse;
@@ -30,7 +30,7 @@ export default {
 
             // Получаем модули
             // Храним их в this.modules
-            await this.GET_DATA_FROM_API().then((response) => {
+            await this.GET_DATA_FROM_API().then(response => {
                 this.modules = response.data.modules;
             });
 
@@ -42,57 +42,112 @@ export default {
 
                 setUri(`/crm/v1/page/modules/objects?moduleId=${moduleID}`);
 
-                await this.GET_DATA_FROM_API().then((response) => {
+                await this.GET_DATA_FROM_API().then(response => {
                     let moduleType = this.modules[module].moduleType;
                     this[moduleType] = [];
 
                     if (response) {
-                        response.data.forEach((moduleItem) => {
-                            if (!this[moduleType][moduleItem.objectType]) this[moduleType][moduleItem.objectType] = [];
+                        response.data.forEach(moduleItem => {
+                            if (!this[moduleType][moduleItem.objectType])
+                                this[moduleType][moduleItem.objectType] = [];
 
                             let titleValue = moduleItem.contents
-                                .filter((item) => item.contentType === 'TITLE')
-                                .map((item) => item.value?.text || (errors.push({moduleType, item}) && ''))
+                                .filter(item => item.contentType === 'TITLE')
+                                .map(
+                                    item =>
+                                        item.value?.text ||
+                                        (errors.push({ moduleType, item }) &&
+                                            '')
+                                )
                                 .join(' ; ');
 
                             let textValue = moduleItem.contents
-                                .filter((item) => item.contentType === 'TEXT')
-                                .map((item) => item.value?.text || (errors.push({moduleType, item}) && ''))
+                                .filter(item => item.contentType === 'TEXT')
+                                .map(
+                                    item =>
+                                        item.value?.text ||
+                                        (errors.push({ moduleType, item }) &&
+                                            '')
+                                )
                                 .join(' ; ');
 
                             let imageValue = moduleItem.contents
-                                .filter((item) => item.contentType === 'IMAGE')
-                                .map((item) => item.value?.url || (errors.push({moduleType, item}) && ''))
+                                .filter(item => item.contentType === 'IMAGE')
+                                .map(
+                                    item =>
+                                        item.value?.url ||
+                                        (errors.push({ moduleType, item }) &&
+                                            '')
+                                )
                                 .join(' ; ');
 
                             let dateValue = moduleItem.contents
-                                .filter((item) => item.contentType === 'DATE')
-                                .map((item) => item.value?.date || (errors.push({moduleType, item}) && ''))
+                                .filter(item => item.contentType === 'DATE')
+                                .map(
+                                    item =>
+                                        item.value?.date ||
+                                        (errors.push({ moduleType, item }) &&
+                                            '')
+                                )
                                 .join(' ; ');
 
                             let linkValue = moduleItem.contents
-                                .filter((item) => item.contentType === 'LINK')
-                                .map((item) => item.value?.url || (errors.push({moduleType, item}) && ''))
+                                .filter(item => item.contentType === 'LINK')
+                                .map(
+                                    item =>
+                                        item.value?.url ||
+                                        (errors.push({ moduleType, item }) &&
+                                            '')
+                                )
                                 .join(' ; ');
 
                             let totalPercent = moduleItem.contents
-                                .filter((item) => item.contentType === 'TOTAL_PERCENT')
-                                .map((item) => item.value?.percent || (errors.push({moduleType, item}) && ''))
+                                .filter(
+                                    item => item.contentType === 'TOTAL_PERCENT'
+                                )
+                                .map(
+                                    item =>
+                                        item.value?.percent ||
+                                        (errors.push({ moduleType, item }) &&
+                                            '')
+                                )
                                 .join(' ; ');
 
                             let dynamicsPercent = moduleItem.contents
-                                .filter((item) => item.contentType === 'DYNAMIC_PERCENT')
-                                .map((item) => item.value?.percent || (errors.push({moduleType, item}) && ''))
+                                .filter(
+                                    item =>
+                                        item.contentType === 'DYNAMIC_PERCENT'
+                                )
+                                .map(
+                                    item =>
+                                        item.value?.percent ||
+                                        (errors.push({ moduleType, item }) &&
+                                            '')
+                                )
                                 .join(' ; ');
 
                             let dynamicsValue = moduleItem.contents
-                                .filter((item) => item.contentType === 'DYNAMIC_VALUE')
-                                .map((item) => item.value?.value || (errors.push({moduleType, item}) && ''))
+                                .filter(
+                                    item => item.contentType === 'DYNAMIC_VALUE'
+                                )
+                                .map(
+                                    item =>
+                                        item.value?.value ||
+                                        (errors.push({ moduleType, item }) &&
+                                            '')
+                                )
                                 .join(' ; ');
 
                             let totalValue = moduleItem.contents
-                                .filter((item) => item.contentType === 'TOTAL_VALUE')
-                                .map((item) => item.value?.value || (errors.push({moduleType, item}) && ''))
+                                .filter(
+                                    item => item.contentType === 'TOTAL_VALUE'
+                                )
+                                .map(
+                                    item =>
+                                        item.value?.value ||
+                                        (errors.push({ moduleType, item }) &&
+                                            '')
+                                )
                                 .join(' ; ');
 
                             this[moduleType][moduleItem.objectType].push({
@@ -106,20 +161,28 @@ export default {
 
                                 link: linkValue ? linkValue : null,
 
-                                totalPercent: totalPercent ? totalPercent : null,
+                                totalPercent: totalPercent
+                                    ? totalPercent
+                                    : null,
 
-                                dynamicsPercent: dynamicsPercent ? dynamicsPercent : null,
+                                dynamicsPercent: dynamicsPercent
+                                    ? dynamicsPercent
+                                    : null,
 
                                 totalValue: totalValue ? totalValue : null,
 
-                                dynamicsValue: dynamicsValue ? dynamicsValue : null,
+                                dynamicsValue: dynamicsValue
+                                    ? dynamicsValue
+                                    : null,
 
                                 _pageLink: moduleItem.pageLink,
 
                                 _tag: moduleItem.tag,
 
                                 // Связанные сущности парятся в компонентах, тут просто передаю ответ от сервера
-                                _childModuleObject: moduleItem.childModuleObject ? moduleItem.childModuleObject : null,
+                                _childModuleObject: moduleItem.childModuleObject
+                                    ? moduleItem.childModuleObject
+                                    : null
                             });
                         });
                     }
@@ -133,7 +196,9 @@ export default {
                         'color: #E56C6C; font-weight: bold'
                     );
                     console.debug('Данные сломаных объектов: ', errors);
-                    console.debug('Модуль, связанный со сломанными объектами: ' + moduleID);
+                    console.debug(
+                        'Модуль, связанный со сломанными объектами: ' + moduleID
+                    );
                 }
             }
         },
@@ -143,9 +208,12 @@ export default {
             return new Promise((resolve, reject) => {
                 axios
                     .get('/user/auth?roleName=ROLE_USER', {
-                        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*'
+                        }
                     })
-                    .then((response) => {
+                    .then(response => {
                         localStorage.setItem('isAuth', true);
                         return resolve(response);
                     })
@@ -173,7 +241,7 @@ export default {
                 //eslint-disable-next-line
                 debugger;
             }
-        },
+        }
     },
 
     mounted() {
@@ -191,6 +259,6 @@ export default {
              * Возвращаем скролл после загрузки
              */
             document.querySelector('body').style.overflow = 'visible';
-        },
-    },
+        }
+    }
 };

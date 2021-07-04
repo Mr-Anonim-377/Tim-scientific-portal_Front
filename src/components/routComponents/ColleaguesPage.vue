@@ -1,6 +1,10 @@
 <template>
     <section class="colleaguesSection">
-        <TitleSection :title="titleColleagues" :headerVisible="true" :stileTitle="stileTitle.stile" />
+        <TitleSection
+            :title="titleColleagues"
+            :header-visible="true"
+            :stile-title="stileTitle.stile"
+        />
 
         <div class="colleagues-container">
             <account-navigation-section />
@@ -15,7 +19,9 @@
                 </div>
                 <div class="inf-text">
                     <p>Ряженко Эдуард Вдадимирович</p>
-                    <span class="inf-text__years">46 лет / Профессор ботаники</span>
+                    <span class="inf-text__years"
+                        >46 лет / Профессор ботаники</span
+                    >
                 </div>
             </div>
         </div>
@@ -23,122 +29,116 @@
 </template>
 
 <script>
-    import TitleSection from '@/components/unitComponents/TitleSection';
-    import AccountNavigationSection from '@/components/unitComponents/AccountNavigationSection';
-    import mixin from '../../utils/methodsMixin';
+import TitleSection from '@/components/unitComponents/TitleSection';
+import AccountNavigationSection from '@/components/unitComponents/AccountNavigationSection';
+import mixin from '../../utils/methodsMixin';
 
-    export default {
-        name: 'ColleaguesPage',
-        components: {
-            AccountNavigationSection,
-            TitleSection,
-        },
+export default {
+    name: 'ColleaguesPage',
+    components: {
+        AccountNavigationSection,
+        TitleSection
+    },
 
-        props: {
-            pageId: String,
-        },
-        data() {
-            return {
-                titleColleagues: 'Коллеги',
-                stileTitle: {
-                    stile: ['font-size: 26px'],
-                },
-            };
-        },
+    mixins: [mixin],
 
-        mixins: [mixin],
+    props: {
+        pageId: String
+    },
+    data() {
+        return {
+            titleColleagues: 'Коллеги',
+            stileTitle: {
+                stile: ['font-size: 26px']
+            }
+        };
+    },
 
-        async mounted() {
-            /**
-             * Получаем id профиля из адрессной строки
-             */
+    async mounted() {
+        /**
+         * Получаем id профиля из адрессной строки
+         */
 
-            this.profileID = this.$route.params.pageId;
+        this.profileID = this.$route.params.pageId;
 
-            /**
-             * Получаем данные по id
-             */
-            await this.getModulesTest('', this.profileID);
-            this.loadSuccess = true;
-            // console.log(this.modules);
-
-            /**
-             * Берем ACHIEVEMENTS
-             */
-            // console.log(this.ACHIEVEMENTS);
-        },
-    };
+        /**
+         * Получаем данные по id
+         */
+        await this.getModulesTest('', this.profileID);
+        this.loadSuccess = true;
+    }
+};
 </script>
 
 <style scoped>
-    h2,
-    p,
-    span {
-        font-weight: bold;
-        line-height: 29px;
-        color: #3f7e77;
-        font-size: 22px;
-    }
+h2,
+p,
+span {
+    font-weight: bold;
+    line-height: 29px;
+    color: #3f7e77;
+    font-size: 22px;
+}
 
-    .colleaguesSection {
-        max-width: 1200px;
-        align-items: center;
-        margin: 89px auto 100px auto;
-    }
-    .colleagues-container {
-        display: flex;
-        margin-top: 91px;
-    }
+.colleaguesSection {
+    max-width: 1200px;
+    align-items: center;
+    margin: 89px auto 100px auto;
+}
+.colleagues-container {
+    display: flex;
+    margin-top: 91px;
+}
 
-    .colleagues-block__inf {
-        margin-left: 130px;
-        display: flex;
-        flex-wrap: wrap;
-    }
+.colleagues-block__inf {
+    margin-left: 130px;
+    display: flex;
+    flex-wrap: wrap;
+}
 
-    .inf-container__img {
-        width: 131px;
-        height: 131px;
-        border-radius: 50%;
-        border: 3px solid #3f7e77;
-        margin-bottom: 49px;
-        overflow: hidden;
-        display: flex;
-    }
-    .colleagues-block__inf img {
-        width: auto;
-        height: 100%;
-        margin: auto;
-    }
+.inf-container__img {
+    width: 131px;
+    height: 131px;
+    border-radius: 50%;
+    border: 3px solid #3f7e77;
+    margin-bottom: 49px;
+    overflow: hidden;
+    display: flex;
+}
+.colleagues-block__inf img {
+    width: auto;
+    height: 100%;
+    margin: auto;
+}
 
-    .colleagues-block__inf p {
-        margin: 0 0 5px 0;
-        width: 100%;
-    }
-    .colleagues-block__inf h2 {
-        width: 100%;
-        margin: 0 0 44px 0;
-    }
+.colleagues-block__inf p {
+    margin: 0 0 5px 0;
+    width: 100%;
+}
+.colleagues-block__inf h2 {
+    width: 100%;
+    margin: 0 0 44px 0;
+}
 
-    .inf-text {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 0 106px 50px;
-    }
+.inf-text {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 106px 50px;
+}
 
-    .inf-text__years {
-        font-size: 12px;
-        margin-left: 47px;
-        position: relative;
-    }
+.inf-text__years {
+    font-size: 12px;
+    margin-left: 47px;
+    position: relative;
+}
 
-    .inf-text__years:before {
-        content: '';
-        position: absolute;
-        width: 31px;
-        height: 1px;
-        background: #3f7e77;
-        top: 16px;
-        left: -49px;
-    }
+.inf-text__years:before {
+    content: '';
+    position: absolute;
+    width: 31px;
+    height: 1px;
+    background: #3f7e77;
+    top: 16px;
+    left: -49px;
+}
 </style>

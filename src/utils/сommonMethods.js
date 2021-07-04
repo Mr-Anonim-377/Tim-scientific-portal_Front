@@ -16,40 +16,43 @@ export function setBasePath(uri) {
 export const store = createStore({
     state() {
         return {
-            uri: '',
+            uri: ''
         };
     },
     mutations: {
         SET_URI_TO_STATE: (state, uri) => {
             state.uri = uri;
-        },
+        }
     },
     actions: {
         POST_DATA_FROM_API() {
             axios
                 .post(basePath, this.state.uri, {
                     crossdomain: true,
-                    headers: { 'Content-Type': 'multipart/form-data', 'Access-Control-Allow-Origin': '*' },
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Access-Control-Allow-Origin': '*'
+                    }
                 })
-                .then((data) => {
+                .then(data => {
                     return data;
                 })
-                .catch((error) => {
+                .catch(error => {
                     console.log(error);
                 });
         },
         GET_DATA_FROM_API() {
             return axios
                 .get(basePath + this.state.uri, {})
-                .then((data) => {
+                .then(data => {
                     return data;
                 })
-                .catch((error) => {
+                .catch(error => {
                     console.log(error);
                 });
-        },
+        }
     },
-    getters: {},
+    getters: {}
 });
 
 const app = createApp({ store });
