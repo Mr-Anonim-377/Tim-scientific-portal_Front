@@ -21,9 +21,12 @@ export default {
 
             // Получаем модули
             // Храним их в this.modules
-            await axios.get(this.url).then(response => {
-                this.modules = response.data.modules;
-            });
+            await axios
+                .get(this.url)
+                .then(response => {
+                    this.modules = response.data.modules;
+                })
+                .catch(() => false);
 
             for (let module in this.modules) {
                 // Логирование неорректно созданных данных
@@ -33,151 +36,191 @@ export default {
 
                 this.url = `/crm/v1/page/modules/objects?moduleId=${moduleID}`;
 
-                await axios.get(this.url).then(response => {
-                    let moduleType = this.modules[module].moduleType;
-                    this[moduleType] = [];
+                await axios
+                    .get(this.url)
+                    .then(response => {
+                        let moduleType = this.modules[module].moduleType;
+                        this[moduleType] = [];
 
-                    if (response) {
-                        response.data.forEach(moduleItem => {
-                            if (!this[moduleType][moduleItem.objectType])
-                                this[moduleType][moduleItem.objectType] = [];
+                        if (response) {
+                            response.data.forEach(moduleItem => {
+                                if (!this[moduleType][moduleItem.objectType])
+                                    this[moduleType][
+                                        moduleItem.objectType
+                                    ] = [];
 
-                            let titleValue = moduleItem.contents
-                                .filter(item => item.contentType === 'TITLE')
-                                .map(
-                                    item =>
-                                        item.value?.text ||
-                                        (errors.push({ moduleType, item }) &&
-                                            '')
-                                )
-                                .join(' ; ');
+                                let titleValue = moduleItem.contents
+                                    .filter(
+                                        item => item.contentType === 'TITLE'
+                                    )
+                                    .map(
+                                        item =>
+                                            item.value?.text ||
+                                            (errors.push({
+                                                moduleType,
+                                                item
+                                            }) &&
+                                                '')
+                                    )
+                                    .join(' ; ');
 
-                            let textValue = moduleItem.contents
-                                .filter(item => item.contentType === 'TEXT')
-                                .map(
-                                    item =>
-                                        item.value?.text ||
-                                        (errors.push({ moduleType, item }) &&
-                                            '')
-                                )
-                                .join(' ; ');
+                                let textValue = moduleItem.contents
+                                    .filter(item => item.contentType === 'TEXT')
+                                    .map(
+                                        item =>
+                                            item.value?.text ||
+                                            (errors.push({
+                                                moduleType,
+                                                item
+                                            }) &&
+                                                '')
+                                    )
+                                    .join(' ; ');
 
-                            let imageValue = moduleItem.contents
-                                .filter(item => item.contentType === 'IMAGE')
-                                .map(
-                                    item =>
-                                        item.value?.url ||
-                                        (errors.push({ moduleType, item }) &&
-                                            '')
-                                )
-                                .join(' ; ');
+                                let imageValue = moduleItem.contents
+                                    .filter(
+                                        item => item.contentType === 'IMAGE'
+                                    )
+                                    .map(
+                                        item =>
+                                            item.value?.url ||
+                                            (errors.push({
+                                                moduleType,
+                                                item
+                                            }) &&
+                                                '')
+                                    )
+                                    .join(' ; ');
 
-                            let dateValue = moduleItem.contents
-                                .filter(item => item.contentType === 'DATE')
-                                .map(
-                                    item =>
-                                        item.value?.date ||
-                                        (errors.push({ moduleType, item }) &&
-                                            '')
-                                )
-                                .join(' ; ');
+                                let dateValue = moduleItem.contents
+                                    .filter(item => item.contentType === 'DATE')
+                                    .map(
+                                        item =>
+                                            item.value?.date ||
+                                            (errors.push({
+                                                moduleType,
+                                                item
+                                            }) &&
+                                                '')
+                                    )
+                                    .join(' ; ');
 
-                            let linkValue = moduleItem.contents
-                                .filter(item => item.contentType === 'LINK')
-                                .map(
-                                    item =>
-                                        item.value?.url ||
-                                        (errors.push({ moduleType, item }) &&
-                                            '')
-                                )
-                                .join(' ; ');
+                                let linkValue = moduleItem.contents
+                                    .filter(item => item.contentType === 'LINK')
+                                    .map(
+                                        item =>
+                                            item.value?.url ||
+                                            (errors.push({
+                                                moduleType,
+                                                item
+                                            }) &&
+                                                '')
+                                    )
+                                    .join(' ; ');
 
-                            let totalPercent = moduleItem.contents
-                                .filter(
-                                    item => item.contentType === 'TOTAL_PERCENT'
-                                )
-                                .map(
-                                    item =>
-                                        item.value?.percent ||
-                                        (errors.push({ moduleType, item }) &&
-                                            '')
-                                )
-                                .join(' ; ');
+                                let totalPercent = moduleItem.contents
+                                    .filter(
+                                        item =>
+                                            item.contentType === 'TOTAL_PERCENT'
+                                    )
+                                    .map(
+                                        item =>
+                                            item.value?.percent ||
+                                            (errors.push({
+                                                moduleType,
+                                                item
+                                            }) &&
+                                                '')
+                                    )
+                                    .join(' ; ');
 
-                            let dynamicsPercent = moduleItem.contents
-                                .filter(
-                                    item =>
-                                        item.contentType === 'DYNAMIC_PERCENT'
-                                )
-                                .map(
-                                    item =>
-                                        item.value?.percent ||
-                                        (errors.push({ moduleType, item }) &&
-                                            '')
-                                )
-                                .join(' ; ');
+                                let dynamicsPercent = moduleItem.contents
+                                    .filter(
+                                        item =>
+                                            item.contentType ===
+                                            'DYNAMIC_PERCENT'
+                                    )
+                                    .map(
+                                        item =>
+                                            item.value?.percent ||
+                                            (errors.push({
+                                                moduleType,
+                                                item
+                                            }) &&
+                                                '')
+                                    )
+                                    .join(' ; ');
 
-                            let dynamicsValue = moduleItem.contents
-                                .filter(
-                                    item => item.contentType === 'DYNAMIC_VALUE'
-                                )
-                                .map(
-                                    item =>
-                                        item.value?.value ||
-                                        (errors.push({ moduleType, item }) &&
-                                            '')
-                                )
-                                .join(' ; ');
+                                let dynamicsValue = moduleItem.contents
+                                    .filter(
+                                        item =>
+                                            item.contentType === 'DYNAMIC_VALUE'
+                                    )
+                                    .map(
+                                        item =>
+                                            item.value?.value ||
+                                            (errors.push({
+                                                moduleType,
+                                                item
+                                            }) &&
+                                                '')
+                                    )
+                                    .join(' ; ');
 
-                            let totalValue = moduleItem.contents
-                                .filter(
-                                    item => item.contentType === 'TOTAL_VALUE'
-                                )
-                                .map(
-                                    item =>
-                                        item.value?.value ||
-                                        (errors.push({ moduleType, item }) &&
-                                            '')
-                                )
-                                .join(' ; ');
+                                let totalValue = moduleItem.contents
+                                    .filter(
+                                        item =>
+                                            item.contentType === 'TOTAL_VALUE'
+                                    )
+                                    .map(
+                                        item =>
+                                            item.value?.value ||
+                                            (errors.push({
+                                                moduleType,
+                                                item
+                                            }) &&
+                                                '')
+                                    )
+                                    .join(' ; ');
 
-                            this[moduleType][moduleItem.objectType].push({
-                                title: titleValue ? titleValue : null,
+                                this[moduleType][moduleItem.objectType].push({
+                                    title: titleValue ? titleValue : null,
 
-                                text: textValue ? textValue : null,
+                                    text: textValue ? textValue : null,
 
-                                image: imageValue ? imageValue : null,
+                                    image: imageValue ? imageValue : null,
 
-                                date: dateValue ? dateValue : null,
+                                    date: dateValue ? dateValue : null,
 
-                                link: linkValue ? linkValue : null,
+                                    link: linkValue ? linkValue : null,
 
-                                totalPercent: totalPercent
-                                    ? totalPercent
-                                    : null,
+                                    totalPercent: totalPercent
+                                        ? totalPercent
+                                        : null,
 
-                                dynamicsPercent: dynamicsPercent
-                                    ? dynamicsPercent
-                                    : null,
+                                    dynamicsPercent: dynamicsPercent
+                                        ? dynamicsPercent
+                                        : null,
 
-                                totalValue: totalValue ? totalValue : null,
+                                    totalValue: totalValue ? totalValue : null,
 
-                                dynamicsValue: dynamicsValue
-                                    ? dynamicsValue
-                                    : null,
+                                    dynamicsValue: dynamicsValue
+                                        ? dynamicsValue
+                                        : null,
 
-                                _pageLink: moduleItem.pageLink,
+                                    _pageLink: moduleItem.pageLink,
 
-                                _tag: moduleItem.tag,
+                                    _tag: moduleItem.tag,
 
-                                // Связанные сущности парятся в компонентах, тут просто передаю ответ от сервера
-                                _childModuleObject: moduleItem.childModuleObject
-                                    ? moduleItem.childModuleObject
-                                    : null
+                                    // Связанные сущности парятся в компонентах, тут просто передаю ответ от сервера
+                                    _childModuleObject: moduleItem.childModuleObject
+                                        ? moduleItem.childModuleObject
+                                        : null
+                                });
                             });
-                        });
-                    }
-                });
+                        }
+                    })
+                    .catch(() => false);
 
                 /* Выводим логи ошибок в verbose */
                 if (errors.length > 0) {

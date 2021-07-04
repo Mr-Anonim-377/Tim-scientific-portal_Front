@@ -4,6 +4,6 @@ module.exports = {
         port: 80,
         compress: true,
         disableHostCheck: true,
-        proxy: 'http://future-agro.ru:84'
+        proxy: process.env.VUE_APP_PROXY
     }
 };
