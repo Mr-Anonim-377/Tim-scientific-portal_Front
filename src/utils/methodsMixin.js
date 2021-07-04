@@ -1,36 +1,27 @@
 'use strict';
 // Глобальные методы, используемые в проекте
-
-import { mapActions } from 'vuex';
-import { setBasePath, setUri } from '../utils/сommonMethods';
 import axios from 'axios';
 
 export default {
+    data() {
+        return {
+            url: String
+        };
+    },
+
     methods: {
-        ...mapActions(['GET_DATA_FROM_API', 'POST_DATA_FROM_API']),
-
-        customRequest(basePath, uri) {
-            setBasePath(basePath);
-            setUri(uri);
-            var currentResponse;
-            this.POST_DATA_FROM_API().then(response => {
-                currentResponse = response;
-            });
-            return currentResponse;
-        },
-
         // Метод для парса данных с бэка
         // В качестве агрумента принимает строковое значение типа страницы
         async getModulesTest(pageType, pageId) {
             if (pageId) {
-                setUri(`/crm/v1/page/byId?pageId=${pageId}`);
+                this.url = `/crm/v1/page/byId?pageId=${pageId}`;
             } else {
-                setUri(`/crm/v1/page/byType?pageType=${pageType}`);
+                this.url = `/crm/v1/page/byType?pageType=${pageType}`;
             }
 
             // Получаем модули
             // Храним их в this.modules
-            await this.GET_DATA_FROM_API().then(response => {
+            await axios.get(this.url).then(response => {
                 this.modules = response.data.modules;
             });
 
@@ -40,9 +31,9 @@ export default {
 
                 let moduleID = this.modules[module].id;
 
-                setUri(`/crm/v1/page/modules/objects?moduleId=${moduleID}`);
+                this.url = `/crm/v1/page/modules/objects?moduleId=${moduleID}`;
 
-                await this.GET_DATA_FROM_API().then(response => {
+                await axios.get(this.url).then(response => {
                     let moduleType = this.modules[module].moduleType;
                     this[moduleType] = [];
 
