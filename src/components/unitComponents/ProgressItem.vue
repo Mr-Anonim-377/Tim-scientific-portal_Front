@@ -33,7 +33,7 @@
                     <!-- Текущее значение прогресс бара (шкала под прогресс баром) -->
                     <div
                         v-if="
-                            +getProgressPercent > 4 && +getProgressPercent < 93
+                            +getProgressPercent > 1 && +getProgressPercent < 93
                         "
                         :style="{ left: +getProgressPercent - 3 + '%' }"
                         class="dynamics-block-progressBar__currentValue"
