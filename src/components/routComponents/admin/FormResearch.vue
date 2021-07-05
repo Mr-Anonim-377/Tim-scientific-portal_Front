@@ -201,31 +201,6 @@
     </div>
 </template>
 <script>
-/*
-          Пропсы:
-           * TODO Направление исследования - селект
-           * TODO Превью фото - загрузка изображений
-           * TODO Название
-           * Об исследовании - текстовое поле
-           * Список исследователей
-           * TODO Слайдер - загрузка изображений
-
-           Валидация:
-           TODO Написать валидацию для каждого пропса
-
-           Получение данных об исследовании:
-           TODO Парс данных при редактировании
-              TODO Слайдер
-              TODO Метод получения ID по тэгу
-              TODO Формирования JSON
-
-           Финальные штрихи:
-           TODO Редирект
-
-           Методы:
-           TODO Добавление, редактирование
-      */
-
 import TitleSection from '../../unitComponents/TitleSection';
 import mixin from '../../../utils/methodsMixin';
 import Preloader from './../../unitComponents/CommonElements/Preloader';
