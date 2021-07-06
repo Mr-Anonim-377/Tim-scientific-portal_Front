@@ -12,7 +12,7 @@
 
                 <div class="progress-block-inf__container">
                     <div
-                        v-for="dataProgress in this.ACHIEVEMENTS.COLLEGE"
+                        v-for="dataProgress in ACHIEVEMENTS.COLLEGE"
                         :key="dataProgress"
                         class="progress-block-inf"
                     >
