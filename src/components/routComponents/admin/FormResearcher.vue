@@ -22,7 +22,7 @@
                                 v-model="form.fullname"
                                 type="textarea"
                                 maxlength="50"
-                                :autosize="{ minRows: 1, maxRows: 1 }"
+                                :autosize="true"
                                 resize="none"
                                 placeholder="ФИО исследователя"
                                 show-word-limit
@@ -31,44 +31,6 @@
                     </el-col>
                 </el-row>
 
-                <!-- Поле "Дата рождения" -->
-                <el-row type="flex" justify="center">
-                    <el-col>
-                        <h1>Дата рождения</h1>
-                        <el-form-item prop="dateOfBirth">
-                            <el-input
-                                id="dateInput"
-                                v-model="form.dateOfBirth"
-                                type="date"
-                                min="1920-01-01"
-                                max="2021-01-01"
-                                maxlength="50"
-                                :autosize="{ minRows: 1, maxRows: 1 }"
-                                resize="none"
-                                placeholder="Специальность исследователя"
-                            ></el-input>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <!-- Поле "Специальность" -->
-                <el-row type="flex" justify="center">
-                    <el-col>
-                        <h1>Специальность</h1>
-                        <el-form-item prop="specialty">
-                            <el-input
-                                v-model="form.specialty"
-                                type="textarea"
-                                maxlength="50"
-                                :autosize="{ minRows: 1, maxRows: 1 }"
-                                resize="none"
-                                placeholder="Специальность исследователя"
-                                show-word-limit
-                            ></el-input>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-
-                <!-- Поле "Электронная почта" -->
                 <el-row type="flex" justify="center">
                     <el-col>
                         <h1>Электронная почта</h1>
@@ -77,9 +39,95 @@
                                 v-model="form.email"
                                 type="textarea"
                                 maxlength="50"
-                                :autosize="{ minRows: 1, maxRows: 1 }"
+                                :autosize="true"
                                 resize="none"
                                 placeholder="Специальность исследователя"
+                                show-word-limit
+                            ></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+
+                <!-- Поле "Ученая степень" -->
+                <el-row type="flex" justify="center">
+                    <el-col>
+                        <h1>Ученая степень</h1>
+                        <el-form-item prop="specialty">
+                            <el-input
+                                v-model="form.specialty"
+                                type="textarea"
+                                maxlength="100"
+                                :autosize="true"
+                                resize="none"
+                                placeholder="Ученая степень исследователя"
+                                show-word-limit
+                            ></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+
+                <el-row type="flex" justify="center">
+                    <el-col>
+                        <h1>Ученое звание</h1>
+                        <el-form-item>
+                            <el-input
+                                v-model="form.academicRank"
+                                type="textarea"
+                                maxlength="200"
+                                :autosize="true"
+                                resize="none"
+                                placeholder="Ученое звание"
+                                show-word-limit
+                            ></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+
+                <el-row type="flex" justify="center">
+                    <el-col>
+                        <h1>Образование</h1>
+                        <el-form-item>
+                            <el-input
+                                v-model="form.education"
+                                type="textarea"
+                                maxlength="100"
+                                :autosize="true"
+                                resize="none"
+                                placeholder="Образование"
+                                show-word-limit
+                            ></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+
+                <el-row type="flex" justify="center">
+                    <el-col>
+                        <h1>Область научных интересов</h1>
+                        <el-form-item>
+                            <el-input
+                                v-model="form.scientificInterests"
+                                type="textarea"
+                                maxlength="600"
+                                :autosize="true"
+                                resize="none"
+                                placeholder="Область научных интересов"
+                                show-word-limit
+                            ></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+
+                <el-row type="flex" justify="center">
+                    <el-col>
+                        <h1>Публикационная активность</h1>
+                        <el-form-item>
+                            <el-input
+                                v-model="form.publicationActivity"
+                                type="textarea"
+                                maxlength="600"
+                                :autosize="true"
+                                resize="none"
+                                placeholder="Публикационная активность"
                                 show-word-limit
                             ></el-input>
                         </el-form-item>
@@ -148,9 +196,9 @@
                     </el-col>
                 </el-row>
 
-                <!-- Поле "Достижения" -->
+                <!-- Поле "" -->
                 <div class="achievements">
-                    <h1>Достижения</h1>
+                    <h1>Награды и премии</h1>
                     <el-row
                         v-for="(ach, index) in achievementsLenght"
                         :key="index"
@@ -165,7 +213,7 @@
                                     {
                                         required: true,
                                         message:
-                                            'Пожалуйста, заполните название достижения',
+                                            'Пожалуйста, заполните название награды',
                                         trigger: 'blur'
                                     }
                                 ]"
@@ -185,7 +233,7 @@
                                     {
                                         required: true,
                                         message:
-                                            'Пожалуйста, заполните год получения достижения',
+                                            'Пожалуйста, заполните год получения награды',
                                         trigger: 'blur'
                                     },
                                     {
@@ -193,12 +241,12 @@
                                         min: 4,
                                         trigger: blur,
                                         message:
-                                            'Пожалуйста, укажите корректный год достижения'
+                                            'Пожалуйста, укажите корректный год награды'
                                     }
                                 ]"
                             >
                                 <el-input
-                                    v-model="form.achievements[index].date"
+                                    v-model="this.form.achievements[index].date"
                                     maxlength="4"
                                     type="number"
                                     show-word-limit
@@ -212,7 +260,7 @@
                                                 deliteAchievement(event, index)
                                             "
                                         >
-                                            Удалить достижение</el-button
+                                            Удалить награду</el-button
                                         >
                                     </template>
                                 </el-input>
@@ -223,7 +271,7 @@
                         <el-button
                             class="addAchievementsBtn"
                             @click="addAchievement"
-                            >Добавить достижение</el-button
+                            >Добавить награду</el-button
                         >
                     </el-row>
                 </div>
@@ -250,36 +298,6 @@
     </div>
 </template>
 <script>
-/*
-
-        Работа с UI:
-        * TODO Написать валидацию для обязательных параметров
-            * TODO Валидация емейла
-            * TODO Валидация даты
-            * TODO Проверить валидацию
-
-        * TODO Переделать инпут достижения / на первое время добавить типс
-        * TODO Инпут даты
-        * TODO Бага с тайтлом
-
-        * TODO Список с пустыми профилями
-
-
-        Работа с данными:
-        * TODO Проверить корректное получение
-
-        * TODO Формирование json в ответе
-        TODO Переходы с аккаунта
-        TODO Скрыть лишние инпуты
-
-        Баги:
-        TODO Отписать Антону подробнее о кейсе воспроизведения хуйни с названиями
-
-        После правок по бэку:
-        ! getRequestData():
-            ! education лишнее
-            ! не хватает -> email: this.form.email
-        */
 import TitleSection from '../../unitComponents/TitleSection';
 import mixin from '../../../utils/methodsMixin';
 import Preloader from './../../unitComponents/CommonElements/Preloader';
@@ -307,9 +325,11 @@ export default {
                 specialty: '',
                 email: '',
                 avatar: '',
-                dateOfBirth: '',
                 research: [],
-                achievements: []
+                achievements: [],
+                academicRank: '',
+                education: '',
+                publicationActivity: ''
             },
             /* Объект */
 
@@ -359,15 +379,10 @@ export default {
                     }
                 ],
 
-                dateOfBirth: [
-                    {
-                        type: 'date',
-                        required: true,
-                        message:
-                            'Пожалуйста, выберите или напишите дату рождения',
-                        trigger: 'blur'
-                    }
-                ]
+                academicRank: [],
+                education: [],
+                scientificInterests: [],
+                publicationActivity: []
             },
 
             researchList: [],
@@ -429,11 +444,6 @@ export default {
                     }
                 ];
 
-                this.form.dateOfBirth = formData.date
-                    .split('.')
-                    .reverse()
-                    .join('-');
-
                 this.form.achievements =
                     formData.achievements?.map(i => {
                         return {
@@ -442,10 +452,23 @@ export default {
                         };
                     }) || [];
 
+                /* Ученая степень */
+                this.form.academicВegree = formData?.academicВegree || '';
+                /* Ученое звание */
+                this.form.academicRank = formData?.academicRank || '';
+                /* Образование */
+                this.form.education = formData?.education || '';
+                /* Область научных интересов */
+                this.form.scientificInterests =
+                    formData?.scientificInterests || '';
+                /* Публикационная активность */
+                this.form.publicationActivity =
+                    formData?.publicationActivity || '';
+
                 this.debug('Получаем', formData);
                 this.debug('Данные формы', this.form);
 
-                /* Кол-во достижений выносим в отдельную переменную во избежание
+                /* Кол-во наград выносим в отдельную переменную во избежание
                     вызова observer'а при редактировании инпута */
                 this.achievementsLenght = this.form.achievements.length;
 
@@ -473,10 +496,6 @@ export default {
             const form = this.form;
             return {
                 achievements: form.achievements,
-                date: this.form.dateOfBirth
-                    .split('-')
-                    .reverse()
-                    .join('.'),
                 imageLink: form.avatar,
                 email: form.email,
                 institution: form.tag,
@@ -488,7 +507,12 @@ export default {
                     ).id;
                 }),
                 specialisation: form.specialty,
-                tag: form.tag
+                tag: form.tag,
+
+                academicRank: form.academicRank,
+                education: form.education,
+                scientificInterests: form.scientificInterests,
+                publicationActivity: form.publicationActivity
             };
         },
 
@@ -557,13 +581,13 @@ export default {
             });
         },
 
-        /* Хэндлер удаления достижения */
+        /* Хэндлер удаления награды */
         deliteAchievement(event, index) {
             this.achievementsLenght--;
             this.form.achievements.splice(index, 1);
         },
 
-        /* Хэндлер добавления достижения */
+        /* Хэндлер добавления награды */
         addAchievement() {
             this.achievementsLenght++;
             this.form.achievements.push({
