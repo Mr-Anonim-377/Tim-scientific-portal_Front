@@ -36,85 +36,128 @@
 
                             <div class="form-block__edit">
                                 <h3>Ф.И.О.</h3>
-                                <input
-                                    v-if="authorization"
-                                    type="text"
-                                    placeholder="Как Вас зовут..."
-                                    class="edit__inp"
-                                />
 
-                                <p v-else class="edit-text">
+                                <p class="edit-text">
                                     {{
                                         PERSONAL_INFORMATION
                                             .PERSONAL_INFORMATION[0].text
                                     }}
                                 </p>
 
-                                <h3>Электронная почта</h3>
-                                <p class="edit-text">
-                                    {{
+                                <div
+                                    v-if="
                                         PERSONAL_INFORMATION
                                             .PERSONAL_INFORMATION[0].title
-                                    }}
-                                </p>
+                                    "
+                                    class="form block__item"
+                                >
+                                    <h3>Электронная почта</h3>
+                                    <p class="edit-text">
+                                        {{
+                                            PERSONAL_INFORMATION
+                                                .PERSONAL_INFORMATION[0].title
+                                        }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-block__information center">
                             <div class="form-block__edit">
-                                <h3>Ученая степень</h3>
-                                <p class="edit-text">
-                                    {{
+                                <div
+                                    v-if="
                                         PERSONAL_INFORMATION
                                             .PERSONAL_INFORMATION[0].title
-                                    }}
-                                </p>
+                                    "
+                                    class="form block__item"
+                                >
+                                    <h3>Ученая степень</h3>
+                                    <p class="edit-text">
+                                        {{
+                                            PERSONAL_INFORMATION
+                                                .PERSONAL_INFORMATION[0].title
+                                        }}
+                                    </p>
+                                </div>
 
-                                <h3>Ученое звание</h3>
-                                <p class="edit-text">
-                                    {{
+                                <div
+                                    v-if="
                                         PERSONAL_INFORMATION.ACADEMIC_RANK[0]
                                             .title
-                                    }}
-                                </p>
+                                    "
+                                    class="form block__item"
+                                >
+                                    <h3>Ученое звание</h3>
+                                    <p class="edit-text">
+                                        {{
+                                            PERSONAL_INFORMATION
+                                                .ACADEMIC_RANK[0].title
+                                        }}
+                                    </p>
+                                </div>
 
-                                <h3>Образование</h3>
-                                <p class="edit-text">
-                                    {{
+                                <div
+                                    v-if="
                                         PERSONAL_INFORMATION
                                             .RESEARCH_EDUCATION[0].text
-                                    }}
-                                </p>
+                                    "
+                                    class="form block__item"
+                                >
+                                    <h3>Образование</h3>
+                                    <p class="edit-text">
+                                        {{
+                                            PERSONAL_INFORMATION
+                                                .RESEARCH_EDUCATION[0].text
+                                        }}
+                                    </p>
+                                </div>
 
-                                <h3>Область научных интересов</h3>
-                                <p class="edit-text">
-                                    {{
+                                <div
+                                    v-if="
                                         PERSONAL_INFORMATION
                                             .INTERESTING_ACTIVITY[0].title
-                                    }}
-                                </p>
+                                    "
+                                    class="form block__item"
+                                >
+                                    <h3>Область научных интересов</h3>
+                                    <p class="edit-text">
+                                        {{
+                                            PERSONAL_INFORMATION
+                                                .INTERESTING_ACTIVITY[0].title
+                                        }}
+                                    </p>
+                                </div>
 
-                                <h3>Публикационная активность</h3>
-                                <p class="edit-text">
-                                    {{
-                                        PERSONAL_INFORMATION
-                                            .INTERESTING_ACTIVITY[0].text
-                                    }}
-                                </p>
+                                <div
+                                    v-if="
+                                        PERSONAL_INFORMATION.INTERESTING_ACTIVITY
+                                    "
+                                    class="form block__item"
+                                >
+                                    <h3>Публикационная активность</h3>
+                                    <p class="edit-text">
+                                        {{
+                                            PERSONAL_INFORMATION
+                                                .INTERESTING_ACTIVITY[0].text
+                                        }}
+                                    </p>
+                                </div>
 
-                                <h3>Ученая степень</h3>
-                                <input
-                                    v-if="authorization"
-                                    type="text"
-                                    placeholder="Выбрать специальность"
-                                    class="edit__inp"
-                                />
-                                <p v-else class="edit-text">
-                                    {{
+                                <div
+                                    v-if="
                                         PERSONAL_INFORMATION
                                             .RESEARCH_EDUCATION[0].title
-                                    }}
-                                </p>
+                                    "
+                                    class="form block__item"
+                                >
+                                    <h3>Ученая степень</h3>
+                                    <p class="edit-text">
+                                        {{
+                                            PERSONAL_INFORMATION
+                                                .RESEARCH_EDUCATION[0].title
+                                        }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>

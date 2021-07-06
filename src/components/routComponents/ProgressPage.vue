@@ -11,30 +11,19 @@
                 <account-navigation-section />
 
                 <div class="progress-block-inf__container">
-                    <h2>
-                        {{
-                            ACHIEVEMENTS
-                                ? 'Список наград и премий'
-                                : 'Информация отсутствует в системе'
-                        }}
-                    </h2>
-                    <div v-if="ACHIEVEMENTS">
-                        <div
-                            v-for="dataProgress in ACHIEVEMENTS.COLLEGE"
-                            :key="dataProgress"
-                            class="progress-block-inf"
-                        >
-                            <div class="inf-img">
-                                <img
-                                    src="../../assets/image/progress-Img.svg"
-                                />
-                            </div>
-                            <div class="inf-text">
-                                <p>{{ dataProgress.title }}</p>
-                                <span class="inf-text__years">{{
-                                    dataProgress.date
-                                }}</span>
-                            </div>
+                    <div
+                        v-for="dataProgress in this.ACHIEVEMENTS.COLLEGE"
+                        :key="dataProgress"
+                        class="progress-block-inf"
+                    >
+                        <div class="inf-img">
+                            <img src="../../assets/image/progress-Img.svg" />
+                        </div>
+                        <div class="inf-text">
+                            <p>{{ dataProgress.title }}</p>
+                            <span class="inf-text__years">{{
+                                dataProgress.date
+                            }}</span>
                         </div>
                     </div>
                 </div>
@@ -60,13 +49,14 @@ export default {
         TitleSection,
         Preloader
     },
+
     mixins: [mixin],
     props: {
         pageId: String
     },
     data() {
         return {
-            title: 'Достижения',
+            title: 'Награды и премии',
             stileTitle: {
                 stile: ['font-size: 26px']
             },
@@ -111,6 +101,7 @@ p {
 .progress-block-inf {
     margin-left: 129px;
     display: flex;
+    /* flex-wrap: wrap; */
 }
 .inf-img {
     box-sizing: border-box;
@@ -152,6 +143,14 @@ h2 {
 }
 .progress-block-inf__container {
     width: 100%;
-    margin-left: 127px;
 }
+/* .inf-text__years:after {
+        content: '';
+        position: absolute;
+        width: 35px;
+        height: 1px;
+        background: #3f7e77;
+        left: -39px;
+        top: 9px;
+    } */
 </style>

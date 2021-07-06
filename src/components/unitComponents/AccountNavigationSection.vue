@@ -10,11 +10,8 @@
             <div v-if="authorization" class="nav-btn">Мои проекты</div>
             <div v-else class="nav-btn">Проекты</div>
         </router-link>
-        <!-- <router-link style="text-decoration: none" :to="{ name: 'colleagues' }">
-			<div class="nav-btn">Коллеги</div>
-		</router-link> -->
         <router-link style="text-decoration: none" :to="{ name: 'progress' }">
-            <div class="nav-btn">Достижения</div>
+            <div class="nav-btn">Награды и премии</div>
         </router-link>
     </section>
 </template>
