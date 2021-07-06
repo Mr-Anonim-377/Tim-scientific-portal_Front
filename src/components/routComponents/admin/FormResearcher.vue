@@ -246,7 +246,7 @@
                                 ]"
                             >
                                 <el-input
-                                    v-model="this.form.achievements[index].date"
+                                    v-model="form.achievements[index].date"
                                     maxlength="4"
                                     type="number"
                                     show-word-limit
