@@ -29,22 +29,6 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
-                <!--                <el-row type="flex" justify="center">-->
-                <!--                    <el-col>-->
-                <!--                        <h1>Дата начала события (месяц.год)</h1>-->
-                <!--                        <el-form-item prop="tag">-->
-                <!--                            <el-input-->
-                <!--                                maxlength="50"-->
-                <!--                                :autosize="{ minRows: 2, maxRows: 3 }"-->
-                <!--                                show-word-limit-->
-                <!--                                resize="none"-->
-                <!--                                v-model="form.tag"-->
-                <!--                                placeholder="Дата"-->
-                <!--                                type="month"-->
-                <!--                            ></el-input>-->
-                <!--                        </el-form-item>-->
-                <!--                    </el-col>-->
-                <!--                </el-row>-->
                 <el-row type="flex" justify="center">
                     <el-col>
                         <h1>Дата начала события</h1>
@@ -120,7 +104,7 @@
                             class="upload-demo"
                             action="https://api.imgbb.com/1/upload"
                             multiple
-                            :data="requestData"
+                            :data="requestDataImage"
                             list-type="picture"
                             :limit="3"
                             :file-list="sliderFileList"
@@ -144,28 +128,34 @@
                         </el-upload>
                     </el-col>
 
-                    <!--                    <el-col :span="12">-->
-                    <!--                        <h1>Добавить документ</h1>-->
-                    <!--                        <el-form-item>-->
-                    <!--                            <el-upload-->
-                    <!--                                class="upload-demo"-->
-                    <!--                                action="https://api.imgbb.com/1/upload"-->
-                    <!--                                multiple-->
-                    <!--                                :data="requestData"-->
-                    <!--                                list-type="document"-->
-                    <!--                                :file-list="documentCalendar"-->
-                    <!--                                :v-model="form.documentCalendar"-->
-                    <!--                                :limit="1"-->
-                    <!--                                :on-success="successLoadHookDocument"-->
-                    <!--                                name="link"-->
-                    <!--                            >-->
-                    <!--                                <el-button size="middle" type="success" plain>Выберите документ</el-button>-->
-                    <!--                                <template #tip>-->
-                    <!--                                    <div class="el-upload__tip">pdf файл размером не более 500кб</div>-->
-                    <!--                                </template>-->
-                    <!--                            </el-upload>-->
-                    <!--                        </el-form-item>-->
-                    <!--                    </el-col>-->
+                    <el-col :span="12">
+                        <h1>Добавить документ</h1>
+                        <el-form-item>
+                            <el-upload
+                                ref="uploadDoc"
+                                class="upload-demo"
+                                multiple
+                                list-type="document"
+                                :file-list="previewfileList"
+                                :v-model="form.documentCalendar"
+                                :on-change="changeDocumentHandler"
+                                :limit="1"
+                                :auto-upload="false"
+                                :on-success="successLoadHookDocument"
+                                name="file"
+                            >
+                                <el-button size="middle" type="success" plain
+                                    >Выберите документ</el-button
+                                >
+
+                                <template #tip>
+                                    <div class="el-upload__tip">
+                                        pdf файл размером не более 500кб
+                                    </div>
+                                </template>
+                            </el-upload>
+                        </el-form-item>
+                    </el-col>
                 </el-row>
 
                 <div class="form">
@@ -182,8 +172,6 @@
                         >
                         </el-input>
                     </el-form-item>
-
-                    <!-- TODO придумать стили -->
                 </div>
 
                 <div class="submitWrapper">
@@ -240,7 +228,7 @@ export default {
                 text: [],
                 place: '',
                 imageLinks: [],
-                documentCalendar: [],
+                documentCalendar: '',
                 tag: ''
             },
 
@@ -320,10 +308,14 @@ export default {
             },
 
             /* При загрузке изображений отправляем api key imgBB
-         Если что-то пойдет не так, получить новый можно тут:
-         https://api.imgbb.com/ */
-            requestData: {
+            Если что-то пойдет не так, получить новый можно тут:
+            https://api.imgbb.com/ */
+            requestDataImage: {
                 key: '2ca9c35e0d42896ec7e746b5daf2c924'
+            },
+
+            requestData: {
+                uploadFilePath: 'pdf'
             }
         };
     },
@@ -424,6 +416,19 @@ export default {
             return validFormat && validSize;
         },
 
+        getCurrentDate() {
+            let today = new Date();
+            let dd = String(today.getDate()).padStart(2, '0');
+            let mm = String(today.getMonth() + 1).padStart(2, '0');
+            let yyyy = today.getFullYear();
+            return dd + '.' + mm + '.' + yyyy;
+        },
+
+        changeDocumentHandler(file) {
+            console.log(file);
+            this.form.documentCalendar = file;
+        },
+
         /* Хук успешной загрузки изображения (инпут слайдера)
             При успешной загрузке заполняем скрытый инпут урлом из ответа */
         successLoadHookSlider(res, file, fileList) {
@@ -456,11 +461,29 @@ export default {
          * @param {object} data - тело запроса на создание события
          */
         addCalendar(data) {
+            /* Преобразуем в formData */
+            const formData = new FormData();
+            const file = this.form.documentCalendar;
+
+            Object.keys(data).forEach(prop => {
+                formData.append(prop, data[prop]);
+            });
+
+            formData.append('file', file.raw, file.name);
+            formData.append('fileName', file.name);
+            formData.append('fileData', this.getCurrentDate());
+
+            //eslint-disable-next-line
+            const self = this;
+            //eslint-disable-next-line
+            debugger
+
             return new Promise(res => {
                 axios({
                     method: 'POST',
                     url: '/user/create/calendar',
-                    data: data
+                    data: formData,
+                    headers: { 'Content-Type': 'multipart/form-data' }
                 }).then(response => {
                     res(response.data);
                 });
@@ -485,21 +508,21 @@ export default {
 
         /* Метод сабмита формы -> отправляет запросы при пройденной валидации */
         onSubmit(formName) {
+            let data = this.getRequestData();
+            this.addCalendar(data).then(() => {
+                console.log('ok');
+            });
             this.$refs[formName].validate(async valid => {
                 if (valid) {
-                    let data = this.getRequestData();
+                    // let data = this.getRequestData();
                     if (this.mode === 'create') {
-                        this.debug('Отправляем', data, true);
-                        this.addCalendar(data).then(() => {
-                            this.$router.push({ name: 'AdminCalendarPage' });
-                        });
+                        // this.debug('Отправляем', data, true);
                     } else {
-                        data.pageId = this.entityId;
-
-                        this.debug('Отправляем', data, true);
-                        this.updateCalendar(data).then(() => {
-                            this.$router.push({ name: 'AdminCalendarPage' });
-                        });
+                        // data.pageId = this.entityId;
+                        // this.debug('Отправляем', data, true);
+                        // this.updateCalendar(data).then(() => {
+                        //     this.$router.push({ name: 'AdminCalendarPage' });
+                        // });
                     }
                 } else {
                     return false;
