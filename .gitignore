@@ -18,13 +18,7 @@
 
 # папки
 .vscode
-/.idea/
-/.idea/.gitignore
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/inspectionProfiles/Project_Default.xml
-/.idea/Tim-scientific-portal_Front.iml
-/.idea/vcs.xml
+.idea/
 .DS_Store
 node_modules/
 dist
