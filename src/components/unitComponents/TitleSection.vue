@@ -27,8 +27,8 @@ export default {
         title: String,
         headerVisible: Boolean,
         compactTitle: Boolean,
-        styleTitle: Object
-    }
+        styleTitle: Object,
+    },
 };
 </script>
 

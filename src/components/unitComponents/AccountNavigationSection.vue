@@ -23,9 +23,9 @@ export default {
     props: { profileData: Object },
     data() {
         return {
-            authorization: false
+            authorization: false,
         };
-    }
+    },
 };
 </script>
 

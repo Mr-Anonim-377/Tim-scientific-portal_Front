@@ -14,8 +14,8 @@
 export default {
     name: 'LinkItem',
     props: {
-        linkData: {}
-    }
+        linkData: {},
+    },
 };
 </script>
 

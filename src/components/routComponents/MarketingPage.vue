@@ -27,12 +27,12 @@ export default {
     name: 'NewItemsPage',
     components: {
         TitleSection,
-        Preloader
+        Preloader,
     },
     mixins: [testMixin],
     data() {
         return {
-            loadSuccess: false
+            loadSuccess: false,
         };
     },
     async mounted() {
@@ -40,7 +40,7 @@ export default {
         setTimeout(() => {
             this.loadSuccess = true;
         }, 500);
-    }
+    },
 };
 </script>
 

@@ -14,7 +14,7 @@
                     style="text-decoration: none"
                     :to="{
                         name: 'UI_calendar',
-                        params: { mode: 'edit', entityId: item.pageId }
+                        params: { mode: 'edit', entityId: item.pageId },
                     }"
                 >
                     <button class="btn_edit">Редактировать</button>
@@ -33,11 +33,11 @@ export default {
     name: 'AdminItemCalendar',
     props: {
         sectionData: Object,
-        type: String
+        type: String,
     },
     data() {
         return {
-            active: false
+            active: false,
         };
     },
 
@@ -46,13 +46,13 @@ export default {
             axios({
                 method: 'DELETE',
                 url: '/user/delete',
-                params: { pageId: id, entityType: this.type }
+                params: { pageId: id, entityType: this.type },
             }).finally(() => {
                 //finally заменить на then после показа
                 this.$router.go();
             });
-        }
-    }
+        },
+    },
 };
 </script>
 

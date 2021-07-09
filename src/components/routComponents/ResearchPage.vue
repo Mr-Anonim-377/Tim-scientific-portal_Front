@@ -40,15 +40,15 @@ export default {
         ResearcMembersSection,
         ResearchSliderSection,
         // NewsSection,
-        Preloader
+        Preloader,
     },
     mixins: [testMixin],
     props: {
-        pageId: String
+        pageId: String,
     },
     data() {
         return {
-            loadSuccess: false
+            loadSuccess: false,
         };
     },
     async mounted() {
@@ -59,7 +59,7 @@ export default {
         setTimeout(() => {
             this.loadSuccess = true;
         }, 500);
-    }
+    },
 };
 </script>
 

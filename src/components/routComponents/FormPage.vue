@@ -182,11 +182,11 @@ export default {
     components: {
         AccountNavigationSection,
         TitleSection,
-        Preloader
+        Preloader,
     },
     mixins: [mixin],
     props: {
-        pageId: String
+        pageId: String,
     },
 
     data() {
@@ -194,10 +194,10 @@ export default {
             title: 'Личная информация',
             authorization: false,
             stileTitle: {
-                stile: ['font-size: 26px']
+                stile: ['font-size: 26px'],
             },
             loadSuccess: false,
-            old: new String()
+            old: new String(),
         };
     },
 
@@ -240,8 +240,8 @@ export default {
                 return text_forms[0];
             }
             return text_forms[2];
-        }
-    }
+        },
+    },
 };
 </script>
 

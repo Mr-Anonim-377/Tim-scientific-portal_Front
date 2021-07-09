@@ -43,7 +43,7 @@ export default {
         PurposesSection,
         Preloader,
         TitleSection,
-        ProgressItem
+        ProgressItem,
     },
     mixins: [testMixin],
     data() {
@@ -53,12 +53,12 @@ export default {
              */
             styleTitle: {
                 style: [
-                    'font-size: 26px; letter-spacing: 0.01em; margin-bottom: 94px;'
+                    'font-size: 26px; letter-spacing: 0.01em; margin-bottom: 94px;',
                 ],
-                styleDynamics: ['font-size: 26px; margin-bottom: 96px']
+                styleDynamics: ['font-size: 26px; margin-bottom: 96px'],
             },
 
-            loadSuccess: false
+            loadSuccess: false,
         };
     },
 
@@ -67,7 +67,7 @@ export default {
         setTimeout(() => {
             this.loadSuccess = true;
         }, 500);
-    }
+    },
 };
 </script>
 

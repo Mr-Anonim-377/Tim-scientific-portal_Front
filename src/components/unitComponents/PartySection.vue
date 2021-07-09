@@ -17,7 +17,7 @@
                         <div
                             class="researcher-image"
                             :style="{
-                                backgroundImage: `url(${researcher.image})`
+                                backgroundImage: `url(${researcher.image})`,
                             }"
                         ></div>
                     </router-link>
@@ -31,24 +31,12 @@
 
                 <div class="party-block__right">
                     <h3 class="party-block__text-name">
-                        {{
-                            researcher.text
-                                .split(' ')
-                                .slice(0, 1)
-                                .join(' ')
-                        }}
+                        {{ researcher.text.split(' ').slice(0, 1).join(' ') }}
                     </h3>
                     <h3>
-                        {{
-                            researcher.text
-                                .split(' ')
-                                .slice(1, 3)
-                                .join(' ')
-                        }}
+                        {{ researcher.text.split(' ').slice(1, 3).join(' ') }}
                     </h3>
-                    <p class="party-block__text-project">
-                        Участие в проектах:
-                    </p>
+                    <p class="party-block__text-project">Участие в проектах:</p>
                     <div
                         v-if="researcher._childModuleObject.length > 0"
                         class="project-container"
@@ -65,7 +53,7 @@
                                 <img
                                     :src="
                                         research.contents.find(
-                                            content =>
+                                            (content) =>
                                                 content.contentType === 'IMAGE'
                                         ).value.url
                                     "
@@ -73,7 +61,7 @@
                                 <p>
                                     {{
                                         research.contents.find(
-                                            content =>
+                                            (content) =>
                                                 content.contentType === 'TITLE'
                                         ).value.text
                                     }}
@@ -101,25 +89,25 @@ import TitleSection from '../unitComponents/TitleSection';
 export default {
     name: 'PartySection',
     components: {
-        TitleSection
+        TitleSection,
     },
     props: {
         sectionData: {},
-        title: String
+        title: String,
     },
     data() {
         return {
             btnStyle: {},
             titleParty: 'Участники проекта',
-            visibleParty: true
+            visibleParty: true,
         };
     },
     methods: {
-        showToggle: function() {
+        showToggle: function () {
             this.listResearch = { 'max-height': 'fit-content' };
             this.btnStyle = { opacity: 0, margin: '0 auto', height: 0 };
-        }
-    }
+        },
+    },
 };
 </script>
 

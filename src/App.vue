@@ -22,16 +22,16 @@ export default {
     name: 'App',
     components: {
         HeaderSection,
-        FooterSection
+        FooterSection,
     },
     mixins: [testMixin],
 
     data() {
         return {
             modifiers: {
-                header: ['header_border-none']
+                header: ['header_border-none'],
             },
-            loadSuccess: false
+            loadSuccess: false,
         };
     },
 
@@ -44,10 +44,10 @@ export default {
             .get('/user/auth?roleName=ROLE_USER', {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                }
+                    'Access-Control-Allow-Origin': '*',
+                },
             })
-            .then(res => {
+            .then((res) => {
                 localStorage.setItem('isAuth', true);
                 localStorage.setItem('tag', res.data);
             })
@@ -70,7 +70,7 @@ export default {
         // Локально устанавливаем значение для isAuth
         this.isAuth = localStorage.getItem('isAuth') === 'true' ? true : false;
         this.loadSuccess = true;
-    }
+    },
 };
 </script>
 

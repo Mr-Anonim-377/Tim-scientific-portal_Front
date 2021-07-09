@@ -61,20 +61,20 @@ import TitleSection from '../unitComponents/TitleSection';
 export default {
     name: 'ContactsPage',
     components: {
-        TitleSection
+        TitleSection,
     },
     data() {
         return {
             modifiers: {
                 btn: [
-                    'background: #F8F5E6; margin: 27px auto 0 auto; display:block; color: #3F7E77;'
-                ]
+                    'background: #F8F5E6; margin: 27px auto 0 auto; display:block; color: #3F7E77;',
+                ],
             },
             visibleContacts: false,
             titleContacts: 'Пресс-служба',
-            titleContactsBtn: 'Позвонить'
+            titleContactsBtn: 'Позвонить',
         };
-    }
+    },
 };
 </script>
 

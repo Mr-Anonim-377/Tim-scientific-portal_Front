@@ -41,11 +41,11 @@ export default {
     components: {
         AccountNavigationSection,
         TitleSection,
-        ButtonElement
+        ButtonElement,
     },
     mixins: [mixin],
     props: {
-        pageId: String
+        pageId: String,
     },
     data() {
         return {
@@ -53,13 +53,13 @@ export default {
             authorization: false,
             modifiers: {
                 btn: [
-                    'width: 170px; height: 35px; background: #3F7E77; margin-top: 13px; padding: 0px;'
-                ]
+                    'width: 170px; height: 35px; background: #3F7E77; margin-top: 13px; padding: 0px;',
+                ],
             },
             titleAccountBtn: 'Изменить',
             stileTitle: {
-                stile: ['font-size: 26px']
-            }
+                stile: ['font-size: 26px'],
+            },
         };
     },
 
@@ -75,7 +75,7 @@ export default {
          */
         await this.getModulesTest('', this.profileID);
         this.loadSuccess = true;
-    }
+    },
 };
 </script>
 

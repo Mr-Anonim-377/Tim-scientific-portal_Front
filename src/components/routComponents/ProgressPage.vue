@@ -47,20 +47,20 @@ export default {
     components: {
         AccountNavigationSection,
         TitleSection,
-        Preloader
+        Preloader,
     },
 
     mixins: [mixin],
     props: {
-        pageId: String
+        pageId: String,
     },
     data() {
         return {
             title: 'Награды и премии',
             stileTitle: {
-                stile: ['font-size: 26px']
+                stile: ['font-size: 26px'],
             },
-            loadSuccess: false
+            loadSuccess: false,
         };
     },
 
@@ -75,7 +75,7 @@ export default {
          */
         await this.getModulesTest('', this.profileID);
         this.loadSuccess = true;
-    }
+    },
 };
 </script>
 

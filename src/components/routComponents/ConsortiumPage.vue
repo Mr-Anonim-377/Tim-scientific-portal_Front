@@ -21,13 +21,13 @@ export default {
     name: 'ConsortiumMain',
     components: {
         ConsortioumSliderSection,
-        Preloader
+        Preloader,
     },
     mixins: [testMixin],
     data() {
         return {
             consortioumData: [],
-            loadSuccess: false
+            loadSuccess: false,
         };
     },
     async mounted() {
@@ -35,7 +35,7 @@ export default {
         setTimeout(() => {
             this.loadSuccess = true;
         }, 500);
-    }
+    },
 };
 </script>
 

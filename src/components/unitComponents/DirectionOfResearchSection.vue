@@ -43,19 +43,19 @@ export default {
     name: 'DirectionOfResearchNew',
     components: {
         TitleSection,
-        ButtonElement
+        ButtonElement,
     },
     data() {
         return {
             modifiers: {
                 btn: [
-                    'background: #F8F5E6; margin: 42px auto 0 auto; color: #3F7E77;'
-                ]
+                    'background: #F8F5E6; margin: 42px auto 0 auto; color: #3F7E77;',
+                ],
             },
             visibleDirection: false,
-            titleDirection: 'Направления исследований'
+            titleDirection: 'Направления исследований',
         };
-    }
+    },
 };
 </script>
 

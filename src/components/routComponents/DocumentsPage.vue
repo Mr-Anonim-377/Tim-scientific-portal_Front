@@ -37,7 +37,7 @@ export default {
     components: {
         DocumentsSection,
         TitleSection,
-        Preloader
+        Preloader,
     },
     mixins: [mixin],
 
@@ -46,8 +46,8 @@ export default {
             titleDocuments: 'Официальные документы',
             loadSuccess: false,
             stileTitle: {
-                stile: ['font-size: 26px']
-            }
+                stile: ['font-size: 26px'],
+            },
         };
     },
     async mounted() {
@@ -55,7 +55,7 @@ export default {
         setTimeout(() => {
             this.loadSuccess = true;
         }, 500);
-    }
+    },
 };
 </script>
 

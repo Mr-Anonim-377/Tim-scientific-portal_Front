@@ -15,9 +15,9 @@ export default {
     props: ['modifiers', 'title'],
     data() {
         return {
-            titleValue: this.title ? this.title : 'Подробнее'
+            titleValue: this.title ? this.title : 'Подробнее',
         };
-    }
+    },
 };
 </script>
 

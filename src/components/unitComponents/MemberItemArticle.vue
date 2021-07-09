@@ -20,8 +20,8 @@
 export default {
     name: 'MemberItemSection',
     props: {
-        articleData: {}
-    }
+        articleData: {},
+    },
 };
 </script>
 

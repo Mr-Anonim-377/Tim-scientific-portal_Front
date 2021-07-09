@@ -58,17 +58,17 @@ export default {
     name: 'ConsortiumMain',
     components: {
         TitleSection,
-        ButtonElement
+        ButtonElement,
     },
     props: {
-        sectionData: []
+        sectionData: [],
     },
     data() {
         return {
             titleConsortium: 'Консорциум',
-            loadSuccess: false
+            loadSuccess: false,
         };
-    }
+    },
 };
 </script>
 

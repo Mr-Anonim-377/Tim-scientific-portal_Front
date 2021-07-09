@@ -48,7 +48,7 @@ export default {
     name: 'AuthorizationeSection',
     components: {
         ButtonElement,
-        TitleSection
+        TitleSection,
     },
     mixins: [testMixin],
     data() {
@@ -60,12 +60,12 @@ export default {
             visibleAuthorization: true,
             titleAuthorization: 'Вход в личный кабинет',
             modifiers: {
-                btn: ['width: 325px; height: 50px; margin: auto;']
+                btn: ['width: 325px; height: 50px; margin: auto;'],
             },
             titleAuthorizationBtn: 'Войти',
             stileTitle: {
-                stile: ['font-size: 22px']
-            }
+                stile: ['font-size: 22px'],
+            },
         };
     },
     methods: {
@@ -74,12 +74,12 @@ export default {
                 .get('/user/logIn', {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': '*'
+                        'Access-Control-Allow-Origin': '*',
                     },
                     auth: {
                         username: this.login,
-                        password: this.password
-                    }
+                        password: this.password,
+                    },
                 })
                 .then(() => {
                     localStorage.setItem('isAuth', true);
@@ -95,8 +95,8 @@ export default {
                         this.error = false;
                     }, 4000);
                 });
-        }
-    }
+        },
+    },
 };
 </script>
 

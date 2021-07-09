@@ -2,7 +2,7 @@
     <div class="admin-nav">
         <ul>
             <router-link
-                style="text-decoration: none;"
+                style="text-decoration: none"
                 :to="{ name: 'AdminNewsPage' }"
                 ><li class="active">Новости</li></router-link
             >
@@ -29,7 +29,7 @@
 
 <script>
 export default {
-    name: 'AdminNavigation'
+    name: 'AdminNavigation',
 };
 </script>
 

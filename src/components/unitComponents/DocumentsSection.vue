@@ -17,8 +17,8 @@ export default {
     props: {
         sectionData: Object,
         /* Локальная дата */
-        localData: Object
-    }
+        localData: Object,
+    },
 };
 </script>
 

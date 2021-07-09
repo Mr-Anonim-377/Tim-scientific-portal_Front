@@ -68,8 +68,8 @@ import TitleSection from '../unitComponents/TitleSection';
 export default {
     name: 'ConsortiumOnlyPage',
     components: {
-        TitleSection
-    }
+        TitleSection,
+    },
 };
 </script>
 

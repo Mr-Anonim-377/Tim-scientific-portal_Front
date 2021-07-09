@@ -41,16 +41,16 @@ export default {
     name: 'PresentationPage',
     components: {
         TitleSection,
-        Preloader
+        Preloader,
     },
     mixins: [mixin],
     data() {
         return {
             titlePresentation: 'Презентации НЦМУ',
             stileTitle: {
-                stile: ['font-size: 26px']
+                stile: ['font-size: 26px'],
             },
-            loadSuccess: false
+            loadSuccess: false,
         };
     },
     async mounted() {
@@ -58,7 +58,7 @@ export default {
         setTimeout(() => {
             this.loadSuccess = true;
         }, 500);
-    }
+    },
 };
 </script>
 

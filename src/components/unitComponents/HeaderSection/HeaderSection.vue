@@ -1,13 +1,10 @@
-§<template>
+§
+<template>
     <section class="headerSection">
         <!--Верхняя часть хедера-->
         <div class="headerSection-container">
-            <p class="headerSection__text-phone">
-                +7 (499) 976-07-48
-            </p>
-            <p class="headerSection__textMail">
-                future-agro.info@yandex.ru
-            </p>
+            <p class="headerSection__text-phone">+7 (499) 976-07-48</p>
+            <p class="headerSection__textMail">future-agro.info@yandex.ru</p>
             <router-link style="text-decoration: none" :to="{ name: 'Main' }">
                 <img src="../../../assets/image/newLogo.png" />
                 <div class="popup-arrow"></div>
@@ -95,7 +92,7 @@
                             <p>
                                 {{
                                     way.title[0] +
-                                        way.title.slice(1).toLowerCase()
+                                    way.title.slice(1).toLowerCase()
                                 }}
                             </p>
                         </router-link>
@@ -121,7 +118,7 @@
                             style="text-decoration: none"
                             :to="{
                                 name: 'participantNews',
-                                params: { tag: 'РГАУ-МСХА' }
+                                params: { tag: 'РГАУ-МСХА' },
                             }"
                         >
                             <p>
@@ -134,7 +131,7 @@
                             style="text-decoration: none"
                             :to="{
                                 name: 'participantNews',
-                                params: { tag: 'Санкт-Петербургский' }
+                                params: { tag: 'Санкт-Петербургский' },
                             }"
                         >
                             <p>
@@ -146,8 +143,8 @@
                             :to="{
                                 name: 'participantNews',
                                 params: {
-                                    tag: 'сельскохозяйственной_микробиологии'
-                                }
+                                    tag: 'сельскохозяйственной_микробиологии',
+                                },
                             }"
                         >
                             <p>
@@ -160,7 +157,7 @@
                             style="text-decoration: none"
                             :to="{
                                 name: 'participantNews',
-                                params: { tag: 'Докучаева' }
+                                params: { tag: 'Докучаева' },
                             }"
                         >
                             <p>ФИЦ "Почвенный институт имени В.В. Докучаева</p>
@@ -170,7 +167,7 @@
                             style="text-decoration: none"
                             :to="{
                                 name: 'participantNews',
-                                params: { tag: 'Вавилова' }
+                                params: { tag: 'Вавилова' },
                             }"
                         >
                             <p>
@@ -183,7 +180,7 @@
                             style="text-decoration: none"
                             :to="{
                                 name: 'participantNews',
-                                params: { tag: 'Информатика_и_управление' }
+                                params: { tag: 'Информатика_и_управление' },
                             }"
                         >
                             <p>ФИЦ "Информатика и управление" РАН</p>
@@ -194,8 +191,8 @@
                             :to="{
                                 name: 'participantNews',
                                 params: {
-                                    tag: 'Фундаментальные_основы_биотехнологии'
-                                }
+                                    tag: 'Фундаментальные_основы_биотехнологии',
+                                },
                             }"
                         >
                             <p>
@@ -245,12 +242,12 @@ export default {
     props: {
         ways: Object,
         news: Object,
-        isAuth: Boolean
+        isAuth: Boolean,
     },
 
     data() {
         return {
-            accountName: ''
+            accountName: '',
         };
     },
 
@@ -263,12 +260,12 @@ export default {
 
             axios({
                 method: 'POST',
-                url: '/logout'
+                url: '/logout',
             }).catch(() => {
                 this.$router.go();
             });
-        }
-    }
+        },
+    },
 };
 </script>
 

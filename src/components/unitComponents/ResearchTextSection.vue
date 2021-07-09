@@ -50,11 +50,11 @@ export default {
     name: 'ResearchTextSection',
     components: {
         TitleSection,
-        ButtonElement
+        ButtonElement,
     },
     props: {
-        sectionData: []
-    }
+        sectionData: [],
+    },
 };
 </script>
 

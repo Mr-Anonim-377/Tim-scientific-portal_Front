@@ -27,7 +27,7 @@
                             <router-link
                                 style="text-decoration: none"
                                 :to="{
-                                    path: `/research/${dataProject._pageLink}`
+                                    path: `/research/${dataProject._pageLink}`,
                                 }"
                             >
                                 <img :src="dataProject.image" />
@@ -60,20 +60,20 @@ export default {
     components: {
         AccountNavigationSection,
         Preloader,
-        TitleSection
+        TitleSection,
     },
 
     mixins: [mixin],
     props: {
-        pageId: String
+        pageId: String,
     },
     data() {
         return {
             title: 'Мои проекты',
             stileTitle: {
-                stile: ['font-size: 26px']
+                stile: ['font-size: 26px'],
             },
-            loadSuccess: false
+            loadSuccess: false,
         };
     },
 
@@ -89,7 +89,7 @@ export default {
          */
         await this.getModulesTest('', this.profileID);
         this.loadSuccess = true;
-    }
+    },
 };
 </script>
 

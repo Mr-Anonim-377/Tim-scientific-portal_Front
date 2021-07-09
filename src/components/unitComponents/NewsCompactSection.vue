@@ -16,9 +16,9 @@
                 <router-link
                     v-if="
                         NEWS_ITEM.date ||
-                            NEWS_ITEM.title ||
-                            NEWS_ITEM.image ||
-                            NEWS_ITEM._pageLink
+                        NEWS_ITEM.title ||
+                        NEWS_ITEM.image ||
+                        NEWS_ITEM._pageLink
                     "
                     style="text-decoration: none"
                     :to="{ path: `/newsItem/${NEWS_ITEM._pageLink}` }"
@@ -60,23 +60,23 @@ import TitleSection from '../unitComponents/TitleSection';
 export default {
     name: 'NewsMain',
     components: {
-        TitleSection
+        TitleSection,
     },
     props: {
         newsData: {},
-        listNews: {}
+        listNews: {},
     },
     data() {
         return {
             modifiers: {
                 btn: [
-                    'width: 170px; height: 35px; font-size: 14px; line-height: 17px; padding: 10px;'
-                ]
+                    'width: 170px; height: 35px; font-size: 14px; line-height: 17px; padding: 10px;',
+                ],
             },
             titleNews: 'Новости программы',
-            visibleNews: true
+            visibleNews: true,
         };
-    }
+    },
 };
 </script>
 

@@ -12,13 +12,13 @@
                 v-for="NEWS_ITEM in newsData"
                 :key="NEWS_ITEM"
                 :class="{
-                    'news-item': NEWS_ITEM._tag === tag || tag === 'all'
+                    'news-item': NEWS_ITEM._tag === tag || tag === 'all',
                 }"
             >
                 <div
                     v-if="
                         (NEWS_ITEM._tag === tag && NEWS_ITEM.title) ||
-                            tag === 'all'
+                        tag === 'all'
                     "
                 >
                     <img :src="NEWS_ITEM.image" />
@@ -50,29 +50,29 @@ export default {
     name: 'NewsMain',
     components: {
         ButtonElement,
-        TitleSection
+        TitleSection,
     },
     props: {
         newsData: {},
         listNews: {},
         titlePage: String,
-        tag: String
+        tag: String,
     },
     data() {
         return {
             modifiers: {
                 btn: [
-                    'width: 170px; height: 35px; font-size: 14px; line-height: 17px; padding: 10px;'
-                ]
+                    'width: 170px; height: 35px; font-size: 14px; line-height: 17px; padding: 10px;',
+                ],
             },
             visibleNews: true,
-            title: this.titlePage
+            title: this.titlePage,
         };
     },
     watch: {
-        $route: function() {
+        $route: function () {
             this.title = this.getFullTitlePage(this.$route.params.tag);
-        }
+        },
     },
 
     methods: {
@@ -97,14 +97,14 @@ export default {
 
         checkVoidNewsList() {
             let result = this.newsData.filter(
-                item => item._tag === this.$route.params.tag
+                (item) => item._tag === this.$route.params.tag
             );
             if (result.length !== 0 || this.tag === 'all') {
                 return false;
             }
             return true;
-        }
-    }
+        },
+    },
 };
 </script>
 

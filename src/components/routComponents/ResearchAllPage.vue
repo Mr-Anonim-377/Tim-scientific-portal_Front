@@ -28,16 +28,16 @@ export default {
     components: {
         ResearchSection,
         BannerPromoResearchSection,
-        Preloader
+        Preloader,
     },
     mixins: [mixin],
     props: {
-        pageId: String
+        pageId: String,
     },
     data() {
         return {
             loadSuccess: false,
-            btnStyle: {}
+            btnStyle: {},
         };
     },
     async mounted() {
@@ -46,11 +46,11 @@ export default {
         this.loadSuccess = true;
     },
     methods: {
-        showToggle: function() {
+        showToggle: function () {
             this.listResearch = { height: 'fit-content' };
             this.btnStyle = { opacity: 0, margin: '0 auto', height: 0 };
-        }
-    }
+        },
+    },
 };
 </script>
 

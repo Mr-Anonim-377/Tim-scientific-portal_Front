@@ -229,7 +229,7 @@ export default {
     name: 'FormNews',
     components: {
         TitleSection,
-        Preloader
+        Preloader,
     },
     mixins: [testMixin],
     props: {
@@ -237,7 +237,7 @@ export default {
                                create для создания
                                edit для редактирования */
         mode: String,
-        entityId: String
+        entityId: String,
     },
     data() {
         return {
@@ -251,7 +251,7 @@ export default {
                 text: [],
                 preview: '',
                 slider: [],
-                date: ''
+                date: '',
             },
 
             /* Правила валидации для формы */
@@ -261,45 +261,47 @@ export default {
                         required: true,
                         message:
                             "Пожалуйста, заполните поле 'Название новости'",
-                        trigger: 'blur'
+                        trigger: 'blur',
                     },
                     {
                         min: 10,
-                        message: 'Название должно содержать минимум 10 символов'
-                    }
+                        message:
+                            'Название должно содержать минимум 10 символов',
+                    },
                 ],
                 shortText: [
                     {
                         required: true,
                         message:
                             "Пожалуйста, заполните поле 'Короткое название новости'",
-                        trigger: 'blur'
+                        trigger: 'blur',
                     },
                     {
                         min: 10,
-                        message: 'Название должно содержать минимум 10 символов'
-                    }
+                        message:
+                            'Название должно содержать минимум 10 символов',
+                    },
                 ],
                 text: [
                     {
                         required: true,
                         message: "Пожалуйста, заполните поле 'Тело новости'",
-                        trigger: 'blur'
+                        trigger: 'blur',
                     },
                     {
                         min: 10,
                         message:
-                            'Текст новости должен содержать минимум 10 символов'
-                    }
+                            'Текст новости должен содержать минимум 10 символов',
+                    },
                 ],
                 preview: [
                     {
                         required: true,
                         message:
                             'Для корректного отображения на главной странице необходимо загрузить превью изображение',
-                        trigger: 'blur'
-                    }
-                ]
+                        trigger: 'blur',
+                    },
+                ],
             },
 
             /* УЖЕ загруженные изображения для превью главной страницы */
@@ -311,22 +313,22 @@ export default {
             /* Загружаемые изображения */
             loadedImages: {
                 preview: '',
-                slider: []
+                slider: [],
             },
 
             /* При загрузке изображений отправляем api key imgBB
                    Если что-то пойдет не так, получить новый можно тут:
                    https://api.imgbb.com/ */
             requestData: {
-                key: '2ca9c35e0d42896ec7e746b5daf2c924'
-            }
+                key: '2ca9c35e0d42896ec7e746b5daf2c924',
+            },
         };
     },
 
     created() {
         /* Проверка авторизации */
         this.authCheck()
-            .then(res => {
+            .then((res) => {
                 this.form.tag = res.data;
             })
             .catch(() => {
@@ -349,22 +351,22 @@ export default {
                 (image, i) => {
                     return {
                         name: 'Изображение ' + (i + 1),
-                        url: image?.image
+                        url: image?.image,
                     };
                 }
             );
             this.form.slider = this.sliderFileList;
 
             this.form.shortText = this.NEWS_SLIDER.NEWS_ITEM.filter(
-                news => news._pageLink === this.entityId
+                (news) => news._pageLink === this.entityId
             )[0]?.text;
             this.previewfileList = [
                 {
                     name: 'Превью-изображение',
                     url: this.NEWS_SLIDER.NEWS_ITEM.filter(
-                        news => news._pageLink === this.entityId
-                    )[0]?.image
-                }
+                        (news) => news._pageLink === this.entityId
+                    )[0]?.image,
+                },
             ];
             this.form.preview = this.previewfileList[0].url;
             this.form.date = this.NEWS_DATE.DATE[0].date;
@@ -408,10 +410,10 @@ export default {
         /* Хук успешной загрузки изображения (инпут слайдера)
                При успешной загрузке заполняем скрытый инпут урлом из ответа */
         successLoadHookSlider(res, file, fileList) {
-            this.form.slider = fileList.map(image => {
+            this.form.slider = fileList.map((image) => {
                 return {
                     name: image.name,
-                    url: image.response ? image.response.data.url : image.url
+                    url: image.response ? image.response.data.url : image.url,
                 };
             });
         },
@@ -444,7 +446,7 @@ export default {
             return {
                 name: this.form.title,
                 previewImageLink: this.form.preview,
-                imageLinks: this.form.slider?.map(image => image.url) || [],
+                imageLinks: this.form.slider?.map((image) => image.url) || [],
                 text: this.form.text
                     .replace(/\*\*/g, () => {
                         start = !start;
@@ -461,7 +463,7 @@ export default {
                     this.mode === 'create'
                         ? this.getCurrentDate()
                         : this.form.date,
-                tag: this.form.tag
+                tag: this.form.tag,
             };
         },
 
@@ -470,12 +472,12 @@ export default {
          * @param {object} data - тело запроса на создание новости
          */
         addNews(data) {
-            return new Promise(res => {
+            return new Promise((res) => {
                 axios({
                     method: 'POST',
                     url: '/user/create/news',
-                    data: data
-                }).then(response => {
+                    data: data,
+                }).then((response) => {
                     res(response.data);
                 });
             });
@@ -486,12 +488,12 @@ export default {
          * @param {object} data - тело запроса на создание новости
          */
         updateNews(data) {
-            return new Promise(res => {
+            return new Promise((res) => {
                 axios({
                     method: 'POST',
                     url: '/user/update/news',
-                    data: data
-                }).then(response => {
+                    data: data,
+                }).then((response) => {
                     res(response.data);
                 });
             });
@@ -499,7 +501,7 @@ export default {
 
         /* Метод сабмита формы -> отправляет запросы при пройденной валидации */
         onSubmit(formName) {
-            this.$refs[formName].validate(async valid => {
+            this.$refs[formName].validate(async (valid) => {
                 if (valid) {
                     let data = this.getRequestData();
                     if (this.mode === 'create') {
@@ -527,7 +529,7 @@ export default {
                     /* Обработка <p> */
                     .replace(/<br>/g, '\n')
                     .split('</p>')
-                    .map(i => i.replace('<p>', '').trim())
+                    .map((i) => i.replace('<p>', '').trim())
                     /* Обработка <br> */
                     .join(`\n`)
                     .replace(/<b>|<\/b>|<strong>|<\/strong>/g, '**')
@@ -537,8 +539,8 @@ export default {
                     .replace(/<li>/g, '\n>>')
                     .replace(/<\/li>/g, '<<')
             );
-        }
-    }
+        },
+    },
 };
 </script>
 

@@ -28,12 +28,12 @@ export default {
     components: {
         TitleSection,
         Preloader,
-        LinkItem
+        LinkItem,
     },
     mixins: [mixin],
     data() {
         return {
-            loadSuccess: false
+            loadSuccess: false,
         };
     },
     async mounted() {
@@ -41,7 +41,7 @@ export default {
         setTimeout(() => {
             this.loadSuccess = true;
         }, 500);
-    }
+    },
 };
 </script>
 <style scoped>

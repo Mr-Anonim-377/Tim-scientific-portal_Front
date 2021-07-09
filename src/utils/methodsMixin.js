@@ -5,7 +5,7 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            url: String
+            url: String,
         };
     },
 
@@ -23,7 +23,7 @@ export default {
             // Храним их в this.modules
             await axios
                 .get(this.url)
-                .then(response => {
+                .then((response) => {
                     this.modules = response.data.modules;
                 })
                 .catch(() => false);
@@ -38,40 +38,41 @@ export default {
 
                 await axios
                     .get(this.url)
-                    .then(response => {
+                    .then((response) => {
                         let moduleType = this.modules[module].moduleType;
                         this[moduleType] = [];
 
                         if (response) {
-                            response.data.forEach(moduleItem => {
+                            response.data.forEach((moduleItem) => {
                                 if (!this[moduleType][moduleItem.objectType])
-                                    this[moduleType][
-                                        moduleItem.objectType
-                                    ] = [];
+                                    this[moduleType][moduleItem.objectType] =
+                                        [];
 
                                 let titleValue = moduleItem.contents
                                     .filter(
-                                        item => item.contentType === 'TITLE'
+                                        (item) => item.contentType === 'TITLE'
                                     )
                                     .map(
-                                        item =>
+                                        (item) =>
                                             item.value?.text ||
                                             (errors.push({
                                                 moduleType,
-                                                item
+                                                item,
                                             }) &&
                                                 '')
                                     )
                                     .join(' ; ');
 
                                 let textValue = moduleItem.contents
-                                    .filter(item => item.contentType === 'TEXT')
+                                    .filter(
+                                        (item) => item.contentType === 'TEXT'
+                                    )
                                     .map(
-                                        item =>
+                                        (item) =>
                                             item.value?.text ||
                                             (errors.push({
                                                 moduleType,
-                                                item
+                                                item,
                                             }) &&
                                                 '')
                                     )
@@ -79,40 +80,44 @@ export default {
 
                                 let imageValue = moduleItem.contents
                                     .filter(
-                                        item => item.contentType === 'IMAGE'
+                                        (item) => item.contentType === 'IMAGE'
                                     )
                                     .map(
-                                        item =>
+                                        (item) =>
                                             item.value?.url ||
                                             (errors.push({
                                                 moduleType,
-                                                item
+                                                item,
                                             }) &&
                                                 '')
                                     )
                                     .join(' ; ');
 
                                 let dateValue = moduleItem.contents
-                                    .filter(item => item.contentType === 'DATE')
+                                    .filter(
+                                        (item) => item.contentType === 'DATE'
+                                    )
                                     .map(
-                                        item =>
+                                        (item) =>
                                             item.value?.date ||
                                             (errors.push({
                                                 moduleType,
-                                                item
+                                                item,
                                             }) &&
                                                 '')
                                     )
                                     .join(' ; ');
 
                                 let linkValue = moduleItem.contents
-                                    .filter(item => item.contentType === 'LINK')
+                                    .filter(
+                                        (item) => item.contentType === 'LINK'
+                                    )
                                     .map(
-                                        item =>
+                                        (item) =>
                                             item.value?.url ||
                                             (errors.push({
                                                 moduleType,
-                                                item
+                                                item,
                                             }) &&
                                                 '')
                                     )
@@ -120,15 +125,15 @@ export default {
 
                                 let totalPercent = moduleItem.contents
                                     .filter(
-                                        item =>
+                                        (item) =>
                                             item.contentType === 'TOTAL_PERCENT'
                                     )
                                     .map(
-                                        item =>
+                                        (item) =>
                                             item.value?.percent ||
                                             (errors.push({
                                                 moduleType,
-                                                item
+                                                item,
                                             }) &&
                                                 '')
                                     )
@@ -136,16 +141,16 @@ export default {
 
                                 let dynamicsPercent = moduleItem.contents
                                     .filter(
-                                        item =>
+                                        (item) =>
                                             item.contentType ===
                                             'DYNAMIC_PERCENT'
                                     )
                                     .map(
-                                        item =>
+                                        (item) =>
                                             item.value?.percent ||
                                             (errors.push({
                                                 moduleType,
-                                                item
+                                                item,
                                             }) &&
                                                 '')
                                     )
@@ -153,15 +158,15 @@ export default {
 
                                 let dynamicsValue = moduleItem.contents
                                     .filter(
-                                        item =>
+                                        (item) =>
                                             item.contentType === 'DYNAMIC_VALUE'
                                     )
                                     .map(
-                                        item =>
+                                        (item) =>
                                             item.value?.value ||
                                             (errors.push({
                                                 moduleType,
-                                                item
+                                                item,
                                             }) &&
                                                 '')
                                     )
@@ -169,15 +174,15 @@ export default {
 
                                 let totalValue = moduleItem.contents
                                     .filter(
-                                        item =>
+                                        (item) =>
                                             item.contentType === 'TOTAL_VALUE'
                                     )
                                     .map(
-                                        item =>
+                                        (item) =>
                                             item.value?.value ||
                                             (errors.push({
                                                 moduleType,
-                                                item
+                                                item,
                                             }) &&
                                                 '')
                                     )
@@ -213,9 +218,10 @@ export default {
                                     _tag: moduleItem.tag,
 
                                     // Связанные сущности парятся в компонентах, тут просто передаю ответ от сервера
-                                    _childModuleObject: moduleItem.childModuleObject
-                                        ? moduleItem.childModuleObject
-                                        : null
+                                    _childModuleObject:
+                                        moduleItem.childModuleObject
+                                            ? moduleItem.childModuleObject
+                                            : null,
                                 });
                             });
                         }
@@ -244,10 +250,10 @@ export default {
                     .get('/user/auth?roleName=ROLE_USER', {
                         headers: {
                             'Content-Type': 'application/json',
-                            'Access-Control-Allow-Origin': '*'
-                        }
+                            'Access-Control-Allow-Origin': '*',
+                        },
                     })
-                    .then(response => {
+                    .then((response) => {
                         localStorage.setItem('isAuth', true);
                         return resolve(response);
                     })
@@ -275,7 +281,7 @@ export default {
                 //eslint-disable-next-line
                 debugger;
             }
-        }
+        },
     },
 
     mounted() {
@@ -288,11 +294,11 @@ export default {
     },
 
     watch: {
-        loadSuccess: function() {
+        loadSuccess: function () {
             /**
              * Возвращаем скролл после загрузки
              */
             document.querySelector('body').style.overflow = 'visible';
-        }
-    }
+        },
+    },
 };

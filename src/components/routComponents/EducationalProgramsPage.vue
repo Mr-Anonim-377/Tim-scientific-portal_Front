@@ -28,7 +28,7 @@ export default {
     components: {
         DocumentsSection,
         TitleSection,
-        Preloader
+        Preloader,
     },
     mixins: [mixin],
 
@@ -37,8 +37,8 @@ export default {
             titlePrograms: 'Образовательные программы',
             loadSuccess: false,
             styleTitle: {
-                style: ['font-size: 26px']
-            }
+                style: ['font-size: 26px'],
+            },
         };
     },
     async mounted() {
@@ -46,7 +46,7 @@ export default {
         setTimeout(() => {
             this.loadSuccess = true;
         }, 500);
-    }
+    },
 };
 </script>
 

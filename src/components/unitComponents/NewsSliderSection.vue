@@ -34,7 +34,7 @@ let $ = JQuery;
 export default {
     name: 'NewsSliderSection',
     props: {
-        urls: []
+        urls: [],
     },
     data() {
         return {
@@ -42,24 +42,24 @@ export default {
             sliderDataIndex: 0,
             positions: {
                 circle1: {
-                    transform: 'translatex(1100px)'
+                    transform: 'translatex(1100px)',
                 },
                 circle2: {
-                    transform: 'translatex(0)'
+                    transform: 'translatex(0)',
                 },
                 circle3: {
-                    transform: 'translatex(-1100px)'
-                }
+                    transform: 'translatex(-1100px)',
+                },
             },
 
-            sliderData: []
+            sliderData: [],
         };
     },
 
     async created() {
         for (let i = 0; i < this.urls.length; i++) {
             this.sliderData.push({
-                url: this.urls[i].image
+                url: this.urls[i].image,
             });
         }
     },
@@ -94,9 +94,7 @@ export default {
             .eq(0)
             .on('click', () => {
                 // Отменяем возможность нажатия
-                $('.news-slider__arrow')
-                    .eq(0)
-                    .css('pointer-events', 'none');
+                $('.news-slider__arrow').eq(0).css('pointer-events', 'none');
 
                 // Возвращаем возможность нажатия через 1с
                 setTimeout(() => {
@@ -131,9 +129,7 @@ export default {
         $('.news-slider__arrow')
             .eq(1)
             .on('click', () => {
-                $('.news-slider__arrow')
-                    .eq(1)
-                    .css('pointer-events', 'none');
+                $('.news-slider__arrow').eq(1).css('pointer-events', 'none');
                 setTimeout(() => {
                     $('.news-slider__arrow')
                         .eq(1)
@@ -254,8 +250,8 @@ export default {
                         );
                 }, 1000);
             }
-        }
-    }
+        },
+    },
 };
 </script>
 

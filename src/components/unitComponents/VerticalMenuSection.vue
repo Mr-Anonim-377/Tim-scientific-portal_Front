@@ -31,8 +31,7 @@
                         <li>
                             <router-link
                                 :to="{
-                                    path:
-                                        '/party/adcb4eef-0e3c-4d63-a0be-adc3bd1fd51d'
+                                    path: '/party/adcb4eef-0e3c-4d63-a0be-adc3bd1fd51d',
                                 }"
                             >
                                 Исследователи РГАУ-МСХА
@@ -41,8 +40,7 @@
                         <li>
                             <router-link
                                 :to="{
-                                    path:
-                                        '/party/9910e682-4e2f-4ae1-bdaf-661104cce80f'
+                                    path: '/party/9910e682-4e2f-4ae1-bdaf-661104cce80f',
                                 }"
                             >
                                 Исследователи СПбГУ
@@ -52,8 +50,7 @@
                         <li>
                             <router-link
                                 :to="{
-                                    path:
-                                        '/party/2efd4d2a-9dc4-4860-8706-53031fe341f6'
+                                    path: '/party/2efd4d2a-9dc4-4860-8706-53031fe341f6',
                                 }"
                             >
                                 Исследователи ФБГНУ ВНИИСХМ
@@ -63,8 +60,7 @@
                         <li>
                             <router-link
                                 :to="{
-                                    path:
-                                        '/party/043703e2-e14e-4491-be23-4c22fe0bca82'
+                                    path: '/party/043703e2-e14e-4491-be23-4c22fe0bca82',
                                 }"
                             >
                                 Исследователи ФИЦ "Почвенный институт им. В.В.
@@ -75,8 +71,7 @@
                         <li>
                             <router-link
                                 :to="{
-                                    path:
-                                        '/party/f563f1e5-c465-4fa3-89a9-f9f17ba29048'
+                                    path: '/party/f563f1e5-c465-4fa3-89a9-f9f17ba29048',
                                 }"
                             >
                                 Исследователи ФИЦ ВИР
@@ -86,8 +81,7 @@
                         <li>
                             <router-link
                                 :to="{
-                                    path:
-                                        '/party/2694ac87-48ab-405e-a4ee-038f9c2ef830'
+                                    path: '/party/2694ac87-48ab-405e-a4ee-038f9c2ef830',
                                 }"
                             >
                                 Исследователи ФИЦ ИУ РАН
@@ -97,8 +91,7 @@
                         <li>
                             <router-link
                                 :to="{
-                                    path:
-                                        '/party/cc92731b-841f-4dfd-9dad-b869acfb8074'
+                                    path: '/party/cc92731b-841f-4dfd-9dad-b869acfb8074',
                                 }"
                             >
                                 Исследователи ФИЦ Биотехнологии РАН
@@ -150,7 +143,7 @@
 
 <script>
 export default {
-    name: 'VerticalMenuSection'
+    name: 'VerticalMenuSection',
 };
 </script>
 

@@ -69,7 +69,7 @@ export default {
         NewsCompactSection,
         DirectionOfResearchSection,
         PurposesSection,
-        Preloader
+        Preloader,
     },
     mixins: [testMixin],
     emits: ['load-success'],
@@ -78,7 +78,7 @@ export default {
         return {
             loadSuccess: false,
             sliderTestData: [1, 2, 3],
-            titlePurposes: true
+            titlePurposes: true,
         };
     },
 
@@ -92,7 +92,7 @@ export default {
             this.loadSuccess = true;
             this.$emit('load-success');
         }, 500);
-    }
+    },
 };
 </script>
 

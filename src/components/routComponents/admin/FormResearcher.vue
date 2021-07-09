@@ -214,8 +214,8 @@
                                         required: true,
                                         message:
                                             'Пожалуйста, заполните название награды',
-                                        trigger: 'blur'
-                                    }
+                                        trigger: 'blur',
+                                    },
                                 ]"
                             >
                                 <el-input
@@ -234,15 +234,15 @@
                                         required: true,
                                         message:
                                             'Пожалуйста, заполните год получения награды',
-                                        trigger: 'blur'
+                                        trigger: 'blur',
                                     },
                                     {
                                         max: 4,
                                         min: 4,
                                         trigger: blur,
                                         message:
-                                            'Пожалуйста, укажите корректный год награды'
-                                    }
+                                            'Пожалуйста, укажите корректный год награды',
+                                    },
                                 ]"
                             >
                                 <el-input
@@ -307,13 +307,13 @@ export default {
     name: 'Pagename',
     components: {
         TitleSection,
-        Preloader
+        Preloader,
     },
     mixins: [mixin],
     props: {
         mode: String,
         entityId: String,
-        status: String
+        status: String,
     },
     data() {
         return {
@@ -329,7 +329,7 @@ export default {
                 achievements: [],
                 academicRank: '',
                 education: '',
-                publicationActivity: ''
+                publicationActivity: '',
             },
             /* Объект */
 
@@ -338,36 +338,36 @@ export default {
                     {
                         required: true,
                         message: "Пожалуйста, заполните поле 'ФИО'",
-                        trigger: 'blur'
+                        trigger: 'blur',
                     },
                     {
                         min: 10,
-                        message: 'ФИО должно содержать минимум 10 символов'
-                    }
+                        message: 'ФИО должно содержать минимум 10 символов',
+                    },
                 ],
 
                 specialty: [
                     {
                         required: true,
                         message: "Пожалуйста, заполните поле 'Специальность'",
-                        trigger: 'blur'
+                        trigger: 'blur',
                     },
                     {
                         min: 5,
                         message:
-                            'Название специальности должно содержать минимум 5 символов'
-                    }
+                            'Название специальности должно содержать минимум 5 символов',
+                    },
                 ],
                 email: [
                     {
                         required: true,
                         message: 'Пожалуйста, заполните поле email адреса',
-                        trigger: 'blur'
+                        trigger: 'blur',
                     },
                     {
                         type: 'email',
-                        message: 'Пожалуйста, введите корректный email'
-                    }
+                        message: 'Пожалуйста, введите корректный email',
+                    },
                 ],
 
                 avatar: [
@@ -375,14 +375,14 @@ export default {
                         required: true,
                         message:
                             'Для корректного отображения анкеты исследователя необхоидимо загрузить аватар',
-                        trigger: 'blur'
-                    }
+                        trigger: 'blur',
+                    },
                 ],
 
                 academicRank: [],
                 education: [],
                 scientificInterests: [],
-                publicationActivity: []
+                publicationActivity: [],
             },
 
             researchList: [],
@@ -390,15 +390,15 @@ export default {
             progressList: [],
 
             previewImages: {
-                avatar: []
+                avatar: [],
             },
 
             /* При загрузке изображений отправляем api key imgBB
                        Если что-то пойдет не так, получить новый можно тут:
                        https://api.imgbb.com/ */
             requestData: {
-                key: '2ca9c35e0d42896ec7e746b5daf2c924'
-            }
+                key: '2ca9c35e0d42896ec7e746b5daf2c924',
+            },
         };
     },
     async mounted() {
@@ -406,12 +406,12 @@ export default {
         try {
             await axios({
                 method: 'GET',
-                url: '/user/allEntityInstance?type=RESEARCH'
-            }).then(responce => {
-                this.researchList = responce.data.map(researcher => {
+                url: '/user/allEntityInstance?type=RESEARCH',
+            }).then((responce) => {
+                this.researchList = responce.data.map((researcher) => {
                     return {
                         value: researcher.name,
-                        id: researcher.pageId
+                        id: researcher.pageId,
                     };
                 });
             });
@@ -421,34 +421,34 @@ export default {
         if (this.mode === 'edit') {
             axios({
                 method: 'GET',
-                url: '/user/allEntityInstance?type=RESEARCHER'
-            }).then(response => {
+                url: '/user/allEntityInstance?type=RESEARCHER',
+            }).then((response) => {
                 const formData = response.data[this.status].filter(
-                    entity => entity.pageId === this.entityId
+                    (entity) => entity.pageId === this.entityId
                 )[0];
 
                 this.form.fullname = formData.name;
                 this.form.specialty = formData.specialisation;
                 this.form.email = formData.email;
 
-                this.form.research = formData.researchIds?.map(id => {
+                this.form.research = formData.researchIds?.map((id) => {
                     return this.researchList.find(
-                        research => research.id === id
+                        (research) => research.id === id
                     ).value;
                 });
                 this.form.avatar = formData.imageLink;
                 this.previewImages.avatar = [
                     {
                         name: 'Изображение профиля',
-                        url: formData.imageLink
-                    }
+                        url: formData.imageLink,
+                    },
                 ];
 
                 this.form.achievements =
-                    formData.achievements?.map(i => {
+                    formData.achievements?.map((i) => {
                         return {
                             name: i.name,
-                            date: i.date
+                            date: i.date,
                         };
                     }) || [];
 
@@ -483,7 +483,7 @@ export default {
     created() {
         /* Проверка авторизации */
         this.authCheck()
-            .then(res => {
+            .then((res) => {
                 this.form.tag = res.data;
             })
             .catch(() => {
@@ -501,9 +501,9 @@ export default {
                 institution: form.tag,
                 name: form.fullname,
                 pageId: this.entityId,
-                researchIds: form.research.map(researchName => {
+                researchIds: form.research.map((researchName) => {
                     return this.researchList.find(
-                        research => research.value === researchName
+                        (research) => research.value === researchName
                     ).id;
                 }),
                 specialisation: form.specialty,
@@ -512,7 +512,7 @@ export default {
                 academicRank: form.academicRank,
                 education: form.education,
                 scientificInterests: form.scientificInterests,
-                publicationActivity: form.publicationActivity
+                publicationActivity: form.publicationActivity,
             };
         },
 
@@ -532,12 +532,12 @@ export default {
          * @param {object} data - тело запроса на создание исследователя
          */
         addResearcher(data) {
-            return new Promise(res => {
+            return new Promise((res) => {
                 axios({
                     method: 'POST',
                     url: '/user/create/researchers',
-                    data: data
-                }).then(response => {
+                    data: data,
+                }).then((response) => {
                     res(response.data);
                 });
             });
@@ -548,19 +548,19 @@ export default {
          * @param {object} data - тело запроса на создание исследователя
          */
         updateResearcher(data) {
-            return new Promise(res => {
+            return new Promise((res) => {
                 axios({
                     method: 'POST',
                     url: '/user/update/researchers',
-                    data: data
-                }).then(response => {
+                    data: data,
+                }).then((response) => {
                     res(response.data);
                 });
             });
         },
 
         onSubmit(form) {
-            this.$refs[form].validate(async valid => {
+            this.$refs[form].validate(async (valid) => {
                 if (valid) {
                     let data = this.getRequestData();
                     if (this.mode === 'create') {
@@ -592,10 +592,10 @@ export default {
             this.achievementsLenght++;
             this.form.achievements.push({
                 name: '',
-                date: ''
+                date: '',
             });
-        }
-    }
+        },
+    },
 };
 </script>
 <style scoped>

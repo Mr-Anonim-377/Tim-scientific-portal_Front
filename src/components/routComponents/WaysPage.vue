@@ -35,14 +35,14 @@ export default {
     components: {
         WaysSection,
         TitleSection,
-        Preloader
+        Preloader,
     },
     mixins: [mixin],
     data() {
         return {
             loadSuccess: false,
             titleWays: 'Направления исследований',
-            visibleWays: true
+            visibleWays: true,
         };
     },
     async mounted() {
@@ -50,7 +50,7 @@ export default {
         setTimeout(() => {
             this.loadSuccess = true;
         }, 500);
-    }
+    },
 };
 </script>
 

@@ -20,8 +20,7 @@
                         v-if="CALENDAR_TEXT.DOC"
                         :section-data="CALENDAR_TEXT"
                         :local-data="{
-                            title:
-                                'Информация о событии: Вавиловская школа-конференция аспирантов и молодых ученых'
+                            title: 'Информация о событии: Вавиловская школа-конференция аспирантов и молодых ученых',
                         }"
                     />
                 </div>
@@ -61,11 +60,11 @@ export default {
     components: {
         Preloader,
         TitleSection,
-        DocumentsSection
+        DocumentsSection,
     },
     mixins: [mixin],
     props: {
-        pageId: String
+        pageId: String,
     },
     data() {
         return {
@@ -75,9 +74,9 @@ export default {
              */
             styleTitle: {
                 style: [
-                    'font-size: 26px; letter-spacing: 0.06em; max-width: 1200px; margin: 10px auto 0 auto'
-                ]
-            }
+                    'font-size: 26px; letter-spacing: 0.06em; max-width: 1200px; margin: 10px auto 0 auto',
+                ],
+            },
         };
     },
 
@@ -93,14 +92,14 @@ export default {
         transformHhtmlLinks(string) {
             return string
                 .split(' ')
-                .map(word => {
+                .map((word) => {
                     if (word.slice(0, 5) === 'https')
                         return `<a href=${word}}">${word}</a>`;
                     return word;
                 })
                 .join(' ');
-        }
-    }
+        },
+    },
 };
 </script>
 

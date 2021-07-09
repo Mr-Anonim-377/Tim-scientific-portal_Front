@@ -35,16 +35,16 @@ export default {
         // NewsMain,
         TitleSection,
         NewsSliderSection,
-        Preloader
+        Preloader,
     },
     mixins: [testMixin],
     props: {
-        pageId: String
+        pageId: String,
     },
     data() {
         return {
             loadSuccess: false,
-            titleNews: 'Агротехнологии будущего'
+            titleNews: 'Агротехнологии будущего',
         };
     },
     async mounted() {
@@ -58,21 +58,21 @@ export default {
         transformHhtmlLinks(string) {
             return string
                 .split(' ')
-                .map(word => {
+                .map((word) => {
                     if (word.slice(0, 5) === 'https')
                         return `<a href=${word}}">${word}</a>`;
                     return word;
                 })
                 .join(' ')
                 .split('<br>')
-                .map(word => {
+                .map((word) => {
                     if (word.slice(0, 5) === 'https')
                         return `<a href=${word}}">${word}</a>`;
                     return word;
                 })
                 .join(' ');
-        }
-    }
+        },
+    },
 };
 </script>
 

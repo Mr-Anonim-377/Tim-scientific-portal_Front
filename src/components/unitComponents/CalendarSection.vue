@@ -72,10 +72,10 @@ import CalendarItem from './CalendarItem';
 export default {
     name: 'CalendarSection',
     components: {
-        CalendarItem
+        CalendarItem,
     },
     props: {
-        calendarData: {}
+        calendarData: {},
     },
 
     data() {
@@ -83,7 +83,7 @@ export default {
             left: false,
             index: 0,
 
-            loadSuccess: false
+            loadSuccess: false,
         };
     },
 
@@ -97,19 +97,11 @@ export default {
         /**
          * Сортируем события тэга
          */
-        this.tagsArray.forEach(tag => {
+        this.tagsArray.forEach((tag) => {
             this.eventByTags[tag].events.sort((a, b) => {
                 return (
-                    +a.date
-                        .slice(0, 10)
-                        .split('.')
-                        .reverse()
-                        .join('') -
-                    +b.date
-                        .slice(0, 10)
-                        .split('.')
-                        .reverse()
-                        .join('')
+                    +a.date.slice(0, 10).split('.').reverse().join('') -
+                    +b.date.slice(0, 10).split('.').reverse().join('')
                 );
             });
         });
@@ -190,7 +182,7 @@ export default {
         transformTag(tag) {
             return [
                 '20' + tag.slice(0, 2),
-                this.transformMouth(tag.slice(2, 4), true)
+                this.transformMouth(tag.slice(2, 4), true),
             ]
                 .reverse()
                 .join(', ');
@@ -206,7 +198,7 @@ export default {
             } else {
                 arr[`${event._tag}`] = {
                     dateTitle: this.transformTag(event._tag),
-                    events: [event]
+                    events: [event],
                 };
             }
         },
@@ -259,8 +251,8 @@ export default {
             });
 
             return currentTagIndex;
-        }
-    }
+        },
+    },
 };
 </script>
 

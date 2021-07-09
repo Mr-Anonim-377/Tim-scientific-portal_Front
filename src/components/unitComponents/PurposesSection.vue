@@ -27,19 +27,19 @@ import TitleSection from './TitleSection';
 export default {
     name: 'Purposes',
     components: {
-        TitleSection
+        TitleSection,
     },
     props: {
         sectionData: [],
         compactTitlePurposes: Boolean,
-        stileTitle: Object
+        stileTitle: Object,
     },
     data() {
         return {
             titlePurposes: 'Цели проекта',
-            visiblePurposes: true
+            visiblePurposes: true,
         };
-    }
+    },
 };
 </script>
 
