@@ -1,8 +1,12 @@
 ## Команды
 `npm run lint` - проверка и форматирование файлов проекта через eslint и prettier
+
 `npm run serve-dev` - запуск webpack-dev-server с проксированием на дев-стенд (8081 порт)
+
 `npm run serve-prod` - запуск webpack-dev-server с проксированием на прод (84 порт)
+
 `npm run build` - билд проекта в папку dist
+
 
 ## Структура проекта
 ### Входная точка
