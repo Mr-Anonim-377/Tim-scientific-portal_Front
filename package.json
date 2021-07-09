@@ -47,7 +47,8 @@
         "warn",
         {
           "tabWidth": 4,
-          "singleQuote": true
+          "singleQuote": true,
+          "endOfLine": "auto"
         }
       ],
       "vue/require-default-prop": 0,
