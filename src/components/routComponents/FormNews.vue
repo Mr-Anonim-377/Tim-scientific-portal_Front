@@ -191,6 +191,9 @@
                                         <p>&lt;&lt;&lt;</p>
                                     </div>
                                 </div>
+                                <p class="tips_h1">
+                                    Форматирование доступно только для новостей
+                                </p>
                             </div>
                         </el-collapse-transition>
                     </div>
