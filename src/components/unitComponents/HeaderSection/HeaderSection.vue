@@ -1,4 +1,3 @@
-§
 <template>
     <section class="headerSection">
         <!--Верхняя часть хедера-->
