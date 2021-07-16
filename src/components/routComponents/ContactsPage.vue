@@ -7,11 +7,8 @@
                 :header-visible="visibleContacts"
                 :title="titleContacts"
             />
-            <p class="contacts-text-phone">тел.: +7 (499) 977-26-01</p>
+            <p class="contacts-text-phone">тел.: +7 (999) 799-02-56</p>
             <p>E-mail: future-agro.info@yandex.ru</p>
-            <div class="qr">
-                <img src="../../assets/image/qr.gif" alt="" />
-            </div>
 
             <div class="contact-text">
                 <div class="contact-text__item">
@@ -79,12 +76,6 @@ export default {
 </script>
 
 <style scoped>
-.qr {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
 .contact-text {
     width: 800px;
     margin: auto;
