@@ -210,12 +210,12 @@ export default {
     name: 'Research',
     components: {
         TitleSection,
-        Preloader
+        Preloader,
     },
     mixins: [mixin],
     props: {
         mode: String,
-        entityId: String
+        entityId: String,
     },
     data() {
         return {
@@ -227,7 +227,7 @@ export default {
                 text: [],
                 previewImageLink: '',
                 imgs: [],
-                waysId: []
+                waysId: [],
             },
             rules: {
                 name: [
@@ -235,29 +235,29 @@ export default {
                         required: true,
                         message:
                             "Пожалуйста, заполните поле 'Название исследования'",
-                        trigger: 'blur'
-                    }
+                        trigger: 'blur',
+                    },
                 ],
                 researcherUids: [],
                 text: [
                     {
                         required: true,
                         message: "Пожалуйста, заполните поле 'Об исследовании'",
-                        trigger: 'blur'
+                        trigger: 'blur',
                     },
                     {
                         min: 30,
                         message:
-                            'Текст исслдеования должен содержать минимум 30 символов'
-                    }
+                            'Текст исслдеования должен содержать минимум 30 символов',
+                    },
                 ],
                 previewImageLink: [
                     {
                         required: true,
                         message:
                             'Для корректного отображения в списке исследований необходимо загрузить превью изображение',
-                        trigger: 'blur'
-                    }
+                        trigger: 'blur',
+                    },
                 ],
                 imgs: [
                     {
@@ -266,16 +266,16 @@ export default {
                         message:
                             'Для корректного отображения исследования необходимо загрузить минимум 3 изображения в слайдер',
                         trigger: 'blur',
-                        min: 3
-                    }
+                        min: 3,
+                    },
                 ],
                 waysId: [
                     {
                         required: true,
                         message: 'Необходимо выбрать направление исследования',
-                        trigger: 'blur'
-                    }
-                ]
+                        trigger: 'blur',
+                    },
+                ],
             },
 
             researcherList: [
@@ -283,7 +283,7 @@ export default {
                 { value: 'Исследователь 2' },
                 { value: 'Исследователь 3' },
                 { value: 'Исследователь 4' },
-                { value: 'Исследователь 5' }
+                { value: 'Исследователь 5' },
             ],
 
             researchDirectionsList: [
@@ -291,29 +291,29 @@ export default {
                 { title: 'Направление исследования 2' },
                 { title: 'Направление исследования 3' },
                 { title: 'Направление исследования 4' },
-                { title: 'Направление исследования 5' }
+                { title: 'Направление исследования 5' },
             ],
 
             progressList: [],
 
             previewImages: {
                 preview: [],
-                slider: []
+                slider: [],
             },
 
             /* При загрузке изображений отправляем api keyimgB`B
                      Если что-то пойдет не так, получить новый можно тут:
                      https://api.imgbb.com/ */
             requestData: {
-                key: '2ca9c35e0d42896ec7e746b5daf2c924'
-            }
+                key: '2ca9c35e0d42896ec7e746b5daf2c924',
+            },
         };
     },
 
     created() {
         /* Проверка авторизации */
         this.authCheck()
-            .then(res => {
+            .then((res) => {
                 this.form.tag = res.data;
             })
             .catch(() => {
@@ -332,19 +332,19 @@ export default {
 
         /* Исследователи */
         this.researcherList = this.RESEARCH_MEMBER.RESEARCH_MEMBER.filter(
-            member => member._pageLink
-        ).map(member => {
+            (member) => member._pageLink
+        ).map((member) => {
             return {
                 value: member.text,
-                id: member._pageLink
+                id: member._pageLink,
             };
         });
 
         /* Направления исследования */
-        this.researchDirectionsList = this.WAYS_ARRAY.WAYS_ITEM.map(way => {
+        this.researchDirectionsList = this.WAYS_ARRAY.WAYS_ITEM.map((way) => {
             return {
                 title: way.title,
-                id: way._pageLink
+                id: way._pageLink,
             };
         });
 
@@ -356,10 +356,10 @@ export default {
 
             axios({
                 method: 'GET',
-                url: '/user/allEntityInstance?type=RESEARCH'
-            }).then(response => {
+                url: '/user/allEntityInstance?type=RESEARCH',
+            }).then((response) => {
                 const formData = response.data.filter(
-                    entity => entity.pageId === this.entityId
+                    (entity) => entity.pageId === this.entityId
                 );
 
                 /* Засовываем даныне в модель */
@@ -367,28 +367,28 @@ export default {
                 this.form.text = formData[0].text.join('\n');
                 this.form.previewImageLink = formData[0].previewImageLink;
                 this.form.researcherUids = formData[0].researcherUids?.map(
-                    researcherId => {
+                    (researcherId) => {
                         return this.researcherList.find(
-                            researcher => researcher.id === researcherId
+                            (researcher) => researcher.id === researcherId
                         ).value;
                     }
                 );
                 this.previewImages.preview = [
                     {
                         name: 'Превью изображение',
-                        url: formData[0].previewImageLink
-                    }
+                        url: formData[0].previewImageLink,
+                    },
                 ];
                 /* Направления исследования */
 
                 this.form.waysId = this.researchDirectionsList.filter(
-                    way => way.id === formData[0].waysId
+                    (way) => way.id === formData[0].waysId
                 )[0].title;
                 this.previewImages.slider = formData[0].imgs?.map(
                     (image, i) => {
                         return {
                             name: 'Изображение ' + (i + 1),
-                            url: image
+                            url: image,
                         };
                     }
                 );
@@ -411,16 +411,19 @@ export default {
                 text: form.text.split('\n'),
                 date: form.date,
                 waysId: this.researchDirectionsList.find(
-                    way => way.title === this.form.waysId
+                    (way) => way.title === this.form.waysId
                 ).id,
                 previewImageLink: this.form.previewImageLink,
-                researcherUids: this.form.researcherUids.map(researcherName => {
-                    return this.researcherList.find(
-                        researcherObj => researcherObj.value === researcherName
-                    ).id;
-                }),
-                imgs: this.form.imgs.map(image => image.url),
-                tag: this.form.tag
+                researcherUids: this.form.researcherUids.map(
+                    (researcherName) => {
+                        return this.researcherList.find(
+                            (researcherObj) =>
+                                researcherObj.value === researcherName
+                        ).id;
+                    }
+                ),
+                imgs: this.form.imgs.map((image) => image.url),
+                tag: this.form.tag,
             };
         },
 
@@ -469,10 +472,10 @@ export default {
         /* Хук успешной загрузки изображения (инпут слайдера)
                  При успешной загрузке заполняем скрытый инпут урлом из ответа */
         successLoadHookSlider(res, file, fileList) {
-            this.form.imgs = fileList.map(image => {
+            this.form.imgs = fileList.map((image) => {
                 return {
                     name: image.name,
-                    url: image.response ? image.response.data.url : image.url
+                    url: image.response ? image.response.data.url : image.url,
                 };
             });
         },
@@ -486,12 +489,12 @@ export default {
          * @param {object} data - тело запроса на создание исследования
          */
         addResearch(data) {
-            return new Promise(res => {
+            return new Promise((res) => {
                 axios({
                     method: 'POST',
                     url: '/user/create/research',
-                    data: data
-                }).then(response => {
+                    data: data,
+                }).then((response) => {
                     res(response.data);
                 });
             });
@@ -502,19 +505,19 @@ export default {
          * @param {object} data - тело запроса на создание исследования
          */
         updateResearch(data) {
-            return new Promise(res => {
+            return new Promise((res) => {
                 axios({
                     method: 'POST',
                     url: '/user/update/research',
-                    data: data
-                }).then(response => {
+                    data: data,
+                }).then((response) => {
                     res(response.data);
                 });
             });
         },
 
         onSubmit(form) {
-            this.$refs[form].validate(async valid => {
+            this.$refs[form].validate(async (valid) => {
                 if (valid) {
                     let data = this.getRequestData();
                     if (this.mode === 'create') {
@@ -533,8 +536,8 @@ export default {
                     return false;
                 }
             });
-        }
-    }
+        },
+    },
 };
 </script>
 <style scoped>

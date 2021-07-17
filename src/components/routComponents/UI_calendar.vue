@@ -207,12 +207,12 @@ export default {
     name: 'UICalendar',
     components: {
         TitleSection,
-        Preloader
+        Preloader,
     },
     mixins: [testMixin],
     props: {
         mode: String,
-        entityId: String
+        entityId: String,
     },
     data() {
         return {
@@ -229,7 +229,7 @@ export default {
                 place: '',
                 imageLinks: [],
                 documentCalendar: '',
-                tag: ''
+                tag: '',
             },
 
             /* Правила валидации для формы */
@@ -239,12 +239,13 @@ export default {
                         required: true,
                         message:
                             "Пожалуйста, заполните поле 'Название события'",
-                        trigger: 'blur'
+                        trigger: 'blur',
                     },
                     {
                         min: 10,
-                        message: 'Название должно содержать минимум 10 символов'
-                    }
+                        message:
+                            'Название должно содержать минимум 10 символов',
+                    },
                 ],
                 dateStart: [
                     {
@@ -252,8 +253,8 @@ export default {
                         required: true,
                         message:
                             'Пожалуйста, выберите или напишите дату проведения события',
-                        trigger: 'blur'
-                    }
+                        trigger: 'blur',
+                    },
                 ],
 
                 place: [
@@ -261,39 +262,39 @@ export default {
                         required: true,
                         message:
                             "Пожалуйста, заполните поле 'Место проведения события'",
-                        trigger: 'blur'
+                        trigger: 'blur',
                     },
                     {
                         min: 6,
                         message:
-                            'Место проведения должно содержать минимум 6 символов'
-                    }
+                            'Место проведения должно содержать минимум 6 символов',
+                    },
                 ],
                 previewText: [
                     {
                         required: true,
                         message:
                             "Пожалуйста, заполните поле 'Краткое описание события'",
-                        trigger: 'blur'
+                        trigger: 'blur',
                     },
                     {
                         min: 10,
                         message:
-                            'Краткое описание должно содержать минимум 10 символов'
-                    }
+                            'Краткое описание должно содержать минимум 10 символов',
+                    },
                 ],
                 text: [
                     {
                         required: true,
                         message: "Пожалуйста, заполните поле 'Тело события'",
-                        trigger: 'blur'
+                        trigger: 'blur',
                     },
                     {
                         min: 10,
                         message:
-                            'Текст события должен содержать минимум 10 символов'
-                    }
-                ]
+                            'Текст события должен содержать минимум 10 символов',
+                    },
+                ],
             },
 
             /* УЖЕ загруженные изображения */
@@ -304,26 +305,26 @@ export default {
 
             /* Загружаемые изображения */
             loadedImages: {
-                imageLinks: []
+                imageLinks: [],
             },
 
             /* При загрузке изображений отправляем api key imgBB
             Если что-то пойдет не так, получить новый можно тут:
             https://api.imgbb.com/ */
             requestDataImage: {
-                key: '2ca9c35e0d42896ec7e746b5daf2c924'
+                key: '2ca9c35e0d42896ec7e746b5daf2c924',
             },
 
             requestData: {
-                uploadFilePath: 'pdf'
-            }
+                uploadFilePath: 'pdf',
+            },
         };
     },
 
     created() {
         /* Проверка авторизации */
         this.authCheck()
-            .then(res => {
+            .then((res) => {
                 this.form.tag = res.data;
             })
             .catch(() => {
@@ -341,10 +342,10 @@ export default {
             this.form.place = this.CALENDAR_BANNER.TEXT[0].text;
 
             this.form.previewText = this.ACTIONS_CALENDAR.ACTION.filter(
-                action => action._pageLink === this.entityId
+                (action) => action._pageLink === this.entityId
             )[0].text;
             this.form.tag = this.ACTIONS_CALENDAR.ACTION.filter(
-                action => action._pageLink === this.entityId
+                (action) => action._pageLink === this.entityId
             )[0]._tag;
             this.form.text = this.CALENDAR_TEXT.TEXT[0].text.replace(
                 /;/g,
@@ -353,7 +354,7 @@ export default {
 
             /* Парс даты */
             const date = this.ACTIONS_CALENDAR.ACTION.filter(
-                action => action._pageLink === this.entityId
+                (action) => action._pageLink === this.entityId
             )[0].date;
 
             /* Дата начала события */
@@ -367,23 +368,20 @@ export default {
             /* Дата окончания события */
             this.form.dateEnd = date.length >= 10 ? date.split(' - ')[1] : '';
             this.form.dateEnd = this.form.dateEnd
-                ? this.form.dateEnd
-                      .split('.')
-                      .reverse()
-                      .join('-')
+                ? this.form.dateEnd.split('.').reverse().join('-')
                 : '';
             this.sliderFileList = this.CALENDAR_SLIDER?.IMAGE?.map(
                 (image, i) => {
                     return {
                         name: 'Изображение ' + (i + 1),
-                        url: image?.image
+                        url: image?.image,
                     };
                 }
             );
-            this.documentCalendar = this.CALENDAR_TEXT?.DOC?.map(link => {
+            this.documentCalendar = this.CALENDAR_TEXT?.DOC?.map((link) => {
                 return {
                     name: 'Документ',
-                    url: link?.link
+                    url: link?.link,
                 };
             });
             this.form.imageLinks = this.sliderFileList;
@@ -432,10 +430,10 @@ export default {
         /* Хук успешной загрузки изображения (инпут слайдера)
             При успешной загрузке заполняем скрытый инпут урлом из ответа */
         successLoadHookSlider(res, file, fileList) {
-            this.form.imageLinks = fileList.map(image => {
+            this.form.imageLinks = fileList.map((image) => {
                 return {
                     name: image.name,
-                    url: image.response ? image.response.data.url : image.url
+                    url: image.response ? image.response.data.url : image.url,
                 };
             });
         },
@@ -443,10 +441,10 @@ export default {
         /* Хук успешной загрузки изображения (инпут документа)
               При успешной загрузке заполняем скрытый инпут урлом из ответа */
         successLoadHookDocument(res, file, fileList) {
-            this.form.documentCalendar = fileList.map(link => {
+            this.form.documentCalendar = fileList.map((link) => {
                 return {
                     name: link.name,
-                    url: link.response ? link.response.data.url : link.url
+                    url: link.response ? link.response.data.url : link.url,
                 };
             });
         },
@@ -465,7 +463,7 @@ export default {
             const formData = new FormData();
             const file = this.form.documentCalendar;
 
-            Object.keys(data).forEach(prop => {
+            Object.keys(data).forEach((prop) => {
                 formData.append(prop, data[prop]);
             });
 
@@ -474,17 +472,17 @@ export default {
             formData.append('fileData', this.getCurrentDate());
 
             //eslint-disable-next-line
-            const self = this;
+      const self = this;
             //eslint-disable-next-line
-            debugger
+      debugger;
 
-            return new Promise(res => {
+            return new Promise((res) => {
                 axios({
                     method: 'POST',
                     url: '/user/create/calendar',
                     data: formData,
-                    headers: { 'Content-Type': 'multipart/form-data' }
-                }).then(response => {
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                }).then((response) => {
                     res(response.data);
                 });
             });
@@ -495,12 +493,12 @@ export default {
          * @param {object} data - тело запроса на создание новости
          */
         updateCalendar(data) {
-            return new Promise(res => {
+            return new Promise((res) => {
                 axios({
                     method: 'POST',
                     url: '/user/update/calendar',
-                    data: data
-                }).then(response => {
+                    data: data,
+                }).then((response) => {
                     res(response.data);
                 });
             });
@@ -512,7 +510,7 @@ export default {
             this.addCalendar(data).then(() => {
                 console.log('ok');
             });
-            this.$refs[formName].validate(async valid => {
+            this.$refs[formName].validate(async (valid) => {
                 if (valid) {
                     // let data = this.getRequestData();
                     if (this.mode === 'create') {
@@ -537,34 +535,26 @@ export default {
             const date =
                 /* Если дата начала и конца совпадают - отправляем любую */
                 !this.form.dateEnd
-                    ? this.form.dateStart
-                          .split('-')
-                          .reverse()
-                          .join('.')
+                    ? this.form.dateStart.split('-').reverse().join('.')
                     : /* Если нет - отправляем в формате "dateStart - dateEnd" */
-                      this.form.dateStart
-                          .split('-')
-                          .reverse()
-                          .join('.') +
+                      this.form.dateStart.split('-').reverse().join('.') +
                       ' - ' +
-                      this.form.dateEnd
-                          .split('-')
-                          .reverse()
-                          .join('.');
+                      this.form.dateEnd.split('-').reverse().join('.');
 
             return {
                 tag:
                     this.form.dateStart.slice(2, 4) +
                     this.form.dateStart.slice(5, 7),
                 name: this.form.name,
-                imageLinks: this.form.imageLinks?.map(image => image.url) || [],
+                imageLinks:
+                    this.form.imageLinks?.map((image) => image.url) || [],
                 text: this.form.text.replace(/\n/g, ' ; '),
                 previewText: this.form.previewText,
                 date: date,
-                place: this.form.place
+                place: this.form.place,
             };
-        }
-    }
+        },
+    },
 };
 </script>
 

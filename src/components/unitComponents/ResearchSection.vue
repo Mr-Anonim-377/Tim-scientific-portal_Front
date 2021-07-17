@@ -33,26 +33,26 @@ export default {
     name: 'ResearchSection',
     components: {
         ButtonSection,
-        TitleSection
+        TitleSection,
     },
     props: {
         sectionData: [],
         listResearch: {},
         props: {
-            pageId: String
-        }
+            pageId: String,
+        },
     },
     data() {
         return {
             modifiers: {
                 btn: [
-                    'width: 170px; height: 35px; font-size: 14px; line-height: 17px; padding: 10px;'
-                ]
+                    'width: 170px; height: 35px; font-size: 14px; line-height: 17px; padding: 10px;',
+                ],
             },
             titleResearch: 'Исследования',
-            visibleResearch: true
+            visibleResearch: true,
         };
-    }
+    },
 };
 </script>
 

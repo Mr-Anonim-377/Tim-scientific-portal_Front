@@ -25,11 +25,11 @@ export default {
     name: 'ResearchBodyPage',
     components: {
         NewsSection,
-        Preloader
+        Preloader,
     },
     mixins: [mixin],
     props: {
-        tag: String
+        tag: String,
     },
     data() {
         return {
@@ -38,7 +38,7 @@ export default {
             listNews: {},
             titleNews: 'Новости Уника',
             visibleNews: true,
-            loadSuccess: false
+            loadSuccess: false,
         };
     },
     computed: {
@@ -61,7 +61,7 @@ export default {
             }
 
             return 'Некорректная ссылка';
-        }
+        },
     },
 
     async mounted() {
@@ -69,6 +69,6 @@ export default {
         setTimeout(() => {
             this.loadSuccess = true;
         }, 500);
-    }
+    },
 };
 </script>

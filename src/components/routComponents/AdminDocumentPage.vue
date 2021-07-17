@@ -23,17 +23,17 @@ export default {
     name: 'AdminDocumentPage',
     components: {
         AdminNavigation,
-        AdminItem
+        AdminItem,
     },
     data() {
         return {
             items: [
                 { text: 'Михайлов' },
                 { text: 'Петров' },
-                { text: 'Харламов' }
-            ]
+                { text: 'Харламов' },
+            ],
         };
-    }
+    },
 };
 </script>
 

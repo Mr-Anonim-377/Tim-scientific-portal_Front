@@ -24,8 +24,8 @@ export default {
     components: { ButtonElement },
     props: {
         sectionData: {},
-        index: Number
-    }
+        index: Number,
+    },
 };
 </script>
 

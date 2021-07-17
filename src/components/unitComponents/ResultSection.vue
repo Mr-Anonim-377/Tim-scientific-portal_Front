@@ -117,9 +117,9 @@ export default {
     components: { TitleSection },
     data() {
         return {
-            visible: 'true'
+            visible: 'true',
         };
-    }
+    },
 };
 </script>
 

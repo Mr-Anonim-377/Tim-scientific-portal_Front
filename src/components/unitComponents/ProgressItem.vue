@@ -71,10 +71,10 @@ import TitleSection from '../unitComponents/TitleSection';
 export default {
     name: 'ProgressItem',
     components: {
-        TitleSection
+        TitleSection,
     },
     props: {
-        sectionData: {}
+        sectionData: {},
     },
 
     data() {
@@ -84,9 +84,9 @@ export default {
              */
             styleTitleDynamics: {
                 style: [
-                    'font-size: 20px; letter-spacing: 0.01px; color: #4D5668'
-                ]
-            }
+                    'font-size: 20px; letter-spacing: 0.01px; color: #4D5668',
+                ],
+            },
         };
     },
 
@@ -96,7 +96,7 @@ export default {
          * Далее делим dynamicPercent на 1 процент и получаем кол-во процентов
          * Округляем в большую сторону
          */
-        getProgressPercent: function() {
+        getProgressPercent: function () {
             if (this.isPercent) {
                 return Math.ceil(
                     this.sectionData.dynamicsPercent /
@@ -113,7 +113,7 @@ export default {
         /**
          * Определяем единицы измерения
          */
-        isPercent: function() {
+        isPercent: function () {
             if (this.sectionData.dynamicsValue) {
                 return false;
             }
@@ -123,12 +123,12 @@ export default {
         /**
          * Обрабатываем кейс скрытия плашки у прогресс-бара процентов -> тогда отображаем проценты по центру
          */
-        percentShow: function() {
+        percentShow: function () {
             if (this.getProgressPercent > 92 || this.getProgressPercent < 5)
                 return this.sectionData.dynamicsPercent + '%';
             return '';
-        }
-    }
+        },
+    },
 };
 </script>
 

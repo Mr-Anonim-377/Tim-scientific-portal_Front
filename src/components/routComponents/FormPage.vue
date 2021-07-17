@@ -17,6 +17,7 @@
                         <div class="form-content-image">
                             <img :src="PERSONAL_INFORMATION.IMAGE[0].image" />
                         </div>
+
                         <div class="form-block__information">
                             <h2>
                                 {{
@@ -25,69 +26,138 @@
                                 }}
                             </h2>
                             <p class="information-text">
-                                {{
-                                    old +
-                                        ' ' +
-                                        declOfNum(old, ['год', 'года', 'лет'])
-                                }}
-                                /
+                                -
                                 {{
                                     PERSONAL_INFORMATION.RESEARCH_EDUCATION[0]
                                         .title
                                 }}
+                                -
                             </p>
 
                             <div class="form-block__edit">
                                 <h3>Ф.И.О.</h3>
-                                <input
-                                    v-if="authorization"
-                                    type="text"
-                                    placeholder="Как Вас зовут..."
-                                    class="edit__inp"
-                                />
 
-                                <p v-else class="edit-text">
+                                <p class="edit-text">
                                     {{
                                         PERSONAL_INFORMATION
                                             .PERSONAL_INFORMATION[0].text
                                     }}
                                 </p>
 
-                                <h3>Электронная почта</h3>
-                                <p class="edit-text">
-                                    {{
+                                <div
+                                    v-if="
                                         PERSONAL_INFORMATION
                                             .PERSONAL_INFORMATION[0].title
-                                    }}
-                                </p>
+                                    "
+                                    class="form block__item"
+                                >
+                                    <h3>Электронная почта</h3>
+                                    <p class="edit-text">
+                                        {{
+                                            PERSONAL_INFORMATION
+                                                .PERSONAL_INFORMATION[0].title
+                                        }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
 
-                                <h3>Дата рождения</h3>
-                                <input
-                                    v-if="authorization"
-                                    type="text"
-                                    placeholder="Выбрать дату"
-                                    class="edit__inp"
-                                />
-                                <p v-else class="edit-text">
-                                    {{
+                        <div class="form-block__information center">
+                            <div class="form-block__edit">
+                                <div
+                                    v-if="
                                         PERSONAL_INFORMATION
-                                            .PERSONAL_INFORMATION[0].date
-                                    }}
-                                </p>
+                                            .PERSONAL_INFORMATION[0].title
+                                    "
+                                    class="form block__item"
+                                >
+                                    <h3>Ученая степень</h3>
+                                    <p class="edit-text">
+                                        {{
+                                            PERSONAL_INFORMATION
+                                                .PERSONAL_INFORMATION[0].title
+                                        }}
+                                    </p>
+                                </div>
 
-                                <h3>Специальность</h3>
-                                <input
-                                    v-if="authorization"
-                                    type="text"
-                                    placeholder="Выбрать специальность"
-                                    class="edit__inp"
-                                />
-                                <p v-else class="edit-text">
-                                    {{
+                                <div
+                                    v-if="
+                                        PERSONAL_INFORMATION.ACADEMIC_RANK[0]
+                                            .title
+                                    "
+                                    class="form block__item"
+                                >
+                                    <h3>Ученое звание</h3>
+                                    <p class="edit-text">
+                                        {{
+                                            PERSONAL_INFORMATION
+                                                .ACADEMIC_RANK[0].title
+                                        }}
+                                    </p>
+                                </div>
+
+                                <div
+                                    v-if="
+                                        PERSONAL_INFORMATION
+                                            .RESEARCH_EDUCATION[0].text
+                                    "
+                                    class="form block__item"
+                                >
+                                    <h3>Образование</h3>
+                                    <p class="edit-text">
+                                        {{
+                                            PERSONAL_INFORMATION
+                                                .RESEARCH_EDUCATION[0].text
+                                        }}
+                                    </p>
+                                </div>
+
+                                <div
+                                    v-if="
+                                        PERSONAL_INFORMATION
+                                            .INTERESTING_ACTIVITY[0].title
+                                    "
+                                    class="form block__item"
+                                >
+                                    <h3>Область научных интересов</h3>
+                                    <p class="edit-text">
+                                        {{
+                                            PERSONAL_INFORMATION
+                                                .INTERESTING_ACTIVITY[0].title
+                                        }}
+                                    </p>
+                                </div>
+
+                                <div
+                                    v-if="
+                                        PERSONAL_INFORMATION.INTERESTING_ACTIVITY
+                                    "
+                                    class="form block__item"
+                                >
+                                    <h3>Публикационная активность</h3>
+                                    <p class="edit-text">
+                                        {{
+                                            PERSONAL_INFORMATION
+                                                .INTERESTING_ACTIVITY[0].text
+                                        }}
+                                    </p>
+                                </div>
+
+                                <div
+                                    v-if="
                                         PERSONAL_INFORMATION
                                             .RESEARCH_EDUCATION[0].title
-                                    }}
-                                </p>
+                                    "
+                                    class="form block__item"
+                                >
+                                    <h3>Ученая степень</h3>
+                                    <p class="edit-text">
+                                        {{
+                                            PERSONAL_INFORMATION
+                                                .RESEARCH_EDUCATION[0].title
+                                        }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -112,11 +182,11 @@ export default {
     components: {
         AccountNavigationSection,
         TitleSection,
-        Preloader
+        Preloader,
     },
     mixins: [mixin],
     props: {
-        pageId: String
+        pageId: String,
     },
 
     data() {
@@ -124,10 +194,10 @@ export default {
             title: 'Личная информация',
             authorization: false,
             stileTitle: {
-                stile: ['font-size: 26px']
+                stile: ['font-size: 26px'],
             },
             loadSuccess: false,
-            old: new String()
+            old: new String(),
         };
     },
 
@@ -137,27 +207,21 @@ export default {
          */
 
         this.profileID = this.$route.params.pageId;
-        // console.log(this.$route.params.pageId);
 
         /**
          * Получаем данные по id
          */
         await this.getModulesTest('', this.profileID);
 
-        /* Получаем возраст */
-        this.getOld();
+        //eslint-disable-next-line
+        const self = this;
+        //eslint-disable-next-line
+        debugger
 
         this.loadSuccess = true;
     },
 
     methods: {
-        getOld() {
-            const date = this.PERSONAL_INFORMATION.PERSONAL_INFORMATION[0].date;
-            const year = date.split('.')[date.split('.').length - 1];
-            // !FIXME пока считает только по году -> будут кейсы с некорректным расчетом
-            this.old = new Date().getFullYear() - year;
-        },
-
         /* 
             Правильный падеж 
             Украл отсюда:
@@ -176,8 +240,8 @@ export default {
                 return text_forms[0];
             }
             return text_forms[2];
-        }
-    }
+        },
+    },
 };
 </script>
 
@@ -210,11 +274,10 @@ p {
 }
 
 .form-content-header {
-    /* margin-top: 40px; */
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start;
-    /* margin: 0; */
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .form-content-image {
@@ -233,7 +296,6 @@ img {
     height: 100%;
     background: #c4c4c4;
     background-size: contain;
-    /* margin: 0 60px 0 130px; */
 }
 
 .form-block__information {
@@ -241,8 +303,15 @@ img {
     display: flex;
     flex-wrap: wrap;
     text-align: center;
-    /* justify-content: center; */
-    /* margin: auto; */
+}
+
+.form-block__information.center {
+    width: 100%;
+}
+
+.form-block__information.center .form-block__edit {
+    width: 100%;
+    padding: 0 225px 0 110px;
 }
 
 .information-text {
@@ -250,16 +319,6 @@ img {
     margin: 0 auto 4px;
     width: 100%;
 }
-
-/* .information-text:before {
-        content: '';
-        position: absolute;
-        width: 33px;
-        height: 1px;
-        background: #3f7e77;
-        top: 9px;
-        left: 137px;
-    } */
 
 .form-block__text-project {
     font-size: 15px;
@@ -323,8 +382,7 @@ img {
 }
 
 .form-block__edit {
-    margin: 49px auto 0 auto;
-    /* width: 762px; */
+    margin: 0 auto;
     width: 60%;
 }
 .form-block__edit h3 {
@@ -337,17 +395,8 @@ img {
     padding: 10px;
     color: white;
     border-radius: 20px;
-    /* width: 220px; */
     text-align: center;
 }
-/* .form-block__edit h3:before { */
-/* content: '';
-  position: absolute;
-  width: 35px;
-  height: 1px;
-  background: #3f7e77;
-  top: -16px; */
-/* } */
 
 .edit__inp {
     width: 416px;
@@ -377,7 +426,6 @@ img {
 .edit-text {
     margin: 20px 0 30px 5px;
     text-align: center;
-    /* width: 220px; */
     font-weight: bold;
     font-size: 16px;
     line-height: 19px;

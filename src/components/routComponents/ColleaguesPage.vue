@@ -37,20 +37,20 @@ export default {
     name: 'ColleaguesPage',
     components: {
         AccountNavigationSection,
-        TitleSection
+        TitleSection,
     },
 
     mixins: [mixin],
 
     props: {
-        pageId: String
+        pageId: String,
     },
     data() {
         return {
             titleColleagues: 'Коллеги',
             stileTitle: {
-                stile: ['font-size: 26px']
-            }
+                stile: ['font-size: 26px'],
+            },
         };
     },
 
@@ -66,7 +66,7 @@ export default {
          */
         await this.getModulesTest('', this.profileID);
         this.loadSuccess = true;
-    }
+    },
 };
 </script>
 

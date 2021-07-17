@@ -3,7 +3,7 @@
         style="text-decoration: none"
         :to="{
             name: `calendar`,
-            params: { pageId: articleData._pageLink }
+            params: { pageId: articleData._pageLink },
         }"
     >
         <div class="calendar-item-body">
@@ -18,7 +18,7 @@ export default {
     name: 'CalendarItem',
     props: {
         articleData: {},
-        transformMouth: {}
+        transformMouth: {},
     },
     methods: {
         /**
@@ -30,8 +30,8 @@ export default {
                 return +dateArr[0] + ' ' + this.transformMouth(dateArr[1]);
             }
             return 'Дата не указана';
-        }
-    }
+        },
+    },
 };
 </script>
 

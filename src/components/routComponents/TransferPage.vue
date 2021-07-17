@@ -34,12 +34,12 @@ export default {
     name: 'Pagename',
     components: {
         TitleSection,
-        Preloader
+        Preloader,
     },
     mixins: [mixin],
     data() {
         return {
-            loadSuccess: false
+            loadSuccess: false,
         };
     },
     async mounted() {
@@ -47,7 +47,7 @@ export default {
         setTimeout(() => {
             this.loadSuccess = true;
         }, 500);
-    }
+    },
 };
 </script>
 <style scoped>

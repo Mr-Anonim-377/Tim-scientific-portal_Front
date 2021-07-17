@@ -14,7 +14,7 @@
                     style="text-decoration: none"
                     :to="{
                         name: `${formName}`,
-                        params: { mode: 'edit', entityId: item.pageId }
+                        params: { mode: 'edit', entityId: item.pageId },
                     }"
                 >
                     <button class="btn_edit">Редактировать</button>
@@ -35,11 +35,11 @@ export default {
     props: {
         sectionData: Object,
         formName: String,
-        type: String
+        type: String,
     },
     data() {
         return {
-            active: false
+            active: false,
         };
     },
 
@@ -48,12 +48,12 @@ export default {
             axios({
                 method: 'DELETE',
                 url: '/user/delete',
-                params: { pageId: id, entityType: this.type }
+                params: { pageId: id, entityType: this.type },
             }).then(() => {
                 this.$router.go();
             });
-        }
-    }
+        },
+    },
 };
 </script>
 

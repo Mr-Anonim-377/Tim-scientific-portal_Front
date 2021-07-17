@@ -35,8 +35,8 @@ export default {
         return {
             loadSuccess: false,
             stileTitle: {
-                stile: ['font-size: 26px']
-            }
+                stile: ['font-size: 26px'],
+            },
         };
     },
     async mounted() {
@@ -44,7 +44,7 @@ export default {
         setTimeout(() => {
             this.loadSuccess = true;
         }, 1500);
-    }
+    },
 };
 </script>
 

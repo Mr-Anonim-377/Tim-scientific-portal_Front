@@ -46,39 +46,39 @@ export default {
     components: { TitleSection },
     mixins: [sliderSkeleton],
     props: {
-        sectionData: {}
+        sectionData: {},
     },
     data() {
         return {
             positions: {
                 circle1: {
-                    transform: 'translatex(-284px)'
+                    transform: 'translatex(-284px)',
                 },
                 circle2: {
-                    transform: 'translatex(0)'
+                    transform: 'translatex(0)',
                 },
                 circle3: {
                     transform: 'translatex(255px)',
                     width: '635px',
-                    height: '635px'
+                    height: '635px',
                 },
                 circle4: {
-                    transform: 'translatex(950px)'
+                    transform: 'translatex(950px)',
                 },
                 circle5: {
-                    transform: 'translatex(1215px)'
-                }
+                    transform: 'translatex(1215px)',
+                },
             },
-            sliderData: []
+            sliderData: [],
         };
     },
 
     mounted() {
         // Формируем массив данных
         this.sliderData = [];
-        this.sectionData.IMAGE.forEach(image => {
+        this.sectionData.IMAGE.forEach((image) => {
             this.sliderData.push({
-                url: image.image
+                url: image.image,
             });
         });
 
@@ -297,8 +297,8 @@ export default {
                 );
                 this.$circles.eq(i5).css('opacity', '1');
             }
-        }
-    }
+        },
+    },
 };
 </script>
 

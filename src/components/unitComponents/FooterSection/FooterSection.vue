@@ -218,7 +218,7 @@
 
 <script>
 export default {
-    name: 'FooterNow'
+    name: 'FooterNow',
 };
 </script>
 

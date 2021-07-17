@@ -49,7 +49,7 @@ export default {
         return {
             tag: 'РГАУ-МСХА',
             loadSuccess: false,
-            availableEntities: []
+            availableEntities: [],
         };
     },
 
@@ -67,15 +67,15 @@ export default {
     async mounted() {
         axios({
             method: 'GET',
-            url: '/user/allEntityInstance?type=RESEARCHER'
+            url: '/user/allEntityInstance?type=RESEARCHER',
         })
-            .then(response => {
+            .then((response) => {
                 this.availableEntities = response.data;
             })
             .finally(() => {
                 this.loadSuccess = true;
             });
-    }
+    },
 };
 </script>
 

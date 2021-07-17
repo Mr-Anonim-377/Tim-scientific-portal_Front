@@ -17,8 +17,8 @@
                         params: {
                             mode: 'edit',
                             entityId: item.pageId,
-                            status: 'notEmptyResearchs'
-                        }
+                            status: 'notEmptyResearchs',
+                        },
                     }"
                 >
                     <button class="btn_edit">Редактировать</button>
@@ -45,8 +45,8 @@
                         params: {
                             mode: 'edit',
                             entityId: item.previewObjectId,
-                            status: 'emptyResearchs'
-                        }
+                            status: 'emptyResearchs',
+                        },
                     }"
                 >
                     <button class="btn_edit">Заполнить анкету</button>
@@ -64,11 +64,11 @@ export default {
     props: {
         sectionData: Object,
         formName: String,
-        type: String
+        type: String,
     },
     data() {
         return {
-            active: false
+            active: false,
         };
     },
 
@@ -77,12 +77,12 @@ export default {
             axios({
                 method: 'DELETE',
                 url: '/user/delete',
-                params: { pageId: id, entityType: this.type }
+                params: { pageId: id, entityType: this.type },
             }).then(() => {
                 this.$router.go();
             });
-        }
-    }
+        },
+    },
 };
 </script>
 

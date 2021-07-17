@@ -44,222 +44,222 @@ const routes = [
     {
         path: '/',
         name: 'Main',
-        component: main
+        component: main,
     },
     {
         path: '/consortium',
         name: 'Consortium',
-        component: consortium
+        component: consortium,
     },
     {
         path: '/404',
         name: 'notFound',
-        component: notFound
+        component: notFound,
     },
     {
         path: '/ways',
         name: 'ways',
-        component: ways
+        component: ways,
     },
     {
         path: '/news',
         name: 'news',
-        component: news
+        component: news,
     },
     {
         path: '/participantNews/:tag',
         name: 'participantNews',
         component: participantNews,
-        props: true
+        props: true,
     },
     {
         path: '/research/:pageId',
         name: 'research',
         component: ResearchPage,
-        props: true
+        props: true,
     },
     {
         path: '/all-research/:pageId',
         name: 'all-research',
         component: ResearchAllPage,
-        props: true
+        props: true,
     },
     {
         path: '/newsItem/:pageId',
         name: 'newsItem',
         component: newsItem,
-        props: true
+        props: true,
     },
     {
         path: '/party/:pageId',
         name: 'party',
         component: party,
-        props: true
+        props: true,
     },
     {
         path: '/contacts',
         name: 'contacts',
-        component: contacts
+        component: contacts,
     },
 
     {
         path: '/auth',
         name: 'auth',
-        component: auth
+        component: auth,
     },
     {
         path: '/documents',
         name: 'documents',
-        component: documents
+        component: documents,
     },
     {
         path: '/privateDocuments',
         name: 'privateDocuments',
-        component: privateDocuments
+        component: privateDocuments,
     },
     {
         path: '/presentation',
         name: 'presentation',
-        component: presentation
+        component: presentation,
     },
     {
         path: '/recovery',
         name: 'recovery',
-        component: recovery
+        component: recovery,
     },
     {
         path: '/knowledgeBase',
         name: 'knowledgeBase',
-        component: knowledgeBase
+        component: knowledgeBase,
     },
     {
         path: '/dynamics',
         name: 'dynamics',
-        component: dynamics
+        component: dynamics,
     },
     {
         path: '/calendar',
         name: 'calendar',
-        component: calendar
+        component: calendar,
     },
     {
         path: '/educational',
         name: 'educational',
-        component: educational
+        component: educational,
     },
 
     {
         path: '/auth',
         name: 'auth',
-        component: auth
+        component: auth,
     },
     {
         path: '/documents',
         name: 'documents',
-        component: documents
+        component: documents,
     },
     {
         path: '/presentation',
         name: 'presentation',
-        component: presentation
+        component: presentation,
     },
     {
         path: '/recovery',
         name: 'recovery',
-        component: recovery
+        component: recovery,
     },
     {
         path: '/knowledgeBase',
         name: 'knowledgeBase',
-        component: knowledgeBase
+        component: knowledgeBase,
     },
     {
         path: '/dynamics',
         name: 'dynamics',
-        component: dynamics
+        component: dynamics,
     },
     {
         path: '/calendar/:pageId',
         name: 'calendar',
         component: calendar,
-        props: true
+        props: true,
     },
     {
         path: '/KBMediaList',
         name: 'KBMediaList',
-        component: KBMediaList
+        component: KBMediaList,
     },
 
     {
         path: '/KBMediaPage/:pageId',
         name: 'KBMediaPage',
         component: KBMediaPage,
-        props: true
+        props: true,
     },
     {
         path: '/MarketingPage/',
         name: 'MarketingPage',
-        component: MarketingPage
+        component: MarketingPage,
     },
     {
         path: '/OffersPage/',
         name: 'OffersPage',
-        component: OffersPage
+        component: OffersPage,
     },
     {
         path: '/TransferPage/',
         name: 'TransferPage',
-        component: TransferPage
+        component: TransferPage,
     },
     {
         path: '/AdminNewsPage/',
         name: 'AdminNewsPage',
-        component: AdminNewsPage
+        component: AdminNewsPage,
     },
     {
         path: '/AdminDocumentPage/',
         name: 'AdminDocumentPage',
-        component: AdminDocumentPage
+        component: AdminDocumentPage,
     },
     {
         path: '/AdminCalendarPage/',
         name: 'AdminCalendarPage',
-        component: AdminCalendarPage
+        component: AdminCalendarPage,
     },
     {
         path: '/AdminPartyPage/',
         name: 'AdminPartyPage',
-        component: AdminPartyPage
+        component: AdminPartyPage,
     },
     {
         path: '/AdminResearchPage/',
         name: 'AdminResearchPage',
-        component: AdminResearchPage
+        component: AdminResearchPage,
     },
     {
         path: '/FormNews/:entityId?/:mode',
         name: 'FormNews',
         component: FormNews,
-        props: true
+        props: true,
     },
     {
         path: '/FormResearcher/:entityId?/:status?/:mode',
         // path: '/FormResearcher/:mode',
         name: 'FormResearcher',
         component: FormResearcher,
-        props: true
+        props: true,
     },
     {
         path: '/FormResearch/:entityId?/:mode',
         name: 'FormResearch',
         component: FormResearch,
-        props: true
+        props: true,
     },
     {
         path: '/UI_calendar/:entityId?/:mode',
         name: 'UI_calendar',
         component: UI_calendar,
-        props: true
+        props: true,
     },
 
     /**
@@ -270,37 +270,37 @@ const routes = [
         path: '/colleagues/:pageId',
         name: 'colleagues',
         component: colleagues,
-        props: true
+        props: true,
     },
     {
         path: '/account/:pageId',
         name: 'account',
         component: account,
-        props: true
+        props: true,
     },
     {
         path: '/project/:pageId',
         name: 'project',
         component: project,
-        props: true
+        props: true,
     },
     {
         path: '/form/:pageId',
         name: 'form',
         component: form,
-        props: true
+        props: true,
     },
     {
         path: '/progress/:pageId',
         name: 'progress',
         component: progress,
-        props: true
-    }
+        props: true,
+    },
 ];
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
-    routes
+    routes,
 });
 
 export default router;

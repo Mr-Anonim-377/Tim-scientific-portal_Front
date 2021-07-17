@@ -71,10 +71,10 @@ import TitleSection from './TitleSection';
 export default {
     name: 'Slider',
     components: {
-        TitleSection
+        TitleSection,
     },
     props: {
-        sectionData: []
+        sectionData: [],
     },
 
     data() {
@@ -93,47 +93,44 @@ export default {
                     width: '405px',
                     height: '405px',
                     transform: 'translate(146px, 147px)',
-                    zIndex: 4
+                    zIndex: 4,
                 },
                 circle2: {
                     width: '174px',
                     height: '174px',
                     transform: 'translate(-3px, 68px)',
-                    zIndex: 3
+                    zIndex: 3,
                 },
                 circle3: {
                     width: '100px',
                     height: '100px',
                     transform: 'translate(185px, -3px)',
-                    zIndex: 2
+                    zIndex: 2,
                 },
                 circle4: {
                     width: '89px',
                     height: '89px',
                     transform: 'translate(461px, 58px)',
-                    zIndex: 1
-                }
+                    zIndex: 1,
+                },
             },
 
-            sliderData: []
+            sliderData: [],
         };
     },
 
     async mounted() {
         //  Формируем данные для слайдера
-        await this.sectionData.PROGRAMS_RESULT.forEach(slide => {
+        await this.sectionData.PROGRAMS_RESULT.forEach((slide) => {
             this.sliderData.push({
                 title: slide.title,
                 description: slide.text,
-                url: slide.image
+                url: slide.image,
             });
         });
 
         this.getDOM();
-        this.circles
-            .eq(this.i)
-            .children()
-            .css('opacity', 1);
+        this.circles.eq(this.i).children().css('opacity', 1);
 
         $('.control-item')
             .eq(this.sliderDataIndex)
@@ -297,10 +294,7 @@ export default {
             // Перемещение элементов в зависимости от направления
             if (isNext) {
                 this.moveCircle(i, 'circle2');
-                this.circles
-                    .eq(i)
-                    .children()
-                    .css('opacity', 0);
+                this.circles.eq(i).children().css('opacity', 0);
 
                 this.moveCircle(i2, 'circle3');
                 this.circles.eq(i2).css('opacity', 0);
@@ -309,22 +303,13 @@ export default {
                 this.circles.eq(i3).css('opacity', 1);
 
                 this.moveCircle(i4, 'circle1');
-                this.circles
-                    .eq(i4)
-                    .children()
-                    .css('opacity', 1);
+                this.circles.eq(i4).children().css('opacity', 1);
             } else if (!isNext) {
                 this.moveCircle(i, 'circle4');
-                this.circles
-                    .eq(i)
-                    .children()
-                    .css('opacity', 0);
+                this.circles.eq(i).children().css('opacity', 0);
 
                 this.moveCircle(i2, 'circle1');
-                this.circles
-                    .eq(i2)
-                    .children()
-                    .css('opacity', 1);
+                this.circles.eq(i2).children().css('opacity', 1);
 
                 this.moveCircle(i3, 'circle2');
                 this.circles.eq(i3).css('opacity', 1);
@@ -332,8 +317,8 @@ export default {
                 this.moveCircle(i4, 'circle3');
                 this.circles.eq(i4).css('opacity', 0);
             }
-        }
-    }
+        },
+    },
 };
 </script>
 

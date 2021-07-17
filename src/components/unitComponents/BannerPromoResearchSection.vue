@@ -4,7 +4,7 @@
     <section
         class="bannerPromoResearchSection"
         :style="{
-            background: `linear-gradient(0deg, rgba(51, 51, 51, 0.8), rgba(51, 51, 51, 0.8)), url(${dataSection.BANNER_IMAGE[0].image})`
+            background: `linear-gradient(0deg, rgba(51, 51, 51, 0.8), rgba(51, 51, 51, 0.8)), url(${dataSection.BANNER_IMAGE[0].image})`,
         }"
     >
         <div class="bannerPromoResearchSection-container">
@@ -22,30 +22,30 @@ import buttonSection from './CommonElements/ButtonElement';
 export default {
     name: 'BannerPromoResearchSection',
     components: {
-        buttonSection
+        buttonSection,
     },
     props: {
-        dataSection: {}
+        dataSection: {},
     },
     data() {
         return {
             modifiers: {
                 btn: [
-                    'background: #F8F5E6; margin: 226px auto 0 auto; color: #3F7E77;'
-                ]
+                    'background: #F8F5E6; margin: 226px auto 0 auto; color: #3F7E77;',
+                ],
             },
             visibleResearch: false,
-            titleResearch: '“Агротехнологии будущего”'
+            titleResearch: '“Агротехнологии будущего”',
         };
     },
     methods: {
-        showToggle: function() {
+        showToggle: function () {
             window.scrollTo({
                 top: 1000,
-                behavior: 'smooth'
+                behavior: 'smooth',
             });
-        }
-    }
+        },
+    },
 };
 </script>
 

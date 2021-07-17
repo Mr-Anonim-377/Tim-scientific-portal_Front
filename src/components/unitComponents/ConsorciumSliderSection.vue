@@ -60,7 +60,7 @@ let $ = JQuery;
 export default {
     name: 'ConsorciumSection',
     props: {
-        moduleData: {}
+        moduleData: {},
     },
 
     data() {
@@ -72,7 +72,7 @@ export default {
                 'https://spbu.ru/',
                 'https://www.vir.nw.ru/',
                 'http://esoil.ru/',
-                'https://www.fbras.ru/'
+                'https://www.fbras.ru/',
             ],
             i: 0,
             sliderDataIndex: 0,
@@ -84,45 +84,45 @@ export default {
                     width: '250px',
                     height: '250px',
                     transform: 'translate(292px, 491px)',
-                    zIndex: 4
+                    zIndex: 4,
                 },
                 circle2: {
                     width: '190px',
                     height: '190px',
                     transform: 'translate(1px, 357px)',
-                    zIndex: 3
+                    zIndex: 3,
                 },
                 circle3: {
                     width: '150px',
                     height: '150px',
                     transform: 'translate(20px, 117px)',
-                    zIndex: 2
+                    zIndex: 2,
                 },
                 circle4: {
                     width: '120px',
                     height: '120px',
                     transform: 'translate(258px, 0px)',
-                    zIndex: 1
+                    zIndex: 1,
                 },
                 circle5: {
                     width: '120px',
                     height: '120px',
                     transform: 'translate(455px, 0px)',
-                    zIndex: 1
+                    zIndex: 1,
                 },
                 circle6: {
                     width: '150px',
                     height: '150px',
                     transform: 'translate(663px, 117px)',
-                    zIndex: 1
+                    zIndex: 1,
                 },
                 circle7: {
                     width: '190px',
                     height: '190px',
                     transform: 'translate(644px, 357px)',
-                    zIndex: 1
-                }
-            }
+                    zIndex: 1,
+                },
+            },
         };
     },
 
@@ -165,7 +165,7 @@ export default {
 
         changePosition(i, arr, isNext) {
             let indexList = {
-                i: i
+                i: i,
             };
             let z = 2;
             let j = 1;
@@ -207,8 +207,8 @@ export default {
                 this.moveCircle(i6, 'circle5');
                 this.moveCircle(i7, 'circle6');
             }
-        }
-    }
+        },
+    },
 };
 </script>
 

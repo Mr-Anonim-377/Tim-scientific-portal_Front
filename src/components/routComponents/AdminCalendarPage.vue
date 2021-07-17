@@ -43,13 +43,13 @@ export default {
     components: {
         AdminItemCalendar,
         AdminNavigation,
-        Preloader
+        Preloader,
     },
     mixins: [mixin],
     data() {
         return {
             loadSuccess: false,
-            availableEntities: []
+            availableEntities: [],
         };
     },
 
@@ -67,16 +67,16 @@ export default {
     async mounted() {
         axios({
             method: 'GET',
-            url: '/user/allEntityInstance?type=CALENDAR'
+            url: '/user/allEntityInstance?type=CALENDAR',
         })
-            .then(response => {
+            .then((response) => {
                 this.availableEntities = response.data;
                 this.debug('Доступные сущности', this.availableEntities);
             })
             .finally(() => {
                 this.loadSuccess = true;
             });
-    }
+    },
 };
 </script>
 

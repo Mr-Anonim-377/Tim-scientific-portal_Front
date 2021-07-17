@@ -7,11 +7,8 @@
                 :header-visible="visibleContacts"
                 :title="titleContacts"
             />
-            <p class="contacts-text-phone">тел.: +7 (499) 977-26-01</p>
+            <p class="contacts-text-phone">тел.: +7 (999) 799-02-56</p>
             <p>E-mail: future-agro.info@yandex.ru</p>
-            <div class="qr">
-                <img src="../../assets/image/qr.gif" alt="" />
-            </div>
 
             <div class="contact-text">
                 <div class="contact-text__item">
@@ -61,30 +58,24 @@ import TitleSection from '../unitComponents/TitleSection';
 export default {
     name: 'ContactsPage',
     components: {
-        TitleSection
+        TitleSection,
     },
     data() {
         return {
             modifiers: {
                 btn: [
-                    'background: #F8F5E6; margin: 27px auto 0 auto; display:block; color: #3F7E77;'
-                ]
+                    'background: #F8F5E6; margin: 27px auto 0 auto; display:block; color: #3F7E77;',
+                ],
             },
             visibleContacts: false,
             titleContacts: 'Пресс-служба',
-            titleContactsBtn: 'Позвонить'
+            titleContactsBtn: 'Позвонить',
         };
-    }
+    },
 };
 </script>
 
 <style scoped>
-.qr {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
 .contact-text {
     width: 800px;
     margin: auto;

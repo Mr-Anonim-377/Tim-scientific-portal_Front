@@ -37,7 +37,7 @@ export default {
             i: 0,
 
             // Индекс для данных слайдера
-            sliderDataIndex: 0
+            sliderDataIndex: 0,
         };
     },
 
@@ -77,7 +77,7 @@ export default {
         // Функция возвращает объект со значениями i2, i3, i4 и т.д.
         getNeighborIndex(i, arr) {
             let indexList = {
-                i: i
+                i: i,
             };
             let z = 2;
             let j = 1;
@@ -101,13 +101,13 @@ export default {
 
         // Движение элемента слайдера
         moveCircle(propertyList, index, position) {
-            propertyList.forEach(property => {
+            propertyList.forEach((property) => {
                 this.$circles.eq(index);
 
                 this.$circles
                     .eq(index)
                     .css(property, this.positions[position][property]);
             });
-        }
-    }
+        },
+    },
 };

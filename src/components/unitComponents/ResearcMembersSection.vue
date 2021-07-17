@@ -57,10 +57,10 @@ export default {
 
     components: {
         TitleSection,
-        MemberItemArticle
+        MemberItemArticle,
     },
     props: {
-        sectionData: []
+        sectionData: [],
     },
 
     data() {
@@ -68,25 +68,25 @@ export default {
             isShow: false,
             isDropDown: this.sectionData > 4,
             // Стандартная высота списка
-            listHeight: { height: '370px' }
+            listHeight: { height: '370px' },
         };
     },
 
     methods: {
-        showToggle: function() {
+        showToggle: function () {
             this.listHeight = {
                 height: `${
                     // Рассчитываем высоту листа после расрытия
                     305 * (this.test.length / 4)
-                }px`
+                }px`,
             };
 
             this.btnStyle = {
                 opacity: 0,
-                height: 0
+                height: 0,
             };
-        }
-    }
+        },
+    },
 };
 </script>
 

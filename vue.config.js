@@ -4,6 +4,6 @@ module.exports = {
         port: 80,
         compress: true,
         disableHostCheck: true,
-        proxy: process.env.VUE_APP_PROXY
-    }
+        proxy: process.env.VUE_APP_PROXY,
+    },
 };

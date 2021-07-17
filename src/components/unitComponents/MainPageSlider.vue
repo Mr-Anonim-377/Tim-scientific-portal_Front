@@ -43,7 +43,7 @@ let $ = JQuery;
 export default {
     name: 'NewsSliderSection',
     props: {
-        sectionData: []
+        sectionData: [],
     },
     data() {
         return {
@@ -51,28 +51,28 @@ export default {
             sliderDataIndex: 0,
             positions: {
                 circle1: {
-                    transform: 'translatex(0)'
+                    transform: 'translatex(0)',
                 },
                 circle2: {
-                    transform: 'translatex(0)'
+                    transform: 'translatex(0)',
                 },
                 circle3: {
-                    transform: 'translatex(0)'
-                }
+                    transform: 'translatex(0)',
+                },
             },
 
             sliderData: [],
-            slideIntervalID: Number
+            slideIntervalID: Number,
         };
     },
 
     watch: {
-        $route: function() {
+        $route: function () {
             /**
              * Очищаем интервал при переходе на другую страницу
              */
             clearInterval(window.sliderAutoClickInterval);
-        }
+        },
     },
 
     async created() {
@@ -82,7 +82,7 @@ export default {
                 title: this.sectionData[i].title,
                 pageLink: this.sectionData[i].link
                     ? this.sectionData[i].link
-                    : ''
+                    : '',
             });
         }
 
@@ -163,9 +163,7 @@ export default {
             .eq(0)
             .on('click', () => {
                 // Отменяем возможность нажатия
-                $('.news-slider__arrow')
-                    .eq(0)
-                    .css('pointer-events', 'none');
+                $('.news-slider__arrow').eq(0).css('pointer-events', 'none');
 
                 // Возвращаем возможность нажатия через 1с
                 setTimeout(() => {
@@ -198,9 +196,7 @@ export default {
         $('.news-slider__arrow')
             .eq(1)
             .on('click', () => {
-                $('.news-slider__arrow')
-                    .eq(1)
-                    .css('pointer-events', 'none');
+                $('.news-slider__arrow').eq(1).css('pointer-events', 'none');
                 setTimeout(() => {
                     $('.news-slider__arrow')
                         .eq(1)
@@ -400,8 +396,8 @@ export default {
 
             this.positions.circle1.transform = `translatex(${transformValue}px)`;
             this.positions.circle3.transform = `translatex(-${transformValue}px)`;
-        }
-    }
+        },
+    },
 };
 </script>
 

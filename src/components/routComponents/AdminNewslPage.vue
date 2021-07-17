@@ -48,7 +48,7 @@ export default {
         return {
             tag: 'РГАУ-МСХА',
             loadSuccess: false,
-            availableEntities: []
+            availableEntities: [],
         };
     },
 
@@ -66,16 +66,16 @@ export default {
     async mounted() {
         axios({
             method: 'GET',
-            url: '/user/allEntityInstance?type=FULL_NEWS_PAGE'
+            url: '/user/allEntityInstance?type=FULL_NEWS_PAGE',
         })
-            .then(response => {
+            .then((response) => {
                 this.availableEntities = response.data;
                 this.debug('Доступные сущности', this.availableEntities);
             })
             .finally(() => {
                 this.loadSuccess = true;
             });
-    }
+    },
 };
 </script>
 

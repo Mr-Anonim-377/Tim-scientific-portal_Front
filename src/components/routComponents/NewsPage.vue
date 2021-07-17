@@ -31,7 +31,7 @@ export default {
     name: 'ResearchBodyPage',
     components: {
         NewsSection,
-        Preloader
+        Preloader,
     },
     mixins: [mixin],
     data() {
@@ -41,7 +41,7 @@ export default {
             listNews: {},
             titleNews: 'Новости программы',
             visibleNews: true,
-            loadSuccess: false
+            loadSuccess: false,
         };
     },
 
@@ -50,6 +50,6 @@ export default {
         setTimeout(() => {
             this.loadSuccess = true;
         }, 500);
-    }
+    },
 };
 </script>

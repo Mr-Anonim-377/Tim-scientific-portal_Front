@@ -9,7 +9,7 @@ export default {
     data() {
         return {
             sitekey: '6Lex4mcaAAAAAOFAD17jDblINvr3grQE4f7Sa1oP',
-            widgetId: 0
+            widgetId: 0,
         };
     },
     mounted() {
@@ -30,11 +30,11 @@ export default {
 
                     callback: () => {
                         this.$emit('verify');
-                    }
+                    },
                 });
             }
-        }
-    }
+        },
+    },
 };
 </script>
 

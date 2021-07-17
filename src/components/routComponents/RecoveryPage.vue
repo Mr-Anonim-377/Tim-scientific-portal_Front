@@ -43,7 +43,7 @@ export default {
     components: {
         ButtonElement,
         TitleSection,
-        Recaptcha
+        Recaptcha,
     },
     data() {
         return {
@@ -54,12 +54,12 @@ export default {
             titleRecovery: 'Восстановление пароля',
             compliteRecapcha: false,
             modifiers: {
-                btn: ['width: 331px; height: 50px; margin: 10px 0 20px 0px;']
+                btn: ['width: 331px; height: 50px; margin: 10px 0 20px 0px;'],
             },
             titleRecoveryBtn: 'Отправить',
             stileTitle: {
-                stile: ['font-size: 22px']
-            }
+                stile: ['font-size: 22px'],
+            },
         };
     },
     methods: {
@@ -96,8 +96,8 @@ export default {
                     .get('/utils/update/password?login=' + this.login, {
                         headers: {
                             'Content-Type': 'application/json',
-                            'Access-Control-Allow-Origin': '*'
-                        }
+                            'Access-Control-Allow-Origin': '*',
+                        },
                     })
                     .then(() => {
                         this.$router.push({ name: 'auth' });
@@ -111,8 +111,8 @@ export default {
              * Метод всегда должен возвращать false
              */
             return false;
-        }
-    }
+        },
+    },
 };
 </script>
 

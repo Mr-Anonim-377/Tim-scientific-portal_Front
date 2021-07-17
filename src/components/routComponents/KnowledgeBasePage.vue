@@ -141,17 +141,17 @@ import TitleSection from '../unitComponents/TitleSection';
 export default {
     name: 'KnowledgeBasePage',
     components: {
-        TitleSection
+        TitleSection,
     },
     data() {
         return {
             visibleRecovery: true,
             titleRecovery: 'База знаний',
             stileTitle: {
-                stile: ['font-size: 26px']
-            }
+                stile: ['font-size: 26px'],
+            },
         };
-    }
+    },
 };
 </script>
 
