@@ -469,12 +469,7 @@ export default {
 
             formData.append('file', file.raw, file.name);
             formData.append('fileName', file.name);
-            formData.append('fileData', this.getCurrentDate());
-
-            //eslint-disable-next-line
-      const self = this;
-            //eslint-disable-next-line
-      debugger;
+            formData.append('fileDate', this.getCurrentDate());
 
             return new Promise((res) => {
                 axios({
@@ -506,21 +501,20 @@ export default {
 
         /* Метод сабмита формы -> отправляет запросы при пройденной валидации */
         onSubmit(formName) {
-            let data = this.getRequestData();
-            this.addCalendar(data).then(() => {
-                console.log('ok');
-            });
             this.$refs[formName].validate(async (valid) => {
                 if (valid) {
-                    // let data = this.getRequestData();
+                    let data = this.getRequestData();
                     if (this.mode === 'create') {
-                        // this.debug('Отправляем', data, true);
+                        this.debug('Отправляем', data, true);
+                        this.addCalendar(data).then(() => {
+                            this.$router.push({ name: 'AdminCalendarPage' });
+                        });
                     } else {
-                        // data.pageId = this.entityId;
-                        // this.debug('Отправляем', data, true);
-                        // this.updateCalendar(data).then(() => {
-                        //     this.$router.push({ name: 'AdminCalendarPage' });
-                        // });
+                        data.pageId = this.entityId;
+                        this.debug('Отправляем', data, true);
+                        this.updateCalendar(data).then(() => {
+                            this.$router.push({ name: 'AdminCalendarPage' });
+                        });
                     }
                 } else {
                     return false;
