@@ -19,7 +19,7 @@
             </div>
 
             <!-- TODO Поправить type-->
-            <AdminItem
+            <AdminDocumentItem
                 :section-data="items"
                 form-name="FormNews"
                 type="DOCUMENTS"
@@ -33,19 +33,19 @@
 </template>
 
 <script>
-import AdminItem from '@/components/unitComponents/AdminItem';
+import AdminDocumentItem from '@/components/unitComponents/AdminDocumentItem';
 
 import Preloader from './../unitComponents/CommonElements/Preloader';
 
 import AdminNavigation from '@/components/unitComponents/AdminNavigation';
 import mixin from '../../utils/methodsMixin';
-// import axios from 'axios';
+import axios from 'axios';
 
 export default {
     name: 'AdminDocumentPage',
     components: {
         AdminNavigation,
-        AdminItem,
+        AdminDocumentItem,
         Preloader,
     },
     mixins: [mixin],
@@ -66,18 +66,17 @@ export default {
             });
     },
     async mounted() {
-        //     axios({
-        //         method: 'GET',
-        //         TODO - указать тип
-        //         url: '/user/allEntityInstance?type=',
-        //     })
-        //         .then((response) => {
-        //             this.availableEntities = response.data;
-        //             this.debug('Доступные сущности', this.availableEntities);
-        //         })
-        //         .finally(() => {
-        this.loadSuccess = true;
-        //         });
+        axios({
+            method: 'GET',
+            url: '/user/get/private/doc',
+        })
+            .then((response) => {
+                this.availableEntities = response.data;
+                this.debug('Доступные сущности', this.availableEntities);
+            })
+            .finally(() => {
+                this.loadSuccess = true;
+            });
     },
 };
 </script>
