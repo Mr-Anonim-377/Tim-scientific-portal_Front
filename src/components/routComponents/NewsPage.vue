@@ -3,7 +3,12 @@
 <template>
     <div v-if="loadSuccess">
         <!-- Секция новостей -->
-        <NewsSection titlePage="Новости программы" tag="all" :newsData="NEWS_SLIDER.NEWS_ITEM" :listNews="listNews" />
+        <NewsSection
+            title-page="Новости программы"
+            tag="all"
+            :news-data="NEWS_SLIDER.NEWS_ITEM"
+            :list-news="listNews"
+        />
 
         <!-- NOTE временно новости не скрываются -->
         <!-- <p class="newsSection__text" :style="btnStyle" @click="showToggle">
@@ -17,48 +22,34 @@
 </template>
 
 <script>
-    import Preloader from './../unitComponents/CommonElements/Preloader';
-    import mixin from '../../utils/methodsMixin';
+import Preloader from './../unitComponents/CommonElements/Preloader';
+import mixin from '../../utils/methodsMixin';
 
-    import NewsSection from '../unitComponents/NewsSection';
+import NewsSection from '../unitComponents/NewsSection';
 
-    export default {
-        name: 'researchBodyPage',
-        components: {
-            NewsSection,
-            Preloader,
-        },
-        mixins: [mixin],
-        methods: {
-            // FIXME добавить анимацию к списку
-            // NOTE метод реализующий раскрывающийся список
-            // showToggle: function() {
-            // this.listNews = {
-            // 	height: 'fit-content',
-            // };
-            // this.btnStyle = {
-            // 	opacity: 0,
-            // 	margin: '0 auto',
-            // 	height: 0,
-            // };
-            // },
-        },
-        data() {
-            return {
-                btnStyle: {},
-                listProperty: {},
-                listNews: {},
-                titleNews: 'Новости программы',
-                visibleNews: true,
-                loadSuccess: false,
-            };
-        },
+export default {
+    name: 'ResearchBodyPage',
+    components: {
+        NewsSection,
+        Preloader,
+    },
+    mixins: [mixin],
+    data() {
+        return {
+            btnStyle: {},
+            listProperty: {},
+            listNews: {},
+            titleNews: 'Новости программы',
+            visibleNews: true,
+            loadSuccess: false,
+        };
+    },
 
-        async mounted() {
-            await this.getModulesTest('NEWS_PAGE');
-            setTimeout(() => {
-                this.loadSuccess = true;
-            }, 500);
-        },
-    };
+    async mounted() {
+        await this.getModulesTest('NEWS_PAGE');
+        setTimeout(() => {
+            this.loadSuccess = true;
+        }, 500);
+    },
+};
 </script>
