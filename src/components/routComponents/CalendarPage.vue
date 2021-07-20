@@ -19,9 +19,6 @@
                     <documents-section
                         v-if="CALENDAR_TEXT.DOC"
                         :section-data="CALENDAR_TEXT"
-                        :local-data="{
-                            title: 'Информация о событии: Вавиловская школа-конференция аспирантов и молодых ученых',
-                        }"
                     />
                 </div>
                 <p
