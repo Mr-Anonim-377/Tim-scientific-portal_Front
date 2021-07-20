@@ -36,20 +36,17 @@
                         <h1>Документ</h1>
                         <el-form-item>
                             <el-upload
+                                ref="uploadDoc"
                                 class="upload-demo"
-                                action="https://future-agro.ru:84/uploadFile"
                                 multiple
-                                :data="requestData"
-                                list-type="text"
+                                list-type="document"
+                                :file-list="previewfileList"
+                                :v-model="form.documentCalendar"
+                                :on-change="changeDocumentHandler"
                                 :limit="1"
-                                :file-list="preview.documents"
-                                name="documents"
-                                :model="form.documents"
-                                :before-upload="beforeUploadHook"
+                                :auto-upload="false"
                                 :on-success="successLoadHookDocument"
-                                :on-remove="
-                                    removeImageHookDocsuccessLoadHookDocument
-                                "
+                                name="file"
                             >
                                 <el-button size="middle" type="success" plain
                                     >Выберите документ</el-button
@@ -120,22 +117,20 @@ export default {
                 name: '',
                 documents: [],
             },
+            previewfileList: [],
             /* Данные превью документов */
             preview: {
                 documents: [],
             },
             /* Правила валидации */
             rules: {
-                // TODO Надо ли вообще делать этот параметр обязательным?
-                // TODO Надо ли вообще инпут?
-                name: [{ required: true, message: '', trigger: 'blur' }],
-            },
-            /* Параметры запроса на загрузку файлов */
-            requestData: {
-                // TODO Указать корректный путь для хранения доков на серваке
-                // uploadFilePath: '/var/www/html/test',
-                uploadFilePath: 'test',
-                name: '',
+                name: [
+                    {
+                        required: true,
+                        message: 'Введите название файла',
+                        trigger: 'blur',
+                    },
+                ],
             },
         };
     },
@@ -167,30 +162,6 @@ export default {
             };
         },
 
-        /**
-         * Хук валидации перед загрузкой документа
-         * @param {object} file - объект с файлом
-         * @returns {boolean} validFormat && validSize
-         *
-         * Если метод возвращает false - выводится сообщение о соответствующей ошибке
-         *
-         * TODO Написать валидацию
-         */
-        beforeUploadHook(file) {
-            // this.debug('валидация', file, true);
-            /* const validFormat = file.type === 'image/jpeg' || file.type === 'image/png';
-                const validSize = file.size <= 500000;
-
-                validFormat || this.$message.error('Изображение должно иметь формат JPG или PNG');
-                validSize || this.$message.error('Изображение должно иметь вес не более 500кб');
-
-                return validFormat && validSize; */
-
-            /* Кладем имя файла в параметр к запросу */
-            this.requestData.name = file.name;
-            return true;
-        },
-
         /* Хук успешной загрузки изображения (инпут превью)
                При успешной загрузке заполняем скрытый инпут урлом из ответа */
         successLoadHookDocument(res) {
@@ -208,18 +179,35 @@ export default {
         /**
          * Метод добавления документа
          * @param {object} data - тело запроса на создание документа
-         * TODO Указать корректный урл
          */
         addDocument(data) {
+            /* Преобразуем в formData */
+            const formData = new FormData();
+            const file = this.form.documents;
+
+            Object.keys(data).forEach((prop) => {
+                formData.append(prop, data[prop]);
+            });
+
+            formData.append('file', file.raw, file.name);
+            formData.append('previewName', file.name);
+            formData.append('filePath', 'private');
+
             return new Promise((res) => {
                 axios({
                     method: 'POST',
-                    // url: '/user/create/',
-                    data: data,
+                    url: '/user/create/private/doc',
+                    data: formData,
+                    headers: { 'Content-Type': 'multipart/form-data' },
                 }).then((response) => {
                     res(response.data);
                 });
             });
+        },
+
+        changeDocumentHandler(file) {
+            console.log(file);
+            this.form.documents = file;
         },
 
         /**
