@@ -122,6 +122,37 @@
                 </el-row>
 
                 <div class="form">
+                    <el-row type="flex" justify="center">
+                        <el-col>
+                            <h1>Ссылка для встраивания видео</h1>
+                            <el-form-item>
+                                <el-input
+                                    v-model="form.videoLink"
+                                    type="textarea"
+                                    maxlength="100"
+                                    :autosize="{ minRows: 1, maxRows: 1 }"
+                                    resize="none"
+                                    placeholder="Ссылка для встраивания видео"
+                                ></el-input>
+                                <div class="el-upload__tip">
+                                    Инструкция по получении ссылки на youtube -
+                                    <a
+                                        href="https://support.google.com/youtube/answer/171780?hl=ru"
+                                        >https://support.google.com/youtube/answer/171780?hl=ru</a
+                                    >
+                                </div>
+
+                                <div class="el-upload__tip">
+                                    Ссылка, которую необходимо вставить в данное
+                                    поле помечена на скриншоте:
+                                    <a href="https://ibb.co/W6ynjHz"
+                                        >https://ibb.co/W6ynjHz</a
+                                    >
+                                </div>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+
                     <el-form-item prop="text" required>
                         <!-- Поле текста -->
                         <h1>Тело новости</h1>
@@ -255,6 +286,7 @@ export default {
                 preview: '',
                 slider: [],
                 date: '',
+                videoLink: '',
             },
 
             /* Правила валидации для формы */
@@ -373,10 +405,11 @@ export default {
             ];
             this.form.preview = this.previewfileList[0].url;
             this.form.date = this.NEWS_DATE.DATE[0].date;
+            /* TODO Получение ссылки 
+                this.form.videoLink = videoLink
+                */
         }
-
         this.debug('Данные формы', this.form);
-
         this.loadSuccess = true;
     },
     methods: {
@@ -467,6 +500,7 @@ export default {
                         ? this.getCurrentDate()
                         : this.form.date,
                 tag: this.form.tag,
+                videoLink: this.form.videoLink,
             };
         },
 
@@ -622,6 +656,7 @@ section * {
 }
 
 .tips_wrapper .tips_h2 {
+    font-weight: bold;
 }
 
 .tips_item {

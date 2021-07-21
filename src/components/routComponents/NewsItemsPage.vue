@@ -14,8 +14,17 @@
         <div v-if="NEWS_IMAGE_CAROUSEL?.IMAGE">
             <NewsSliderSection :urls="NEWS_IMAGE_CAROUSEL.IMAGE" />
         </div>
-
         <div v-html="transformHhtmlLinks(NEWS_TEXT.TEXT[0].text)"></div>
+        <!-- Видео -->
+        <!-- <iframe
+            width="1140"
+            height="642"
+            src="https://www.youtube.com/embed/0ly25OYC45M"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+        ></iframe> -->
     </section>
     <div v-else>
         <Preloader />
@@ -28,7 +37,8 @@ import testMixin from '../../utils/methodsMixin.js';
 
 import TitleSection from '../unitComponents/TitleSection';
 import NewsSliderSection from '../unitComponents/NewsSliderSection';
-
+// NOTE Новости убраны по просьбе
+// import NewsMain from "../unitComponents/NewsSection";
 export default {
     name: 'NewItemsPage',
     components: {
@@ -55,6 +65,7 @@ export default {
     },
 
     methods: {
+        /* Трансформируем ссылки в тексте */
         transformHhtmlLinks(string) {
             return string
                 .split(' ')
@@ -80,7 +91,9 @@ export default {
 section {
     color: #3f7e77;
 }
-
+iframe {
+    margin: 50px 0;
+}
 .bannerSlider {
     max-width: 1140px;
     align-items: center;
