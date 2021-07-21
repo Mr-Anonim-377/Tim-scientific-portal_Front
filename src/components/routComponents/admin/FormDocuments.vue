@@ -206,7 +206,6 @@ export default {
         },
 
         changeDocumentHandler(file) {
-            console.log(file);
             this.form.documents = file;
         },
 

@@ -18,9 +18,8 @@
                 <p class="admin-headers__right">Действия</p>
             </div>
 
-            <!-- TODO Поправить type-->
             <AdminDocumentItem
-                :section-data="items"
+                :section-data="availableEntities"
                 form-name="FormNews"
                 type="DOCUMENTS"
             />
