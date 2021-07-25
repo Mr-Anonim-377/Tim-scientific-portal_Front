@@ -14,150 +14,44 @@
 
                 <div class="form-content">
                     <div class="form-content-header">
+                        <!-- Аватар пользователя  -->
                         <div class="form-content-image">
-                            <img :src="PERSONAL_INFORMATION.IMAGE[0].image" />
+                            <img :src="avatarUrl" alt="" />
                         </div>
 
+                        <!--Основная информация-->
                         <div class="form-block__information">
                             <h2>
-                                {{
-                                    PERSONAL_INFORMATION.PERSONAL_INFORMATION[0]
-                                        .text
-                                }}
+                                {{ fullName }}
                             </h2>
                             <p class="information-text">
                                 -
-                                {{
-                                    PERSONAL_INFORMATION.RESEARCH_EDUCATION[0]
-                                        .title
-                                }}
+                                {{ education }}
                                 -
                             </p>
 
-                            <div class="form-block__edit">
-                                <h3>Ф.И.О.</h3>
+                            <div class="form-block__content">
+                                <profileField
+                                    :field-data="fullName"
+                                    field-name="Ф.И.О."
+                                />
 
-                                <p class="edit-text">
-                                    {{
-                                        PERSONAL_INFORMATION
-                                            .PERSONAL_INFORMATION[0].text
-                                    }}
-                                </p>
-
-                                <div
-                                    v-if="
-                                        PERSONAL_INFORMATION
-                                            .PERSONAL_INFORMATION[0].title
-                                    "
-                                    class="form block__item"
-                                >
-                                    <h3>Электронная почта</h3>
-                                    <p class="edit-text">
-                                        {{
-                                            PERSONAL_INFORMATION
-                                                .PERSONAL_INFORMATION[0].title
-                                        }}
-                                    </p>
-                                </div>
+                                <profileField
+                                    :field-data="email"
+                                    field-name="Электоронная почта"
+                                />
                             </div>
                         </div>
 
                         <div class="form-block__information center">
-                            <div class="form-block__edit">
-                                <div
-                                    v-if="
-                                        PERSONAL_INFORMATION
-                                            .PERSONAL_INFORMATION[0].title
-                                    "
-                                    class="form block__item"
-                                >
-                                    <h3>Ученая степень</h3>
-                                    <p class="edit-text">
-                                        {{
-                                            PERSONAL_INFORMATION
-                                                .PERSONAL_INFORMATION[0].title
-                                        }}
-                                    </p>
-                                </div>
-
-                                <div
-                                    v-if="
-                                        PERSONAL_INFORMATION.ACADEMIC_RANK[0]
-                                            .title
-                                    "
-                                    class="form block__item"
-                                >
-                                    <h3>Ученое звание</h3>
-                                    <p class="edit-text">
-                                        {{
-                                            PERSONAL_INFORMATION
-                                                .ACADEMIC_RANK[0].title
-                                        }}
-                                    </p>
-                                </div>
-
-                                <div
-                                    v-if="
-                                        PERSONAL_INFORMATION
-                                            .RESEARCH_EDUCATION[0].text
-                                    "
-                                    class="form block__item"
-                                >
-                                    <h3>Образование</h3>
-                                    <p class="edit-text">
-                                        {{
-                                            PERSONAL_INFORMATION
-                                                .RESEARCH_EDUCATION[0].text
-                                        }}
-                                    </p>
-                                </div>
-
-                                <div
-                                    v-if="
-                                        PERSONAL_INFORMATION
-                                            .INTERESTING_ACTIVITY[0].title
-                                    "
-                                    class="form block__item"
-                                >
-                                    <h3>Область научных интересов</h3>
-                                    <p class="edit-text">
-                                        {{
-                                            PERSONAL_INFORMATION
-                                                .INTERESTING_ACTIVITY[0].title
-                                        }}
-                                    </p>
-                                </div>
-
-                                <div
-                                    v-if="
-                                        PERSONAL_INFORMATION.INTERESTING_ACTIVITY
-                                    "
-                                    class="form block__item"
-                                >
-                                    <h3>Публикационная активность</h3>
-                                    <p class="edit-text">
-                                        {{
-                                            PERSONAL_INFORMATION
-                                                .INTERESTING_ACTIVITY[0].text
-                                        }}
-                                    </p>
-                                </div>
-
-                                <div
-                                    v-if="
-                                        PERSONAL_INFORMATION
-                                            .RESEARCH_EDUCATION[0].title
-                                    "
-                                    class="form block__item"
-                                >
-                                    <h3>Ученая степень</h3>
-                                    <p class="edit-text">
-                                        {{
-                                            PERSONAL_INFORMATION
-                                                .RESEARCH_EDUCATION[0].title
-                                        }}
-                                    </p>
-                                </div>
+                            <div class="form-block__content">
+                                <!--Поля-->
+                                <profileField
+                                    v-for="field in centerFields"
+                                    :key="field.fieldData"
+                                    :field-data="field.fieldData"
+                                    :field-name="field.fieldName"
+                                />
                             </div>
                         </div>
                     </div>
@@ -176,10 +70,12 @@ import TitleSection from '../unitComponents/TitleSection';
 import Preloader from './../unitComponents/CommonElements/Preloader';
 import AccountNavigationSection from '@/components/unitComponents/AccountNavigationSection';
 import mixin from '../../utils/methodsMixin';
+import ProfileField from './ProfileField';
 
 export default {
-    name: 'QuestionaryPage',
+    name: 'QuestionnairePage',
     components: {
+        ProfileField,
         AccountNavigationSection,
         TitleSection,
         Preloader,
@@ -191,13 +87,16 @@ export default {
 
     data() {
         return {
+            loadSuccess: false,
             title: 'Личная информация',
             authorization: false,
             stileTitle: {
                 stile: ['font-size: 26px'],
             },
-            loadSuccess: false,
-            old: new String(),
+            avatarUrl: String,
+            email: String,
+            fullName: String,
+            centerFields: Array,
         };
     },
 
@@ -205,7 +104,6 @@ export default {
         /**
          * Получаем id профиля из адрессной строки
          */
-
         this.profileID = this.$route.params.pageId;
 
         /**
@@ -213,29 +111,45 @@ export default {
          */
         await this.getModulesTest('', this.profileID);
 
+        /*
+         * Парсим данные полей
+         */
+        this.fullName = this.PERSONAL_INFORMATION.PERSONAL_INFORMATION[0].text;
+        this.education =
+            this.PERSONAL_INFORMATION.PERSONAL_INFORMATION[0].title;
+        this.email = this.PERSONAL_INFORMATION.PERSONAL_INFORMATION[0].title;
+        this.avatarUrl = this.PERSONAL_INFORMATION.IMAGE[0].image;
+        this.centerFields = [
+            {
+                fieldData: this.education,
+                fieldName: 'Ученая степень',
+            },
+            {
+                fieldData: this.PERSONAL_INFORMATION.ACADEMIC_RANK[0].title,
+                fieldName: 'Ученое звание',
+            },
+            {
+                fieldData: this.PERSONAL_INFORMATION.RESEARCH_EDUCATION[0].text,
+                fieldName: 'Образование',
+            },
+            {
+                fieldData:
+                    this.PERSONAL_INFORMATION.INTERESTING_ACTIVITY[0].title,
+                fieldName: 'Область научных интересов',
+            },
+            {
+                fieldData:
+                    this.PERSONAL_INFORMATION.INTERESTING_ACTIVITY[0].text,
+                fieldName: 'Публикационная активность',
+            },
+            {
+                fieldData:
+                    this.PERSONAL_INFORMATION.RESEARCH_EDUCATION[0].title,
+                fieldName: 'Ученая степень',
+            },
+        ];
+
         this.loadSuccess = true;
-    },
-
-    methods: {
-        /* 
-            Правильный падеж 
-            Украл отсюда:
-            https://realadmin.ru/coding/sklonenie-na-javascript.html */
-
-        declOfNum(n, text_forms) {
-            n = Math.abs(n) % 100;
-            var n1 = n % 10;
-            if (n > 10 && n < 20) {
-                return text_forms[2];
-            }
-            if (n1 > 1 && n1 < 5) {
-                return text_forms[1];
-            }
-            if (n1 == 1) {
-                return text_forms[0];
-            }
-            return text_forms[2];
-        },
     },
 };
 </script>
@@ -262,7 +176,6 @@ p {
 }
 .form-container {
     display: flex;
-    margin-top: 94px;
     max-width: 1200px;
     margin: 50px auto;
     justify-content: space-around;
@@ -304,7 +217,7 @@ img {
     width: 100%;
 }
 
-.form-block__information.center .form-block__edit {
+.form-block__information.center .form-block__content {
     width: 100%;
     padding: 0 225px 0 110px;
 }
@@ -315,44 +228,6 @@ img {
     width: 100%;
 }
 
-.form-block__text-project {
-    font-size: 15px;
-    line-height: 18px;
-    color: #3f7e77;
-    position: relative;
-    margin: 0 auto 11px auto;
-    width: 100%;
-    height: 20px;
-}
-
-.project-container {
-    display: flex;
-    overflow-x: auto;
-    margin: 0 -10px 29px -10px;
-    width: 100%;
-}
-.project-container::-webkit-scrollbar {
-    width: 1px;
-    height: 10px;
-}
-.project-container::-webkit-scrollbar-track {
-    height: 1px;
-}
-.project-container::-webkit-scrollbar-track-piece {
-    height: 1%;
-    background-color: rgba(63, 126, 119, 0.5);
-    border-radius: 23px;
-}
-.project-container::-webkit-scrollbar-thumb {
-    border-radius: 23px;
-    background: #3f7e77;
-    height: 9px;
-}
-
-.project-container-block {
-    width: 61px;
-    margin: 0 10px;
-}
 .project-container-block img {
     width: 60px;
     height: 60px;
@@ -376,11 +251,11 @@ img {
     -webkit-box-orient: vertical;
 }
 
-.form-block__edit {
+.form-block__content {
     margin: 0 auto;
     width: 60%;
 }
-.form-block__edit h3 {
+.form-block__content h3 {
     font-weight: bold;
     font-size: 15px;
     line-height: 18px;
@@ -393,18 +268,6 @@ img {
     text-align: center;
 }
 
-.edit__inp {
-    width: 416px;
-    height: 34px;
-    background: #f8f5e6;
-    border-radius: 20px;
-    padding: 0 14px;
-    border: none;
-    font-size: 15px;
-    line-height: 18px;
-    color: rgba(63, 126, 119, 0.5);
-    margin: 3px 0 19px 0;
-}
 .headerSection__inp :active,
 :hover,
 :focus {

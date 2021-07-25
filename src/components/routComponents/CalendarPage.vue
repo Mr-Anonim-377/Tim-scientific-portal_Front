@@ -50,7 +50,7 @@
 import TitleSection from '../unitComponents/TitleSection';
 import Preloader from '../unitComponents/CommonElements/Preloader.vue';
 import mixin from '../../utils/methodsMixin';
-import DocumentsSection from '@/components/unitComponents/DocumentsSection';
+import DocumentsSection from '../unitComponents/DocumentsSection';
 
 export default {
     name: 'CalendarPage',
@@ -160,16 +160,6 @@ p {
     color: #4d5668;
     text-align: left;
     margin-bottom: 30px;
-}
-
-.information-img {
-    display: flex;
-    justify-content: space-between;
-}
-
-.img-block {
-    width: 341px;
-    height: 226px;
 }
 
 .img-block img {
