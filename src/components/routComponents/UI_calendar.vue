@@ -34,7 +34,6 @@
                         <h1>Дата начала события</h1>
                         <el-form-item prop="dateStart">
                             <el-input
-                                id="dateInput"
                                 v-model="form.dateStart"
                                 type="date"
                                 :autosize="{ minRows: 2, maxRows: 3 }"
@@ -50,7 +49,6 @@
                         <h1>Дата окончания события</h1>
                         <el-form-item prop="dateEnd">
                             <el-input
-                                id="dateInput"
                                 v-model="form.dateEnd"
                                 type="date"
                                 :autosize="{ minRows: 2, maxRows: 3 }"
@@ -198,9 +196,9 @@
 </template>
 
 <script>
-import TitleSection from '@/components/unitComponents/TitleSection';
-import Preloader from '@/components/unitComponents/CommonElements/Preloader';
-import testMixin from '@/utils/methodsMixin';
+import TitleSection from '../unitComponents/TitleSection';
+import Preloader from '../unitComponents/CommonElements/Preloader';
+import testMixin from '../../utils/methodsMixin.js';
 import axios from 'axios';
 
 export default {
@@ -560,7 +558,7 @@ section {
 }
 
 section * {
-    font-family: Arial !important;
+    font-family: Arial, serif !important;
 }
 
 .form h1 {
@@ -628,11 +626,6 @@ section * {
 
 .tips_wrapper .tips_h2 {
     font-weight: bold;
-    /* text-align: center; */
-}
-
-.tips_wrapper .tips_h3 {
-    /* text-align: center; */
 }
 
 .tips_item {
