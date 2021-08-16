@@ -540,10 +540,10 @@ export default {
                 name: this.form.name,
                 imageLinks:
                     this.form.imageLinks?.map((image) => image.url) || [],
-                text: this.form.text.replace(/\n/g, ' ; '),
-                previewText: this.form.previewText,
+                text: this.form.text.replace(/\n/g, ' ; ').replaceAll('"', '”'),
+                previewText: this.form.previewText.replaceAll('"', '”'),
                 date: date,
-                place: this.form.place,
+                place: this.form.place.replaceAll('"', '”'),
             };
         },
     },

@@ -447,7 +447,7 @@ export default {
             /* Переменная для транформации закрытых тегов */
             let start = true;
             return {
-                name: this.form.title,
+                name: this.form.title.replaceAll('"', '”'),
                 previewImageLink: this.form.preview,
                 imageLinks: this.form.slider?.map((image) => image.url) || [],
                 text: this.form.text
@@ -460,8 +460,9 @@ export default {
                     .replace(/<<</g, '</ul>')
                     .replace(/>>/g, '<li>')
                     .replace(/<</g, '</li>')
-                    .replace(/\n/g, '<br>'),
-                previewText: this.form.shortText,
+                    .replace(/\n/g, '<br>')
+                    .replaceAll('"', '”'),
+                previewText: this.form.shortText.replaceAll('"', '”'),
                 date:
                     this.mode === 'create'
                         ? this.getCurrentDate()
