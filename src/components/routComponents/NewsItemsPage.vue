@@ -70,7 +70,7 @@ export default {
                         return `<a href=${word}}">${word}</a>`;
                     return word;
                 })
-                .join(' ');
+                .join('<br>');
         },
     },
 };
