@@ -537,7 +537,7 @@ export default {
                 tag:
                     this.form.dateStart.slice(2, 4) +
                     this.form.dateStart.slice(5, 7),
-                name: this.form.name,
+                name: this.form.name.replaceAll('"', '”'),
                 imageLinks:
                     this.form.imageLinks?.map((image) => image.url) || [],
                 text: this.form.text.replace(/\n/g, ' ; ').replaceAll('"', '”'),
