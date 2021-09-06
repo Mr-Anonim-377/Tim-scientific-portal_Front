@@ -29,6 +29,7 @@ import KBMediaPage from '../components/routComponents/KBMediaPage.vue';
 import MarketingPage from '../components/routComponents/MarketingPage.vue';
 import OffersPage from '../components/routComponents/OffersPage.vue';
 import TransferPage from '../components/routComponents/TransferPage';
+import AppliedResultsPage from '../components/routComponents/AppliedResultsPage.vue';
 
 import AdminNewsPage from '../components/routComponents/AdminNewslPage';
 import AdminDocumentPage from '../components/routComponents/AdminDocumentPage';
@@ -177,6 +178,11 @@ const routes = [
         path: '/dynamics',
         name: 'dynamics',
         component: dynamics,
+    },
+    {
+        path: '/appliedResults',
+        name: 'appliedResults',
+        component: AppliedResultsPage,
     },
     {
         path: '/calendar/:pageId',

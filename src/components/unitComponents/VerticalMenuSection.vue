@@ -111,9 +111,8 @@
                 </a>
             </li>
             <li>
-                <a
-                    href="http://future-agro.ru:8080/pdf/Research_Information_rr.pdf"
-                    >Прикладные результаты</a
+                <router-link :to="{ name: 'appliedResults' }"
+                    >Прикладные результаты</router-link
                 >
             </li>
             <li>
