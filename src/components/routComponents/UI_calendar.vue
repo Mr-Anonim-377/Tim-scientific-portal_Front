@@ -29,6 +29,7 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
+
                 <el-row type="flex" justify="center">
                     <el-col>
                         <h1>Дата начала события</h1>
@@ -49,6 +50,7 @@
                         <h1>Дата окончания события</h1>
                         <el-form-item prop="dateEnd">
                             <el-input
+                                id="dateInput"
                                 v-model="form.dateEnd"
                                 type="date"
                                 :autosize="{ minRows: 2, maxRows: 3 }"
@@ -200,7 +202,6 @@ import TitleSection from '../unitComponents/TitleSection';
 import Preloader from '../unitComponents/CommonElements/Preloader';
 import testMixin from '../../utils/methodsMixin.js';
 import axios from 'axios';
-
 export default {
     name: 'UICalendar',
     components: {
@@ -216,7 +217,6 @@ export default {
         return {
             loadSuccess: false,
             showTips: false,
-
             /* Поля формы */
             form: {
                 name: '',
@@ -229,7 +229,6 @@ export default {
                 documentCalendar: '',
                 tag: '',
             },
-
             /* Правила валидации для формы */
             rules: {
                 name: [
@@ -254,7 +253,6 @@ export default {
                         trigger: 'blur',
                     },
                 ],
-
                 place: [
                     {
                         required: true,
@@ -294,21 +292,17 @@ export default {
                     },
                 ],
             },
-
             /* УЖЕ загруженные изображения */
             previewfileList: [],
-
             /* УЖЕ загруженные изображения для слайдера страницы события */
             sliderFileList: [],
-
             /* Загружаемые изображения */
             loadedImages: {
                 imageLinks: [],
             },
-
             /* При загрузке изображений отправляем api key imgBB
-            Если что-то пойдет не так, получить новый можно тут:
-            https://api.imgbb.com/ */
+   Если что-то пойдет не так, получить новый можно тут:
+   https://api.imgbb.com/ */
             requestDataImage: {
                 key: '2ca9c35e0d42896ec7e746b5daf2c924',
             },
@@ -318,7 +312,6 @@ export default {
             },
         };
     },
-
     created() {
         /* Проверка авторизации */
         this.authCheck()
@@ -329,7 +322,6 @@ export default {
                 this.$router.push({ name: 'auth' });
             });
     },
-
     async mounted() {
         /* Если форма открыта в режиме редактирования - загружаем данные по id события */
         if (this.mode === 'edit') {
@@ -338,7 +330,6 @@ export default {
             /* Заполняем инпуты */
             this.form.name = this.CALENDAR_BANNER.TITLE[0].title;
             this.form.place = this.CALENDAR_BANNER.TEXT[0].text;
-
             this.form.previewText = this.ACTIONS_CALENDAR.ACTION.filter(
                 (action) => action._pageLink === this.entityId
             )[0].text;
@@ -349,12 +340,10 @@ export default {
                 /;/g,
                 '\n'
             );
-
             /* Парс даты */
             const date = this.ACTIONS_CALENDAR.ACTION.filter(
                 (action) => action._pageLink === this.entityId
             )[0].date;
-
             /* Дата начала события */
             this.form.dateStart =
                 date.length >= 10 ? date.split(' - ')[0] : date;
@@ -362,7 +351,6 @@ export default {
                 .split('.')
                 .reverse()
                 .join('-');
-
             /* Дата окончания события */
             this.form.dateEnd = date.length >= 10 ? date.split(' - ')[1] : '';
             this.form.dateEnd = this.form.dateEnd
@@ -399,7 +387,6 @@ export default {
             const validFormat =
                 file.type === 'image/jpeg' || file.type === 'image/png';
             const validSize = file.size <= 500000;
-
             validFormat ||
                 this.$message.error(
                     'Изображение должно иметь формат JPG или PNG'
@@ -408,7 +395,6 @@ export default {
                 this.$message.error(
                     'Изображение должно иметь вес не более 500кб'
                 );
-
             return validFormat && validSize;
         },
 
@@ -419,14 +405,13 @@ export default {
             let yyyy = today.getFullYear();
             return dd + '.' + mm + '.' + yyyy;
         },
-
         changeDocumentHandler(file) {
             console.log(file);
             this.form.documentCalendar = file;
         },
 
         /* Хук успешной загрузки изображения (инпут слайдера)
-            При успешной загрузке заполняем скрытый инпут урлом из ответа */
+        При успешной загрузке заполняем скрытый инпут урлом из ответа */
         successLoadHookSlider(res, file, fileList) {
             this.form.imageLinks = fileList.map((image) => {
                 return {
@@ -436,7 +421,7 @@ export default {
             });
         },
 
-        /* Хук успешной загрузки изображения (инпут документа)
+        /* Хук успешной загрузки документа (инпут документа)
               При успешной загрузке заполняем скрытый инпут урлом из ответа */
         successLoadHookDocument(res, file, fileList) {
             this.form.documentCalendar = fileList.map((link) => {
@@ -451,36 +436,21 @@ export default {
         removeImageHookSlider(res, fileList) {
             this.form.imageLinks = fileList;
         },
-
         /**
          * Метод добавления события
          * @param {object} data - тело запроса на создание события
          */
         addCalendar(data) {
-            /* Преобразуем в formData */
-            const formData = new FormData();
-            const file = this.form.documentCalendar;
-
-            Object.keys(data).forEach((prop) => {
-                formData.append(prop, data[prop]);
-            });
-
-            formData.append('file', file.raw, file.name);
-            formData.append('fileName', file.name);
-            formData.append('fileDate', this.getCurrentDate());
-
             return new Promise((res) => {
                 axios({
                     method: 'POST',
                     url: '/user/create/calendar',
-                    data: formData,
-                    headers: { 'Content-Type': 'multipart/form-data' },
+                    data: data,
                 }).then((response) => {
                     res(response.data);
                 });
             });
         },
-
         /**
          * Метод обновления события
          * @param {object} data - тело запроса на создание новости
@@ -496,7 +466,6 @@ export default {
                 });
             });
         },
-
         /* Метод сабмита формы -> отправляет запросы при пройденной валидации */
         onSubmit(formName) {
             this.$refs[formName].validate(async (valid) => {
@@ -519,7 +488,6 @@ export default {
                 }
             });
         },
-
         /**
          * Формирование тела запроса из this.form
          */
@@ -532,7 +500,6 @@ export default {
                       this.form.dateStart.split('-').reverse().join('.') +
                       ' - ' +
                       this.form.dateEnd.split('-').reverse().join('.');
-
             return {
                 tag:
                     this.form.dateStart.slice(2, 4) +
@@ -549,102 +516,87 @@ export default {
     },
 };
 </script>
-
 <style scoped>
 section {
     width: 600px;
     margin: 50px auto;
     min-height: calc(100vh - 275px);
 }
-
 section * {
-    font-family: Arial, serif !important;
+    font-family: Arial !important;
 }
-
 .form h1 {
     color: #3f7e77;
     text-align: start;
     font-size: 20px;
 }
-
 .upload-demo {
     text-align: start;
 }
-
 .el-upload__tip {
     line-height: normal;
 }
-
 .el-upload {
     width: 100% !important;
 }
-
 .el-upload--picture {
     width: 100%;
 }
-
 .submitWrapper {
     margin: 30px;
     display: flex;
     justify-content: center;
 }
-
 .hiddenInput {
     display: none;
     margin: 0;
 }
-
 .hiddenFormItem {
     margin: 0;
 }
-
 .tips_wrapper {
     background-color: #3f7e77;
     padding: 10px 26px;
     border-radius: 20px;
     color: #f8f5e6;
 }
-
 .tips p {
     text-align: center;
     font-size: 12px;
     color: #3f7e77;
 }
-
 .tips_wrapper p {
     text-align: left;
     font-size: 12px;
     color: #f8f5e6;
 }
-
 .tips_wrapper .tips_h1 {
     font-size: 14px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 30px;
 }
-
 .tips_wrapper .tips_h2 {
     font-weight: bold;
+    /* text-align: center; */
 }
-
+.tips_wrapper .tips_h3 {
+    /* text-align: center; */
+}
 .tips_item {
     margin: 20px 0;
     display: flex;
     justify-content: space-between;
 }
-
 .tips_item > div {
     width: 50%;
 }
-
 @keyframes tips {
     from {
         height: 0;
         opacity: 0;
         transform: translateX(50px);
     }
-
     to {
         height: 300px;
         opacity: 1;

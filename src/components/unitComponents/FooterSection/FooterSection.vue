@@ -8,7 +8,7 @@
             <div class="footerNav-container">
                 <div class="footerNav-item">
                     <h3>Участники консорциума</h3>
-                    <!-- 
+                    <!--
 					<router-link style="text-decoration: none" :to="{ name: 'notFound' }">
 						<p>
 							Российский государственный аграрный университет - МСХА имени К. А.
